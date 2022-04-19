@@ -31,5 +31,5 @@ public class pageController {
 	//수정테스트 - 진환
 	
 	
-	// 수정테스트 - 진
+	// 수정테스트 - 진호 
 }
