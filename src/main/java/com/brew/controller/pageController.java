@@ -28,4 +28,5 @@ public class pageController {
 		return "view/pages/mypage";
 	}
 	//수정
+	//수정테스트 - 진환
 }
