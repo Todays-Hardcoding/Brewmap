@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -21,6 +23,7 @@ public class Board {
 	@Id
 	@NotNull
 	@Column
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String postId;
 	
 	@NotNull
@@ -46,15 +49,11 @@ public class Board {
 	private String userId;
 	
 	@Column
-	private Integer postLike;
-	
-	@NotNull
-	@Column
-	private boolean postLikebook;
+	private Integer postLikeCount;
 
 	@Builder
-	public Board(String postId, String postTitle, String postContent, LocalDateTime postDate, int postViews,
-			String boardId, String userId, Integer postLike, boolean postLikebook) {
+	public Board(@NotNull String postId, @NotNull String postTitle, @NotNull String postContent, LocalDateTime postDate,
+			int postViews, @NotNull String boardId, @NotNull String userId, Integer postLikeCount) {
 		super();
 		this.postId = postId;
 		this.postTitle = postTitle;
@@ -63,8 +62,6 @@ public class Board {
 		this.postViews = postViews;
 		this.boardId = boardId;
 		this.userId = userId;
-		this.postLike = postLike;
-		this.postLikebook = postLikebook;
+		this.postLikeCount = postLikeCount;
 	}	
-	
 }
