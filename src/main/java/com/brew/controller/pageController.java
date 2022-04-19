@@ -23,10 +23,11 @@ public class pageController {
 	public String loginnav() {
 		return "view/login";
 	}
-	@RequestMapping("/mypage")
-	public String mypagenav() {
-		return "view/pages/mypage";
-	}
+//	@RequestMapping("/mypage")
+//	public String mypagenav() {
+//		System.out.println();
+//		return "view/pages/mypage";
+//	}
 	// 방명록
 	
 	//수정
@@ -34,7 +35,6 @@ public class pageController {
 	//수정테스트 - 진환
 
 	//수정테스트 - 인혁
-	
 	
 	// 수정테스트 - 진호 
 	//수정테스트 - 경희pipi
