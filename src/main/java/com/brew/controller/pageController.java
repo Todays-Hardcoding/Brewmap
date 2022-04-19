@@ -29,5 +29,5 @@ public class pageController {
 	}
 	//수정
 	//수정테스트 - 진환
-	//수정테스트 - 경희
+	//수정테스트 - 경희pipi
 }
