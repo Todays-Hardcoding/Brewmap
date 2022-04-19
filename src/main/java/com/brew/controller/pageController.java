@@ -30,5 +30,6 @@ public class pageController {
 	//수정
 	//수정테스트 - 진환
 	//수정테스트 - 건영
+	//수정테스트 - 건영2
 	
 }
