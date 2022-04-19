@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <head th:replace="css/css :: css">
+    <meta charset="utf-8">
+</head>
+
+<body>
+<div th:replace="/layout/header.html :: header"></div>
+    <div class="container profile profile-view" id="profile">
+        <form>
+            <div class="row profile-row">
+                <div class="col-md-4 relative" style="height: 300px;">
+                    <div class="avatar" style="height: 300px;">
+                        <div class="avatar-bg center" style="margin-bottom: 10px;"></div>
+                        <div style="text-align: center;"><strong>User</strong></div>
+                        <div class="text-center"><a class="bs4_modal_trigger" href="#">사진 변경</a><a
+                                class="bs4_modal_trigger" href="#">정보 수정</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="d-xl-flex justify-content-xl-center social-icons" style="height: 100xp;"><a href="#"><i
+                                class="fab fa-product-hunt" href="#"></i></a><a href="#"><i class="fas fa-ticket-alt"
+                                href="#"></i><i class="fas fa-comment-dots" href="#"></i></a><a href="#"></a><a
+                            href="#"><i class="fa fa-calendar-check-o" href="#"></i></a></div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3"><strong>회원아이디</strong><input class="form-control-plaintext"
+                                    type="text" value="user" readonly=""></div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3"><strong>이름</strong>
+                                <div>
+                                </div><input class="form-control-plaintext" type="text" value="user" readonly="">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"><strong>생년월일</strong><strong></strong><input
+                                    class="form-control-plaintext" type="text" value="2000-01-01" readonly=""></div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3"><strong>회원등급</strong><input class="form-control-plaintext"
+                                    type="text" value="골드" readonly=""></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3"><strong>전화번호</strong><input class="form-control-plaintext"
+                                    type="text" value="010-1111-1111" readonly=""></div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3"><strong>이메일</strong><input class="form-control-plaintext"
+                                    type="text" value="abc@gmail.com" readonly=""></div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12 content-right"><button class="btn btn-primary form-btn" type="submit">SAVE
+                            </button><button class="btn btn-danger form-btn" type="reset">CANCEL </button></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+       <footer th:replace="/layout/footer.html :: footer"></footer>
+</body>
+
+</html>
