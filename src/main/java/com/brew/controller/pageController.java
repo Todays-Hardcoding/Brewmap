@@ -27,6 +27,10 @@ public class pageController {
 	public String mypagenav() {
 		return "view/pages/mypage";
 	}
+	// 방명록
+	
 	//수정
 	//수정테스트 - 진환
+	
+	// 수정테스트 - 윤정
 }
