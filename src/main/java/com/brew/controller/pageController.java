@@ -11,10 +11,11 @@ public class pageController {
 		return "view/pages/chat";
 	}
 	
-	@RequestMapping("/storeList")
-	public String storeListnav() {
-		return "view/pages/storeList";
-	}
+//	@RequestMapping("/storeList")
+//	public String storeListnav() {
+//		return "view/pages/storeList";
+//	}
+	
 	@RequestMapping("/board")
 	public String boardnav() {
 		return "view/pages/board";

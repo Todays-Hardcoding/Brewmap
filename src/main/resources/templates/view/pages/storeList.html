@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
 </head>
+
 <body>
 	<h1>STORELIST</h1>
+	
+	<form class="search-form">
+        <div class="input-group"><span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control" type="text" placeholder="I am looking for.."><button class="btn btn-light" type="button">Search </button></div>
+    </form>
+    <section class="article-list">
+        <div class="container">
+            <div class="row articles" >
+	            <th:block th:each="storeList : ${storeList}">
+	                <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="assets/img/desk.jpg"></a>
+	                    <h3 class="name" th:text="${storeList.storeName}" ></h3>
+	                    <div th:text="${storeList.storeCategory}"></div>
+	                    <div th:text="${storeList.storeTag}"></div>
+	                    <div th:text="${storeList.storeRoadAddr}"></div>
+	                </div>
+	            </th:block>
+            </div>
+        </div>
+    </section>
+    
+	<div>
+        <h3>리스트 불러오기</h3>
+        <table border="1">
+            <thead>
+                <th>이름</th>
+                <th>카테고리</th>
+                <th>코드</th>
+                <th>주소</th>
+                <th>태그</th>
+                <th>전화번호</th>
+            </thead>
+            <tr:block th:each="storeList : ${storeList}">
+                <tbody>
+                    <td><span th:text="${storeList.storeName}"></span></td>
+                    <td><span th:text="${storeList.storeCategory}"></span></td>
+                    <td><span th:text="${storeList.storeCode}"></span></td>
+                    <td><span th:text="${storeList.storeRoadAddr}"></span></td>
+                    <td><span th:text="${storeList.storeTag}"></span></td>
+                    <td><span th:text="${storeList.storeTel}"></span></td>
+                </tbody>
+            </tr:block>
+        </table> 
+    </div>
+    
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
