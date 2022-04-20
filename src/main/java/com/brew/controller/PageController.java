@@ -18,7 +18,7 @@ public class PageController {
 	
 	@RequestMapping("/board")
 	public String boardnav() {
-		return "view/pages/board";
+		return "view/board/boardMain";
 	}
 	
 	@RequestMapping("/login")
