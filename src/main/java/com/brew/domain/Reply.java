@@ -20,11 +20,9 @@ import lombok.NoArgsConstructor;
 @Table
 public class Reply {
 	
-	@NotNull
-	@Column
 	@ManyToOne
-	@JoinColumn(name = "post_id", referencedColumnName = "post_id" )
-	private String postId;
+	@JoinColumn(name="board_id")
+	private Board board;
 	
 	@Id
 	@NotNull
@@ -47,10 +45,9 @@ public class Reply {
 	private Integer replyLikeCount;
 
 	@Builder
-	public Reply(@NotNull String postId, @NotNull String replyId, @NotNull String replyContent,
+	public Reply(@NotNull String replyId, @NotNull String replyContent,
 			@NotNull String replyUser, String replyDate, Integer replyLikeCount) {
 		super();
-		this.postId = postId;
 		this.replyId = replyId;
 		this.replyContent = replyContent;
 		this.replyUser = replyUser;
