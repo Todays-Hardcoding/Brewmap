@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.brew.domain.StoreInfo;
+import com.brew.domain.User;
 
 @Repository
 public interface StoreInfoRepository extends JpaRepository<StoreInfo, String> {
@@ -66,5 +67,5 @@ public interface StoreInfoRepository extends JpaRepository<StoreInfo, String> {
 	// 태그로 검색
 	@Query("select s from StoreInfo s where s.storeTag like %:storeTag%")
 	List<StoreInfo> findByStoreTag(@Param("storeTag") String storeTag, Pageable pagealbe);
-	
+
 }

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.brew.domain.StoreInfo;
+import com.brew.domain.User;
 import com.brew.repository.StoreInfoRepository;
 
 @Service
@@ -76,5 +77,6 @@ public class StoreInfoService {
 		}
 		return storeInfoRepository.findByStoreAddr("강남", pageable);
 	}
+
 
 }
