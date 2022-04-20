@@ -87,6 +87,5 @@ public class StoreInfoController {
 		System.out.println(map.get("lat"));
 		System.out.println(map.get("lon"));
 	}
-	
 
 }

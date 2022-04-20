@@ -223,7 +223,7 @@
 						<span th:text="${store.storeTag}"></span>
 					</div>
 				</li> -->
-			</ul>
+			</ul>	
 			<div id="pagination">
 				<th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
 					<a th:if="${page != nowPage}" th:href="@{/test03(page=${page-1}, keyword=${keyword})}" th:text="${page}"></a>
@@ -255,7 +255,9 @@
 		var storeList = [[${storeList}]];
 		var storeAll = [[${storeAll}]]
 		
+		console.log('storePage');
 		console.log(storePage);
+		console.log('storeList');
 		console.log(storeList);
 		
 		// 마커를 담을 배열입니다
