@@ -62,7 +62,7 @@ public class User {
 	
 	
 	
-	
+	@Builder
 	public User(@NotNull String userCategory, @NotNull String userId, @NotNull String userPw, @NotNull String userName,
 			@NotNull String userTel, @NotNull String userEmail, @NotNull String userGrade, @NotNull String userRegDate,
 			@NotNull String userBirthDate, @NotNull String userNickName, @NotNull boolean userGender, String userCoupon,
