@@ -13,10 +13,11 @@
         <div class="input-group"><span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control" type="text" placeholder="I am looking for.."><button class="btn btn-light" type="button">Search </button></div>
     </form>
     <section class="article-list">
+
         <div class="container">
             <div class="row articles" >
             	<!-- 리스트 불러오기 반복문 -->
-	            <th:block th:each="storeList : ${storeList}">
+	            <th:block th:each="storeList : ${infoList}">
 	            	<!-- 리스트 정보 표시 -->
 	                <div class="col-sm-6 col-md-4 item"><a href="#">
 	                	<img class="img-fluid" src="assets/img/desk.jpg"></a>
@@ -26,19 +27,18 @@
 	                    <div th:text="${storeList.storeRoadAddr}"></div>
 	                </div>
 	            </th:block>
+	            
             </div>
+            
+            <div id="pagination">
+				<th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+					<a th:if="${page != nowPage}" th:href="@{/storeList(page=${page-1})}" th:text="${page}"></a>
+					<a th:if="${page == nowPage}" th:text="${page}"></a>
+				</th:block>
+			</div>
         </div>
     </section>
-   
-	<div id="pagination">
-		<th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
-			<a th:if="${page != nowPage}" th:href="@{/storeList(page=${page-1}, keyword=${keyword})}" th:text="${page}"></a>
-			<a th:if="${page == nowPage}" th:text="${page}"></a>
-		</th:block>
-	</div>
 	
-	
-		
 	<!-- 
     <nav>
     <ul class="pagination">
@@ -51,11 +51,35 @@
         <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
     </ul>
 	</nav>
- 	-->
+ 	
 
      
     <!-- 푸터 페이지 불러오기 -->
     <footer th:replace="/layout/footer.html :: footer"></footer>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb3950b2c101dc6b62f59a629977b969&libraries=services"></script>
+	
+	<script th:inline="javascript">
+
+	var infoList = [[${infoList}]];
+	console.log(infoList);
+	
+	// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+	if (navigator.geolocation) {
+	    
+	    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+	    navigator.geolocation.getCurrentPosition(function(position) { 
+        var lat = position.coords.latitude, // 위도
+            lon = position.coords.longitude; // 경도
+            
+        console.log(lat);
+        console.log(lon);
+      });
+	    
+	} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+		alert("geolocation error");
+	}
+	</script>
 </body>
 </html>
