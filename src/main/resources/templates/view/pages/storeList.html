@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Untitled</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-</head>
+
+<!-- css 파일 링크 -->
+<head th:replace="css/css :: css">
 
 <body>
-	<h1>STORELIST</h1>
+
+	<!-- 헤더 페이지 불러오기 -->
+	<div th:replace="/layout/header.html :: header"></div>
 	
 	<form class="search-form">
         <div class="input-group"><span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control" type="text" placeholder="I am looking for.."><button class="btn btn-light" type="button">Search </button></div>
@@ -17,8 +15,11 @@
     <section class="article-list">
         <div class="container">
             <div class="row articles" >
+            	<!-- 리스트 불러오기 반복문 -->
 	            <th:block th:each="storeList : ${storeList}">
-	                <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="assets/img/desk.jpg"></a>
+	            	<!-- 리스트 정보 표시 -->
+	                <div class="col-sm-6 col-md-4 item"><a href="#">
+	                	<img class="img-fluid" src="assets/img/desk.jpg"></a>
 	                    <h3 class="name" th:text="${storeList.storeName}" ></h3>
 	                    <div th:text="${storeList.storeCategory}"></div>
 	                    <div th:text="${storeList.storeTag}"></div>
@@ -28,6 +29,60 @@
             </div>
         </div>
     </section>
+   
+	<div id="pagination">
+		<th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+			<a th:if="${page != nowPage}" th:href="@{/storeList(page=${page-1}, keyword=${keyword})}" th:text="${page}"></a>
+			<a th:if="${page == nowPage}" th:text="${page}"></a>
+		</th:block>
+	</div>
+	
+	<script type="text/javascript">
+	// 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
+		function displayPagination(pagination) {
+			var paginationEl = document.getElementById('pagination'),
+				fragment = document.createDocumentFragment(),
+				i;
+
+			// 기존에 추가된 페이지번호를 삭제합니다
+			while (paginationEl.hasChildNodes()) {
+				paginationEl.removeChild(paginationEl.lastChild);
+			}
+
+			for (i = 1; i <= pagination.last; i++) {
+				var el = document.createElement('a');
+				el.href = "#";
+				el.innerHTML = i;
+
+				if (i === pagination.current) {
+					el.className = 'on';
+				} else {
+					el.onclick = (function(i) {
+						return function() {
+							pagination.gotoPage(i);
+						}
+					})(i);
+				}
+
+				fragment.appendChild(el);
+			}
+			paginationEl.appendChild(fragment);
+		}
+		</script>
+	<!-- 
+    <nav>
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">5</a></li>
+        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+    </ul>
+	</nav>
+ 	-->
+	
     <!-- 
 	<div>
         <h3>리스트 불러오기</h3>
@@ -53,6 +108,9 @@
         </table> 
     </div>
      -->
+     
+    <!-- 푸터 페이지 불러오기 -->
+    <footer th:replace="/layout/footer.html :: footer"></footer>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.brew.domain.StoreInfo;
@@ -24,7 +25,7 @@ public class StoreInfoService {
 	public List<StoreInfo> findListByKeyword(String keyword, Pageable pageable) {
 		return storeInfoRepository.findListByKeyword(keyword, pageable);
 	}
-	
+
 	public Page<StoreInfo> findPageByKeyword(String keyword, Pageable pageable) {
 		return storeInfoRepository.findPageByKeyword(keyword, pageable);
 	}

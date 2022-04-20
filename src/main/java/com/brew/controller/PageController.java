@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class pageController {
+public class PageController {
 	
 	@RequestMapping("/footer3")
 	public String footer3() {
@@ -20,10 +20,12 @@ public class pageController {
 	public String boardnav() {
 		return "view/pages/board";
 	}
+	
 	@RequestMapping("/login")
 	public String loginnav() {
 		return "view/login";
 	}
+	
 	@RequestMapping("/mypage")
 	public String mypagenav() {
 		return "view/pages/mypage";

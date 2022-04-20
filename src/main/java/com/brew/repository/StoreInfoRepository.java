@@ -31,8 +31,7 @@ public interface StoreInfoRepository extends JpaRepository<StoreInfo, String> {
 			+ "store_tel like %:keyword% or "
 			+ "store_tag like %:keyword%", nativeQuery = true)
 	Page<StoreInfo> findPageByKeyword(@Param("keyword") String keyword, Pageable pagealbe);
-	
-	
+		
 	// 페이징 처리된 Page 객체 반환
 	// 가게 이름으로 검색
 	Page<StoreInfo> findByStoreNameContaining(String storeName, Pageable pagealbe);
