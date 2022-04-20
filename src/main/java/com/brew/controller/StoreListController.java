@@ -1,7 +1,11 @@
 package com.brew.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.brew.domain.StoreInfo;
 import com.brew.service.StoreInfoService;
@@ -33,7 +38,9 @@ public class StoreListController {
 	StoreListService storeListService;
 	
 	@GetMapping("/storeList")
-    public String returnStoreJoinList(@PageableDefault(page=0, size=6) Pageable pageable, Model model) {
+    public String returnStoreJoinList(HttpServletResponse response, @RequestParam Map<String, String> params,
+    		@PageableDefault(page=0, size=6) Pageable pageable, Model model) {
+
 		List<StoreInfo> storeList = storeInfoService.findAllStore();
 		Page<StoreInfo> infoList = storeListService.getInfoList(pageable); 
 		
@@ -47,6 +54,7 @@ public class StoreListController {
 		model.addAttribute("storeList", storeList);
 		model.addAttribute("infoList", infoList);
 
+		System.out.println(params.values());
 		
 		return "view/pages/storeList";
     }
