@@ -16,6 +16,7 @@ public class PageController {
 //		return "view/pages/storeList";
 //	}
 	
+	
 	@RequestMapping("/board")
 	public String boardnav() {
 		return "view/pages/board";
