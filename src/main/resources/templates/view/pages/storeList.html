@@ -73,12 +73,15 @@
             lon = position.coords.longitude; // 경도
         
         $(document).ready(function(){
+        	// 위도, 경도를 Map<String, String> 형식으로 저장
         	var params = {
         			"lat" : lat,
         			"lon" : lon 
         		}
+
         	console.log(params.lat);
             console.log(params.lon);
+            
         	$.ajax({
         		type: "get",   //get방식으로 명시
         		url : "/storeList",  //이동할 jsp 파일 주소

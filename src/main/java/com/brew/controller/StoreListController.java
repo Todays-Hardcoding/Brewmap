@@ -40,9 +40,11 @@ public class StoreListController {
 	@GetMapping("/storeList")
     public String returnStoreJoinList(HttpServletResponse response, @RequestParam Map<String, String> params,
     		@PageableDefault(page=0, size=6) Pageable pageable, Model model) {
-
+		
+		System.out.println(params.values());
+		
 		List<StoreInfo> storeList = storeInfoService.findAllStore();
-		Page<StoreInfo> infoList = storeListService.getInfoList(pageable); 
+		Page<StoreInfo> infoList = storeListService.getInfoList(params, pageable); 
 		
 		int nowPage = infoList.getPageable().getPageNumber() + 1;
 		int startPage = Math.max(nowPage-2, 1);
@@ -54,8 +56,6 @@ public class StoreListController {
 		model.addAttribute("storeList", storeList);
 		model.addAttribute("infoList", infoList);
 
-		System.out.println(params.values());
-		
 		return "view/pages/storeList";
     }
 	
