@@ -15,6 +15,6 @@ public class StoreListService {
 	private StoreInfoRepository storeInfoRepository;
 	
 	public Page<StoreInfo> getInfoList(Pageable pageable) {
-		return storeInfoRepository.findAll(pageable);
+		return storeInfoRepository.findAllStores(pageable);
 	}
 }

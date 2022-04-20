@@ -30,7 +30,7 @@
 						class="list-group-item list-group-item-action"
 						href="#list-settings" data-bs-toggle="list">Settings</a> -->
 				</ul>
-			<div id="pagination">
+				<div id="pagination">
 				<th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
 					<a th:if="${page != nowPage}" th:href="@{/map(page=${page-1}, keyword=${keyword})}" th:text="${page}"></a>
 					<a th:if="${page == nowPage}" th:text="${page}"></a>

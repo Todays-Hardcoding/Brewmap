@@ -33,7 +33,7 @@ public class StoreListController {
 	StoreListService storeListService;
 	
 	@GetMapping("/storeList")
-    public String returnStoreJoinList(@PageableDefault(page=0, size=5) Pageable pageable, Model model) {
+    public String returnStoreJoinList(@PageableDefault(page=0, size=12) Pageable pageable, Model model) {
 		List<StoreInfo> storeList = storeInfoService.findAllStore();
 		Page<StoreInfo> infoList = storeListService.getInfoList(pageable); 
 		
