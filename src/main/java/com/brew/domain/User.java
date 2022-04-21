@@ -24,6 +24,7 @@ import lombok.Setter;
 @Entity
 @Table
 @ToString
+@DynamicUpdate
 public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Board> board;
