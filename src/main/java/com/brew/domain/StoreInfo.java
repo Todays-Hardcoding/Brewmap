@@ -75,5 +75,13 @@ public class StoreInfo {
 		this.storeTag = storeTag;
 		this.storeStaravg = storeStaravg;
 	}
+
+	@Override
+	public String toString() {
+		return "StoreInfo [storeCategory=" + storeCategory + ", storeCode=" + storeCode + ", storeName=" + storeName
+				+ ", storeTel=" + storeTel + ", storeRoadAddr=" + storeRoadAddr + ", storeAddr=" + storeAddr
+				+ ", storeRegdate=" + storeRegdate + ", storeLatitude=" + storeLatitude + ", storeLongitude="
+				+ storeLongitude + ", storeTag=" + storeTag + ", storeStaravg=" + storeStaravg + "]";
+	}
 	
 }

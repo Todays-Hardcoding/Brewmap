@@ -13,26 +13,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.brew.domain.StoreInfo;
+import com.brew.service.StoreDetailService;
 import com.brew.service.StoreInfoService;
 import com.brew.service.StoreListService;
 
 
 
 @Controller
-public class StoreListDetailController {
+public class StoreDetailController {
 
 	@Autowired
-	StoreInfoService storeInfoService;
+	StoreDetailService storeDetailService;
 	
-	@GetMapping("/storeListDetail")
+	@GetMapping("/detail")
     public String returnStoreJoinList(Model model) {
-		List<StoreInfo> storeList = storeInfoService.findAllStore();
+		StoreInfo storeDetail = storeDetailService.findByStoreCode("1011784851");
 		 
-		model.addAttribute("storeList", storeList);
-		
+		model.addAttribute("storeDetail", storeDetail);
 
-		return "view/pages/storeListDetail";
+		System.out.println(storeDetail.toString());
+		return "view/pages/detail";
     }
-	
-
 }

@@ -30,6 +30,7 @@ public class StoreListService {
 		List<StoreInfo> result = new ArrayList<StoreInfo>();
 		
 		System.out.println(params.values());
+		
 		double lat = Double.parseDouble(params.get("lat"));
 		double lon = Double.parseDouble(params.get("lon"));
 
