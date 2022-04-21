@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="layout/head :: headFragment">
+</head>
+
+<th:block layout:fragment="customCss">
+	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
+    <link rel="stylesheet" href="assets/css/userpage/Modal-commerce-popup-button.css">
+    <link rel="stylesheet" href="assets/css/userpage/Profile-Edit-Form.css">
+    <link rel="stylesheet" href="assets/css/userpage/Social-Icons.css">
+</th:block>
+
+<body>
+	<!-- 헤더 페이지 불러오기 -->
+	<div th:replace="layout/header :: header"></div>
+
+	<!-- [content] 영역 시작, 아래 태그 지우고 이 자리 채우면 됨. -->
+	<div class="container profile profile-view" id="profile">
+		<form>
+			<div class="row profile-row">
+				<div class="col-md-4 relative" style="height: 300px;">
+					<div class="avatar" style="height: 300px;">
+						<div class="avatar-bg center" style="margin-bottom: 10px;"></div>
+						<div style="text-align: center;">
+							<strong>User</strong>
+						</div>
+						<div class="text-center">
+							<a class="bs4_modal_trigger" href="#">사진 변경</a><a
+								class="bs4_modal_trigger" th:href="@{/modify}">정보 수정</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="d-xl-flex justify-content-xl-center social-icons"
+						style="height: 100xp;">
+						<a href="#"><i class="fab fa-product-hunt" href="#"></i></a><a
+							href="#"><i class="fas fa-ticket-alt" href="#"></i><i
+							class="fas fa-comment-dots" href="#"></i></a><a href="#"></a><a
+							href="#"><i class="fa fa-calendar-check-o" href="#"></i></a>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-sm-12 col-md-6">
+							<div class="form-group mb-3">
+								<strong>회원아이디</strong>
+								<div th:text="${user.userId}">유저아이디</div>
+								<div th:text="${session.userId}">세션 유저아이디</div>
+							</div>
+						</div>
+						<div class="col-sm-12 col-md-6">
+							<div class="form-group mb-3">
+								<strong>이름</strong>
+								<div th:text="${user.userName}">유저이름</div>
+								<div th:text="${session.userName}">세션 유저이름</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-group mb-3">
+								<strong>생년월일</strong>
+								<div th:text="${user.userBirthDate}">생년월일</div>
+								<div th:text="${session.userBirthDate}">세션 생년월일</div>
+							</div>
+						</div>
+						<div class="col-sm-12 col-md-6">
+							<div class="form-group mb-3">
+								<strong>회원등급</strong>
+								<div th:text="${user.userGrade}">회원등급</div>
+								<div th:text="${session.userGrade}">세션 회원등급</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-md-6">
+							<div class="form-group mb-3">
+								<strong>전화번호</strong>
+								<div th:text="${user.userTel}">전화번호</div>
+								<div th:text="${session.userTel}">세션 전화번호</div>
+							</div>
+						</div>
+						<div class="col-sm-12 col-md-6">
+							<div class="form-group mb-3">
+								<strong>이메일</strong>
+								<div th:text="${user.userEmail}">이메일</div>
+								<div th:text="${session.userEmail}">세션 이메일</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- [content] 영역 끝 -->
+
+	<!-- 푸터 페이지 불러오기 -->
+	<footer th:replace="layout/footer :: footer"></footer>
+
+	<!-- 스크립트 -->
+	<div th:replace="layout/script :: scriptFragment">
+		<!-- 이 안에 개별적인 js 넣으면 됨. -->
+		<script th:inline="javascript">
+   /* 확인용 코드입니다 */
+/*     var userlist = [[${user}]];
+   console.log(userlist);  */
+    var checkuser = [[${session.userBirthDate}]];
+   console.log(checkuser);
+   </script>
+	</div>
+</body>
+</html>
