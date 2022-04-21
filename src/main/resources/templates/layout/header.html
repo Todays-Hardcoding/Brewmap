@@ -23,16 +23,18 @@
 	    	console.log(params.lat);
 	        console.log(params.lon);
 	        
+	        document.location.href = "/storeList?lat="+lat+"&lon="+lon;
+/*	        
 	    	$.ajax({
 	    		type: "get",   //get방식으로 명시
 	    		url : "/storeList",  //이동할 jsp 파일 주소
 	    		data : params
 	    	})
+*/
 		});
 		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 			alert("geolocation error");
 		}	
-		//location.href="/storeList";
 	};
 	</script>
 
@@ -50,7 +52,6 @@
 				</nav>
 			</div>
 			
-
 			<!-- 2번 nav -->
 			<div class="menu-container">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -87,11 +88,8 @@
 					</div>
 				</nav>
 			</div>
-
 		</div>
 	</div>
-
-	
 </div>
 <!-- navigation 끝 -->
 
