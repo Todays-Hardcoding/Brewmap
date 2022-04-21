@@ -21,9 +21,14 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table
 public class Review {
+	
 	@ManyToOne
 	@JoinColumn(name="store_code")
 	private StoreInfo storeInfo;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	@Id
 	@NotNull
@@ -41,23 +46,16 @@ public class Review {
 	
 	@Column
 	private LocalDateTime reviewDate;
-	
-	@Column
-	private String userId;
-	
-	@Column
-	private String storeCode;
 
 	@Builder
 	public Review(@NotNull String reviewId, @NotNull int reviewStar, @NotNull String reviewComment,
-			LocalDateTime reviewDate, String userId, String storeCode) {
+			LocalDateTime reviewDate) {
 		super();
 		this.reviewId = reviewId;
 		this.reviewStar = reviewStar;
 		this.reviewComment = reviewComment;
 		this.reviewDate = reviewDate;
-		this.userId = userId;
-		this.storeCode = storeCode;
+
 	}
 	
 }

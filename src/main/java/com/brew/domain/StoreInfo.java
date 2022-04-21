@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -19,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Table
 public class StoreInfo {
 	
-	@OneToMany(mappedBy = "board")
+	@OneToMany(mappedBy = "storeInfo")
 	private List<Review> review;
 	
 	@NotNull
@@ -61,10 +62,9 @@ public class StoreInfo {
 	@Column
 	private String storeTag;
 	
-	@NotNull
 	@Column
 	private Float storeStaravg;
-
+	
 	@Builder
 	public StoreInfo(String storeCategory, String storeCode, String storeName, String storeRoadAddr, String storeTel, String storeAddr,
 			String storeRegDate, double storeLatitude, double storeLongitude, String storeTag, Float storeStaravg) {
