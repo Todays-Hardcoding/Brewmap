@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<<<<<<< HEAD
 <head th:replace="css/css :: css"></head>
 
 <body>
@@ -51,6 +52,60 @@
 		var storePage = [[${storePage}]];
 		var storeList = [[${storeList}]];
 		console.log(storePage);
+=======
+<head th:replace="css/css :: css">
+
+<body>
+	<div th:replace="/layout/header.html :: header"></div>
+	<form class="search-form">
+		<section class="map-clean"></section>
+		<div class="row">
+			<div class="col">
+				<div id="map"
+			style="width: 100%; height: 500px; position: relative; overflow: hidden;"></div>
+			</div>
+			<div id="menu_wrap" class="col-lg-4">
+				<div class="input-group">
+					<form method="get" action="/map">
+						<span class="input-group-text"><i class="fa fa-search"></i></span>
+						<input class="form-control" type="text" id="keyword" name="keyword" size="15" placeholder="I am looking for..">
+						<button class="btn btn-light" type="submit">Search</button>
+					</form>
+				</div>
+				<ul id="placesList" class="list-group">
+					<!-- <a class="list-group-item list-group-item-action" href="#list-home"
+						data-bs-toggle="list">Home</a><a
+						class="list-group-item list-group-item-action"
+						href="#list-profile" data-bs-toggle="list">Profile</a><a
+						class="list-group-item list-group-item-action"
+						href="#list-messages" data-bs-toggle="list">Messages</a><a
+						class="list-group-item list-group-item-action"
+						href="#list-settings" data-bs-toggle="list">Settings</a> -->
+				</ul>
+				<div id="pagination">
+				<th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+					<a th:if="${page != nowPage}" th:href="@{/map(page=${page-1}, keyword=${keyword})}" th:text="${page}"></a>
+					<a th:if="${page == nowPage}" th:text="${page}"></a>
+				</th:block>
+			</div>
+			</div>
+		</div>
+	</form>
+
+	<footer th:replace="/layout/footer.html :: footer"></footer>
+	
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb3950b2c101dc6b62f59a629977b969&libraries=services"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/Map-locations-2.js"></script>
+	<script th:inline="javascript">
+		
+		var storePage = [[${storePage}]];
+		var storeList = [[${storeList}]];
+		console.log('storePage');
+		console.log(storePage);
+		console.log('storeList');
+>>>>>>> branch 'jinho_branch' of https://github.com/Todays-Hardcoding/Brewmap.git
 		console.log(storeList);
 		
 		// 마커를 담을 배열입니다
