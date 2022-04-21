@@ -55,7 +55,7 @@ public class StoreListController {
 		
 		model.addAttribute("infoList", infoList);
 
-		return "/view/pages/storeList";
+		return "view/pages/storeList";
     }
 	
 	@GetMapping("/latlon") // 내 주변 리스트 검색
