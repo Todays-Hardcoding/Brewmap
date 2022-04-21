@@ -41,7 +41,7 @@ public interface StoreInfoRepository extends JpaRepository<StoreInfo, String> {
 	
 	// 가게 코드 검색
 	@Query("select s from StoreInfo s where s.storeCode like %:storeCode%")
-	StoreInfo findByStoreCode(@Param("storeCode") String storeName);
+	StoreInfo findByStoreCode(@Param("storeCode") String storeCode);
 	
 	// 페이징 처리된 Page 객체 반환
 	// 가게 이름으로 검색
