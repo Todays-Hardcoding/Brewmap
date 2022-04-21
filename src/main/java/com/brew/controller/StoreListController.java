@@ -1,5 +1,7 @@
 package com.brew.controller;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -13,8 +15,11 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.brew.domain.StoreInfo;
 import com.brew.service.StoreInfoService;
@@ -30,60 +35,32 @@ public class StoreListController {
 //	public String storeListnav() {
 //		return "view/pages/storeList";
 //	}
-	
 	@Autowired
 	StoreInfoService storeInfoService;
 	
 	@Autowired
 	StoreListService storeListService;
 	
-	@GetMapping("/storeList")
+	List<StoreInfo> infoList;
+	
+	@GetMapping("/storeList") // 내 주변 리스트 검색 후 페이지 이동
     public String returnStoreJoinList(HttpServletResponse response, @RequestParam Map<String, String> params,
     		@PageableDefault(page=0, size=6) Pageable pageable, Model model) {
 		
-		System.out.println(params.values());
+		List<StoreInfo> infoList = null;
+		if(this.infoList.size() == 0)
+			infoList = storeListService.getCloseStores(params); 
+		else
+			infoList = this.infoList;
 		
-		List<StoreInfo> storeList = storeInfoService.findAllStore();
-		Page<StoreInfo> infoList = storeListService.getInfoList(params, pageable); 
-		
-		int nowPage = infoList.getPageable().getPageNumber() + 1;
-		int startPage = Math.max(nowPage-2, 1);
-		int endPage = Math.min(nowPage+2, infoList.getTotalPages());
-
-		model.addAttribute("nowPage", nowPage);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("storeList", storeList);
 		model.addAttribute("infoList", infoList);
 
-		return "view/pages/storeList";
+		return "/view/pages/storeList";
     }
 	
-//	public String search(String keyword, @PageableDefault(page=0, size=5) Pageable pageable, Model model) {
-//		if(keyword == null) {
-//			keyword = "서울";
-//		}
-//		
-//		Page<StoreInfo> storePage = storeinfoService.findPageByKeyword(keyword, pageable);
-//		Page<StoreInfo> storePage2 = storeinfoService.findStorePage(keyword, pageable);
-//		List<StoreInfo> storeList = storeinfoService.findListByKeyword(keyword, pageable);
-//		List<StoreInfo> storeList2 = storeinfoService.findStoreList(keyword, pageable);
-//		List<StoreInfo> storeAll = storeinfoService.findAllStore();
-//		
-//		int nowPage = storePage.getPageable().getPageNumber() + 1;
-//		int startPage = Math.max(nowPage-2, 1);
-//		int endPage = Math.min(nowPage+2, storePage.getTotalPages());
-//		
-//		model.addAttribute("storeAll", storeAll);
-//		model.addAttribute("storePage", storePage);
-//		model.addAttribute("storeList", storeList);
-//		model.addAttribute("storePage2", storePage2);
-//		model.addAttribute("storeList2", storeList2);
-//		model.addAttribute("keyword", keyword);
-//		model.addAttribute("nowPage", nowPage);
-//		model.addAttribute("startPage", startPage);
-//		model.addAttribute("endPage", endPage);
-//		
-//		return "/view/pages/map";
-//	}
+	@GetMapping("/latlon") // 내 주변 리스트 검색
+	@ResponseBody
+	public void returnLatlon(HttpServletResponse response, @RequestParam Map<String, String> params) {	
+		infoList = storeListService.getCloseStores(params);
+	}
 }
