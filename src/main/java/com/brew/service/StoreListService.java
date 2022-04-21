@@ -1,8 +1,6 @@
 package com.brew.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -52,7 +50,7 @@ public class StoreListService {
 
 		    distance = 2 * radius * Math.asin(squareRoot);
 	        
-		    if(distance < 15) {
+		    if(distance < 20) {
 		    	result.add(store);
 		    	System.out.println(distance);
 		    }

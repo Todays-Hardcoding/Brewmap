@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.brew.repository.StoreInfoRepository;
 import com.brew.service.UserService;
 
 import lombok.RequiredArgsConstructor;
