@@ -1,9 +1,6 @@
 package com.brew.controller;
 
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,14 +9,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.brew.domain.LatLon;
 import com.brew.domain.StoreInfo;
 import com.brew.service.StoreInfoService;
 
@@ -80,12 +71,6 @@ public class StoreInfoController {
 		model.addAttribute("endPage", endPage);
 		
 		return "view/pages/map";
-	}
-	
-	@GetMapping("/sendPosition")
-	public @ResponseBody void ajax(@RequestParam Map<String, String> map) {
-		System.out.println(map.get("lat"));
-		System.out.println(map.get("lon"));
 	}
 
 }
