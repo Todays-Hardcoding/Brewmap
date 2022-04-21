@@ -9,6 +9,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table
+@DynamicUpdate
 public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Board> board;
