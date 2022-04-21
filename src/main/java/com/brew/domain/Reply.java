@@ -28,7 +28,7 @@ public class Reply {
 	@NotNull
 	@Column
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String replyId;
+	private int replyId;
 	
 	@NotNull
 	@Column
@@ -45,7 +45,7 @@ public class Reply {
 	private Integer replyLikeCount;
 
 	@Builder
-	public Reply(@NotNull String replyId, @NotNull String replyContent,
+	public Reply(@NotNull int replyId, @NotNull String replyContent,
 			@NotNull String replyUser, String replyDate, Integer replyLikeCount) {
 		super();
 		this.replyId = replyId;

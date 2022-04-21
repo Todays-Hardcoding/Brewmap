@@ -34,8 +34,8 @@ public class Board {
 	@Id
 	@NotNull
 	@Column
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String boardId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long boardId;
 	
 	@NotNull
 	@Column
@@ -59,7 +59,7 @@ public class Board {
 	private Integer boardLikeCount;
 
 	@Builder
-	public Board(@NotNull String boardId, @NotNull String boardTitle, @NotNull String boardContent, LocalDateTime boardDate,
+	public Board(@NotNull long boardId, @NotNull String boardTitle, @NotNull String boardContent, LocalDateTime boardDate,
 			Integer boardViews, @NotNull String boardCategory, Integer boardLikeCount) {
 		super();
 		this.boardId = boardId;
