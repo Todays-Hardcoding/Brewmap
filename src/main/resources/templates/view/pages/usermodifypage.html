@@ -28,7 +28,8 @@
 						</div>
 						<div class="text-center">
 							<a class="bs4_modal_trigger" href="#">사진 변경</a>
-							<a class="bs4_modal_trigger" th:href="@{/delete}" >회원 탈퇴</a>
+							<a class="bs4_modal_trigger" th:href="@{/delete(userId=${session.user.userId})}" >회원 탈퇴</a>
+							<!-- <a class="bs4_modal_trigger" th:href="@{/delete}" > 탈퇴</a> -->
 						</div>
 					</div>
 				</div>
@@ -105,13 +106,6 @@
 <div th:replace="layout/script :: scriptFragment">
 	<!-- 이 안에 개별적인 js 넣으면 됨. -->
 	<script th:inline="javascript">
-		/* 확인용 코드입니다 */
-		/*     var userlist = [[${user}]];
-		 console.log(userlist);  */
-		/* 	var checkuser = [[${session.userId}]];
-		 console.log(checkuser);
-		 */
-		 
 	</script>
 </div>
 </body>
