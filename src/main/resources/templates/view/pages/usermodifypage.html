@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+<html lang="ko" 
+	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="layout/head :: headFragment">
 </head>
@@ -19,7 +20,7 @@
 	<h1 th:text="${userId}"></h1>
 
 	<div class="container profile profile-view" id="profile">
-		<form>
+		<form action="/modifyUserInfo" method="POST">
 			<div class="row profile-row">
 				<div class="col-md-4 relative" style="height: 300px;">
 					<div class="avatar" style="height: 300px;">
@@ -45,55 +46,52 @@
 					<div class="row">
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group mb-3">
-								<strong>회원아이디</strong> <input th:value="${user.userId}"
-									class="form-control-plaintext"></input> <input
-									th:value="${session.userId}" class="form-control-plaintext"></input>
+								<strong>회원아이디</strong>
+								<input th:value="${session.user.userId}" class="form-control-plaintext" name="userId"></input>
 							</div>
 						</div>
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group mb-3">
-								<strong>이름</strong> <input th:value="${user.userName}"
-									class="form-control-plaintext"></input> <input
-									th:value="${session.userName}" class="form-control-plaintext"></input>
+								<strong>이름</strong>
+								<input th:value="${session.user.userName}" class="form-control-plaintext" name="userName"></input>
 							</div>
 						</div>
 						<div class="col">
 							<div class="form-group mb-3">
-								<strong>생년월일</strong> <input th:value="${user.userBirthDate}"
-									class="form-control-plaintext"></input> <input
-									th:value="${session.userBirthDate}"
-									class="form-control-plaintext"></input>
+								<strong>생년월일</strong>
+								<input th:value="${session.user.userBirthDate}" class="form-control-plaintext" name="userBirthDate"></input>
 							</div>
 						</div>
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group mb-3">
-								<strong>회원등급</strong> <input th:value="${user.userGrade}"
-									class="form-control-plaintext"></input> <input
-									th:value="${session.userGrade}" class="form-control-plaintext"></input>
+								<strong>회원등급</strong>
+								<input th:value="${session.user.userGrade}" class="form-control-plaintext" name="userGrade"></input>
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group mb-3">
-								<strong>전화번호</strong> <input th:value="${user.userTel}"
-									class="form-control-plaintext"></input> <input
-									th:value="${session.userTel}" class="form-control-plaintext"></input>
+								<strong>전화번호</strong>
+								<input th:value="${session.user.userTel}" class="form-control-plaintext" name="userTel"></input>
 							</div>
 						</div>
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group mb-3">
-								<strong>이메일</strong> <input th:value="${user.userEmail}"
-									class="form-control-plaintext"></input> <input
-									th:value="${session.userEmail}" class="form-control-plaintext"></input>
+								<strong>이메일</strong>
+								<input th:value="${session.user.userEmail}" class="form-control-plaintext" name="userEmail"></input>
 							</div>
+						</div>
+						<div>
+							<input type="hidden" name="userCategory"  th:value="${session.user.userCategory}"></input>
+							<input type="hidden" name="userNickName"  th:value="${session.user.userNickName}"></input>
+							<input type="hidden" name="userPw"  th:value="${session.user.userPw}"></input>
 						</div>
 					</div>
 					<hr>
 					<div class="row">
 						<div class="col-md-12 content-right">
-							<button class="btn btn-primary form-btn" type="submit">SAVE
-							</button>
+							<button class="btn btn-primary form-btn" type="submit" >SAVE</button>
 							<button class="btn btn-danger form-btn" type="reset"
 								onclick="moveUserpage()">CANCEL</button>
 						</div>
@@ -117,7 +115,7 @@
 		/* 	var checkuser = [[${session.userId}]];
 		 console.log(checkuser);
 		 */
-
+		 
 		function moveUserpage() {
 			location.href = "userpage"
 		}

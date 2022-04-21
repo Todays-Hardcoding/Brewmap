@@ -1,22 +1,27 @@
 package com.brew.domain;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import groovy.transform.ToString;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
+@Data
 @NoArgsConstructor
 @Entity
 @Table
+@ToString
 public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Board> board;
@@ -43,9 +48,12 @@ public class User {
 	@NotNull
 	@Column
 	private String userGrade;
-	@NotNull
 	@Column
-	private String userRegDate;
+	private LocalDateTime userRegDate;
+	@PrePersist
+	public void createDate() {
+		this.userRegDate = LocalDateTime.now();
+	}
 	@NotNull
 	@Column
 	private String userBirthDate;
@@ -58,18 +66,19 @@ public class User {
 	@Column
 	private String userCoupon;
 	@Column
-	private int userPoint;
+	private String userPoint;
 	@Column
 	private String userQuestion;
 	@Column
 	private String userAnswer;
-
+	
 	@Builder
-	public User(@NotNull String userCategory, @NotNull String userId, @NotNull String userPw, @NotNull String userName,
-			@NotNull String userTel, @NotNull String userEmail, @NotNull String userGrade, @NotNull String userRegDate,
-			@NotNull String userBirthDate, @NotNull String userNickName, @NotNull boolean userGender, String userCoupon,
-			int userPoint, String userQuestion, String userAnswer) {
+	public User(List<Board> board, @NotNull String userCategory, @NotNull String userId, @NotNull String userPw,
+			@NotNull String userName, @NotNull String userTel, @NotNull String userEmail, @NotNull String userGrade,
+			LocalDateTime userRegDate, @NotNull String userBirthDate, @NotNull String userNickName,
+			@NotNull boolean userGender, String userCoupon, String userPoint, String userQuestion, String userAnswer) {
 		super();
+		this.board = board;
 		this.userCategory = userCategory;
 		this.userId = userId;
 		this.userPw = userPw;
@@ -86,5 +95,6 @@ public class User {
 		this.userQuestion = userQuestion;
 		this.userAnswer = userAnswer;
 	}
+	
 
 }
