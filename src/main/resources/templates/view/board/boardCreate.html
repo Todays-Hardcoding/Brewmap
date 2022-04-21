@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="layout/head :: headFragment">
+</head>
+<th:block layout:fragment="title">
+</th:block>
+
+<body>
+	<!-- 헤더 페이지 불러오기 -->
+	<div th:replace="layout/header :: header"></div>
+
+	<section>
+		<div class="container">
+			<div class="row py-1 py-md-5">
+				<div class="col-12 col-sm-3">
+					<div
+						class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 text-white">
+						<ul id="menu-1"
+							class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 my-3 mb-sm-auto justify-content-center align-items-center align-items-sm-start w-100">
+							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
+								th:href="@{/board/hotPage}"><i
+									class="fas fa-fire bi-speedometer2 fs-5 ms-2"></i><span
+									class="ms-1 d-none d-sm-inline">Hot게시판</span></a></li>
+							<li class="w-100"><a class="px-2 nav-link px-sm-0"
+								th:href="@{/board/freePage}"><i
+									class="fa fa-table fs-5 bi-table ms-2"></i><span
+									class="ms-1 d-none d-sm-inline">자유게시판</span></a></li>
+							<li class="w-100"><a class="px-1 nav-link px-sm-0 ps-2"
+								th:href="@{/board/recommendStore}"><i
+									class="fas fa-utensils bi-bootstrap fs-5 ms-2"></i><span
+									class="ms-1 d-none d-sm-inline">맛집추천</span></a></li>
+							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
+								th:href="@{/board/serviceCenter}"><i
+									class="fa fa-group bi-people fs-5 ms-2"></i><span
+									class="ms-1 d-none d-sm-inline">고객센터</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col">
+					<!-- 게시판 내용 들어갈 자리-->
+					<div class="container">
+						<form method="get" action="/board/create">
+							<div class="text-center container"
+								style="margin: 40px; text-align: left;">
+								<p style="text-align: center; transform: translate(-26px);">
+									<strong>글쓰기</strong>
+								</p>
+								<select class="form-select" aria-label="Default select example" name="boardCategory" 
+									style="transform: translate(-26px); margin-bottom: 10px; color: gray;" required>
+									<option selected disabled>게시판 분류를 선택해주세요.</option>
+									<option value="freePage">자유게시판</option>
+									<option value="recommendStore">맛집추천</option>
+									<option value="serviceCenter">고객센터</option>
+								</select>
+
+								<div class="form-group mb-3">
+									<input type="text" class="form-control" name="boardTitle"
+										style="transform: translate(-26px);" placeholder="제목을 입력해주세요.">
+								</div>
+								<div class="form-group mb-3" style="text-align: center;">
+									<textarea class="form-control" id="summernote"
+										name="boardContent"
+										style="height: 300px; width: 100%; /*text-align: center;*/ transform: translate(-26px);"
+										placeholder="내용을 입력해주세요."></textarea>
+								</div>
+								<div class="text-center form-group mb-3"
+									style="text-align: center; transform: translate(-26px);">
+									<button class="btn btn-primary text-center" type="submit"
+										style="margin-right: 10px;" th:text="저장"></button>
+									<button class="btn btn-primary" type="submit"
+										th:href="|${boardCategoryCode}|" style="margin-left: 10px;"
+										th:text="뒤로"></button>
+								</div>
+
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<!-- 푸터 페이지 불러오기 -->
+	<footer th:replace="layout/footer :: footer"></footer>
+
+	<!-- 스크립트 -->
+	<div th:replace="layout/script :: scriptFragment"></div>
+
+
+	<th:block layout:fragment="js">
+		<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
+		<script type="text/javascript" th:inline="javascript">
+			
+		</script>
+	</th:block>
+</body>
+
+</html>

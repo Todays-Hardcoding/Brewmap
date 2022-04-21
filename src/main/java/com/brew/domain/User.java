@@ -11,7 +11,12 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+<<<<<<< Upstream, based on branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 import groovy.transform.ToString;
+=======
+import org.hibernate.annotations.DynamicUpdate;
+
+>>>>>>> 32b4d8e 내거 푸쉬
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +27,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table
+<<<<<<< Upstream, based on branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 @ToString
+=======
+@DynamicUpdate
+>>>>>>> 32b4d8e 내거 푸쉬
 public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Board> board;
@@ -52,7 +61,11 @@ public class User {
 	@Column
 	private LocalDateTime userRegDate;
 	@PrePersist
+<<<<<<< Upstream, based on branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 	public void createDate() {
+=======
+	public void createdAt() {
+>>>>>>> 32b4d8e 내거 푸쉬
 		this.userRegDate = LocalDateTime.now();
 	}
 	@NotNull
@@ -77,7 +90,11 @@ public class User {
 	public User(List<Board> board, @NotNull String userCategory, @NotNull String userId, @NotNull String userPw,
 			@NotNull String userName, @NotNull String userTel, @NotNull String userEmail, @NotNull String userGrade,
 			LocalDateTime userRegDate, @NotNull String userBirthDate, @NotNull String userNickName,
+<<<<<<< Upstream, based on branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 			@NotNull boolean userGender, String userCoupon, String userPoint, String userQuestion, String userAnswer) {
+=======
+			@NotNull boolean userGender, String userCoupon, int userPoint, String userQuestion, String userAnswer) {
+>>>>>>> 32b4d8e 내거 푸쉬
 		super();
 		this.board = board;
 		this.userCategory = userCategory;
@@ -96,6 +113,9 @@ public class User {
 		this.userQuestion = userQuestion;
 		this.userAnswer = userAnswer;
 	}
+<<<<<<< Upstream, based on branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 	
+=======
+>>>>>>> 32b4d8e 내거 푸쉬
 
 }
