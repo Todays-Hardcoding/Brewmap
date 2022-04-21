@@ -61,7 +61,7 @@ public class Board {
 	private Integer boardLikeCount;
 
 	@Builder
-	public Board(@NotNull int boardId, @NotNull String boardTitle, @NotNull String boardContent, LocalDateTime boardDate,
+	public Board(@NotNull long boardId, @NotNull String boardTitle, @NotNull String boardContent, LocalDateTime boardDate,
 			Integer boardViews, @NotNull String boardCategory, Integer boardLikeCount) {
 		super();
 		this.boardId = boardId;

@@ -71,6 +71,15 @@ public class StoreInfoController {
 		model.addAttribute("endPage", endPage);
 		
 		return "view/pages/map";
+<<<<<<< HEAD
+	}
+	
+	@GetMapping("/sendPosition")
+	public @ResponseBody void ajax(@RequestParam Map<String, String> map) {
+		System.out.println(map.get("lat"));
+		System.out.println(map.get("lon"));
+=======
+>>>>>>> 4f4f6a9682a27f3acdfb4df246cf27ed35c6af2b
 	}
 
 }

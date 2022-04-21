@@ -27,8 +27,13 @@ public class Reply {
 	@Id
 	@NotNull
 	@Column
+<<<<<<< HEAD
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long replyId;
+=======
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int replyId;
+>>>>>>> 8caa7e2ac8b343ac6db6536314c729dc88896670
 	
 	@NotNull
 	@Column

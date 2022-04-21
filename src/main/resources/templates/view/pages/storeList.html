@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<!-- css 파일 링크 -->
+<!-- css ���� 留��� -->
 <head th:replace="css/css :: css">
 
 <body>
+<<<<<<< Upstream, based on branch 'Jinhwan' of https://github.com/Todays-Hardcoding/Brewmap.git
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 	
 	<!-- 헤더 페이지 불러오기 -->
+=======
+
+	<!-- �ㅻ�� ���댁� 遺��ъ�ㅺ린 -->
+>>>>>>> 967263f 윤정 게시판 검색빼고 완료
 	<div th:replace="/layout/header.html :: header"></div>
 	
 	<form class="search-form">
@@ -17,14 +22,21 @@
 
         <div class="container">
             <div class="row articles" >
-            	<!-- 리스트 불러오기 반복문 -->
+            	<!-- 由ъ�ㅽ�� 遺��ъ�ㅺ린 諛�蹂듬Ц -->
 	            <th:block th:each="storeList : ${infoList}">
+<<<<<<< Upstream, based on branch 'Jinhwan' of https://github.com/Todays-Hardcoding/Brewmap.git
 	            	<!-- 리스트 정보 표시 -->
 	                <div class="col-sm-6 col-md-4 item">
 	                	<a th:href="@{/detail (id=${storeList.storeCode})}">
 	                	<img class="img-fluid" src="assets/img/desk.jpg"></a> 
 	                	<h3 class="name" th:text="${storeList.storeName}">
 	                	<a href="#"></a></h3>
+=======
+	            	<!-- 由ъ�ㅽ�� ��蹂� ���� -->
+	                <div class="col-sm-6 col-md-4 item"><a href="#">
+	                	<img class="img-fluid" src="assets/img/desk.jpg"></a>
+	                    <h3 class="name" th:text="${storeList.storeName}" ></h3>
+>>>>>>> 967263f 윤정 게시판 검색빼고 완료
 	                    <div th:text="${storeList.storeCategory}"></div>
 	                    <div th:text="${storeList.storeTag}"></div>
 	                    <div th:text="${storeList.storeRoadAddr}"></div>
@@ -45,7 +57,7 @@
         
     </section>	
 
-    <!-- 푸터 페이지 불러오기 -->
+    <!-- �명�� ���댁� 遺��ъ�ㅺ린 -->
     <footer th:replace="/layout/footer.html :: footer"></footer>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 
@@ -55,14 +67,14 @@
 	console.log(infoList);
 	
 	$(document).ready(function(){
-		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+		// HTML5�� geolocation�쇰� �ъ�⑺�� �� ����吏� ���명�⑸���� 
 		if (navigator.geolocation) {
-		    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+		    // GeoLocation�� �댁�⑺�댁�� ���� ��移�瑜� �살�댁�듬����
 		    navigator.geolocation.getCurrentPosition(function(position) { 
-	        var lat = position.coords.latitude, // 위도
-	            lon = position.coords.longitude; // 경도  
+	        var lat = position.coords.latitude, // ����
+	            lon = position.coords.longitude; // 寃쎈��  
 	            
-	         // 위도, 경도를 Map<String, String> 형식으로 저장
+	         // ����, 寃쎈��瑜� Map<String, String> �����쇰� ����
         	var params = {
         			"lat" : lat,
         			"lon" : lon 
@@ -71,13 +83,13 @@
             console.log(params.lon);
             
         	$.ajax({
-        		type: "get",   //get방식으로 명시
-        		url : "/storeList",  //이동할 jsp 파일 주소
+        		type: "get",   //get諛⑹���쇰� 紐���
+        		url : "/storeList",  //�대���� jsp ���� 二쇱��
         		data : params
         	})
 		});
 		    
-		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+		} else { // HTML5�� GeoLocation�� �ъ�⑺�� �� ������ 留�而� ���� ��移��� �명�ъ������ �댁�⑹�� �ㅼ���⑸����
 			alert("geolocation error");
 		}	
     });
