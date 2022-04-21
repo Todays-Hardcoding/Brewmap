@@ -39,15 +39,15 @@
 	        <div id="map" style="width: 100%; height: 500px; position: relative; overflow: hidden;">
 	   		</div>
                 
- 	<!--                
-                <!-- 댓글 작성
+ 	                
+                <!-- 댓글 작성 -->
                 <form role="form" method="POST" action="/board/reply">
                     <!-- hidden 영역 -->
                     <!-- <input type="hidden" name="userId" th:value="${user.userId}"> 
                     <input type="hidden" name="replyUser" value="홍길동">
                     <input type="hidden" name="boardId" th:value="${board.boardId}">
 
-                    <!-- 입력 영역 
+                    <!-- 입력 영역 --> 
                     <div class="form-group">
                         <textarea class="form-control form-control" rows="3" required style="font-size: 16px;" name="replyContent">value here</textarea>
                     </div>
@@ -56,7 +56,7 @@
                     </div>
                 </form>
                 
-				<!-- 댓글 목록 
+				<!-- 댓글 목록 -->
                 <p>
                     <span class="badge bg-secondary">2</span>
                     <span class="ms-2" style="font-size: 15px;">Comments</span>
@@ -66,21 +66,21 @@
                            <form method="POST">
                                <input type="hidden" name="replyId" th:value="${reply.replyId}">
                             <div class="col-9 col-md-10" style="width: 100%;">
-                                <!-- 댓글 작성자
+                                <!-- 댓글 작성자 -->
                                 <h4 style="font-size: 22px;" th:text="${reply.replyUser}">댓글 작성자
-                                    <!-- 댓글 작성 날
+                                    <!-- 댓글 작성 날 -->
                                     <small class="font-monospace d-md-flex justify-content-md-end align-items-md-end small" style="font-size: 15px;" th:text="${reply.replyDate}">작성 날짜</small>
                                 </h4>
-                                <!-- 댓글 내용 
+                                <!-- 댓글 내용 -->
                                 <p style="font-size: 16px;" th:text="${reply.replyContent}">댓글 내용</p>
-                                <!-- 
+                                 
                                 	<div th:if="${reply.replyUser == user.userId}">
                                     <span><button type="submit" name="update">수정</button></span>
                                     <span><button type="submit" name="delete">삭제</button></span>
                                 </div> 
-                                --><!--
+                                
                             </div>
-                        </form> -->  
+                        </form>  
                </div>
            </div>
          
@@ -113,7 +113,7 @@
 			image : markerImage
 		});
 
-	marker.setMap(map); // 지도 위에 마커를 표출합니다
+		marker.setMap(map); // 지도 위에 마커를 표출합니다
 	</script>
 	<div th:replace="layout/script :: scriptFragment">
 	<!-- 이 안에 개별적인 js 넣으면 됨. -->
