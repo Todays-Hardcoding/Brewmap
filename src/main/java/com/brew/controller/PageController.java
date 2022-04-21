@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.brew.controller;
 
 import org.springframework.stereotype.Controller;
@@ -100,4 +99,3 @@ public class PageController {
 	//수정테스트 - 건영
 	//수정테스트 - 건영2
 }
->>>>>>> branch 'jinho_branch' of https://github.com/Todays-Hardcoding/Brewmap.git

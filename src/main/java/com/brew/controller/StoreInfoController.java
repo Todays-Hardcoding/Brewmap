@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.brew.controller;
 
 import java.util.List;
@@ -182,4 +181,3 @@ public class StoreInfoController {
 	}
 
 }
->>>>>>> branch 'jinho_branch' of https://github.com/Todays-Hardcoding/Brewmap.git

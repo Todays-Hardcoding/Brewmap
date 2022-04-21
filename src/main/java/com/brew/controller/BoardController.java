@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.brew.controller;
 
 import java.util.List;
@@ -66,10 +65,3 @@ public class BoardController {
 	}
 	
 }
-=======
-package com.brew.controller;
-
-public class BoardController {
-	
-}
->>>>>>> branch 'jinho_branch' of https://github.com/Todays-Hardcoding/Brewmap.git
