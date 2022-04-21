@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+<html lang="ko" 
+	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="layout/head :: headFragment">
 </head>
@@ -26,18 +27,17 @@
 							<strong>User</strong>
 						</div>
 						<div class="text-center">
-							<a class="bs4_modal_trigger" href="#">사진 변경</a><a
-								class="bs4_modal_trigger" th:href="@{/modify}">정보 수정</a>
+							<a class="bs4_modal_trigger" th:href="@{/modify}">정보 수정</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-8">
 					<div class="d-xl-flex justify-content-xl-center social-icons"
 						style="height: 100xp;">
-						<a href="#"><i class="fab fa-product-hunt" href="#"></i></a><a
-							href="#"><i class="fas fa-ticket-alt" href="#"></i><i
-							class="fas fa-comment-dots" href="#"></i></a><a href="#"></a><a
-							href="#"><i class="fa fa-calendar-check-o" href="#"></i></a>
+						<a href="#"><i class="fab fa-product-hunt" href="#"></i></a>
+						<a href="#"><i class="fas fa-ticket-alt" href="#"></i></a>
+						<a href="#"><i class="fas fa-comment-dots" href="#"></i></a>
+						<a href="#"><i class="fa fa-calendar-check-o" href="#"></i></a>
 					</div>
 					<hr>
 					<div class="row">

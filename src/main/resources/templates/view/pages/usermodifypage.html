@@ -17,8 +17,6 @@
 	<div th:replace="layout/header :: header"></div>
 
 	<!-- [content] 영역 시작, 아래 태그 지우고 이 자리 채우면 됨. -->
-	<h1 th:text="${userId}"></h1>
-
 	<div class="container profile profile-view" id="profile">
 		<form action="/modifyUserInfo" method="POST">
 			<div class="row profile-row">
@@ -29,18 +27,18 @@
 							<strong>User</strong>
 						</div>
 						<div class="text-center">
-							<a class="bs4_modal_trigger" href="#">사진 변경</a><a
-								class="bs4_modal_trigger" th:href="@{/modify}">정보 수정</a>
+							<a class="bs4_modal_trigger" href="#">사진 변경</a>
+							<a class="bs4_modal_trigger" th:href="@{/delete}" >회원 탈퇴</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-8">
 					<div class="d-xl-flex justify-content-xl-center social-icons"
 						style="height: 100xp;">
-						<a href="#"><i class="fab fa-product-hunt" href="#"></i></a><a
-							href="#"><i class="fas fa-ticket-alt" href="#"></i><i
-							class="fas fa-comment-dots" href="#"></i></a><a href="#"></a><a
-							href="#"><i class="fa fa-calendar-check-o" href="#"></i></a>
+						<a href="#"><i class="fab fa-product-hunt" href="#"></i></a>
+						<a href="#"><i class="fas fa-ticket-alt" href="#"></i></a>
+						<a href="#"><i class="fas fa-comment-dots" href="#"></i></a>
+						<a href="#"><i class="fa fa-calendar-check-o" href="#"></i></a>
 					</div>
 					<hr>
 					<div class="row">
@@ -82,18 +80,16 @@
 								<input th:value="${session.user.userEmail}" class="form-control-plaintext" name="userEmail"></input>
 							</div>
 						</div>
-						<div>
 							<input type="hidden" name="userCategory"  th:value="${session.user.userCategory}"></input>
 							<input type="hidden" name="userNickName"  th:value="${session.user.userNickName}"></input>
 							<input type="hidden" name="userPw"  th:value="${session.user.userPw}"></input>
-						</div>
 					</div>
 					<hr>
 					<div class="row">
 						<div class="col-md-12 content-right">
 							<button class="btn btn-primary form-btn" type="submit" >SAVE</button>
 							<button class="btn btn-danger form-btn" type="reset"
-								onclick="moveUserpage()">CANCEL</button>
+								onclick="location.href='userpage';">CANCEL</button>
 						</div>
 					</div>
 				</div>
@@ -116,9 +112,6 @@
 		 console.log(checkuser);
 		 */
 		 
-		function moveUserpage() {
-			location.href = "userpage"
-		}
 	</script>
 </div>
 </body>

@@ -1,6 +1,7 @@
 package com.brew.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -28,13 +29,13 @@ public class UserService {
 	public void userUpdate(User user) {
 		userRepository.save(user);
 	}
-
-
-//   public void modifyByUserId(String userId, String userName, String userBirthDate, String userGrade, String userTel, String userEmail) {
-//	   userRepository.changeByUserId(userId, userName, userBirthDate, userGrade, userTel, userEmail);
-//   }
-
-//   public void modifyByUserId(User user) {
-//	   userRepository.changeByUserId(user);
-//   }
+	
+	public void deleteUser(String userId) {
+		userRepository.deleteById(userId);
+	}
+	
+	public void delete(User user) {
+		userRepository.delete(user);
+	}
+	
 }
