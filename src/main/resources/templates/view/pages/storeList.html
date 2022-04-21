@@ -7,12 +7,6 @@
 <body>
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 	
-	<script>
-	function toDetail(){
-		document.location.href = "/detail?"+${storeList.storeCode};
-	};
-	</script>
-	
 	<!-- 헤더 페이지 불러오기 -->
 	<div th:replace="/layout/header.html :: header"></div>
 	
@@ -48,13 +42,13 @@
 			</div>
 			 -->
         </div>
+        
     </section>	
 
     <!-- 푸터 페이지 불러오기 -->
     <footer th:replace="/layout/footer.html :: footer"></footer>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb3950b2c101dc6b62f59a629977b969&libraries=services"></script>
+	
 	
 	
 	<script th:inline="javascript">
