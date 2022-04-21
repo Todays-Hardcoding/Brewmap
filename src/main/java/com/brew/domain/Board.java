@@ -14,8 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,7 +45,7 @@ public class Board {
 	@Column
 	private String boardContent;
 	
-	@Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT NOW()")
+	@Column
 	private LocalDateTime boardDate;
 	
 	@Column
@@ -61,7 +59,7 @@ public class Board {
 	private Integer boardLikeCount;
 
 	@Builder
-	public Board(@NotNull int boardId, @NotNull String boardTitle, @NotNull String boardContent, LocalDateTime boardDate,
+	public Board(@NotNull long boardId, @NotNull String boardTitle, @NotNull String boardContent, LocalDateTime boardDate,
 			Integer boardViews, @NotNull String boardCategory, Integer boardLikeCount) {
 		super();
 		this.boardId = boardId;

@@ -27,8 +27,8 @@ public class Reply {
 	@Id
 	@NotNull
 	@Column
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long replyId;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int replyId;
 	
 	@NotNull
 	@Column
