@@ -1,10 +1,11 @@
 package com.brew.domain;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -17,6 +18,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table
 public class User {
+	@OneToMany(mappedBy = "user")
+	private List<Board> board;
+
 	@NotNull
 	@Column
 	private String userCategory;
@@ -46,7 +50,7 @@ public class User {
 	@Column
 	private String userBirthDate;
 	@NotNull
-	@Column	
+	@Column
 	private String userNickName;
 	@NotNull
 	@Column
@@ -59,9 +63,7 @@ public class User {
 	private String userQuestion;
 	@Column
 	private String userAnswer;
-	
-	
-	
+
 	@Builder
 	public User(@NotNull String userCategory, @NotNull String userId, @NotNull String userPw, @NotNull String userName,
 			@NotNull String userTel, @NotNull String userEmail, @NotNull String userGrade, @NotNull String userRegDate,
@@ -84,11 +86,5 @@ public class User {
 		this.userQuestion = userQuestion;
 		this.userAnswer = userAnswer;
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }
