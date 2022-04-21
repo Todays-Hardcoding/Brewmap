@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 
 import groovy.transform.ToString;
 import lombok.Builder;
+import org.hibernate.annotations.DynamicUpdate;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,6 +25,7 @@ import lombok.Setter;
 @Entity
 @Table
 @ToString
+@DynamicUpdate
 public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Board> board;

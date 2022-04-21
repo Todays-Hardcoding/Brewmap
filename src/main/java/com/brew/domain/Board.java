@@ -11,17 +11,24 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
 @Getter
 @NoArgsConstructor
 @Entity
 @Table
+@DynamicUpdate
 public class Board {
 	
 	@OneToMany(mappedBy = "board")
@@ -48,6 +55,12 @@ public class Board {
 	@Column
 	private LocalDateTime boardDate;
 	
+	@PrePersist
+	public void createdAt() {
+		this.boardDate = LocalDateTime.now();
+		this.boardLikeCount = 0;
+	}
+	
 	@Column
 	private Integer boardViews;
 	
@@ -59,9 +72,12 @@ public class Board {
 	private Integer boardLikeCount;
 
 	@Builder
-	public Board(@NotNull long boardId, @NotNull String boardTitle, @NotNull String boardContent, LocalDateTime boardDate,
-			Integer boardViews, @NotNull String boardCategory, Integer boardLikeCount) {
+	public Board(List<Reply> reply, User user, @NotNull long boardId, @NotNull String boardTitle,
+			@NotNull String boardContent, LocalDateTime boardDate, Integer boardViews, @NotNull String boardCategory,
+			Integer boardLikeCount) {
 		super();
+		this.reply = reply;
+		this.user = user;
 		this.boardId = boardId;
 		this.boardTitle = boardTitle;
 		this.boardContent = boardContent;
