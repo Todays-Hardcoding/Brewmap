@@ -48,7 +48,7 @@ public class StoreListController {
     		@PageableDefault(page=0, size=6) Pageable pageable, Model model) {
 		
 		List<StoreInfo> infoList = null;
-				if(this.infoList.size() == 0)
+		if(this.infoList.size() == 0)
 			infoList = storeListService.getCloseStores(params); 
 		else
 			infoList = this.infoList;
