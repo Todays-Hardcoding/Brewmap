@@ -29,7 +29,7 @@ public class User {
 	private List<Board> board;
 
 	@OneToMany(mappedBy = "user")
-	private List<Review> Review;
+	private List<Review> review;
 	
 	@NotNull
 	@Column
