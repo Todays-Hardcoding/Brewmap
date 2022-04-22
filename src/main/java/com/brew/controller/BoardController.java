@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.brew.domain.Board;
+import com.brew.domain.Reply;
 import com.brew.service.BoardService;
 
 @Controller
@@ -21,6 +22,7 @@ import com.brew.service.BoardService;
 public class BoardController {
 	@Autowired
 	private BoardService boardService;
+	
 	
 	// 글쓰기 버튼 눌렀을 때 작성 창으로 이동하는 메소드(매핑만)
 	@RequestMapping("/edit")
@@ -30,13 +32,8 @@ public class BoardController {
 	
 	// boardId를 받아 수정 창을 띄움.
 	@RequestMapping(value="/editUpdate", method = RequestMethod.GET)
-	public String boardEditUpdate(Model model, @RequestParam(defaultValue = "0") String boardId) {
-		Board board = new Board();
-		// 기존 창에서 넘어오면 id를 가져와 검색, 수정할 수 있게 띄워줌.
-		if(boardId != null) {
-			board = boardService.findByBoardId(Long.parseLong(boardId));		
-		}
-		// 아닌 경우에는 새로운 board객체를 그대로 전달.
+	public String boardEditUpdate(Model model, @RequestParam(defaultValue = "0") long boardId) {
+		Board board = boardService.findByBoardId(boardId);
 		model.addAttribute("board", board);
 
 		return "view/board/boardEdit";
@@ -53,18 +50,19 @@ public class BoardController {
 			oldBoard.setBoardContent(board.getBoardContent());
 		}
 		
-		
 		boardService.saveBoard(board);					
 		return "redirect:"+boardCategoryCode;
 	}
 	
-	@RequestMapping("/delete")
+	// 삭제
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public String boardDelete(Model model, @PageableDefault(page=0, size=10) @SortDefault.SortDefaults({
 		@SortDefault(sort = "boardDate", direction = Direction.DESC)
-	}) Pageable pageable, @ModelAttribute Board board) {
+	}) Pageable pageable, long boardId) {
+		Board board = boardService.findByBoardId(boardId);
 		String boardCategoryCode = board.getBoardCategory();
-		
-		boardService.deleteByBoardId(board.getBoardId());
+		boardService.deleteAllReplyInBoard(board.getReply());
+		boardService.deleteByBoardId(boardId);
 		// 페이징 및 출력함수 호출
 		return "redirect:"+boardCategoryCode;
 	}
@@ -91,7 +89,8 @@ public class BoardController {
 		Page<Board> boardList = boardService.findAllBoard(pageable);
 		// 페이징 및 출력함수 호출
 		return this.boardPagination(model, pageable, boardCategory, boardCategoryCode, boardList);
-	}
+	}	
+	
 	
 	// 페이징 및 출력 통일한 메소드
 	public String boardPagination(Model model, Pageable pageable, String boardCategory, String boardCategoryCode, Page<Board> boardList) {
@@ -154,15 +153,32 @@ public class BoardController {
 		return this.boardPagination(model, pageable, boardCategory, boardCategoryCode, boardList);
 	}
 	
-	/*
-	 * @RequestMapping(value="/", method=RequestMethod.GET) public String
-	 * boardDetailPage(Model model, @PageableDefault(page=0, size=10) Pageable
-	 * pageable, String BoardId) {
-	 * 
-	 * Board board = boardService.findByBoardId(BoardId);
-	 * model.addAttribute("board", board);
-	 * 
-	 * return "view/board/boardPage"; }
-	 */
+	@RequestMapping(value="", method=RequestMethod.GET)
+	public String boardDetailPage(Model model, @PageableDefault(page=0, size=10) Pageable pageable, long boardId) {
+		Board board = boardService.findByBoardId(boardId);
+		model.addAttribute("board", board);
+		
+		return "view/board/boardPage";
+	}
+	
+	@RequestMapping("/replyInsert")
+	public String replyInsert(Model model, long boardId, String replyUser, String replyContent) {
+		Board board = boardService.findByBoardId(boardId);
+		Reply reply = Reply.builder().board(board).replyUser(replyUser).replyContent(replyContent).build();
+		boardService.saveReply(reply);
+		model.addAttribute("board", board);
+		
+		return "redirect:?boardId="+boardId;
+	}
+	
+	@RequestMapping(value="/replyDelete", method=RequestMethod.POST)
+	public String replyDelete(Model model, long boardId, long replyId) {
+		System.out.println(boardId);
+		System.out.println(replyId);
+		
+		boardService.deleteByReplyId(replyId);
+	
+		return "redirect:?boardId="+boardId;
+	}
 	
 }

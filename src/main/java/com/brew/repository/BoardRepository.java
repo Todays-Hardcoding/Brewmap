@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.brew.domain.Board;
-import com.brew.domain.StoreInfo;
 
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long>{
