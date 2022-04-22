@@ -55,7 +55,7 @@ public class User {
 	@Column
 	private LocalDateTime userRegDate;
 	@PrePersist
-	public void createDate() {
+	public void createAt() {
 		this.userRegDate = LocalDateTime.now();
 	}
 	@NotNull
