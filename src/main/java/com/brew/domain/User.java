@@ -16,16 +16,23 @@ import org.hibernate.annotations.DynamicUpdate;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table
+@ToString
 @DynamicUpdate
 public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Board> board;
-	
+
+	@OneToMany(mappedBy = "user")
+	private List<Review> Review;
+
 	@NotNull
 	@Column
 	private String userCategory;
@@ -50,15 +57,17 @@ public class User {
 	private String userGrade;
 	@Column
 	private LocalDateTime userRegDate;
+
 	@PrePersist
-	public void createdAt() {
+	public void createDate() {
 		this.userRegDate = LocalDateTime.now();
 	}
+
 	@NotNull
 	@Column
 	private String userBirthDate;
 	@NotNull
-	@Column	
+	@Column
 	private String userNickName;
 	@NotNull
 	@Column
@@ -66,17 +75,17 @@ public class User {
 	@Column
 	private String userCoupon;
 	@Column
-	private int userPoint;
+	private String userPoint;
 	@Column
 	private String userQuestion;
 	@Column
 	private String userAnswer;
-	
+
 	@Builder
 	public User(List<Board> board, @NotNull String userCategory, @NotNull String userId, @NotNull String userPw,
 			@NotNull String userName, @NotNull String userTel, @NotNull String userEmail, @NotNull String userGrade,
 			LocalDateTime userRegDate, @NotNull String userBirthDate, @NotNull String userNickName,
-			@NotNull boolean userGender, String userCoupon, int userPoint, String userQuestion, String userAnswer) {
+			@NotNull boolean userGender, String userCoupon, String userPoint, String userQuestion, String userAnswer) {
 		super();
 		this.board = board;
 		this.userCategory = userCategory;
@@ -95,5 +104,4 @@ public class User {
 		this.userQuestion = userQuestion;
 		this.userAnswer = userAnswer;
 	}
-
 }

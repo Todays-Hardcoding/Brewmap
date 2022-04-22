@@ -54,7 +54,7 @@
 					<h2 style="font-size: 30px;" th:text="${board.boardTitle}">게시글 제목
 						<small class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start justify-content-xxl-start" style="font-size: 15px;">
 							<!-- 작성자 -->
-							<span style="margin-right: 5px; margin-left: 0px;" th:text="${board.userId}">작성자</span>
+							<span style="margin-right: 5px; margin-left: 0px;" th:text="${board.user.userId}">작성자</span>
 							<!-- 작성 날짜 -->
 							<span style="margin-right: 5px; margin-left: 5px;" th:text="${board.boardDate}">작성날짜</span>
 						</small>
@@ -67,8 +67,7 @@
 					</h5>
 					<!-- 게시글 내용 -->
 					<p th:text="${board.boardContent}">게시글 내용</p>
-					
-					<div th:if="${session.user.userId} == ${board.userId}" class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end">
+					<div th:if="${session.user.userId} == ${board.user.userId}" class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end">
 						<a th:href="@{/board/editUpdate(boardId=${board.boardId})}">
 							<button class="btn btn-primary d-xxl-flex" type="button" style="margin-right: 5px;margin-left: 5px;">수정</button>
 						</a>
