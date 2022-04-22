@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import lombok.Builder;
 =======
 import groovy.transform.ToString;
@@ -24,6 +25,11 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.Builder;
 >>>>>>> origin/woo
+=======
+import groovy.transform.ToString;
+import lombok.Builder;
+import lombok.Data;
+>>>>>>> origin/Jinhwan
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,16 +40,23 @@ import lombok.Setter;
 @Entity
 @Table
 <<<<<<< HEAD
+<<<<<<< HEAD
 @ToString
 =======
 @DynamicUpdate
 >>>>>>> origin/woo
+=======
+@ToString
+>>>>>>> origin/Jinhwan
 public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Board> board;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/Jinhwan
 	@OneToMany(mappedBy = "user")
 	private List<Review> Review;
 	
@@ -74,10 +87,14 @@ public class User {
 	private LocalDateTime userRegDate;
 	@PrePersist
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public void createDate() {
 =======
 	public void createdAt() {
 >>>>>>> origin/woo
+=======
+	public void createDate() {
+>>>>>>> origin/Jinhwan
 		this.userRegDate = LocalDateTime.now();
 	}
 	@NotNull
@@ -99,6 +116,7 @@ public class User {
 	private String userAnswer;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	@Builder
 	public User(@NotNull String userCategory, @NotNull String userId, @NotNull String userPw, @NotNull String userName,
@@ -108,17 +126,23 @@ public class User {
 =======
 =======
 >>>>>>> origin/woo
+=======
+>>>>>>> origin/Jinhwan
 	
 	@Builder
 	public User(List<Board> board, @NotNull String userCategory, @NotNull String userId, @NotNull String userPw,
 			@NotNull String userName, @NotNull String userTel, @NotNull String userEmail, @NotNull String userGrade,
 			LocalDateTime userRegDate, @NotNull String userBirthDate, @NotNull String userNickName,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			@NotNull boolean userGender, String userCoupon, String userPoint, String userQuestion, String userAnswer) {
 >>>>>>> origin/jinho_branch
 =======
 			@NotNull boolean userGender, String userCoupon, int userPoint, String userQuestion, String userAnswer) {
 >>>>>>> origin/woo
+=======
+			@NotNull boolean userGender, String userCoupon, String userPoint, String userQuestion, String userAnswer) {
+>>>>>>> origin/Jinhwan
 		super();
 		this.board = board;
 		this.userCategory = userCategory;
@@ -139,8 +163,12 @@ public class User {
 	}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/woo
+=======
+	
+>>>>>>> origin/Jinhwan
 
 }
 =======

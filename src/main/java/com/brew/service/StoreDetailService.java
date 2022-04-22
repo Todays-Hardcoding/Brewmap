@@ -21,4 +21,8 @@ public class StoreDetailService {
 	}
 	
 //	List<StoreInfo> findByStoreCode(@Param("storeCode") String storeName);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/Jinhwan

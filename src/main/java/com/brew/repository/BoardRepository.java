@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.brew.domain.Board;
 
 @Repository
+<<<<<<< HEAD
 public interface BoardRepository extends JpaRepository<Board, Long>{
 	
 <<<<<<< HEAD
@@ -29,6 +30,10 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	Board findByBoardId(long boardId);
 	
 <<<<<<< HEAD
+=======
+public interface BoardRepository extends JpaRepository<Board, String>{
+	
+>>>>>>> origin/Jinhwan
 }
 =======
 }

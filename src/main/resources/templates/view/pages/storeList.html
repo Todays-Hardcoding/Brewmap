@@ -178,8 +178,14 @@
 <head th:replace="css/css :: css">
 
 <body>
+<<<<<<< HEAD
 
 	<!-- �ㅻ�� ���댁� 遺��ъ�ㅺ린 -->
+=======
+	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+	
+	<!-- 헤더 페이지 불러오기 -->
+>>>>>>> origin/Jinhwan
 	<div th:replace="/layout/header.html :: header"></div>
 	
 	<form class="search-form">
@@ -191,10 +197,19 @@
             <div class="row articles" >
             	<!-- 由ъ�ㅽ�� 遺��ъ�ㅺ린 諛�蹂듬Ц -->
 	            <th:block th:each="storeList : ${infoList}">
+<<<<<<< HEAD
 	            	<!-- 由ъ�ㅽ�� ��蹂� ���� -->
 	                <div class="col-sm-6 col-md-4 item"><a href="#">
 	                	<img class="img-fluid" src="assets/img/desk.jpg"></a>
 	                    <h3 class="name" th:text="${storeList.storeName}" ></h3>
+=======
+	            	<!-- 리스트 정보 표시 -->
+	                <div class="col-sm-6 col-md-4 item">
+	                	<a th:href="@{/detail (id=${storeList.storeCode})}">
+	                	<img class="img-fluid" src="assets/img/desk.jpg"></a> 
+	                	<h3 class="name" th:text="${storeList.storeName}">
+	                	<a href="#"></a></h3>
+>>>>>>> origin/Jinhwan
 	                    <div th:text="${storeList.storeCategory}"></div>
 	                    <div th:text="${storeList.storeTag}"></div>
 	                    <div th:text="${storeList.storeRoadAddr}"></div>
@@ -212,17 +227,15 @@
 			</div>
 			 -->
         </div>
+        
     </section>	
 
     <!-- �명�� ���댁� 遺��ъ�ㅺ린 -->
     <footer th:replace="/layout/footer.html :: footer"></footer>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb3950b2c101dc6b62f59a629977b969&libraries=services"></script>
-	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-	
-	<script th:inline="javascript">
 
+	<script th:inline="javascript">
+	
 	var infoList = [[${infoList}]];
 	console.log(infoList);
 	
@@ -253,6 +266,7 @@
 			alert("geolocation error");
 		}	
     });
+	
 	
 	</script>
 <<<<<<< HEAD
