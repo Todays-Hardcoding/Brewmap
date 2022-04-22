@@ -28,6 +28,7 @@ public class StoreListService {
 		List<StoreInfo> result = new ArrayList<StoreInfo>();
 		
 		System.out.println(params.values());
+		
 		double lat = Double.parseDouble(params.get("lat"));
 		double lon = Double.parseDouble(params.get("lon"));
 
@@ -50,7 +51,7 @@ public class StoreListService {
 
 		    distance = 2 * radius * Math.asin(squareRoot);
 	        
-		    if(distance < 20) {
+		    if(distance < 30) {
 		    	result.add(store);
 		    	System.out.println(distance);
 		    }

@@ -46,6 +46,10 @@ public class BoardService {
 	public Board saveBoard(Board board) {
 		return boardRepository.save(board);
 	}
+
+	public Page<Board> findAllBoard(Pageable pageable) {
+		return boardRepository.findAll(pageable);
+	}
 	
 	public void deleteByBoardId(long boardId) {
 		boardRepository.deleteById(boardId);
