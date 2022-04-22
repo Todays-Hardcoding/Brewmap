@@ -1,6 +1,7 @@
 package com.brew.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,6 +38,10 @@ public interface StoreInfoRepository extends JpaRepository<StoreInfo, String> {
 	
 	@Query(value = "select * from store_info", nativeQuery = true)
 	Page<StoreInfo> findCloseStores(@Param("lat") String lat, @Param("lon") String lon, Pageable pagealbe);
+	
+	// 가게 코드 검색
+	@Query("select s from StoreInfo s where s.storeCode like %:storeCode%")
+	StoreInfo findByStoreCode(@Param("storeCode") String storeCode);
 	
 	// 페이징 처리된 Page 객체 반환
 	// 가게 이름으로 검색
