@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.brew.domain.StoreInfo;
@@ -21,6 +23,10 @@ public class StoreInfoService {
 		return storeInfoRepository.findAll();
 	}
 	
+	public Page<StoreInfo> findAllStores(Pageable pageable) {
+		return storeInfoRepository.findAllStores(pageable);
+	};
+	
 	public List<StoreInfo> findListByKeyword(String keyword, Pageable pageable) {
 		return storeInfoRepository.findListByKeyword(keyword, pageable);
 	}
@@ -28,6 +34,10 @@ public class StoreInfoService {
 	public Page<StoreInfo> findPageByKeyword(String keyword, Pageable pageable) {
 		return storeInfoRepository.findPageByKeyword(keyword, pageable);
 	}
+	
+	public StoreInfo findByStoreCode(String storeCode) {
+		return storeInfoRepository.findByStoreCode(storeCode);
+	};
 
 	// 페이징된 Page 객체를 반환하는 검색 메소드
 	public Page<StoreInfo> findStorePage(String keyword, Pageable pageable) {
