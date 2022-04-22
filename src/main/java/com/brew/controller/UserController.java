@@ -8,7 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+<<<<<<< HEAD
 import com.brew.repository.StoreInfoRepository;
+=======
+>>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 import com.brew.service.UserService;
 
 import lombok.RequiredArgsConstructor;

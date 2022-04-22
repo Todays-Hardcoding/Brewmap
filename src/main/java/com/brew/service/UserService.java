@@ -4,6 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 import com.brew.domain.User;
 import com.brew.repository.UserRepository;
 

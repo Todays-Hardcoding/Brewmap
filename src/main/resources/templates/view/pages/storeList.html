@@ -1,10 +1,86 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- css ���� 留��� -->
+<head th:replace="css/css :: css">
+
 <body>
-	<h1>STORELIST</h1>
+
+	<!-- �ㅻ�� ���댁� 遺��ъ�ㅺ린 -->
+	<div th:replace="/layout/header.html :: header"></div>
+	
+	<form class="search-form">
+        <div class="input-group"><span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control" type="text" placeholder="I am looking for.."><button class="btn btn-light" type="button">Search </button></div>
+    </form>
+    <section class="article-list">
+
+        <div class="container">
+            <div class="row articles" >
+            	<!-- 由ъ�ㅽ�� 遺��ъ�ㅺ린 諛�蹂듬Ц -->
+	            <th:block th:each="storeList : ${infoList}">
+	            	<!-- 由ъ�ㅽ�� ��蹂� ���� -->
+	                <div class="col-sm-6 col-md-4 item"><a href="#">
+	                	<img class="img-fluid" src="assets/img/desk.jpg"></a>
+	                    <h3 class="name" th:text="${storeList.storeName}" ></h3>
+	                    <div th:text="${storeList.storeCategory}"></div>
+	                    <div th:text="${storeList.storeTag}"></div>
+	                    <div th:text="${storeList.storeRoadAddr}"></div>
+	                </div>
+	            </th:block>
+	            
+            </div>
+            
+            <!-- 
+            <div id="pagination">
+				<th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+					<a th:if="${page != nowPage}" th:href="@{/storeList(page=${page-1})}" th:text="${page}"></a>
+					<a th:if="${page == nowPage}" th:text="${page}"></a>
+				</th:block>
+			</div>
+			 -->
+        </div>
+    </section>	
+
+    <!-- �명�� ���댁� 遺��ъ�ㅺ린 -->
+    <footer th:replace="/layout/footer.html :: footer"></footer>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb3950b2c101dc6b62f59a629977b969&libraries=services"></script>
+	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+	
+	<script th:inline="javascript">
+
+	var infoList = [[${infoList}]];
+	console.log(infoList);
+	
+	$(document).ready(function(){
+		// HTML5�� geolocation�쇰� �ъ�⑺�� �� ����吏� ���명�⑸���� 
+		if (navigator.geolocation) {
+		    // GeoLocation�� �댁�⑺�댁�� ���� ��移�瑜� �살�댁�듬����
+		    navigator.geolocation.getCurrentPosition(function(position) { 
+	        var lat = position.coords.latitude, // ����
+	            lon = position.coords.longitude; // 寃쎈��  
+	            
+	         // ����, 寃쎈��瑜� Map<String, String> �����쇰� ����
+        	var params = {
+        			"lat" : lat,
+        			"lon" : lon 
+       		}
+        	console.log(params.lat);
+            console.log(params.lon);
+            
+        	$.ajax({
+        		type: "get",   //get諛⑹���쇰� 紐���
+        		url : "/storeList",  //�대���� jsp ���� 二쇱��
+        		data : params
+        	})
+		});
+		    
+		} else { // HTML5�� GeoLocation�� �ъ�⑺�� �� ������ 留�而� ���� ��移��� �명�ъ������ �댁�⑹�� �ㅼ���⑸����
+			alert("geolocation error");
+		}	
+    });
+	
+	</script>
 </body>
 </html>

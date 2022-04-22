@@ -1,70 +1,91 @@
 package com.brew.domain;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.DynamicUpdate;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
 @Getter
 @NoArgsConstructor
 @Entity
 @Table
+@DynamicUpdate
 public class Board {
+	
+	@OneToMany(mappedBy = "board")
+	@JsonManagedReference
+	private List<Reply> reply;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	@Id
 	@NotNull
 	@Column
-	private String postId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long boardId;
 	
 	@NotNull
 	@Column
-	private String postTitle;
+	private String boardTitle;
 	
 	@NotNull
 	@Column
-	private String postContent;
+	private String boardContent;
 	
 	@Column
-	private LocalDateTime postDate;
+	private LocalDateTime boardDate;
+	
+	@PrePersist
+	public void createdAt() {
+		this.boardDate = LocalDateTime.now();
+		this.boardLikeCount = 0;
+	}
 	
 	@Column
-	private int postViews;
-	
-	@NotNull
-	@Column
-	private String boardId;
-	
-	@NotNull
-	@Column
-	private String userId;
-	
-	@Column
-	private Integer postLike;
+	private Integer boardViews;
 	
 	@NotNull
 	@Column
-	private boolean postLikebook;
+	private String boardCategory;
+	
+	@Column
+	private Integer boardLikeCount;
 
 	@Builder
-	public Board(String postId, String postTitle, String postContent, LocalDateTime postDate, int postViews,
-			String boardId, String userId, Integer postLike, boolean postLikebook) {
+	public Board(List<Reply> reply, User user, @NotNull long boardId, @NotNull String boardTitle,
+			@NotNull String boardContent, LocalDateTime boardDate, Integer boardViews, @NotNull String boardCategory,
+			Integer boardLikeCount) {
 		super();
-		this.postId = postId;
-		this.postTitle = postTitle;
-		this.postContent = postContent;
-		this.postDate = postDate;
-		this.postViews = postViews;
+		this.reply = reply;
+		this.user = user;
 		this.boardId = boardId;
-		this.userId = userId;
-		this.postLike = postLike;
-		this.postLikebook = postLikebook;
-	}	
-	
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardDate = boardDate;
+		this.boardViews = boardViews;
+		this.boardCategory = boardCategory;
+		this.boardLikeCount = boardLikeCount;
+	}		
 }
