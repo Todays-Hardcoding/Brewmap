@@ -14,6 +14,8 @@ import javax.validation.constraints.NotNull;
 import groovy.transform.ToString;
 import lombok.Builder;
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

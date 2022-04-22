@@ -15,6 +15,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +29,7 @@ import lombok.NoArgsConstructor;
 public class Reply {
 	
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name="board_id")
 	private Board board;
 	

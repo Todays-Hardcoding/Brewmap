@@ -15,8 +15,11 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.CreationTimestamp;
+
 import org.hibernate.annotations.DynamicUpdate;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -32,6 +35,7 @@ import lombok.Setter;
 public class Board {
 	
 	@OneToMany(mappedBy = "board")
+	@JsonManagedReference
 	private List<Reply> reply;
 	
 	@ManyToOne
@@ -52,7 +56,7 @@ public class Board {
 	@Column
 	private String boardContent;
 	
-	@Column
+	@Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT NOW()")
 	private LocalDateTime boardDate;
 	
 	@PrePersist

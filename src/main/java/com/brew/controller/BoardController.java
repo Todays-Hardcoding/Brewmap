@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.brew.domain.Board;
+import com.brew.domain.Reply;
 import com.brew.service.BoardService;
 
 @Controller
@@ -58,13 +59,15 @@ public class BoardController {
 		return "redirect:"+boardCategoryCode;
 	}
 	
-	@RequestMapping("/delete")
+	// 삭제
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public String boardDelete(Model model, @PageableDefault(page=0, size=10) @SortDefault.SortDefaults({
 		@SortDefault(sort = "boardDate", direction = Direction.DESC)
-	}) Pageable pageable, @ModelAttribute Board board) {
+	}) Pageable pageable, long boardId) {
+		Board board = boardService.findByBoardId(boardId);
 		String boardCategoryCode = board.getBoardCategory();
-		
-		boardService.deleteByBoardId(board.getBoardId());
+		boardService.deleteAllReplyInBoard(board.getReply());
+		boardService.deleteByBoardId(boardId);
 		// 페이징 및 출력함수 호출
 		return "redirect:"+boardCategoryCode;
 	}
@@ -154,15 +157,32 @@ public class BoardController {
 		return this.boardPagination(model, pageable, boardCategory, boardCategoryCode, boardList);
 	}
 	
-	/*
-	 * @RequestMapping(value="/", method=RequestMethod.GET) public String
-	 * boardDetailPage(Model model, @PageableDefault(page=0, size=10) Pageable
-	 * pageable, String BoardId) {
-	 * 
-	 * Board board = boardService.findByBoardId(BoardId);
-	 * model.addAttribute("board", board);
-	 * 
-	 * return "view/board/boardPage"; }
-	 */
+	@RequestMapping(value="", method=RequestMethod.GET)
+	public String boardDetailPage(Model model, @PageableDefault(page=0, size=10) Pageable pageable, long boardId) {
+		Board board = boardService.findByBoardId(boardId);
+		model.addAttribute("board", board);
+		
+		return "view/board/boardPage";
+	}
+	
+	@RequestMapping("/replyInsert")
+	public String replyInsert(Model model, long boardId, String replyUser, String replyContent) {
+		Board board = boardService.findByBoardId(boardId);
+		Reply reply = Reply.builder().board(board).replyUser(replyUser).replyContent(replyContent).build();
+		boardService.saveReply(reply);
+		model.addAttribute("board", board);
+		
+		return "redirect:?boardId="+boardId;
+	}
+	
+	@RequestMapping(value="/replyDelete", method=RequestMethod.POST)
+	public String replyDelete(Model model, long boardId, long replyId) {
+		System.out.println(boardId);
+		System.out.println(replyId);
+		
+		boardService.deleteByReplyId(replyId);
+	
+		return "redirect:?boardId="+boardId;
+	}
 	
 }
