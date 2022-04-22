@@ -13,8 +13,10 @@ import javax.validation.constraints.NotNull;
 
 import groovy.transform.ToString;
 import lombok.Builder;
+import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,6 +32,9 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Board> board;
 
+	@OneToMany(mappedBy = "user")
+	private List<Review> review;
+	
 	@NotNull
 	@Column
 	private String userCategory;

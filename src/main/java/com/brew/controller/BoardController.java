@@ -23,6 +23,7 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
+<<<<<<< HEAD
 	
 	// 글쓰기 버튼 눌렀을 때 작성 창으로 이동하는 메소드(매핑만)
 	@RequestMapping("/edit")
@@ -49,6 +50,39 @@ public class BoardController {
 		if(oldBoard != null && !oldBoard.getBoardContent().equals(board.getBoardContent())) {
 			oldBoard.setBoardContent(board.getBoardContent());
 		}
+=======
+	// 글쓰기 버튼 눌렀을 때 작성 창으로 이동하는 메소드(매핑만)
+	@RequestMapping("/edit")
+	public String boardEdit() {
+		return "view/board/boardCreate";
+	}
+	
+	// boardId를 받아 수정 창을 띄움.
+	@RequestMapping(value="/editUpdate", method = RequestMethod.GET)
+	public String boardEditUpdate(Model model, @RequestParam(defaultValue = "0") String boardId) {
+		Board board = new Board();
+		// 기존 창에서 넘어오면 id를 가져와 검색, 수정할 수 있게 띄워줌.
+		if(boardId != null) {
+			board = boardService.findByBoardId(Long.parseLong(boardId));		
+		}
+		// 아닌 경우에는 새로운 board객체를 그대로 전달.
+		model.addAttribute("board", board);
+
+		return "view/board/boardEdit";
+	}
+	
+	@RequestMapping(value="/create", method = RequestMethod.GET)
+	public String boardCreateUpdate(Model model, Pageable pageable, @ModelAttribute Board board) {
+		String boardCategoryCode = board.getBoardCategory();
+		Board oldBoard = boardService.findByBoardId(board.getBoardId());
+		if(oldBoard != null && !oldBoard.getBoardTitle().equals(board.getBoardTitle())) {
+			oldBoard.setBoardTitle(board.getBoardTitle());
+		}
+		if(oldBoard != null && !oldBoard.getBoardContent().equals(board.getBoardContent())) {
+			oldBoard.setBoardContent(board.getBoardContent());
+		}
+		
+>>>>>>> branch 'testRebase' of https://github.com/Todays-Hardcoding/Brewmap.git
 		
 		boardService.saveBoard(board);					
 		return "redirect:"+boardCategoryCode;
@@ -89,8 +123,12 @@ public class BoardController {
 		Page<Board> boardList = boardService.findAllBoard(pageable);
 		// 페이징 및 출력함수 호출
 		return this.boardPagination(model, pageable, boardCategory, boardCategoryCode, boardList);
+<<<<<<< HEAD
 	}	
 	
+=======
+	}
+>>>>>>> branch 'testRebase' of https://github.com/Todays-Hardcoding/Brewmap.git
 	
 	// 페이징 및 출력 통일한 메소드
 	public String boardPagination(Model model, Pageable pageable, String boardCategory, String boardCategoryCode, Page<Board> boardList) {
