@@ -11,15 +11,14 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import groovy.transform.ToString;
-import lombok.Builder;
-import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
 
 @Getter
 @Setter
@@ -33,7 +32,7 @@ public class User {
 	private List<Board> board;
 
 	@OneToMany(mappedBy = "user")
-	private List<Review> review;
+	private List<Review> Review;
 	
 	@NotNull
 	@Column
@@ -60,7 +59,7 @@ public class User {
 	@Column
 	private LocalDateTime userRegDate;
 	@PrePersist
-	public void createdAt() {
+	public void createDate() {
 		this.userRegDate = LocalDateTime.now();
 	}
 	@NotNull
@@ -80,7 +79,6 @@ public class User {
 	private String userQuestion;
 	@Column
 	private String userAnswer;
-	
 	@Builder
 	public User(List<Board> board, @NotNull String userCategory, @NotNull String userId, @NotNull String userPw,
 			@NotNull String userName, @NotNull String userTel, @NotNull String userEmail, @NotNull String userGrade,
@@ -104,5 +102,4 @@ public class User {
 		this.userQuestion = userQuestion;
 		this.userAnswer = userAnswer;
 	}
-
 }

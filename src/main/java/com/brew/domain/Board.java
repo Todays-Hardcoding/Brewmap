@@ -15,8 +15,6 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 import org.hibernate.annotations.DynamicUpdate;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -56,7 +54,7 @@ public class Board {
 	@Column
 	private String boardContent;
 	
-	@Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT NOW()")
+	@Column
 	private LocalDateTime boardDate;
 	
 	@PrePersist

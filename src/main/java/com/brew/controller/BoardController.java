@@ -23,6 +23,7 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
+	
 	// 글쓰기 버튼 눌렀을 때 작성 창으로 이동하는 메소드(매핑만)
 	@RequestMapping("/edit")
 	public String boardEdit() {
@@ -31,13 +32,8 @@ public class BoardController {
 	
 	// boardId를 받아 수정 창을 띄움.
 	@RequestMapping(value="/editUpdate", method = RequestMethod.GET)
-	public String boardEditUpdate(Model model, @RequestParam(defaultValue = "0") String boardId) {
-		Board board = new Board();
-		// 기존 창에서 넘어오면 id를 가져와 검색, 수정할 수 있게 띄워줌.
-		if(boardId != null) {
-			board = boardService.findByBoardId(Long.parseLong(boardId));		
-		}
-		// 아닌 경우에는 새로운 board객체를 그대로 전달.
+	public String boardEditUpdate(Model model, @RequestParam(defaultValue = "0") long boardId) {
+		Board board = boardService.findByBoardId(boardId);
 		model.addAttribute("board", board);
 
 		return "view/board/boardEdit";
