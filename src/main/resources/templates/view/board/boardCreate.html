@@ -58,6 +58,8 @@
 									<input type="text" class="form-control" name="boardTitle"
 										style="transform: translate(-26px);" placeholder="제목을 입력해주세요.">
 								</div>
+								
+								<input type=hidden name="userId" th:value="${session.user.userId}">
 								<div class="form-group mb-3" style="text-align: center;">
 									<textarea class="form-control" id="summernote"
 										name="boardContent"

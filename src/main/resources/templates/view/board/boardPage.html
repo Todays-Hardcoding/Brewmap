@@ -68,7 +68,7 @@
 					<!-- 게시글 내용 -->
 					<p th:text="${board.boardContent}">게시글 내용</p>
 					
-					<div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end">
+					<div th:if="${session.user.userId} == ${board.userId}" class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end">
 						<a th:href="@{/board/editUpdate(boardId=${board.boardId})}">
 							<button class="btn btn-primary d-xxl-flex" type="button" style="margin-right: 5px;margin-left: 5px;">수정</button>
 						</a>
@@ -84,7 +84,7 @@
 					<form role="form" method="POST" action="/board/replyInsert">
 						<!-- hidden 영역 -->
 						<!-- <input type="hidden" name="userId" th:value="${user.userId}"> -->
-						<input type="hidden" name="replyUser" value="홍길동">
+						<input type="hidden" name="replyUser" th:value="${session.user.userName}">
 						<input type="hidden" name="boardId" th:value="${board.boardId}">
 
 						<!-- 입력 영역 -->
@@ -114,7 +114,7 @@
 									</h4>
 									<!-- 댓글 내용 -->
 									<p style="font-size: 16px;" th:text="${reply.replyContent}">댓글 내용</p>
-									<div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end">
+									<div th:if="${session.user.userName} == ${reply.replyUser}" class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end">
 										<button class="btn btn-primary d-flex d-xxl-flex justify-content-center align-items-center" type="submit" style="margin-right: 5px;margin-left: 5px;width: 60px;height: 30px;font-size: 13px;">수정</button>
 										<button class="btn btn-primary d-flex d-xxl-flex justify-content-center align-items-center" type="submit" style="margin-left: 5px;width: 60px;height: 30px;font-size: 13px;" formaction="/board/replyDelete">삭제</button>
 									</div>
