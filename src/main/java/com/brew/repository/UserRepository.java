@@ -9,9 +9,7 @@ import com.brew.domain.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
 
-	public User findByUserId(String userId);
 	
-<<<<<<< HEAD
 	
 	public User findByUserId(String userId);
 
@@ -29,7 +27,4 @@ public interface UserRepository extends JpaRepository<User, String> {
 //	@Query(value="Update user set userId = :userId where userId = :userId ")
 //	public User changeByUserId(@Param("userId") String userId);
 
-
-=======
->>>>>>> origin/GY
 }

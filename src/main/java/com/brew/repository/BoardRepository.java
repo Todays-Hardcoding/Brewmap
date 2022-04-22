@@ -10,10 +10,8 @@ import org.springframework.stereotype.Repository;
 import com.brew.domain.Board;
 
 @Repository
-<<<<<<< HEAD
 public interface BoardRepository extends JpaRepository<Board, Long>{
 	
-<<<<<<< HEAD
 	// 카테고리로 검색
 	Page<Board> findByBoardCategory(String boardCategoryCode, Pageable pagealbe);
 	
@@ -28,16 +26,5 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	
 	// 게시판 아이디로 검색
 	Board findByBoardId(long boardId);
-	
-<<<<<<< HEAD
-=======
-public interface BoardRepository extends JpaRepository<Board, String>{
-	
->>>>>>> origin/Jinhwan
 }
-=======
-}
->>>>>>> origin/jinho_branch
-=======
-}
->>>>>>> origin/woo
+

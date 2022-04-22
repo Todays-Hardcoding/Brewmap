@@ -20,9 +20,4 @@ public class StoreDetailService {
 		return storeInfoRepository.findByStoreCode(storeCode.get("id"));
 	}
 	
-//	List<StoreInfo> findByStoreCode(@Param("storeCode") String storeName);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/Jinhwan
