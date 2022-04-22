@@ -1,6 +1,7 @@
 package com.brew.repository;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -18,6 +19,9 @@ public interface UserRepository extends JpaRepository<User, String> {
    public User findByUserTel(String userTel);
    public User findByUserEmail(String userEmail);
 =======
+=======
+
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -25,7 +29,10 @@ import com.brew.domain.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
+
+	public User findByUserId(String userId);
 	
+<<<<<<< HEAD
 	
 	public User findByUserId( String userId);
 
@@ -46,3 +53,6 @@ public interface UserRepository extends JpaRepository<User, String> {
 >>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 
 }
+=======
+}
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git

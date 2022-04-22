@@ -2,21 +2,37 @@ package com.brew.domain;
 
 import java.time.LocalDateTime;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import java.util.List;
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+<<<<<<< HEAD
+=======
+import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+<<<<<<< HEAD
+=======
+import groovy.transform.ToString;
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table
+@ToString
 public class User {
 	@NotNull
 	@Column
@@ -128,7 +144,7 @@ import lombok.NoArgsConstructor;
 public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Board> board;
-	
+
 	@NotNull
 	@Column
 	private String userCategory;
@@ -154,14 +170,18 @@ public class User {
 	@Column
 	private LocalDateTime userRegDate;
 	@PrePersist
+<<<<<<< HEAD
 	public void createdAt() {
+=======
+	public void createDate() {
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 		this.userRegDate = LocalDateTime.now();
 	}
 	@NotNull
 	@Column
 	private String userBirthDate;
 	@NotNull
-	@Column	
+	@Column
 	private String userNickName;
 	@NotNull
 	@Column
@@ -169,7 +189,7 @@ public class User {
 	@Column
 	private String userCoupon;
 	@Column
-	private int userPoint;
+	private String userPoint;
 	@Column
 	private String userQuestion;
 	@Column
@@ -179,7 +199,11 @@ public class User {
 	public User(List<Board> board, @NotNull String userCategory, @NotNull String userId, @NotNull String userPw,
 			@NotNull String userName, @NotNull String userTel, @NotNull String userEmail, @NotNull String userGrade,
 			LocalDateTime userRegDate, @NotNull String userBirthDate, @NotNull String userNickName,
+<<<<<<< HEAD
 			@NotNull boolean userGender, String userCoupon, int userPoint, String userQuestion, String userAnswer) {
+=======
+			@NotNull boolean userGender, String userCoupon, String userPoint, String userQuestion, String userAnswer) {
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 		super();
 		this.board = board;
 		this.userCategory = userCategory;
@@ -198,6 +222,10 @@ public class User {
 		this.userQuestion = userQuestion;
 		this.userAnswer = userAnswer;
 	}
+<<<<<<< HEAD
 >>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
+=======
+	
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 
 }

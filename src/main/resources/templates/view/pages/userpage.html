@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="css/css :: css">
@@ -108,6 +109,10 @@
 </html>
 =======
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
+=======
+<html lang="ko" 
+	xmlns:th="http://www.thymeleaf.org"
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="layout/head :: headFragment">
 </head>
@@ -134,47 +139,46 @@
 							<strong>User</strong>
 						</div>
 						<div class="text-center">
-							<a class="bs4_modal_trigger" href="#">사진 변경</a><a
-								class="bs4_modal_trigger" th:href="@{/modify}">정보 수정</a>
+							<a class="bs4_modal_trigger" th:href="@{/modify}">정보 수정</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-8">
 					<div class="d-xl-flex justify-content-xl-center social-icons"
 						style="height: 100xp;">
-						<a href="#"><i class="fab fa-product-hunt" href="#"></i></a><a
-							href="#"><i class="fas fa-ticket-alt" href="#"></i><i
-							class="fas fa-comment-dots" href="#"></i></a><a href="#"></a><a
-							href="#"><i class="fa fa-calendar-check-o" href="#"></i></a>
+						<a href="#"><i class="fab fa-product-hunt" href="#"></i></a>
+						<a href="#"><i class="fas fa-ticket-alt" href="#"></i></a>
+						<a href="#"><i class="fas fa-comment-dots" href="#"></i></a>
+						<a href="#"><i class="fa fa-calendar-check-o" href="#"></i></a>
 					</div>
 					<hr>
 					<div class="row">
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group mb-3">
 								<strong>회원아이디</strong>
-								<div th:text="${user.userId}">유저아이디</div>
-								<div th:text="${session.userId}">세션 유저아이디</div>
+								<!-- <div th:text="${user.userId}">유저아이디</div> -->
+								<div th:text="${session.user.userId}">세션 유저아이디</div>
 							</div>
 						</div>
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group mb-3">
 								<strong>이름</strong>
-								<div th:text="${user.userName}">유저이름</div>
-								<div th:text="${session.userName}">세션 유저이름</div>
+								<!-- <div th:text="${user.userName}">유저이름</div> -->
+								<div th:text="${session.user.userName}">세션 유저이름</div> 
 							</div>
 						</div>
 						<div class="col">
 							<div class="form-group mb-3">
 								<strong>생년월일</strong>
-								<div th:text="${user.userBirthDate}">생년월일</div>
-								<div th:text="${session.userBirthDate}">세션 생년월일</div>
+								<!-- <div th:text="${user.userBirthDate}">생년월일</div> -->
+								<div th:text="${session.user.userBirthDate}">세션 생년월일</div>
 							</div>
 						</div>
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group mb-3">
 								<strong>회원등급</strong>
-								<div th:text="${user.userGrade}">회원등급</div>
-								<div th:text="${session.userGrade}">세션 회원등급</div>
+								<!-- <div th:text="${user.userGrade}">회원등급</div> -->
+								<div th:text="${session.user.userGrade}">세션 회원등급</div>
 							</div>
 						</div>
 					</div>
@@ -182,15 +186,15 @@
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group mb-3">
 								<strong>전화번호</strong>
-								<div th:text="${user.userTel}">전화번호</div>
-								<div th:text="${session.userTel}">세션 전화번호</div>
+								<!-- <div th:text="${user.userTel}">전화번호</div> -->
+								<div th:text="${session.user.userTel}">세션 전화번호</div>
 							</div>
 						</div>
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group mb-3">
 								<strong>이메일</strong>
-								<div th:text="${user.userEmail}">이메일</div>
-								<div th:text="${session.userEmail}">세션 이메일</div>
+								<!-- <div th:text="${user.userEmail}">이메일</div> -->
+								<div th:text="${session.user.userEmail}">세션 이메일</div>
 							</div>
 						</div>
 					</div>
@@ -208,9 +212,9 @@
 		<!-- 이 안에 개별적인 js 넣으면 됨. -->
 		<script th:inline="javascript">
    /* 확인용 코드입니다 */
-/*     var userlist = [[${user}]];
-   console.log(userlist);  */
-    var checkuser = [[${session.userBirthDate}]];
+	var userlist = [[${user}]];
+   console.log(userlist);
+    var checkuser = [[${session.userId}]];
    console.log(checkuser);
    </script>
 	</div>
