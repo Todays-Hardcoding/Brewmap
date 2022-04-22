@@ -9,7 +9,7 @@ import com.brew.domain.User;
 public interface UserRepository extends JpaRepository<User, String> {
 	
 	
-	public User findByUserId( String userId);
+	public User findByUserId(String userId);
 
 	public User findByUserName(String userName);
 

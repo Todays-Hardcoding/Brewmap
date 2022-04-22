@@ -10,6 +10,7 @@ import com.brew.domain.Board;
 @Repository
 public interface BoardRepository extends JpaRepository<Board, String>{
 	
+<<<<<<< HEAD
 	// 카테고리로 검색
 	Page<Board> findByBoardCategory(String boardCategory, Pageable pagealbe);
 	
@@ -17,3 +18,6 @@ public interface BoardRepository extends JpaRepository<Board, String>{
 	Board findByBoardId(String boardId);
 	
 }
+=======
+}
+>>>>>>> origin/jinho_branch

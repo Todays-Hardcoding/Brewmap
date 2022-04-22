@@ -72,7 +72,10 @@ public class StoreInfoController {
 		
 		return "view/pages/map";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/jinho_branch
 	}
 	
 	@GetMapping("/sendPosition")

@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,8 @@
 	<h1>STORELIST</h1>
 </body>
 =======
+=======
+>>>>>>> origin/jinho_branch
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
@@ -17,7 +20,18 @@
 <head th:replace="css/css :: css">
 
 <body>
+<<<<<<< HEAD
 
+=======
+	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+	
+	<script>
+	function toDetail(){
+		document.location.href = "/detail?"+${storeList.storeCode};
+	};
+	</script>
+	
+>>>>>>> origin/jinho_branch
 	<!-- 헤더 페이지 불러오기 -->
 	<div th:replace="/layout/header.html :: header"></div>
 	
@@ -31,9 +45,17 @@
             	<!-- 리스트 불러오기 반복문 -->
 	            <th:block th:each="storeList : ${infoList}">
 	            	<!-- 리스트 정보 표시 -->
+<<<<<<< HEAD
 	                <div class="col-sm-6 col-md-4 item"><a href="#">
 	                	<img class="img-fluid" src="assets/img/desk.jpg"></a>
 	                    <h3 class="name" th:text="${storeList.storeName}" ></h3>
+=======
+	                <div class="col-sm-6 col-md-4 item">
+	                	<a th:href="@{/detail (id=${storeList.storeCode})}">
+	                	<img class="img-fluid" src="assets/img/desk.jpg"></a> 
+	                	<h3 class="name" th:text="${storeList.storeName}">
+	                	<a href="#"></a></h3>
+>>>>>>> origin/jinho_branch
 	                    <div th:text="${storeList.storeCategory}"></div>
 	                    <div th:text="${storeList.storeTag}"></div>
 	                    <div th:text="${storeList.storeRoadAddr}"></div>
@@ -42,12 +64,17 @@
 	            
             </div>
             
+<<<<<<< HEAD
+=======
+            <!-- 
+>>>>>>> origin/jinho_branch
             <div id="pagination">
 				<th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
 					<a th:if="${page != nowPage}" th:href="@{/storeList(page=${page-1})}" th:text="${page}"></a>
 					<a th:if="${page == nowPage}" th:text="${page}"></a>
 				</th:block>
 			</div>
+<<<<<<< HEAD
         </div>
     </section>	
 
@@ -64,11 +91,18 @@
     </ul>
 	</nav>
 
+=======
+			 -->
+        </div>
+    </section>	
+
+>>>>>>> origin/jinho_branch
     <!-- 푸터 페이지 불러오기 -->
     <footer th:replace="/layout/footer.html :: footer"></footer>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb3950b2c101dc6b62f59a629977b969&libraries=services"></script>
+<<<<<<< HEAD
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 	
 	<script th:inline="javascript">
@@ -91,6 +125,30 @@
         			"lon" : lon 
         		}
 
+=======
+	
+	
+	<script th:inline="javascript">
+
+	//
+	
+	var infoList = [[${infoList}]];
+	console.log(infoList);
+	
+	$(document).ready(function(){
+		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+		if (navigator.geolocation) {
+		    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+		    navigator.geolocation.getCurrentPosition(function(position) { 
+	        var lat = position.coords.latitude, // 위도
+	            lon = position.coords.longitude; // 경도  
+	            
+	         // 위도, 경도를 Map<String, String> 형식으로 저장
+        	var params = {
+        			"lat" : lat,
+        			"lon" : lon 
+       		}
+>>>>>>> origin/jinho_branch
         	console.log(params.lat);
             console.log(params.lon);
             
@@ -99,6 +157,7 @@
         		url : "/storeList",  //이동할 jsp 파일 주소
         		data : params
         	})
+<<<<<<< HEAD
         });
       });
 	    
@@ -195,4 +254,16 @@
 	</script>
 </body>
 >>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
+=======
+		});
+		    
+		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+			alert("geolocation error");
+		}	
+    });
+	
+	
+	</script>
+</body>
+>>>>>>> origin/jinho_branch
 </html>
