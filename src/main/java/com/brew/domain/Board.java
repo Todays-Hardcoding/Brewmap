@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-<<<<<<< HEAD
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -89,65 +88,4 @@ public class Board {
 		this.boardCategory = boardCategory;
 		this.boardLikeCount = boardLikeCount;
 	}		
-=======
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-@Getter
-@NoArgsConstructor
-@Entity
-@Table
-public class Board {
-	
-	@OneToMany(mappedBy = "board")
-	private List<Reply> reply;
-	
-	@ManyToOne
-	@JoinColumn(name="user_id")
-	private User user;
-	
-	@Id
-	@NotNull
-	@Column
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String boardId;
-	
-	@NotNull
-	@Column
-	private String boardTitle;
-	
-	@NotNull
-	@Column
-	private String boardContent;
-	
-	@Column
-	private LocalDateTime boardDate;
-	
-	@Column
-	private Integer boardViews;
-	
-	@NotNull
-	@Column
-	private String boardCategory;
-	
-	@Column
-	private Integer boardLikeCount;
-
-	@Builder
-	public Board(@NotNull String boardId, @NotNull String boardTitle, @NotNull String boardContent, LocalDateTime boardDate,
-			Integer boardViews, @NotNull String boardCategory, Integer boardLikeCount) {
-		super();
-		this.boardId = boardId;
-		this.boardTitle = boardTitle;
-		this.boardContent = boardContent;
-		this.boardDate = boardDate;
-		this.boardViews = boardViews;
-		this.boardCategory = boardCategory;
-		this.boardLikeCount = boardLikeCount;
-	}	
->>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 }

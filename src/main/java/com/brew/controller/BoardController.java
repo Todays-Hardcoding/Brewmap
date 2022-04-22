@@ -1,5 +1,7 @@
 package com.brew.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,13 +17,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.brew.domain.Board;
 import com.brew.domain.Reply;
+import com.brew.domain.User;
 import com.brew.service.BoardService;
+import com.brew.service.UserService;
 
 @Controller
 @RequestMapping("/board")
 public class BoardController {
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private UserService userservice;
 	
 	
 	// 글쓰기 버튼 눌렀을 때 작성 창으로 이동하는 메소드(매핑만)
@@ -40,15 +47,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/create", method = RequestMethod.GET)
-	public String boardCreateUpdate(Model model, Pageable pageable, @ModelAttribute Board board) {
+	public String boardCreateUpdate(Model model, Pageable pageable, @ModelAttribute Board board, String userId) {
+		User user =userservice.findByUserId(userId);
+		board.setUser(user);
 		String boardCategoryCode = board.getBoardCategory();
-		Board oldBoard = boardService.findByBoardId(board.getBoardId());
-		if(oldBoard != null && !oldBoard.getBoardTitle().equals(board.getBoardTitle())) {
-			oldBoard.setBoardTitle(board.getBoardTitle());
-		}
-		if(oldBoard != null && !oldBoard.getBoardContent().equals(board.getBoardContent())) {
-			oldBoard.setBoardContent(board.getBoardContent());
-		}
+//		Board oldBoard = boardService.findByBoardId(board.getBoardId());
+//		if(oldBoard != null && !oldBoard.getBoardTitle().equals(board.getBoardTitle())) {
+//			oldBoard.setBoardTitle(board.getBoardTitle());
+//		}
+//		if(oldBoard != null && !oldBoard.getBoardContent().equals(board.getBoardContent())) {
+//			oldBoard.setBoardContent(board.getBoardContent());
+//		}
 		
 		boardService.saveBoard(board);					
 		return "redirect:"+boardCategoryCode;

@@ -1,149 +1,69 @@
-* {
-	margin: 0;
-	padding: 0;
-}
+@charset 'utf-8';
 
+html {
+	font-family: 'Apple SD Gothic Neo', Roboto, 'Noto Sans KR', NanumGothic, 'Malgun Gothic', sans-serif;
+	line-height: 1.2;
+	word-wrap: break-word;
+}
 body {
-	min-width: 390px;
-	padding: 0;
+	-webkit-font-smoothing: antialiased;
+	/* 가로 스크롤이 안 생기게 */
+	overflow-x: hidden;
+	color: rgb(29, 29, 31);
+    /* 자간 줄이기 */
+	letter-spacing: -0.05em;
+  background-color: #f5f5f7;;
+	font-size: 17px;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
 	margin: 0;
-	background-color: #171B20;
-	font-size: 12px;
-	font-family: "Lucida Grande", Tahoma, sans-serif;
+	padding: 0;
+	border: 0;
 }
-
-
-.page-body {
-	margin: 0 auto 0 auto;	
-	width: 600px;
-	padding: 30px 0 20px 0;
-	text-align: left;
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
 }
-
-	.page-footer {
-		margin: 0 10% 0 315px;	
-		width: 600px;
-		padding: 0 0 50px 0;
-		text-align: left;
-	}
-
-	.page-body ul, .page-body ol { 
-		color: #ffffff;
-		margin: 10px 0 30px 25px; 
-	}
-
-	.page-body ul li, 
-	.page-body ol li { 
-		padding: 0; 
-		margin: 0 0 5px 0; 
-		color: #cccccc;
-		line-height: 140%;
-		font-size: 100%;		
-	}
-
-	.page-footer p {
-		margin: 0;
-	}
-	
-	.page-footer {
-		padding: 20px;
-	}
-
-	.page-title h1 span {
-		text-align: left;
-		font-weight: normal;
-		font-size: 100%;
-		color: #ffffff;
-		margin: 5px 0 15px 0;
-	}
-	
-h1 {
-	text-align: left;
-	font-weight: normal;
-	font-size: 180%;
-	color: #96BF55;
-	margin: 5px 0 15px 0;
+div, span, article, section, header, footer, aside, p, ul, li, fieldset, legend, label, a, nav, form {
+	box-sizing: border-box;
 }
-
-	h1 span {
-		clear: both;
-		font-size: 60%;
-		color: #FF9;
-	}
-
-
-h2 {
-	text-align: left;
-	font-weight: normal;
-	font-size: 150%;
-	color: #09f;
-	margin: 5px 0 15px 0;
+ol, ul, li {
+	list-style: none;
 }
-
-	h2 span {
-		clear: both;
-		font-size: 70%;
-		color: #FF9;
-	}
-	
-h3 {
-	clear: both;
-	font-size: 120%;
-	color: #FF9;
-	font-weight: normal;
-	margin: 0 0 10px 0;
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
-
-.notice {
-	border: 3px solid #ffffbe;
-	padding: 10px;
-	color: #ffffff;
-	background-color: #09f;
-	margin: 0 0 20px 0;
+/* img {
+	max-width: 100%;
+	height: auto;
+	border: 0;
+} */
+button {
+	border: 0;
+	background: transparent;
+	cursor: pointer;
 }
-	
-	.notice p, 
-	.notice p a, 
-	li a {
-		color: #ffffff;
-		text-decoration: none;
-	}
-
-a.page-options {
-	color: #000000; 
-	text-decoration: none; 
-	display: block; 
-	text-align: left; 
-	padding: 5px; 
-	background: #a9d06a;
-	margin: 3px 0 0 0;
-	border-bottom: 1px solid #333333;
-	border-bottom: 1px solid #555555;
-}
-
-a.page-options:hover, 
-a.page-options:focus {
-	color: #fff; 
-	background: #09F;
-}		
-
+/* 문단 띄우기 */
 p {
-	margin: 0 0 20px 0;
-	color: #cccccc;
-	line-height: 140%;
+	line-height: 1.7;
 }
-
-	p small, 
-	li small {
-		color: #09F;
-		font-size: 100%;
-	}
-	
-	p em, 
-	em {
-		color: #ffffff;
-	}
-
-.hidden {
-	display : none;
+div{
+	display: block;
+}
+a{
+	color: rgb(29, 29, 31);
+	/* 링크가 걸렸는지 확인후 활성화하기 */
+	text-decoration: none;
 }

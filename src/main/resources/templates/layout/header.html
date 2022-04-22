@@ -91,26 +91,62 @@
 	    	console.log(params.lat);
 	        console.log(params.lon);
 	        
+	        document.location.href = "/storeList?lat="+lat+"&lon="+lon;
+/*	        
 	    	$.ajax({
 	    		type: "get",   //get방식으로 명시
-	    		url : "/latlon",  //이동할 jsp 파일 주소
+	    		url : "/storeList",  //이동할 jsp 파일 주소
 	    		data : params
 	    	})
+*/
 		});
 		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 			alert("geolocation error");
 		}	
-		location.href="/storeList";
 	};
 	</script>
+
+<!-- 네비게이션  고정 -->
+	<script>
+      var checkMenu = () => {
+		//console.log(yOffset)
+	    if (yOffset > 0) {
+	          document.body.classList.add('nav-sticky');
+	        } else {
+	          document.body.classList.remove('nav-sticky');
+	        }
+	  };
+	  window.addEventListener('scroll', () => {
+	    yOffset = window.pageYOffset;
+
+	    checkMenu();
+	  })
+
+	// 검색버튼 on/off
+	function openCloseSearch() {
+    if(document.getElementById('nav-search-input').style.display === 'block') {
+      document.getElementById('nav-search-input').style.display = 'none';
+			
+    } else {
+      document.getElementById('nav-search-input').style.display = 'block';
+			
+    }
+  }
+
+
+
+    </script>
+
+<div class="whole-section">
+
 
 	<!-- navigation -->
 	<div class="nav-container">
 		<div class="nav-wrap">
 
 			<!-- 1번 nav -->
-			<div class="logo-container">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="logo-container nav-color">
+				<nav class="navbar navbar-expand-lg navbar-light">
 					<div class="container-fluid">
 						<!-- 로고, 홈으로 이동 -->
 						<a class="navbar-brand" th:href="@{/index}">Logo</a>
@@ -118,10 +154,9 @@
 				</nav>
 			</div>
 			
-
 			<!-- 2번 nav -->
-			<div class="menu-container">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="menu-container nav-color">
+				<nav class="navbar navbar-expand-lg navbar-light">
 					<div class="container-fluid">
 
 						<button class="navbar-toggler" type="button"
@@ -134,7 +169,7 @@
 							<ul class="navbar-nav">
 								<li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/index}">Home</a></li>
 								<li class="nav-item"><a class="nav-link" th:href="@{/login}">로그인</a></li>
-								<li class="nav-item"><a class="nav-link" th:href="@{/userpage}">마이페이지</a></li>
+								<li class="nav-item" th:if="${session.user} != null"><a class="nav-link" th:href="@{/userpage}">마이페이지</a></li>
 								<li class="nav-item"><a class="nav-link" th:href="@{/map}">지도페이지</a></li>
 								<li class="nav-item"><a class="nav-link" onClick="toList()">술집리스트</a></li>
 								<li class="nav-item"><a class="nav-link" th:href="@{/board/hotPage}">게시판</a></li>
@@ -145,22 +180,38 @@
 			</div>
 
 			<!-- 3번 nav -->
-			<div class="search-container">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="search-container nav-color">
+				<nav class="navbar navbar-expand-lg navbar-light">
 					<div class="container-fluid">
-						<form class="d-flex" method="get" action="/map">
-							<input class="form-control me-2" type="text" id="keyword" name="keyword" size="15" placeholder="Search" aria-label="Search">
-							<button class="btn btn-outline-success" type="submit">Search</button>
-						</form>
+						<!-- <form class="d-flex" method="get" action="/map">
+								<button id="toc-toggle" class="w-btn w-btn-indigo" type="button" onclick="openCloseSearch()">검색열기</button>
+								<div id="nav-search-input" class="search-input-container">
+									<input class="form-control me-2" type="text" id="keyword" name="keyword" size="15" placeholder="Search" aria-label="Search">
+									<button class="w-btn w-btn-indigo" type="submit">Search</button>
+								</div>
+						</form> -->
 					</div>
 				</nav>
 			</div>
-
 		</div>
 	</div>
-
-	
+	<form class="search-section" method="get" action="/map">
+		<div class="search-icon-position-box">
+			<i id="nav-search-button" class="fa-solid fa-magnifying-glass nav-search-icon" onclick="openCloseSearch()"></i>
+		</div>
+		<div class="search-input-position-box">
+			<!-- <button class="w-btn w-btn-indigo" type="button" >검색열기</button> -->
+			<div id="nav-search-input" class="search-input-container">
+				<input class="form-control me-2 nav-search-input" type="text" id="keyword" name="keyword" size="15" placeholder="Search" aria-label="Search">
+				<button class="w-btn w-btn-indigo" type="submit">Search</button>
+			</div>
+		</div>
+		
+	</form>
 </div>
+</div>
+	
+
 <!-- navigation 끝 -->
 
 >>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git

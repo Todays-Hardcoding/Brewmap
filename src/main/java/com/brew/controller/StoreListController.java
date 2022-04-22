@@ -40,12 +40,14 @@ public class StoreListController {
     public String returnStoreJoinList(HttpServletResponse response, @RequestParam Map<String, String> params,
     		@PageableDefault(page=0, size=6) Pageable pageable, Model model) {
 		
-		List<StoreInfo> infoList = null;
-		if(this.infoList.size() == 0)
-			infoList = storeListService.getCloseStores(params); 
-		else
-			infoList = this.infoList;
+		System.out.println("controller");
 		
+//		List<StoreInfo> infoList = null;
+//		if(!this.infoList.isEmpty())
+//			infoList = storeListService.getCloseStores(params); 
+//		else
+//			infoList = this.infoList;
+		infoList = storeListService.getCloseStores(params); 
 		model.addAttribute("infoList", infoList);
 
 		return "view/pages/storeList";
@@ -55,5 +57,7 @@ public class StoreListController {
 	@ResponseBody
 	public void returnLatlon(HttpServletResponse response, @RequestParam Map<String, String> params) {	
 		infoList = storeListService.getCloseStores(params);
+		
+		System.out.println(this.infoList);
 	}
 }
