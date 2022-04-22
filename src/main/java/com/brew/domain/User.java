@@ -85,7 +85,7 @@ public class User {
 	public User(List<Board> board, @NotNull String userCategory, @NotNull String userId, @NotNull String userPw,
 			@NotNull String userName, @NotNull String userTel, @NotNull String userEmail, @NotNull String userGrade,
 			LocalDateTime userRegDate, @NotNull String userBirthDate, @NotNull String userNickName,
-			@NotNull boolean userGender, String userCoupon, int userPoint, String userQuestion, String userAnswer) {
+			@NotNull boolean userGender, String userCoupon, String userPoint, String userQuestion, String userAnswer) {
 		super();
 		this.board = board;
 		this.userCategory = userCategory;
