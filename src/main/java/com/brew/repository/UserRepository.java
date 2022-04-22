@@ -1,5 +1,6 @@
 package com.brew.repository;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -7,9 +8,10 @@ import com.brew.domain.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
+
 	
 	
-	public User findByUserId( String userId);
+	public User findByUserId(String userId);
 
 	public User findByUserName(String userName);
 
@@ -24,6 +26,5 @@ public interface UserRepository extends JpaRepository<User, String> {
 	
 //	@Query(value="Update user set userId = :userId where userId = :userId ")
 //	public User changeByUserId(@Param("userId") String userId);
-
 
 }
