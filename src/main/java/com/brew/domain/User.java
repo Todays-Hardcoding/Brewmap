@@ -14,6 +14,10 @@ import javax.validation.constraints.NotNull;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import groovy.transform.ToString;
+>>>>>>> origin/GY
 import lombok.Builder;
 =======
 import groovy.transform.ToString;
@@ -41,6 +45,7 @@ import lombok.Setter;
 @Table
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 @ToString
 =======
 @DynamicUpdate
@@ -48,6 +53,9 @@ import lombok.Setter;
 =======
 @ToString
 >>>>>>> origin/Jinhwan
+=======
+@ToString
+>>>>>>> origin/GY
 public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Board> board;
@@ -88,6 +96,7 @@ public class User {
 	@PrePersist
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public void createDate() {
 =======
 	public void createdAt() {
@@ -95,6 +104,9 @@ public class User {
 =======
 	public void createDate() {
 >>>>>>> origin/Jinhwan
+=======
+	public void createDate() {
+>>>>>>> origin/GY
 		this.userRegDate = LocalDateTime.now();
 	}
 	@NotNull
@@ -114,6 +126,7 @@ public class User {
 	private String userQuestion;
 	@Column
 	private String userAnswer;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -143,6 +156,14 @@ public class User {
 =======
 			@NotNull boolean userGender, String userCoupon, String userPoint, String userQuestion, String userAnswer) {
 >>>>>>> origin/Jinhwan
+=======
+	
+	@Builder
+	public User(List<Board> board, @NotNull String userCategory, @NotNull String userId, @NotNull String userPw,
+			@NotNull String userName, @NotNull String userTel, @NotNull String userEmail, @NotNull String userGrade,
+			LocalDateTime userRegDate, @NotNull String userBirthDate, @NotNull String userNickName,
+			@NotNull boolean userGender, String userCoupon, String userPoint, String userQuestion, String userAnswer) {
+>>>>>>> origin/GY
 		super();
 		this.board = board;
 		this.userCategory = userCategory;
@@ -164,11 +185,15 @@ public class User {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/woo
 =======
 	
 >>>>>>> origin/Jinhwan
+=======
+	
+>>>>>>> origin/GY
 
 }
 =======
