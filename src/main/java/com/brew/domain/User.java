@@ -19,7 +19,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -33,7 +32,7 @@ public class User {
 
 	@OneToMany(mappedBy = "user")
 	private List<Review> Review;
-	
+
 	@NotNull
 	@Column
 	private String userCategory;
@@ -58,10 +57,12 @@ public class User {
 	private String userGrade;
 	@Column
 	private LocalDateTime userRegDate;
+
 	@PrePersist
 	public void createDate() {
 		this.userRegDate = LocalDateTime.now();
 	}
+
 	@NotNull
 	@Column
 	private String userBirthDate;
