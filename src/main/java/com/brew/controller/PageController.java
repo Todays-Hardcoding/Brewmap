@@ -16,10 +16,10 @@ public class PageController {
 //		return "view/pages/storeList";
 //	}
 	
-	@RequestMapping("/board")
-	public String boardnav() {
-		return "view/board/boardMain";
-	}
+	/*
+	 * @RequestMapping("/board") public String boardnav() { return
+	 * "view/board/boardMain"; }
+	 */
 	
 	@RequestMapping("/login")
 	public String loginnav() {

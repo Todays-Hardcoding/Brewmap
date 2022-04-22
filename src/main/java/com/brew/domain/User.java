@@ -12,12 +12,18 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import lombok.Builder;
 =======
 import groovy.transform.ToString;
 import lombok.Builder;
 import lombok.Data;
 >>>>>>> origin/jinho_branch
+=======
+import org.hibernate.annotations.DynamicUpdate;
+
+import lombok.Builder;
+>>>>>>> origin/woo
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,7 +33,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table
+<<<<<<< HEAD
 @ToString
+=======
+@DynamicUpdate
+>>>>>>> origin/woo
 public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Board> board;
@@ -63,7 +73,11 @@ public class User {
 	@Column
 	private LocalDateTime userRegDate;
 	@PrePersist
+<<<<<<< HEAD
 	public void createDate() {
+=======
+	public void createdAt() {
+>>>>>>> origin/woo
 		this.userRegDate = LocalDateTime.now();
 	}
 	@NotNull
@@ -84,6 +98,7 @@ public class User {
 	@Column
 	private String userAnswer;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	@Builder
 	public User(@NotNull String userCategory, @NotNull String userId, @NotNull String userPw, @NotNull String userName,
@@ -91,13 +106,19 @@ public class User {
 			@NotNull String userBirthDate, @NotNull String userNickName, @NotNull boolean userGender, String userCoupon,
 			int userPoint, String userQuestion, String userAnswer) {
 =======
+=======
+>>>>>>> origin/woo
 	
 	@Builder
 	public User(List<Board> board, @NotNull String userCategory, @NotNull String userId, @NotNull String userPw,
 			@NotNull String userName, @NotNull String userTel, @NotNull String userEmail, @NotNull String userGrade,
 			LocalDateTime userRegDate, @NotNull String userBirthDate, @NotNull String userNickName,
+<<<<<<< HEAD
 			@NotNull boolean userGender, String userCoupon, String userPoint, String userQuestion, String userAnswer) {
 >>>>>>> origin/jinho_branch
+=======
+			@NotNull boolean userGender, String userCoupon, int userPoint, String userQuestion, String userAnswer) {
+>>>>>>> origin/woo
 		super();
 		this.board = board;
 		this.userCategory = userCategory;
@@ -117,6 +138,9 @@ public class User {
 		this.userAnswer = userAnswer;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/woo
 
 }
 =======

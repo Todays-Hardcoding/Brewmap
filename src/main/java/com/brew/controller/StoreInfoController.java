@@ -73,6 +73,7 @@ public class StoreInfoController {
 		return "view/pages/map";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/jinho_branch
@@ -83,6 +84,8 @@ public class StoreInfoController {
 		System.out.println(map.get("lat"));
 		System.out.println(map.get("lon"));
 >>>>>>> b04688406cbb5887a7b197ed36338b6c9c9dfffe
+=======
+>>>>>>> origin/woo
 	}
 
 }
