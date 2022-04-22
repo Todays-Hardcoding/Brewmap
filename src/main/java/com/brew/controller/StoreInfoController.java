@@ -79,7 +79,7 @@ public class StoreInfoController {
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		
-		return "/view/pages/map";
+		return "view/pages/map";
 	}
 	
 	@GetMapping("/sendPosition")

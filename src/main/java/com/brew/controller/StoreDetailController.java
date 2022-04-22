@@ -1,6 +1,9 @@
 package com.brew.controller;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,28 +14,31 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.brew.domain.StoreInfo;
+import com.brew.service.StoreDetailService;
 import com.brew.service.StoreInfoService;
 import com.brew.service.StoreListService;
 
 
 
 @Controller
-public class StoreListDetailController {
+public class StoreDetailController {
 
 	@Autowired
-	StoreInfoService storeInfoService;
+	StoreDetailService storeDetailService;
 	
-	@GetMapping("/storeListDetail")
-    public String returnStoreJoinList(Model model) {
-		List<StoreInfo> storeList = storeInfoService.findAllStore();
-		 
-		model.addAttribute("storeList", storeList);
+	@GetMapping("/detail")
+    public String returnStoreJoinList(HttpServletResponse response, 
+    		@RequestParam Map<String, String> params, Model model) {
 		
+		System.out.println(params.values());
+		
+		StoreInfo storeDetail = storeDetailService.findByStoreCode(params);
+		 
+		model.addAttribute("storeDetail", storeDetail);
 
-		return "view/pages/storeListDetail";
+		return "view/pages/detail";
     }
-	
-
 }
