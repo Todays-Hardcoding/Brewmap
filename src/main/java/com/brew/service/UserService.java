@@ -44,25 +44,8 @@ public class UserService {
 		userRepository.save(user);
 		
 	};
-	
-	@Transactional
-	public String join(User user) {
-			try {
-				validateDuplicateMember(user);
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
-			userRepository.save(user);
-			return user.getUserId();
+
+	public User checkUser(String userId, String userPw) {
+		return userRepository.checkUser(userId, userPw);
 	}
-	
-	
-	//중복체크 id
-	private void validateDuplicateMember(User user) throws IllegalAccessException {
-		Optional<User> findUser = userRepository.findById(user.getUserId());
-		if(!findAllUser().isEmpty()) {
-			throw new IllegalAccessException("이미 존재하는 회원입니다.");
-		}
-	}
-	
 }

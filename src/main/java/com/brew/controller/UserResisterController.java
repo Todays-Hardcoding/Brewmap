@@ -30,10 +30,6 @@ public class UserResisterController {
 	public String usermodifypage() {
 		return "view/signUp2";
 	}
-	@RequestMapping("/signUp3")
-	public String usermodifypage3() {
-		return "view/signUp";
-	}
 	
 	@RequestMapping(value = "/signUp2")
 	public String resisterUser(HttpServletRequest req, HttpServletResponse resp, @ModelAttribute User user) {
@@ -61,8 +57,15 @@ public class UserResisterController {
 	@RequestMapping(value="/login2")
 	public String login(HttpServletRequest req, HttpSession session, @ModelAttribute User user) {
 		
-		//	DB에서 userId로 받아온 파라미터 값을 user에 넣고 session에 등록 시킴 
-		session.setAttribute("user",userservice.findByUserId(req.getParameter("userId")));
+		
+		User checkuser = userservice.checkUser(req.getParameter("userId"), req.getParameter("userPw"));
+		
+		if(checkuser != null) {
+			//	DB에서 userId로 받아온 파라미터 값을 user에 넣고 session에 등록 시킴
+			session.setAttribute("user",userservice.findByUserId(req.getParameter("userId")));
+		}else {
+			return "view/login";
+		}
 		
 		System.out.println(userservice.findByUserId(user.getUserId()));
 		System.out.println(req.getParameter("userId"));
