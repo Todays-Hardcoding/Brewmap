@@ -57,12 +57,6 @@ public class Board {
 	@Column
 	private LocalDateTime boardDate;
 	
-	@PrePersist
-	public void createdAt() {
-		this.boardDate = LocalDateTime.now();
-		this.boardLikeCount = 0;
-	}
-	
 	@Column
 	private Integer boardViews;
 	
@@ -72,6 +66,12 @@ public class Board {
 	
 	@Column
 	private Integer boardLikeCount;
+	
+	@PrePersist
+	public void createdAt() {
+		this.boardDate = LocalDateTime.now();
+		this.boardLikeCount = 0;
+	}
 
 	@Builder
 	public Board(List<Reply> reply, User user, @NotNull long boardId, @NotNull String boardTitle,

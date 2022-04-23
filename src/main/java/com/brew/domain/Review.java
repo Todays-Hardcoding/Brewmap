@@ -9,37 +9,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PostUpdate;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@ToString
+@NoArgsConstructor
 @Entity
 @Table
+@DynamicUpdate
 public class Review {
 	
 	@ManyToOne
 	@JoinColumn(name="store_code")
 	private StoreInfo storeInfo;
 
-	 @PrePersist 
-	 public void createdAt() {
-	 storeInfo.setReviewCount(storeInfo.getReview().size()); 
-	 this.reviewDate = LocalDateTime.now();
-	 }
-
-	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
@@ -61,6 +55,12 @@ public class Review {
 	@Column
 	private LocalDateTime reviewDate;
 	
+	@PrePersist 
+	 public void createdAt() {
+	 storeInfo.setReviewCount(storeInfo.getReview().size()); 
+	 this.reviewDate = LocalDateTime.now();
+	 }
+	
 	@Builder
 	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull int reviewStar,
 			@NotNull String reviewComment, LocalDateTime reviewDate) {
@@ -72,9 +72,5 @@ public class Review {
 		this.reviewComment = reviewComment;
 		this.reviewDate = reviewDate;
 	}
-
-	
-	
-	
 	
 }

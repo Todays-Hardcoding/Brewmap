@@ -7,22 +7,27 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PostUpdate;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @Entity
 @Table
+@DynamicUpdate
 public class StoreInfo {
+	
 	@OneToMany(mappedBy = "storeInfo")
 	private List<Review> review;
 
@@ -55,7 +60,7 @@ public class StoreInfo {
 	private String storeAddr;
 
 	@Column
-	private String storeRegdate;
+	private LocalDateTime storeRegdate;
 
 	@NotNull
 	@Column
@@ -68,19 +73,19 @@ public class StoreInfo {
 	@Column
 	private String storeTag;
 
+	@Column
+	private Float storeStaravg;
+	
 	@PrePersist
 	public void createdAt() {
-		this.storeRegdate = String.valueOf(LocalDateTime.now());
+		this.storeRegdate = LocalDateTime.now();
 		this.storeStaravg = (float) 3.0;
 		this.reviewCount = review.size();
 	}
 
-	@Column
-	private Float storeStaravg;
-
 	@Builder
 	public StoreInfo(String storeCategory, String storeCode, String storeName, String storeRoadAddr, String storeTel,
-			String storeAddr, String storeRegDate, double storeLatitude, double storeLongitude, String storeTag,
+			String storeAddr, LocalDateTime storeRegDate, double storeLatitude, double storeLongitude, String storeTag,
 			Float storeStaravg) {
 		super();
 		this.storeCategory = storeCategory;
@@ -94,14 +99,6 @@ public class StoreInfo {
 		this.storeLongitude = storeLongitude;
 		this.storeTag = storeTag;
 		this.storeStaravg = storeStaravg;
-	}
-
-	@Override
-	public String toString() {
-		return "StoreInfo [storeCategory=" + storeCategory + ", storeCode=" + storeCode + ", storeName=" + storeName
-				+ ", storeTel=" + storeTel + ", storeRoadAddr=" + storeRoadAddr + ", storeAddr=" + storeAddr
-				+ ", storeRegdate=" + storeRegdate + ", storeLatitude=" + storeLatitude + ", storeLongitude="
-				+ storeLongitude + ", storeTag=" + storeTag + ", storeStaravg=" + storeStaravg + "]";
-	}
+	}	
 
 }

@@ -20,8 +20,12 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @Entity
 @Table
@@ -50,13 +54,13 @@ public class Reply {
 	@Column 
 	private LocalDateTime replyDate;
 	
+	@Column
+	private Integer replyLikeCount;
+	
 	@PrePersist
 	public void createdAt() {
 		this.replyDate = LocalDateTime.now();
 	}
-	
-	@Column
-	private Integer replyLikeCount;
 
 	@Builder
 	public Reply(Board board, @NotNull long replyId, @NotNull String replyContent, @NotNull String replyUser,
@@ -70,6 +74,4 @@ public class Reply {
 		this.replyLikeCount = replyLikeCount;
 	}
 	
-	
-
 }

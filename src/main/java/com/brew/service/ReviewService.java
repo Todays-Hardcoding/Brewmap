@@ -15,11 +15,15 @@ public class ReviewService {
 		return reviewRepository.calReviewCount();
 	};
 	
+	public Review getByReviewId(long reviewId) {
+		return reviewRepository.getByReviewId(reviewId);
+	}
+	
 	public Review saveReview(Review review) {
 		return reviewRepository.save(review);
 	}
 	
-	public Review getByReviewId(long id) {
-		return reviewRepository.getByReviewId(id);
+	public void deleteByReviewId(long reviewId) {
+		reviewRepository.deleteById(reviewId);
 	}
 }

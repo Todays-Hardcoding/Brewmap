@@ -91,7 +91,7 @@ public class BoardController {
 	public String boardSearchTitleAndContent(Model model, @PageableDefault(page=0, size=10) Pageable pageable, @RequestParam String keyword, String boardCategoryCode) {
 		String boardCategory = "검색결과";
 		// String boardCategoryCode = "searchTitleAndContent";
-		Page<Board> searchResult = boardService.findPageByTitleAndContent(keyword, pageable, boardCategoryCode);
+		Page<Board> searchResult = boardService.findPageByTitleAndContent(boardCategoryCode, keyword, pageable);
 		model.addAttribute("keyword", keyword);
 		// model.addAttribute("boardList", searchResult);
 		// return "redirect:" + boardCategoryCode;

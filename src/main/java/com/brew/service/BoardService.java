@@ -35,8 +35,8 @@ public class BoardService {
         return boardRepository.findByBoardCategory(boardCategoryCode, pageable);
     }
 	
-	public Page<Board> findPageByTitleAndContent(@Param("keyword") String keyword, Pageable pageable, String boardCategory){
-		return boardRepository.findPageByTitleAndContent(keyword, pageable, boardCategory);
+	public Page<Board> findPageByTitleAndContent(String boardCategory, @Param("keyword") String keyword, Pageable pageable){
+		return boardRepository.findPageByTitleAndContent(boardCategory, keyword, pageable);
 	}
 		
 	public Board findByBoardId(long boardId) {
