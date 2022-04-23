@@ -33,8 +33,8 @@ public class Review {
 	@Id
 	@NotNull
 	@Column
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String reviewId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long reviewId;
 	
 	@NotNull
 	@Column
@@ -48,14 +48,23 @@ public class Review {
 	private LocalDateTime reviewDate;
 
 	@Builder
-	public Review(@NotNull String reviewId, @NotNull int reviewStar, @NotNull String reviewComment,
-			LocalDateTime reviewDate) {
+	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull int reviewStar,
+			@NotNull String reviewComment, LocalDateTime reviewDate) {
 		super();
+		this.storeInfo = storeInfo;
+		this.user = user;
 		this.reviewId = reviewId;
 		this.reviewStar = reviewStar;
 		this.reviewComment = reviewComment;
 		this.reviewDate = reviewDate;
-
 	}
+
+	@Override
+	public String toString() {
+		return "Review [storeInfo=" + storeInfo + ", user=" + user + ", reviewId=" + reviewId + ", reviewStar="
+				+ reviewStar + ", reviewComment=" + reviewComment + ", reviewDate=" + reviewDate + "]";
+	}
+
 	
+
 }
