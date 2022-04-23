@@ -50,28 +50,45 @@ a {
 				<div class="col">
 					<h4 class="display-6" th:text="${boardCategory}"></h4>
 					<hr />
+					<form action="/board/hotPage">
+						<!-- <input type="hidden" name="reviewCount" th:value="${boardList.review.size}"> -->
+<!-- 						<input name="reviewStar" value="3">
+						<input name="reviewComment" value="안녕 제발 저장 좀 해줘">
+						<input name="storeCode" value="1099354434">
+						<input name="userId" value="abc">
+						
+						<button type="submit">리뷰 실험</button> -->
+						<!-- <input type="hidden" name="boardList" th:value="${boardList}"> -->
+					</form>
 					<ul class="list-group list-group-flush"
 						th:each="boardContent: ${boardList}">
-						<!-- <a th:href="@{/board(boardId=${boardContent.boardId})}"> -->
-						<a th:href="@{/board (boardId=${boardContent.boardId})}">
+						<!-- 여기에 storeDetail로 가는 링크 매핑해주세여! -->
+						<a href="#">				
 							<li class="list-group-item">
 								<h4 style="margin-bottom: 2px"
-									th:text="${boardContent.boardTitle}"></h4> <span
-								th:text="${boardContent.boardContent}"></span>
+									th:text="${boardContent.storeName}"></h4> 
+									<div th:each="eachStoreTag : ${#strings.arraySplit(boardContent.storeTag, ',')}" style="display: inline-block"
+								>
+								<span>#</span>
+								<span th:text="${eachStoreTag}"></span>
+								</div>
 								<div class="row">
 									<div class="col">
 										<small style="margin-right: 10px"
-											th:text="${boardContent.boardDate}"></small><small
-											th:text="boardContent.user.userName"></small>
+											th:text="${boardContent.storeRoadAddr}"></small> <br>
+											<small
+											th:text="${boardContent.storeCategory}"></small> <br>
+											<!-- <small
+											th:text="${boardContent.review.size}"></small> -->
 									</div>
-									<div
+<!-- 									<div
 										class="col d-flex d-lg-flex justify-content-end justify-content-lg-end">
 										<i class="fa fa-thumbs-o-up"></i> <small
 											style="margin-right: 10px"
 											th:text="${boardContent.boardLikeCount}"></small> <i
 											class="fa fa-comment-o"></i> <small
 											th:text="${boardContent.reply.size}"></small>
-									</div>
+									</div> -->
 								</div>
 						</li>
 						</a>
@@ -113,29 +130,6 @@ a {
 							</a></li>
 						</ul>
 					</nav>
-					<div class="row" th:style="${boardCategoryCode} == 'hotPage' ? 'display:none'">
-						<div class="col d-flex">
-							<div class="input-group d-md-flex" >
-								<form action="/board/searchTitleAndContent">
-									<input type="hidden" name="boardCategoryCode" th:value="${boardCategoryCode}">
-									<input class="form-control d-flex" type="text" id="keyword"
-										name="keyword" th:value="${keyword} ? ${keyword} : ''"
-										placeholder="제목+내용으로 검색" />
-									<button class="btn btn-primary" type="submit">
-										<i class="fa fa-search"></i>
-									</button>
-								</form>
-							</div>
-						</div>
-						<div
-							class="col-4 col-md-3 col-lg-3 d-flex justify-content-end align-items-center"
-							style="padding-left: 0px; padding-right: 0px">
-							<form action="/board/edit">
-								<button class="btn btn-primary" type="submit"
-									style="margin-right: 2em">글쓰기</button>
-							</form>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
