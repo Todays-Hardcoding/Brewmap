@@ -80,7 +80,6 @@ public class User {
 	private String userQuestion;
 	@Column
 	private String userAnswer;
-
 	@Builder
 	public User(List<Board> board, @NotNull String userCategory, @NotNull String userId, @NotNull String userPw,
 			@NotNull String userName, @NotNull String userTel, @NotNull String userEmail, @NotNull String userGrade,
