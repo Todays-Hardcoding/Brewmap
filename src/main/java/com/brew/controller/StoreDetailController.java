@@ -22,8 +22,6 @@ import com.brew.domain.User;
 import com.brew.service.StoreDetailService;
 import com.brew.service.UserService;
 
-
-
 @Controller
 public class StoreDetailController {
 
