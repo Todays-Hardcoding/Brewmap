@@ -10,6 +10,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ import lombok.NoArgsConstructor;
 public class StoreInfo {
 	
 	@OneToMany(mappedBy = "storeInfo")
+	@JsonManagedReference
 	private List<Review> review;
 	
 	@NotNull
