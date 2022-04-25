@@ -21,10 +21,6 @@ public class StoreInfoService {
 		return storeInfoRepository.findAll();
 	}
 	
-	public Page<StoreInfo> findAllStores(Pageable pageable) {
-		return storeInfoRepository.findAllStores(pageable);
-	};
-	
 	public List<StoreInfo> findListByKeyword(String keyword, Pageable pageable) {
 		return storeInfoRepository.findListByKeyword(keyword, pageable);
 	}
@@ -32,14 +28,53 @@ public class StoreInfoService {
 	public Page<StoreInfo> findPageByKeyword(String keyword, Pageable pageable) {
 		return storeInfoRepository.findPageByKeyword(keyword, pageable);
 	}
+
+	// 페이징된 Page 객체를 반환하는 검색 메소드
+	public Page<StoreInfo> findStorePage(String keyword, Pageable pageable) {
+
+		List<StoreInfo> stores = storeInfoRepository.findAll();
+
+		// 검색 로직
+		for (StoreInfo store : stores) {
+			if (store.getStoreName().contains(keyword)) {
+				return storeInfoRepository.findByStoreNameContaining(keyword, pageable);
+			} else if (store.getStoreCategory().contains(keyword)) {
+				return storeInfoRepository.findByStoreCategoryContaining(keyword, pageable);
+			} else if (store.getStoreRoadAddr().contains(keyword)) {
+				return storeInfoRepository.findByStoreRoadAddrContaining(keyword, pageable);
+			} else if (store.getStoreAddr().contains(keyword)) {
+				return storeInfoRepository.findByStoreAddrContaining(keyword, pageable);
+			}  else if (store.getStoreTel().contains(keyword)) {
+				return storeInfoRepository.findByStoreTelContaining(keyword, pageable);
+			} else if (store.getStoreTag().contains(keyword)) {
+				return storeInfoRepository.findByStoreTagContaining(keyword, pageable);
+			}
+		}
+		return storeInfoRepository.findByStoreAddrContaining("강남", pageable);
+	}
 	
-	public StoreInfo findByStoreCode(String storeCode) {
-		return storeInfoRepository.findByStoreCode(storeCode);
-	};
-	
-	// 술집 랭킹
-	public Page<StoreInfo> findHotStores(Pageable pageable) {
-		return storeInfoRepository.findHotStores(pageable);
+	// 페이징된 List 객체를 반환하는 검색 메소드
+	public List<StoreInfo> findStoreList(String keyword, Pageable pageable) {
+
+		List<StoreInfo> stores = storeInfoRepository.findAll();
+
+		// 검색 로직
+		for (StoreInfo store : stores) {
+			if (store.getStoreName().contains(keyword)) {
+				return storeInfoRepository.findByStoreName(keyword, pageable);
+			} else if (store.getStoreCategory().contains(keyword)) {
+				return storeInfoRepository.findByStoreCategory(keyword, pageable);
+			} else if (store.getStoreRoadAddr().contains(keyword)) {
+				return storeInfoRepository.findByStoreRoadAddr(keyword, pageable);
+			} else if (store.getStoreAddr().contains(keyword)) {
+				return storeInfoRepository.findByStoreAddr(keyword, pageable);
+			} else if (store.getStoreTel().contains(keyword)) {
+				return storeInfoRepository.findByStoreTel(keyword, pageable);
+			} else if (store.getStoreTag().contains(keyword)) {
+				return storeInfoRepository.findByStoreTag(keyword, pageable);
+			}
+		}
+		return storeInfoRepository.findByStoreAddr("강남", pageable);
 	}
 
 }

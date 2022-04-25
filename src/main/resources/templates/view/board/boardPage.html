@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html
-	lang="ko"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
->
-	<head th:replace="layout/head :: headFragment"> </head>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="layout/head :: headFragment"></head>
 
-	<th:block layout:fragment="customCss">
-		<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
+<th:block layout:fragment="customCss">
+	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
 	<title>boardPage</title>
+	<style>
+		a {
+			text-decoration: none;
+			border-color: white;
+		}
+		
+		.list-group-item {
+			border-color: white;
+		}
+	</style>
 </th:block>
 
 <body>
@@ -29,15 +36,11 @@
 							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
 								th:href="@{/board/hotPage}"><i
 									class="fas fa-fire bi-speedometer2 fs-5 ms-2"></i><span
-									class="ms-1 d-none d-sm-inline">Hot게시판</span></a></li>
-							<li class="w-100"><a class="px-2 nav-link px-sm-0"
-								th:href="@{/board/freePage}"><i
-									class="fa fa-table fs-5 bi-table ms-2"></i><span
-									class="ms-1 d-none d-sm-inline">자유게시판</span></a></li>
+									class="ms-1 d-none d-sm-inline">술집랭킹</span></a></li>
 							<li class="w-100"><a class="px-1 nav-link px-sm-0 ps-2"
 								th:href="@{/board/recommendStore}"><i
 									class="fas fa-utensils bi-bootstrap fs-5 ms-2"></i><span
-									class="ms-1 d-none d-sm-inline">맛집추천</span></a></li>
+									class="ms-1 d-none d-sm-inline">술집추천</span></a></li>
 							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
 								th:href="@{/board/serviceCenter}"><i
 									class="fa fa-group bi-people fs-5 ms-2"></i><span
@@ -51,25 +54,21 @@
 					<h4 class="display-6" style="font-size: 33px;" th:text="${board.boardCategory}">게시판 카테고리</h4>
 					<hr>
 					<!-- 글 제목 -->
-					<h2 style="font-size: 30px;" th:text="${board.boardTitle}">게시글 제목
-						<small class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start justify-content-xxl-start" style="font-size: 15px;">
-							<!-- 작성자 -->
-							<span style="margin-right: 5px; margin-left: 0px;" th:text="${board.user.userId}">작성자</span>
-							<!-- 작성 날짜 -->
-							<span style="margin-right: 5px; margin-left: 5px;" th:text="${board.boardDate}">작성날짜</span>
-						</small>
-					</h2>
+					<h2 style="font-size: 30px;" th:text="${board.boardTitle}">게시글 제목</h2>
+					<h5 class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start justify-content-xxl-start">
+						<span class="d-md-flex align-items-md-center" style="margin-right: 5px;font-size: 15px;" th:text="${board.user.userName}"></span>
+						<span class="d-md-flex align-items-md-center" style="margin-right: 5px;margin-left: 5px;font-size: 15px;" th:text="${#temporals.format(board.boardDate, 'yy-MM-dd HH:mm:ss')}"></span>
+					</h5>
 					<h5 class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
-						<i class="fa fa-thumbs-o-up" style="margin-right: 5px; margin-left: 5px;"></i>
-						<span class="d-md-flex align-items-md-center" style="margin-right: 5px; margin-left: 5px; font-size: 15px;" th:text="${board.boardLikeCount}">좋아요</span>
+						<a class="d-flex justify-content-center" th:href="@{/board/likeCount(boardId=${board.boardId})}"><i class="fa fa-thumbs-o-up" style="margin-right: 5px; margin-left: 5px;"></i>
+						<span class="d-md-flex align-items-md-center" style="margin-right: 5px; margin-left: 5px; font-size: 15px;" th:text="${board.boardLikeCount}">좋아요</span></a>
 						<i class="fa fa-comment-o" style="margin-right: 5px; margin-left: 5px;"></i>
 						<span class="d-md-flex align-items-md-center" style="margin-right: 5px; margin-left: 5px; font-size: 15px;" th:text="${board.reply.size}">댓글수</span>
 					</h5>
 					<!-- 게시글 내용 -->
 					<p th:text="${board.boardContent}">게시글 내용</p>
-					
 					<div th:if="${session.user.userId} == ${board.user.userId}" class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end">
-						<a th:href="@{/board/editUpdate(boardId=${board.boardId})}">
+						<a th:href="@{/board/updatePage(boardId=${board.boardId})}">
 							<button class="btn btn-primary d-xxl-flex" type="button" style="margin-right: 5px;margin-left: 5px;">수정</button>
 						</a>
 						<a th:href="@{/board/delete(boardId=${board.boardId})}">
@@ -81,10 +80,9 @@
 					
 					<h4 style="font-size: 22px;">Leave a Comment:</h4>
 					<!-- 댓글 작성 -->
-					<form role="form" method="POST" action="/board/replyInsert">
+					<form role="form" method="POST" action="/board/insertReply">
 						<!-- hidden 영역 -->
-						<!-- <input type="hidden" name="userId" th:value="${user.userId}"> -->
-						<input type="hidden" name="replyUser" th:value="${session.user.userName}">
+						<input type="hidden" name="userId" th:value="${session.user.userId}">
 						<input type="hidden" name="boardId" th:value="${board.boardId}">
 
 						<!-- 입력 영역 -->
@@ -107,16 +105,14 @@
 								<input type="hidden" name="replyId" th:value="${reply.replyId}">
 								<div class="col-9 col-md-10" style="width: 100%;">
 									<!-- 댓글 작성자 -->
-									<h4 style="font-size: 22px;" th:text="${reply.replyUser}">
-										댓글 작성자
-										<!-- 댓글 작성 날짜 -->
-										<small class="font-monospace d-md-flex justify-content-md-end align-items-md-end small" style="font-size: 15px;" th:text="${reply.replyDate}">작성 날짜</small>
-									</h4>
+									<h4 style="font-size: 22px;" th:text="${reply.user.userName}">댓글 작성자</h4>
+									<!-- 댓글 작성 날짜 -->
+									<span class="font-monospace d-md-flex justify-content-md-end align-items-md-end small" style="font-size: 15px; color: black;" th:text="${#temporals.format(reply.replyDate, 'yy-MM-dd HH:mm:ss')}">작성 날짜</span>
 									<!-- 댓글 내용 -->
 									<p style="font-size: 16px;" th:text="${reply.replyContent}">댓글 내용</p>
-									<div th:if="${session.user.userName} == ${reply.replyUser}" class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end">
+									<div th:if="${session.user.userId} == ${reply.user.userId}" class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end">
 										<button class="btn btn-primary d-flex d-xxl-flex justify-content-center align-items-center" type="submit" style="margin-right: 5px;margin-left: 5px;width: 60px;height: 30px;font-size: 13px;">수정</button>
-										<button class="btn btn-primary d-flex d-xxl-flex justify-content-center align-items-center" type="submit" style="margin-left: 5px;width: 60px;height: 30px;font-size: 13px;" formaction="/board/replyDelete">삭제</button>
+										<button class="btn btn-primary d-flex d-xxl-flex justify-content-center align-items-center" type="submit" style="margin-left: 5px;width: 60px;height: 30px;font-size: 13px;" formaction="/board/deleteReply">삭제</button>
 									</div>
 								</div>
 							</form>

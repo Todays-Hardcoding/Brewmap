@@ -8,13 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.DynamicUpdate;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -24,82 +21,65 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Entity
 @Table
+@ToString
 @DynamicUpdate
 public class User {
-	
 	@OneToMany(mappedBy = "user")
-	@JsonManagedReference
 	private List<Board> board;
 
 	@OneToMany(mappedBy = "user")
-	@JsonManagedReference
 	private List<Review> Review;
-
+	
 	@NotNull
 	@Column
 	private String userCategory;
-	
 	@Id
 	@NotNull
 	@Column
 	private String userId;
-	
 	@NotNull
 	@Column
 	private String userPw;
-	
 	@NotNull
 	@Column
 	private String userName;
-	
 	@NotNull
 	@Column
 	private String userTel;
-	
 	@NotNull
 	@Column
 	private String userEmail;
-	
 	@NotNull
 	@Column
 	private String userGrade;
-	
 	@Column
 	private LocalDateTime userRegDate;
+
+	@PrePersist
+	public void createDate() {
+		this.userRegDate = LocalDateTime.now();
+	}
 
 	@NotNull
 	@Column
 	private String userBirthDate;
-	
 	@NotNull
 	@Column
 	private String userNickName;
-	
 	@NotNull
 	@Column
 	private boolean userGender;
-	
 	@Column
 	private String userCoupon;
-	
 	@Column
 	private String userPoint;
-	
 	@Column
 	private String userQuestion;
-	
 	@Column
 	private String userAnswer;
-	
-	@PrePersist
-	@PreUpdate
-	public void createdAt() {
-		this.userRegDate = LocalDateTime.now();
-	}
 
 	@Builder
 	public User(List<Board> board, @NotNull String userCategory, @NotNull String userId, @NotNull String userPw,
@@ -124,5 +104,4 @@ public class User {
 		this.userQuestion = userQuestion;
 		this.userAnswer = userAnswer;
 	}
-
 }

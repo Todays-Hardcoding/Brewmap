@@ -5,7 +5,7 @@
 
 <th:block layout:fragment="customCss">
 	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
-	<title>boardHotPageMain</title>
+	<title>boardReviewPageMain</title>
 	<style>
 		a {
 			text-decoration: none;
@@ -50,23 +50,29 @@
 					<h4 class="display-6" th:text="${boardCategory}"></h4>
 					<hr />
 					<ul class="list-group list-group-flush"
-						th:each="store: ${list}">
+						th:each="review : ${list}">
 						<!-- 여기에 storeDetail로 가는 링크 매핑해주세여! -->
-						<a th:href="@{/detail (id=${store.storeCode})}">				
+						<a th:href="@{/detail (id=${review.storeInfo.storeCode})}">				
 							<li class="list-group-item">
-								<h4 style="margin-bottom: 2px" th:text="${store.storeName}"></h4> 
+								<h4 style="margin-bottom: 2px" th:text="${review.storeInfo.storeName}"></h4> 
+								<span th:text="${review.reviewComment}"></span>
 								<div class="row">
 									<div class="col">
-										<small th:text="${store.storeCategory}"></small><br>
-										<small th:text="${store.storeRoadAddr}"></small><br>
-										<div th:if="${!#strings.equals(store.storeTel, '')}">
-											<small th:text="${store.storeTel}"></small><br>
-										</div>
+										<small th:text="${review.user.userName}"></small>
+										<small style="margin-right: 10px" th:text="${#temporals.format(review.reviewDate, 'dd-MM-yy HH:mm:ss')}"></small>
 									</div>
-								</div>
-								<div th:each="eachStoreTag : ${#strings.arraySplit(store.storeTag, ',')}" style="display: inline-block">
-									<span>#</span>
-									<span th:text="${eachStoreTag}"></span>
+									<div class="col d-flex d-lg-flex justify-content-end justify-content-lg-end">
+										<!-- <i class="fa fa-star"></i>
+										<i class="fa fa-star fa-star-half-o"></i>
+										<i class="fa fa-star fa-star-o"></i> -->
+										<!-- <small style="margin-right: 10px" th:text="${review.reviewStar}"></small> -->
+										<th:block>
+											<div th:each="index : ${#numbers.sequence(1, review.reviewStar)}">
+												<i class="fa fa-star"></i>
+											</div><div th:each="index : ${#numbers.sequence(1, 5 - review.reviewStar)}">
+												<i class="fa fa-star fa-star-o"></i>
+											</div>
+										</th:block>
 								</div>
 							</li>
 						</a>

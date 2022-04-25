@@ -17,13 +17,14 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	
 	// 게시판 제목+내용 검색
 	@Query(value = "select * from board where "
-			+ "board_category = :boardCategory and "
 			+ "board_title like %:keyword% or "
 			+ "board_content like %:keyword%"
 			, nativeQuery = true)
-	Page<Board> findPageByTitleAndContent(@Param("boardCategory") String boardCategory, @Param("keyword") String keyword, Pageable pageable);
+	Page<Board> findPageByTitleAndContent(@Param("keyword") String keyword, Pageable pageable);
+	
+	// 작성자로 검색
 	
 	// 게시판 아이디로 검색
 	Board findByBoardId(long boardId);
-	
 }
+
