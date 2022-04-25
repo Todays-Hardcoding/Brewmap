@@ -62,7 +62,7 @@
            </p>
            <div class="row d-md-flex justify-content-md-center row" style="border-color: rgb(255,255,255);">
    				<div th:each="review:${storeDetail.review}">
-					<form method="POST">
+					<form method="POST" action="/reviewDelete">
 						<input type="hidden" name="storeCode" th:value="${storeDetail.storeCode}">
                     	<input type="hidden" name="reviewId" th:value="${review.reviewId}">
 	                    <div class="col-9 col-md-10" style="width: 100%;">
@@ -73,11 +73,11 @@
 	                    	</h4>
 	                           <!-- 댓글 내용 -->
 	                    	<p style="font-size: 16px;" th:text="${review.reviewComment}">댓글 내용</p>
-							<!-- 
-	                           	<div th:if="${review.userId == user.userId}">
+
+	                           	<div th:if="${session.user.userId == review.user.userId}">
 	                               <span><button type="submit" name="delete">삭제</button></span>
 	                           </div> 
-	                            -->
+
 	                    </div>
 					</form>  
 				</div>

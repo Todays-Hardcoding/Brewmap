@@ -47,7 +47,7 @@ public class StoreDetailController {
     }
 	
 	@RequestMapping("/reviewInsert")
-	public String replyInsert(Model model, String storeCode, 
+	public String reviewInsert(Model model, String storeCode, 
 			String userId, String reviewContent, String reviewUser, int reviewStar) {
 		System.out.println(storeCode);
 		System.out.println(reviewContent);
@@ -63,5 +63,12 @@ public class StoreDetailController {
 		
 		return "redirect:/detail?id="+storeCode;	
 	}
+	
+	@RequestMapping("/reviewDelete")
+	public String reviewDelete(Model model, String storeCode, long reviewId) {
+		
+		storeDetailService.deleteByReviewId(reviewId);
 
+		return "redirect:/detail?id="+storeCode;	
+	}
 }
