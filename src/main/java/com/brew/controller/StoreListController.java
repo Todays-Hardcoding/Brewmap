@@ -53,4 +53,9 @@ public class StoreListController {
 
 		return "view/pages/storeList";
     }
+	
+	
+
+	
+	
 }
