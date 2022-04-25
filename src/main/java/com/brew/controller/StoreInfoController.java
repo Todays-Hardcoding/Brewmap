@@ -42,20 +42,41 @@ public class StoreInfoController {
 	}
 
 	@GetMapping("/map")
-	public String search(String keyword, @PageableDefault(page = 0, size = 5) Pageable pageable, Model model) {
+	public String searchMap(String keyword, @PageableDefault(page = 0, size = 5) Pageable pageable, Model model) {
 		if (keyword == null) {
-			keyword = "서울";
+			keyword = "강남";
 		}
 
 		Page<StoreInfo> storePage = storeinfoService.findPageByKeyword(keyword, pageable);
 		List<StoreInfo> storeList = storeinfoService.findListByKeyword(keyword, pageable);
-		List<StoreInfo> storeAll = storeinfoService.findAllStore();
 
 		int nowPage = storePage.getPageable().getPageNumber() + 1;
 		int startPage = Math.max(nowPage - 2, 1);
 		int endPage = Math.min(nowPage + 2, storePage.getTotalPages());
 
-		model.addAttribute("storeAll", storeAll);
+		model.addAttribute("storePage", storePage);
+		model.addAttribute("storeList", storeList);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+
+		return "view/pages/map";
+	}
+	
+	@GetMapping("/click")
+	public String clickMap(String keyword, @PageableDefault(page = 0, size = 5) Pageable pageable, Model model) {
+		if (keyword == null) {
+			keyword = "강남";
+		}
+
+		Page<StoreInfo> storePage = storeinfoService.findPageByKeyword(keyword, pageable);
+		List<StoreInfo> storeList = storeinfoService.findListByKeyword(keyword, pageable);
+
+		int nowPage = storePage.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 2, 1);
+		int endPage = Math.min(nowPage + 2, storePage.getTotalPages());
+
 		model.addAttribute("storePage", storePage);
 		model.addAttribute("storeList", storeList);
 		model.addAttribute("keyword", keyword);

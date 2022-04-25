@@ -24,7 +24,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Entity
 @Table
@@ -34,9 +33,6 @@ public class StoreInfo {
 	@OneToMany(mappedBy = "storeInfo")
 	@JsonManagedReference
 	private List<Review> review;
-
-	@Column
-	private int reviewCount;
 
 	@NotNull
 	@Column
@@ -85,7 +81,6 @@ public class StoreInfo {
 	public void createdAt() {
 		this.storeRegdate = LocalDateTime.now();
 		this.storeStaravg = (float) 3.0;
-		this.reviewCount = review.size();
 	}
 
 	@Builder
