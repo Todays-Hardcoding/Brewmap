@@ -63,11 +63,9 @@ public class Review {
 	private LocalDateTime reviewDate;
 	
 	@PrePersist
-	@PreUpdate
-	 public void createdAt() {
-	 storeInfo.setReviewCount(storeInfo.getReview().size()); 
-	 this.reviewDate = LocalDateTime.now();
-	 }
+    public void createdAt() {
+        this.reviewDate = LocalDateTime.now();
+    }
 	
 	@Builder
 	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull int reviewStar,
