@@ -45,12 +45,12 @@
 				<input type="text" id="pw" name="userPw" placeholder="비밀번호" >
 			</div>
 			
-<!-- 			<!-- 비밀번호 확인 입력 ======================================================== -->
-			<div class="input-box">
+ 			<!-- 비밀번호 확인 입력 ======================================================== -->
+		<!-- 	<div class="input-box">
 				<label for="userPw">비밀번호 확인</label> 
 				<input type="text" id="pwChecker" placeholder="비밀번호확인" >
-			</div>
- -->
+			</div> -->
+
 			<!-- 이름 입력 ======================================================== -->
 			<div class="input-box">
 				<label for="userName">이름</label> 
@@ -113,7 +113,6 @@
 		function checker(){
 			var p1 = document.getElementId("pw").value;
 			var p2 = document.getElementId("pwChecker").value;
-		
 			if(p1 != p2){
 				alert("비밀번호가 일치하지 않습니다");
 			}
