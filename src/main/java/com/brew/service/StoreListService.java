@@ -26,10 +26,10 @@ public class StoreListService {
 		return storeInfoRepository.findAllStores(pageable);
 	}
 		
-	public HashMap<Float, StoreInfo> getCloseStores(Map<String, String> params) {
+	public HashMap<String, StoreInfo> getCloseStores(Map<String, String> params) {
 		
 		List<StoreInfo> stores = storeInfoRepository.findAll();
-		HashMap<Float, StoreInfo> result = new LinkedHashMap<Float, StoreInfo>();
+		HashMap<String, StoreInfo> result = new LinkedHashMap<String, StoreInfo>();
 		HashMap<Double, StoreInfo> storesDistance = new HashMap<Double, StoreInfo>();
 		
 		System.out.println(params.values());
@@ -65,7 +65,7 @@ public class StoreListService {
         Collections.sort(keys);	
         
 		for(Double key : keys) {
-			result.put(key.floatValue(), storesDistance.get(key));
+			result.put(String.format("%.2f", key.floatValue()), storesDistance.get(key));
 			System.out.println(key);
 			System.out.println(storesDistance.get(key));
 		}

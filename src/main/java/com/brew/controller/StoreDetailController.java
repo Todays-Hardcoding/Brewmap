@@ -61,7 +61,7 @@ public class StoreDetailController {
 		
 		model.addAttribute("storeDetail", storeDetail);
 		
-		return "redirect:?storeCode="+storeCode;	
+		return "/detail:?storeCode="+storeCode;	
 	}
 
 }

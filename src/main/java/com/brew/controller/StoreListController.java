@@ -22,13 +22,8 @@ import com.brew.service.StoreListService;
 
 
 @Controller
-//@RequestMapping("/store")
 public class StoreListController {
 
-//	@RequestMapping("/storeList")
-//	public String storeListnav() {
-//		return "view/pages/storeList";
-//	}
 	@Autowired
 	StoreInfoService storeInfoService;
 	
@@ -43,12 +38,7 @@ public class StoreListController {
 		
 		System.out.println("controller");
 		
-//		List<StoreInfo> infoList = null;
-//		if(!this.infoList.isEmpty())
-//			infoList = storeListService.getCloseStores(params); 
-//		else
-//			infoList = this.infoList;
-		HashMap<Float, StoreInfo> infoList = storeListService.getCloseStores(params);
+		HashMap<String, StoreInfo> infoList = storeListService.getCloseStores(params);
 		model.addAttribute("infoList", infoList);
 
 		return "view/pages/storeList";
