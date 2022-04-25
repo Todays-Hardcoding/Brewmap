@@ -21,11 +21,9 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 			+ "board_title like %:keyword% or "
 			+ "board_content like %:keyword%"
 			, nativeQuery = true)
-	Page<Board> findPageByTitleAndContent(@Param("keyword") String keyword, Pageable pageable,@Param("boardCategory") String boardCategory);
-	
-	// 작성자로 검색
+	Page<Board> findPageByTitleAndContent(@Param("boardCategory") String boardCategory, @Param("keyword") String keyword, Pageable pageable);
 	
 	// 게시판 아이디로 검색
 	Board findByBoardId(long boardId);
+	
 }
-

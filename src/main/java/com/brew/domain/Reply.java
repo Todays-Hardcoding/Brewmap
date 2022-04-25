@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,56 +21,64 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @Entity
 @Table
 @DynamicUpdate
-public class Reply {
+public class Review {
 	
+	@NotNull
 	@ManyToOne
 	@JsonBackReference
-	@JoinColumn(name="board_id")
-	private Board board;
+	@JoinColumn(name="store_code")
+	private StoreInfo storeInfo;
+
+	@NotNull
+	@ManyToOne
+	@JsonBackReference
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	@Id
 	@NotNull
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long replyId;
+	private long reviewId;
 	
 	@NotNull
 	@Column
-	private String replyContent;
+	private int reviewStar;
 	
 	@NotNull
 	@Column
-	private String replyUser;
+	private String reviewComment;
 	
-	@Column 
-	private LocalDateTime replyDate;
+	@Column
+	private LocalDateTime reviewDate;
 	
 	@PrePersist
-	public void createdAt() {
-		this.replyDate = LocalDateTime.now();
-	}
+	@PreUpdate
+	 public void createdAt() {
+	 storeInfo.setReviewCount(storeInfo.getReview().size()); 
+	 this.reviewDate = LocalDateTime.now();
+	 }
 	
-	@Column
-	private Integer replyLikeCount;
-
 	@Builder
-	public Reply(Board board, @NotNull long replyId, @NotNull String replyContent, @NotNull String replyUser,
-			LocalDateTime replyDate, Integer replyLikeCount) {
+	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull int reviewStar,
+			@NotNull String reviewComment, LocalDateTime reviewDate) {
 		super();
-		this.board = board;
-		this.replyId = replyId;
-		this.replyContent = replyContent;
-		this.replyUser = replyUser;
-		this.replyDate = replyDate;
-		this.replyLikeCount = replyLikeCount;
+		this.storeInfo = storeInfo;
+		this.user = user;
+		this.reviewId = reviewId;
+		this.reviewStar = reviewStar;
+		this.reviewComment = reviewComment;
+		this.reviewDate = reviewDate;
 	}
 	
-	
-
 }

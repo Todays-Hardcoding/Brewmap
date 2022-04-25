@@ -60,4 +60,13 @@ public class StoreListController {
 		
 		System.out.println(this.infoList);
 	}
+	
+//	리스트 페이지 이름순으로 정렬
+	@GetMapping("storeListName")
+	public String returnStoreListByName(Model model) {
+		
+		model.addAttribute("infoList", storeListService.sortByStoreName(infoList));
+		
+		return "view/pages/storeListName";
+	}
 }

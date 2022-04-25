@@ -1,6 +1,9 @@
 package com.brew.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,10 +25,18 @@ public class StoreListService {
 		return storeInfoRepository.findAllStores(pageable);
 	}
 	
+	
+//	리스트페이지 이름순으로 정렬
+	public List<StoreInfo> sortByStoreName(List<StoreInfo> storeInfo){
+		return storeInfoRepository.sortByStoreName();
+	}
+	
+	
 	public List<StoreInfo> getCloseStores(Map<String, String> params) {
 		
 		List<StoreInfo> stores = storeInfoRepository.findAll();
 		List<StoreInfo> result = new ArrayList<StoreInfo>();
+		HashMap<Double, StoreInfo> storesDistance = new HashMap<Double, StoreInfo>();
 		
 		System.out.println(params.values());
 		
@@ -51,12 +62,22 @@ public class StoreListService {
 
 		    distance = 2 * radius * Math.asin(squareRoot);
 	        
-		    if(distance < 40) {
-		    	result.add(store);
-		    	System.out.println(distance);
-		    }
+		    if(distance < 20) {
+
+		        storesDistance.put(distance, store);
+		        List<Double> keys = new ArrayList<>(storesDistance.keySet());
+		        Collections.sort(keys);		        
+		        
+		    }   	
 		}
-					
+		
+		
+		for(Double key: storesDistance.keySet()) {
+			result.add(storesDistance.get(key));
+			System.out.println(storesDistance.get(key));
+			System.out.println(key);
+		}
+		
 		return result;
 	}
 

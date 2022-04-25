@@ -36,6 +36,37 @@
 			alert("geolocation error");
 		}	
 	};
+	
+	function toListName(){
+		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+		if (navigator.geolocation) {
+		    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+		    navigator.geolocation.getCurrentPosition(function(position) { 
+	        var lat = position.coords.latitude, // 위도
+	            lon = position.coords.longitude; // 경도  
+	            
+	         // 위도, 경도를 Map<String, String> 형식으로 저장
+	    	var params = {
+    			"lat" : lat,
+    			"lon" : lon 
+	   		}
+	         
+	    	console.log(params.lat);
+	        console.log(params.lon);
+	        
+	        document.location.href = "/storeListName?lat="+lat+"&lon="+lon;
+/*	        
+	    	$.ajax({
+	    		type: "get",   //get방식으로 명시
+	    		url : "/storeList",  //이동할 jsp 파일 주소
+	    		data : params
+	    	})
+*/
+		});
+		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+			alert("geolocation error");
+		}	
+	};
 	</script>
 
 <!-- 네비게이션  고정 -->
@@ -104,6 +135,7 @@
 								<li class="nav-item" th:if="${session.user} != null"><a class="nav-link" th:href="@{/userpage}">마이페이지</a></li>
 								<li class="nav-item"><a class="nav-link" th:href="@{/map}">지도페이지</a></li>
 								<li class="nav-item"><a class="nav-link" onClick="toList()">술집리스트</a></li>
+								<li class="nav-item"><a class="nav-link" onClick="toListName()">술집리스트데모</a></li>
 								<li class="nav-item"><a class="nav-link" th:href="@{/board/hotPage}">게시판</a></li>
 							</ul>
 						</div>
