@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -54,7 +55,12 @@ public class Review {
 	
 	@Column
 	private LocalDateTime reviewDate;
-
+	
+	@PrePersist
+	public void createdAt() {
+		this.reviewDate = LocalDateTime.now();
+	}
+	
 	@Builder
 	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull String reviewUser,
 			@NotNull int reviewStar, @NotNull String reviewComment, LocalDateTime reviewDate) {
@@ -66,12 +72,5 @@ public class Review {
 		this.reviewStar = reviewStar;
 		this.reviewComment = reviewComment;
 		this.reviewDate = reviewDate;
-	}
-
-	@Override
-	public String toString() {
-		return "Review [storeInfo=" + storeInfo + ", user=" + user + ", reviewId=" + reviewId + ", reviewUser="
-				+ reviewUser + ", reviewStar=" + reviewStar + ", reviewComment=" + reviewComment + ", reviewDate="
-				+ reviewDate + "]";
 	}
 }

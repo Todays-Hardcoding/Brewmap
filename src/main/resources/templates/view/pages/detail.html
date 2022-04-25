@@ -57,25 +57,24 @@
            
 			<!-- 댓글 목록 -->
            <p>
-               <span class="badge bg-secondary">0</span>
+               <span class="badge bg-secondary" th:text="${storeDetail.review.size}"></span>
                <span class="ms-2" style="font-size: 15px;">Comments</span>
            </p>
            <div class="row d-md-flex justify-content-md-center row" style="border-color: rgb(255,255,255);">
    				<div th:each="review:${storeDetail.review}">
 					<form method="POST">
+						<input type="hidden" name="storeCode" th:value="${storeDetail.storeCode}">
                     	<input type="hidden" name="reviewId" th:value="${review.reviewId}">
 	                    <div class="col-9 col-md-10" style="width: 100%;">
 	                           <!-- 댓글 작성자 -->
-	                    	<h4 style="font-size: 22px;" th:text="${review.user_id}">댓글 작성자
+	                    	<h4 style="font-size: 22px;" th:text="${review.user.userId}">댓글 작성자
 	                               <!-- 댓글 작성일 -->
 	                    		<small class="font-monospace d-md-flex justify-content-md-end align-items-md-end small" style="font-size: 15px;" th:text="${reply.replyDate}">작성 날짜</small>
 	                    	</h4>
 	                           <!-- 댓글 내용 -->
-	                    	<p style="font-size: 16px;" th:text="${review.review.reviewComment}">댓글 내용</p>
-	                            
-	                            <!-- 
+	                    	<p style="font-size: 16px;" th:text="${review.reviewComment}">댓글 내용</p>
+							<!-- 
 	                           	<div th:if="${review.userId == user.userId}">
-	                               <span><button type="submit" name="update">수정</button></span>
 	                               <span><button type="submit" name="delete">삭제</button></span>
 	                           </div> 
 	                            -->

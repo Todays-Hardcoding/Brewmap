@@ -48,7 +48,7 @@ public class StoreDetailController {
 	
 	@RequestMapping("/reviewInsert")
 	public String replyInsert(Model model, String storeCode, 
-			String userId, String reviewContent, int reviewStar) {
+			String userId, String reviewContent, String reviewUser, int reviewStar) {
 		System.out.println(storeCode);
 		System.out.println(reviewContent);
 		
@@ -56,12 +56,12 @@ public class StoreDetailController {
 		StoreInfo storeDetail = storeDetailService.findByStoreCode(storeCode);
 		
 		Review review = Review.builder().storeInfo(storeDetail).user(user).reviewStar(reviewStar).
-				reviewComment(reviewContent).build();
+				reviewUser(reviewUser).reviewComment(reviewContent).build();
 		storeDetailService.saveReview(review);
 		
 		model.addAttribute("storeDetail", storeDetail);
 		
-		return "/detail:?storeCode="+storeCode;	
+		return "redirect:/detail?id="+storeCode;	
 	}
 
 }
