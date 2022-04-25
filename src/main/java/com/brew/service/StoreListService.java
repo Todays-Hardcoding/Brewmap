@@ -22,6 +22,8 @@ public class StoreListService {
 	
 	@Autowired
 	private StoreInfoRepository storeInfoRepository;
+	
+	
 		
 	public Page<StoreInfo> getInfoList(Map<String, String> params, Pageable pageable) {
 		return storeInfoRepository.findAllStores(pageable);
@@ -114,16 +116,13 @@ public class StoreListService {
 		List<StoreInfo> rateList = new ArrayList<StoreInfo>(result);
 		rateList.sort((StoreInfo o1, StoreInfo o2) -> o2.getStoreStaravg().compareTo(o1.getStoreStaravg()));
 	    
-	    
-		System.out.println(rateList);
-	    
 		
 		return rateList;
 	}
 	
 	
-	
-public List<StoreInfo> getStoresByReview(Map<String, String> params) {
+//  거리 가져와서 리뷰순으로 분류
+	public List<StoreInfo> getStoresByReview(Map<String, String> params) {
 		
 		List<StoreInfo> stores = storeInfoRepository.findAll();
 		ArrayList<StoreInfo> result = new ArrayList<StoreInfo>();
@@ -160,13 +159,12 @@ public List<StoreInfo> getStoresByReview(Map<String, String> params) {
 		}
 		
 		List<StoreInfo> reviewList = new ArrayList<StoreInfo>(result);
-		rateList.sort((StoreInfo o1, StoreInfo o2) -> o2.review.size.compareTo(o1.getStoreStaravg()));
-	    
-	    
-		System.out.println(rateList);
-	    
+		Collections.sort(reviewList, (StoreInfo s1, StoreInfo s2) -> s2.getReview().size() - s1.getReview().size() );
 		
-		return rateList;
+		System.out.println(reviewList);
+		
+	    
+		return reviewList;
 	}
 
 }
