@@ -58,6 +58,7 @@ public class StoreDetailController {
 		Review review = Review.builder().storeInfo(storeDetail).user(user).reviewStar(reviewStar).
 				reviewComment(reviewContent).build();
 		storeDetailService.saveReview(review);
+		
 		model.addAttribute("storeDetail", storeDetail);
 		
 		return "redirect:?storeCode="+storeCode;	

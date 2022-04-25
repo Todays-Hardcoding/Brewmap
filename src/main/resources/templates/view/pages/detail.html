@@ -39,10 +39,10 @@
 	   		</div>
                 
                 
-             <!-- 댓글 작성 -->
+           <!-- 댓글 작성 -->
            <form role="form" method="POST" action="/reviewInsert">
                <!-- hidden 영역 -->
-               <input type="hidden" name="userId" th:value="${user.userId}"> 
+               <input type="hidden" name="userId" th:value="ab"> 
                <input type="hidden" name="replyUser" value="홍길동">
                <input type="hidden" name="storeCode" th:value="${storeDetail.storeCode}">
                <input type="hidden" name="reviewStar" th:value='5'>
@@ -68,7 +68,7 @@
 	                    <div class="col-9 col-md-10" style="width: 100%;">
 	                           <!-- 댓글 작성자 -->
 	                    	<h4 style="font-size: 22px;" th:text="${review.user_id}">댓글 작성자
-	                               <!-- 댓글 작성 날 -->
+	                               <!-- 댓글 작성일 -->
 	                    		<small class="font-monospace d-md-flex justify-content-md-end align-items-md-end small" style="font-size: 15px;" th:text="${reply.replyDate}">작성 날짜</small>
 	                    	</h4>
 	                           <!-- 댓글 내용 -->
