@@ -73,7 +73,6 @@ public class Board {
 	private Integer boardLikeCount;
 	
 	@PrePersist
-	@PreUpdate
 	public void createdAt() {
 		this.boardDate = LocalDateTime.now();
 		this.boardLikeCount = 0;
