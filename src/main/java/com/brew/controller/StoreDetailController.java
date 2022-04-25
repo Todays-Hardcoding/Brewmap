@@ -1,21 +1,16 @@
 package com.brew.controller;
 
-import java.time.LocalDateTime;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.brew.domain.Board;
-import com.brew.domain.Reply;
 import com.brew.domain.Review;
 import com.brew.domain.StoreInfo;
 import com.brew.domain.User;
@@ -61,7 +56,7 @@ public class StoreDetailController {
 		
 		model.addAttribute("storeDetail", storeDetail);
 		
-		return "/detail:?storeCode="+storeCode;	
+		return "redirect:?storeCode="+storeCode;	
 	}
 
 }

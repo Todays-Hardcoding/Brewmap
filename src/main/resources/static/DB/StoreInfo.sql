@@ -18,7 +18,7 @@
 --     PRIMARY KEY ( `store_code` )
 -- );
 
-insert into store_info(store_code, store_name, store_category, store_road_addr, store_addr, store_tel, store_tag , store_regdate, store_latitude, store_longitude, store_staravg)
+insert into store_info(store_code, store_name, store_category, store_road_addr, store_addr, store_tel, store_tag , store_regdate, store_latitude, store_longitude, review_count, store_staravg)
 select k.store_code, k.store_name, k.store_category, k.store_addr, k.store_Oldaddr, k.store_tel, s.store_tag, s.store_regdate, k.y, k.x, 0, 0
 from store as s
 inner join kakao as k 
@@ -26,5 +26,3 @@ on s.store_addr = k.store_addr or s.store_name = k.store_name;
 
 
 select * from store_info order by review_count;
-
-select * from store_info ORDER BY store_name ASC;

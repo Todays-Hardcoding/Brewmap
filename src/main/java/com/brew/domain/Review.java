@@ -9,29 +9,40 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.DynamicUpdate;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @Entity
 @Table
+@DynamicUpdate
 public class Review {
 	
+	@NotNull
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name="store_code")
-	@JsonBackReference
 	private StoreInfo storeInfo;
-	
+
+	@NotNull
 	@ManyToOne
-	@JoinColumn(name="user_id")
 	@JsonBackReference
+	@JoinColumn(name="user_id")
 	private User user;
 	
 	@Id
@@ -39,10 +50,6 @@ public class Review {
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long reviewId;
-	
-	@NotNull
-	@Column
-	private String reviewUser;
 	
 	@NotNull
 	@Column
@@ -54,15 +61,21 @@ public class Review {
 	
 	@Column
 	private LocalDateTime reviewDate;
-
+	
+	@PrePersist
+	@PreUpdate
+	 public void createdAt() {
+	 storeInfo.setReviewCount(storeInfo.getReview().size()); 
+	 this.reviewDate = LocalDateTime.now();
+	 }
+	
 	@Builder
-	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull String reviewUser,
-			@NotNull int reviewStar, @NotNull String reviewComment, LocalDateTime reviewDate) {
+	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull int reviewStar,
+			@NotNull String reviewComment, LocalDateTime reviewDate) {
 		super();
 		this.storeInfo = storeInfo;
 		this.user = user;
 		this.reviewId = reviewId;
-		this.reviewUser = reviewUser;
 		this.reviewStar = reviewStar;
 		this.reviewComment = reviewComment;
 		this.reviewDate = reviewDate;
@@ -70,8 +83,10 @@ public class Review {
 
 	@Override
 	public String toString() {
-		return "Review [storeInfo=" + storeInfo + ", user=" + user + ", reviewId=" + reviewId + ", reviewUser="
-				+ reviewUser + ", reviewStar=" + reviewStar + ", reviewComment=" + reviewComment + ", reviewDate="
-				+ reviewDate + "]";
+		return "Review [storeInfo=" + storeInfo + ", user=" + user + ", reviewId=" + reviewId + ", reviewStar="
+				+ reviewStar + ", reviewComment=" + reviewComment + ", reviewDate=" + reviewDate + "]";
 	}
+
+	
+
 }

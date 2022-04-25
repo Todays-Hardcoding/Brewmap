@@ -66,7 +66,7 @@
                     	<input type="hidden" name="reviewId" th:value="${review.reviewId}">
 	                    <div class="col-9 col-md-10" style="width: 100%;">
 	                           <!-- 댓글 작성자 -->
-	                    	<h4 style="font-size: 22px;" th:text="${review.user_id}">댓글 작성자
+	                    	<h4 style="font-size: 22px;" th:text="${review.user.userId}">댓글 작성자
 	                               <!-- 댓글 작성일 -->
 	                    		<small class="font-monospace d-md-flex justify-content-md-end align-items-md-end small" style="font-size: 15px;" th:text="${reply.replyDate}">작성 날짜</small>
 	                    	</h4>

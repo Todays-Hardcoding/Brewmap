@@ -24,15 +24,15 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Entity
 @Table
 @DynamicUpdate
 public class StoreInfo {
-
-	@Column
-	private int reviewCount;
+	
+	@OneToMany(mappedBy = "storeInfo")
+	@JsonManagedReference
+	private List<Review> review;
 
 	@NotNull
 	@Column

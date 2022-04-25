@@ -6,6 +6,14 @@
 <body>
 	<div th:replace="/layout/header.html :: header"></div>
 	<form class="search-form">
+		<ul class="nav nav-tabs">
+				<li class="nav-item">
+					<a class="nav-link active" th:href="@{/map}">검색</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" th:href="@{/click}">클릭</a>
+				</li>
+		</ul>
 		<section class="map-clean"></section>
 		<div class="row">
 			<div class="col">
@@ -21,14 +29,6 @@
 					</form>
 				</div>
 				<ul id="placesList" class="list-group">
-					<!-- <a class="list-group-item list-group-item-action" href="#list-home"
-						data-bs-toggle="list">Home</a><a
-						class="list-group-item list-group-item-action"
-						href="#list-profile" data-bs-toggle="list">Profile</a><a
-						class="list-group-item list-group-item-action"
-						href="#list-messages" data-bs-toggle="list">Messages</a><a
-						class="list-group-item list-group-item-action"
-						href="#list-settings" data-bs-toggle="list">Settings</a> -->
 				</ul>
 				<div id="pagination">
 					<th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
