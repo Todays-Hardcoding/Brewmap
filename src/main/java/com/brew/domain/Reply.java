@@ -31,14 +31,14 @@ import lombok.ToString;
 @Entity
 @Table
 @DynamicUpdate
-public class Review {
+public class Reply {
 	
 	@NotNull
 	@ManyToOne
 	@JsonBackReference
-	@JoinColumn(name="store_code")
-	private StoreInfo storeInfo;
-
+	@JoinColumn(name="board_id")
+	private Board board;
+	
 	@NotNull
 	@ManyToOne
 	@JsonBackReference
@@ -49,36 +49,33 @@ public class Review {
 	@NotNull
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long reviewId;
+	private long replyId;
 	
 	@NotNull
 	@Column
-	private int reviewStar;
+	private String replyContent;
 	
-	@NotNull
-	@Column
-	private String reviewComment;
+	@Column 
+	private LocalDateTime replyDate;
 	
 	@Column
-	private LocalDateTime reviewDate;
+	private Integer replyLikeCount;
 	
 	@PrePersist
 	@PreUpdate
-	 public void createdAt() {
-	 storeInfo.setReviewCount(storeInfo.getReview().size()); 
-	 this.reviewDate = LocalDateTime.now();
-	 }
-	
-	@Builder
-	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull int reviewStar,
-			@NotNull String reviewComment, LocalDateTime reviewDate) {
-		super();
-		this.storeInfo = storeInfo;
-		this.user = user;
-		this.reviewId = reviewId;
-		this.reviewStar = reviewStar;
-		this.reviewComment = reviewComment;
-		this.reviewDate = reviewDate;
+	public void createdAt() {
+		this.replyDate = LocalDateTime.now();
 	}
-	
+
+	@Builder
+	public Reply(Board board, User user, @NotNull long replyId, @NotNull String replyContent, LocalDateTime replyDate,
+			Integer replyLikeCount) {
+		super();
+		this.board = board;
+		this.user = user;
+		this.replyId = replyId;
+		this.replyContent = replyContent;
+		this.replyDate = replyDate;
+		this.replyLikeCount = replyLikeCount;
+	}
 }
