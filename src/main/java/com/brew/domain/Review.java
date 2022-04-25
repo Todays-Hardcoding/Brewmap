@@ -10,39 +10,29 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.DynamicUpdate;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Getter
-@Setter
-@ToString
 @NoArgsConstructor
 @Entity
 @Table
-@DynamicUpdate
 public class Review {
 	
-	@NotNull
 	@ManyToOne
-	@JsonBackReference
 	@JoinColumn(name="store_code")
-	private StoreInfo storeInfo;
-
-	@NotNull
-	@ManyToOne
 	@JsonBackReference
+	private StoreInfo storeInfo;
+	
+	@ManyToOne
 	@JoinColumn(name="user_id")
+	@JsonBackReference
 	private User user;
 	
 	@Id
@@ -50,6 +40,10 @@ public class Review {
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long reviewId;
+	
+	@NotNull
+	@Column
+	private String reviewUser;
 	
 	@NotNull
 	@Column
@@ -63,28 +57,20 @@ public class Review {
 	private LocalDateTime reviewDate;
 	
 	@PrePersist
-    public void createdAt() {
-        this.reviewDate = LocalDateTime.now();
-    }
+	public void createdAt() {
+		this.reviewDate = LocalDateTime.now();
+	}
 	
 	@Builder
-	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull int reviewStar,
-			@NotNull String reviewComment, LocalDateTime reviewDate) {
+	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull String reviewUser,
+			@NotNull int reviewStar, @NotNull String reviewComment, LocalDateTime reviewDate) {
 		super();
 		this.storeInfo = storeInfo;
 		this.user = user;
 		this.reviewId = reviewId;
+		this.reviewUser = reviewUser;
 		this.reviewStar = reviewStar;
 		this.reviewComment = reviewComment;
 		this.reviewDate = reviewDate;
 	}
-
-	@Override
-	public String toString() {
-		return "Review [storeInfo=" + storeInfo + ", user=" + user + ", reviewId=" + reviewId + ", reviewStar="
-				+ reviewStar + ", reviewComment=" + reviewComment + ", reviewDate=" + reviewDate + "]";
-	}
-
-	
-
 }

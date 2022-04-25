@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -72,4 +73,100 @@ public class StoreListService {
 		
 		return result;
 	}
+	
+	
+//	거리 가져와서 평점순으로 정렬
+	public List<StoreInfo> getStoresByRate(Map<String, String> params) {
+		
+		List<StoreInfo> stores = storeInfoRepository.findAll();
+		ArrayList<StoreInfo> result = new ArrayList<StoreInfo>();
+		
+		
+		System.out.println(params.values());
+		
+		double lat = Double.parseDouble(params.get("lat"));
+		double lon = Double.parseDouble(params.get("lon"));
+
+		for (StoreInfo store : stores) {
+			double sLat = store.getStoreLatitude();
+			double sLon = store.getStoreLongitude();	
+			
+			double distance;
+		    double radius = 6371; // 지구 반지름(km)
+		    double toRadian = Math.PI / 180;
+
+		    double deltaLatitude = Math.abs(lon - sLon) * toRadian;
+		    double deltaLongitude = Math.abs(lat - sLat) * toRadian;
+
+		    double sinDeltaLat = Math.sin(deltaLatitude / 2);
+		    double sinDeltaLng = Math.sin(deltaLongitude / 2);
+		    double squareRoot = Math.sqrt(
+		        sinDeltaLat * sinDeltaLat +
+		        Math.cos(lon * toRadian) * Math.cos(sLon * toRadian) * sinDeltaLng * sinDeltaLng);
+
+		    distance = 2 * radius * Math.asin(squareRoot);
+	        
+		    if(distance < 25) {
+		    	result.add(store);                
+		    }   	
+		}
+		
+		List<StoreInfo> rateList = new ArrayList<StoreInfo>(result);
+		rateList.sort((StoreInfo o1, StoreInfo o2) -> o2.getStoreStaravg().compareTo(o1.getStoreStaravg()));
+	    
+	    
+		System.out.println(rateList);
+	    
+		
+		return rateList;
+	}
+	
+	
+	
+public List<StoreInfo> getStoresByReview(Map<String, String> params) {
+		
+		List<StoreInfo> stores = storeInfoRepository.findAll();
+		ArrayList<StoreInfo> result = new ArrayList<StoreInfo>();
+		
+		
+		System.out.println(params.values());
+		
+		double lat = Double.parseDouble(params.get("lat"));
+		double lon = Double.parseDouble(params.get("lon"));
+
+		for (StoreInfo store : stores) {
+			double sLat = store.getStoreLatitude();
+			double sLon = store.getStoreLongitude();	
+			float sRate = store.getStoreStaravg();
+			
+			double distance;
+		    double radius = 6371; // 지구 반지름(km)
+		    double toRadian = Math.PI / 180;
+
+		    double deltaLatitude = Math.abs(lon - sLon) * toRadian;
+		    double deltaLongitude = Math.abs(lat - sLat) * toRadian;
+
+		    double sinDeltaLat = Math.sin(deltaLatitude / 2);
+		    double sinDeltaLng = Math.sin(deltaLongitude / 2);
+		    double squareRoot = Math.sqrt(
+		        sinDeltaLat * sinDeltaLat +
+		        Math.cos(lon * toRadian) * Math.cos(sLon * toRadian) * sinDeltaLng * sinDeltaLng);
+
+		    distance = 2 * radius * Math.asin(squareRoot);
+	        
+		    if(distance < 25) {
+		    	result.add(store);                
+		    }   	
+		}
+		
+		List<StoreInfo> reviewList = new ArrayList<StoreInfo>(result);
+		rateList.sort((StoreInfo o1, StoreInfo o2) -> o2.review.size.compareTo(o1.getStoreStaravg()));
+	    
+	    
+		System.out.println(rateList);
+	    
+		
+		return rateList;
+	}
+
 }
