@@ -24,7 +24,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Entity
 @Table
@@ -102,12 +101,14 @@ public class User {
 	}
 
 	@Builder
-	public User(List<Board> board, @NotNull String userCategory, @NotNull String userId, @NotNull String userPw,
-			@NotNull String userName, @NotNull String userTel, @NotNull String userEmail, @NotNull String userGrade,
-			LocalDateTime userRegDate, @NotNull String userBirthDate, @NotNull String userNickName,
-			@NotNull boolean userGender, String userCoupon, String userPoint, String userQuestion, String userAnswer) {
+	public User(List<Board> board, List<com.brew.domain.Review> review, @NotNull String userCategory,
+			@NotNull String userId, @NotNull String userPw, @NotNull String userName, @NotNull String userTel,
+			@NotNull String userEmail, @NotNull String userGrade, LocalDateTime userRegDate,
+			@NotNull String userBirthDate, @NotNull String userNickName, @NotNull boolean userGender, String userCoupon,
+			String userPoint, String userQuestion, String userAnswer) {
 		super();
 		this.board = board;
+		Review = review;
 		this.userCategory = userCategory;
 		this.userId = userId;
 		this.userPw = userPw;
@@ -125,4 +126,5 @@ public class User {
 		this.userAnswer = userAnswer;
 	}
 
+	
 }
