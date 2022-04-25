@@ -21,7 +21,7 @@ public interface StoreInfoRepository extends JpaRepository<StoreInfo, String> {
 			+ "store_addr like %:keyword% or "
 			+ "store_tel like %:keyword% or "
 			+ "store_tag like %:keyword%", nativeQuery = true)
-	List<StoreInfo> findListByKeyword(@Param("keyword") String keyword, Pageable pagealbe);
+	List<StoreInfo> findListByKeyword(@Param("keyword") String keyword, Pageable pageable);
 	
 	@Query(value = "select * from store_info where "
 			+ "store_name like %:keyword% or "
@@ -30,16 +30,26 @@ public interface StoreInfoRepository extends JpaRepository<StoreInfo, String> {
 			+ "store_addr like %:keyword% or "
 			+ "store_tel like %:keyword% or "
 			+ "store_tag like %:keyword%", nativeQuery = true)
-	Page<StoreInfo> findPageByKeyword(@Param("keyword") String keyword, Pageable pagealbe);
+	Page<StoreInfo> findPageByKeyword(@Param("keyword") String keyword, Pageable pageable);
 	
 	@Query(value = "select * from store_info", nativeQuery = true)
-	Page<StoreInfo> findAllStores(Pageable pagealbe);
+	Page<StoreInfo> findAllStores(Pageable pageable);
 	
 	@Query(value = "select * from store_info", nativeQuery = true)
-	Page<StoreInfo> findCloseStores(@Param("lat") String lat, @Param("lon") String lon, Pageable pagealbe);
+	Page<StoreInfo> findCloseStores(@Param("lat") String lat, @Param("lon") String lon, Pageable pageable);
 	
 	// 가게 코드 검색
 	@Query("select s from StoreInfo s where s.storeCode like %:storeCode%")
 	StoreInfo findByStoreCode(@Param("storeCode") String storeCode);
+	
+	// 술집 랭킹
+	@Query(value = "select * "
+			 	 + "from Store_info A, (select store_code, count(*) cnt "
+			 	 					+ "from review "
+			 	 					+ "where review_date between date_add(now(), interval -1 day) and now() "
+			 	 					+ "group by store_code) B "
+			 	 + "where A.store_code = B.store_code "
+			 	 + "order by B.cnt desc", nativeQuery = true)
+	Page<StoreInfo> findHotStores(Pageable pageable);
 		
 }

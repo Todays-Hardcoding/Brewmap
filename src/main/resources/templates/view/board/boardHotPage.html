@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head th:replace="layout/head :: headFragment">
-</head>
+<head th:replace="layout/head :: headFragment"></head>
 
 <th:block layout:fragment="customCss">
 	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
-	<title>boardMain</title>
+	<title>boardHotPageMain</title>
 	<style>
-a {
-	text-decoration: none;
-	border-color: white;
-}
-
-.list-group-item {
-	border-color: white;
-}
-</style>
+		a {
+			text-decoration: none;
+			border-color: white;
+		}
+		
+		.list-group-item {
+			border-color: white;
+		}
+	</style>
 </th:block>
 
 <body>
@@ -37,7 +36,7 @@ a {
 									class="fas fa-fire bi-speedometer2 fs-5 ms-2"></i><span
 									class="ms-1 d-none d-sm-inline">술집랭킹</span></a></li>
 							<li class="w-100"><a class="px-1 nav-link px-sm-0 ps-2"
-								th:href="@{/board/recommendStore}"><i
+								th:href="@{/board/reviewPage}"><i
 									class="fas fa-utensils bi-bootstrap fs-5 ms-2"></i><span
 									class="ms-1 d-none d-sm-inline">술집추천</span></a></li>
 							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
@@ -50,47 +49,26 @@ a {
 				<div class="col">
 					<h4 class="display-6" th:text="${boardCategory}"></h4>
 					<hr />
-					<form action="/board/hotPage">
-						<!-- <input type="hidden" name="reviewCount" th:value="${boardList.review.size}"> -->
-<!-- 						<input name="reviewStar" value="3">
-						<input name="reviewComment" value="안녕 제발 저장 좀 해줘">
-						<input name="storeCode" value="1099354434">
-						<input name="userId" value="abc">
-						
-						<button type="submit">리뷰 실험</button> -->
-						<!-- <input type="hidden" name="boardList" th:value="${boardList}"> -->
-					</form>
 					<ul class="list-group list-group-flush"
-						th:each="boardContent: ${boardList}">
+						th:each="store: ${list}">
 						<!-- 여기에 storeDetail로 가는 링크 매핑해주세여! -->
-						<a href="#">				
+						<a th:href="@{/detail (id=${store.storeCode})}">				
 							<li class="list-group-item">
-								<h4 style="margin-bottom: 2px"
-									th:text="${boardContent.storeName}"></h4> 
-									<div th:each="eachStoreTag : ${#strings.arraySplit(boardContent.storeTag, ',')}" style="display: inline-block"
-								>
-								<span>#</span>
-								<span th:text="${eachStoreTag}"></span>
-								</div>
+								<h4 style="margin-bottom: 2px" th:text="${store.storeName}"></h4> 
 								<div class="row">
 									<div class="col">
-										<small style="margin-right: 10px"
-											th:text="${boardContent.storeRoadAddr}"></small> <br>
-											<small
-											th:text="${boardContent.storeCategory}"></small> <br>
-											<!-- <small
-											th:text="${boardContent.review.size}"></small> -->
+										<small th:text="${store.storeCategory}"></small><br>
+										<small th:text="${store.storeRoadAddr}"></small><br>
+										<div th:if="${!#strings.equals(store.storeTel, '')}">
+											<small th:text="${store.storeTel}"></small><br>
+										</div>
 									</div>
-<!-- 									<div
-										class="col d-flex d-lg-flex justify-content-end justify-content-lg-end">
-										<i class="fa fa-thumbs-o-up"></i> <small
-											style="margin-right: 10px"
-											th:text="${boardContent.boardLikeCount}"></small> <i
-											class="fa fa-comment-o"></i> <small
-											th:text="${boardContent.reply.size}"></small>
-									</div> -->
 								</div>
-						</li>
+								<div th:each="eachStoreTag : ${#strings.arraySplit(store.storeTag, ',')}" style="display: inline-block">
+									<span>#</span>
+									<span th:text="${eachStoreTag}"></span>
+								</div>
+							</li>
 						</a>
 					</ul>
 					<nav class="d-flex justify-content-center">

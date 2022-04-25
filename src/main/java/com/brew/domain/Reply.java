@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -32,10 +33,17 @@ import lombok.ToString;
 @DynamicUpdate
 public class Reply {
 	
+	@NotNull
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name="board_id")
 	private Board board;
+	
+	@NotNull
+	@ManyToOne
+	@JsonBackReference
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	@Id
 	@NotNull
@@ -47,10 +55,6 @@ public class Reply {
 	@Column
 	private String replyContent;
 	
-	@NotNull
-	@Column
-	private String replyUser;
-	
 	@Column 
 	private LocalDateTime replyDate;
 	
@@ -58,20 +62,20 @@ public class Reply {
 	private Integer replyLikeCount;
 	
 	@PrePersist
+	@PreUpdate
 	public void createdAt() {
 		this.replyDate = LocalDateTime.now();
 	}
 
 	@Builder
-	public Reply(Board board, @NotNull long replyId, @NotNull String replyContent, @NotNull String replyUser,
-			LocalDateTime replyDate, Integer replyLikeCount) {
+	public Reply(Board board, User user, @NotNull long replyId, @NotNull String replyContent, LocalDateTime replyDate,
+			Integer replyLikeCount) {
 		super();
 		this.board = board;
+		this.user = user;
 		this.replyId = replyId;
 		this.replyContent = replyContent;
-		this.replyUser = replyUser;
 		this.replyDate = replyDate;
 		this.replyLikeCount = replyLikeCount;
 	}
-	
 }

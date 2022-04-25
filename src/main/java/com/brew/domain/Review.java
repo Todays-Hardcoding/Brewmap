@@ -10,10 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.DynamicUpdate;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -30,11 +33,15 @@ import lombok.ToString;
 @DynamicUpdate
 public class Review {
 	
+	@NotNull
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name="store_code")
 	private StoreInfo storeInfo;
 
+	@NotNull
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name="user_id")
 	private User user;
 	
@@ -55,7 +62,8 @@ public class Review {
 	@Column
 	private LocalDateTime reviewDate;
 	
-	@PrePersist 
+	@PrePersist
+	@PreUpdate
 	 public void createdAt() {
 	 storeInfo.setReviewCount(storeInfo.getReview().size()); 
 	 this.reviewDate = LocalDateTime.now();

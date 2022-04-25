@@ -36,5 +36,10 @@ public class StoreInfoService {
 	public StoreInfo findByStoreCode(String storeCode) {
 		return storeInfoRepository.findByStoreCode(storeCode);
 	};
+	
+	// 술집 랭킹
+	public Page<StoreInfo> findHotStores(Pageable pageable) {
+		return storeInfoRepository.findHotStores(pageable);
+	}
 
 }

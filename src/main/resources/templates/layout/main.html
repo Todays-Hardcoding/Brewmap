@@ -65,15 +65,15 @@
 									<span class="markerbg marker_숫자값"></span>
 									<div class="info">
 										<h5 th:text="${store.storeName}"></h5>
-										<div th:if="${store.storeRoadAddr}">
-											<span th:text="${store.storeRoadAddr}"></span>
-											<span class="jibun gray" th:text="${store.storeAddr}"></span>
+										<small th:text="${store.storeCategory}"></small> <br>
+										<span th:text="${store.storeAddr}"></span><br>
+										<div th:if="${!#strings.equals(store.storeTel, '')}">
+											<small th:text="${store.storeTel}"></small><br>
 										</div>
-										<div th:unless="${store.storeRoadAddr}">
-											<span th:text="${store.storeAddr}"></span>
+										<div th:each="eachStoreTag : ${#strings.arraySplit(store.storeTag, ',')}" style="display: inline-block">
+											<span>#</span>
+											<span th:text="${eachStoreTag}"></span>
 										</div>
-										<span class="tel" th:text="${store.storeTel}"></span>
-										<span th:text="${store.storeTag}"></span>
 									</div>
 								</li>
 							</ul>

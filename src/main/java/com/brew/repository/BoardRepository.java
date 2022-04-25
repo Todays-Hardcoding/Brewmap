@@ -25,5 +25,6 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	
 	// 게시판 아이디로 검색
 	Board findByBoardId(long boardId);
+	
 }
 
