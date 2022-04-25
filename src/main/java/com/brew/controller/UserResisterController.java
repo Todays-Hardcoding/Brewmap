@@ -28,21 +28,12 @@ public class UserResisterController {
 	
 	@RequestMapping("/signUp")
 	public String usermodifypage() {
-		return "view/signUp2";
+		
+		return "view/signUp";
 	}
 	
-	@RequestMapping(value = "/signUp2")
+	@RequestMapping(value = "/signUpPage")
 	public String resisterUser(HttpServletRequest req, HttpServletResponse resp, @ModelAttribute User user) {
-		
-		user.setUserCategory(req.getParameter("userCategory"));
-		user.setUserId(req.getParameter("userId"));
-		user.setUserPw(req.getParameter("userPw"));
-		user.setUserName(req.getParameter("userName"));
-		user.setUserNickName(req.getParameter("userNickName"));
-		user.setUserBirthDate(req.getParameter("userBirthDate"));
-		user.setUserGrade(req.getParameter("userGrade"));
-		user.setUserEmail(req.getParameter("userEmail"));
-		user.setUserTel(req.getParameter("userTel"));
 		userservice.userUpdate(user);
 		// 보내온 value 가 0 이면 user.isUserGender() ==  true
 		return "view/index";
@@ -54,7 +45,7 @@ public class UserResisterController {
 		return "view/login";
 	}
 	
-	@RequestMapping(value="/login2")
+	@RequestMapping(value="/loginPage")
 	public String login(HttpServletRequest req, HttpSession session, @ModelAttribute User user) {
 		
 		
@@ -77,7 +68,6 @@ public class UserResisterController {
 		session.removeAttribute("user");
 		return "view/index";
 	}
-	
 	
 
 }

@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -32,7 +34,7 @@ public class User {
 
 	@OneToMany(mappedBy = "user")
 	private List<Review> Review;
-
+	
 	@NotNull
 	@Column
 	private String userCategory;

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="layout/head :: headFragment">
+</head>
+
+<th:block layout:fragment="customCss">
+	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
+</th:block>
+
+
+<body>
+	<!-- 헤더 페이지 불러오기 -->
+	<div th:replace="/layout/header.html :: header"></div>
+
+	<!-- 회원가입 페이지 ======================================================== -->
+	<div class="signup-container">
+		<div class="signup-desc">
+			<h1>BREW MAP 회원가입</h1>
+			<p>회원가입으로 더 많은 서비스를 즐길 수 있습니다.</p>
+		</div>
+
+		<!-- 회원가입 폼 ======================================================== -->
+		<form action="/signUp" method="POST" class="signup-form">
+
+			<!-- 회원분류 ======================================================== -->
+			<div class="input-box">
+				<select class="form-select form-select-lg form-textbox" required
+					aria-label=".form-select-lg example" name="whoru-input"
+					id="whoru-input">
+					<option value="">회원등급 설정</option>
+					<option value="1">유저</option>
+					<option value="2">영업자</option>
+					<option value="3">관리자</option>
+				</select>
+				<div class="valid-check">
+					<span title="whoru-value" class="valid-check"></span>
+				</div>
+			</div>
+
+			<!-- 이름입력 ======================================================== -->
+			<div class="input-box">
+				<div class="form-floating">
+					<input type="text" class="form-control form-textbox"
+						name="name-input" id="name-input" placeholder="이름" required>
+					<label for="name-input">이름</label>
+					<div class="valid-check">
+						<span title="name-value" class="valid-check"></span>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- 아이디 입력 ======================================================== -->
+			<div class="input-box">
+				<div class="form-floating id-input-box">
+					<input type="text"
+						class="form-control form-textbox  input-id-field" name="id-input"
+						id="id-input" placeholder="아이디" required> <label
+						for="floatingInput">아이디</label>
+					<p>새 ID로 사용될 주소입니다.</p>
+					<div class="valid-check">
+						<span title="email-value" class="valid-check"></span>
+					</div>
+					<!-- 중복확인 글씨 바꿔야함 -->
+					<button class="btn btn-outline-secondary check-id" type="button"
+						id="button-addon2">중복확인</button>
+				</div>
+			</div>
+
+			<!-- 전화번호 입력 ======================================================== -->
+			<div class="form-floating">
+				<input type="text" class="form-control form-textbox"
+					name="phone-input" id="phone-input" placeholder="전화번호 (-) 제외하고 입력"
+					required> <label for="floatingPassword">전화번호 (-)
+					제외하고 입력</label> <span title="phone-value" class="valid-check"></span>
+			</div>
+
+			<!-- 이메일 입력 ======================================================== -->
+			<div class="input-box">
+				<div class="form-floating">
+					<input type="email"
+						class="form-control form-textbox  input-email-field"
+						name="email-input" id="email-input" placeholder="name@example.com"
+						required> <label for="floatingInput">name@example.com</label>
+					<div class="valid-check">
+						<span title="email-value" class="valid-check"></span>
+					</div>
+				</div>
+			</div>
+
+			<!-- 성별 입력 ======================================================== -->
+			<div class="input-box">
+				<select class="form-select form-select-lg form-textbox" required
+					aria-label=".form-select-lg example" name="gender-input"
+					id="gender-input">
+					<option value="">성별</option>
+					<option value="0">남</option>
+					<option value="1">녀</option>
+				</select>
+				<div class="valid-check">
+					<span title="whoru-value" class="valid-check"></span>
+				</div>
+			</div>
+
+			<!-- 주소 입력 ======== 주소검색 api로 나중에 변경 ==================== -->
+			<div class="input-box">
+				<div class="form-floating">
+					<input type="text" class="form-control form-textbox"
+						name="addr-input" id="addr-input" placeholder="주소는 api로 변경하세요"
+						required> <label for="name-input">주소는 api로 변경하세요</label>
+					<div class="valid-check">
+						<span title="name-value" class="valid-check"></span>
+					</div>
+				</div>
+			</div>
+
+			<!-- 질문 입력 ======================================================== -->
+			<div class="input-box">
+				<select class="form-select form-select-lg form-textbox" required
+					aria-label=".form-select-lg example" name="question-input"
+					id="question-input">
+					<option value="">질문</option>
+					<option value="1">질문1</option>
+					<option value="2">질문2</option>
+					<option value="3">질문3</option>
+				</select>
+				<div class="valid-check">
+					<span title="whoru-value" class="valid-check"></span>
+				</div>
+			</div>
+
+			<!-- 답변 입력 ======================================================== -->
+			<div class="input-box">
+				<div class="form-floating">
+					<input type="text" class="form-control form-textbox"
+						name="answer-input" id="answer-input" placeholder="답변" required>
+					<label for="name-input">답변</label>
+					<div class="valid-check">
+						<span title="name-value" class="valid-check"></span>
+					</div>
+				</div>
+			</div>
+
+			<!-- 버튼 ======================================================== -->
+			<div class="input-box">
+				<div class="btn-box">
+					<button type="button" class="btn btn-primary button"
+						name="signup-button" id="signup-button">완료</button>
+				</div>
+			</div>
+		</form>
+
+	</div>
+
+	<!-- 푸터 페이지 불러오기 -->
+	<footer th:replace="/layout/footer.html :: footer"></footer>
+</body>
+
+</html>
