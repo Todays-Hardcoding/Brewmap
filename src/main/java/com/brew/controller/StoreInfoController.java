@@ -32,7 +32,11 @@ public class StoreInfoController {
 	@RequestMapping(value = { "/", "/index" })
 	public String index(@PageableDefault(page = 0, size = 5) Pageable pageable, Model model, HttpSession session) {
 		
+<<<<<<< HEAD
 		session.setAttribute("user", userservice.findByUserId("ab"));
+=======
+//		session.setAttribute("user", userservice.findByUserId("ab"));
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 		
 		Page<StoreInfo> storePage = storeinfoService.findPageByKeyword("서울", pageable);
 		Page<StoreInfo> storePage2 = storeinfoService.findStorePage("서울", pageable);
@@ -92,4 +96,8 @@ public class StoreInfoController {
 
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git

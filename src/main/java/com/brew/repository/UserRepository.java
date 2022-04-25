@@ -2,6 +2,8 @@ package com.brew.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.brew.domain.User;
@@ -9,7 +11,14 @@ import com.brew.domain.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
 
+<<<<<<< HEAD
+=======
+	public User findByUserId(String userId);
+
+//	@Query("select s from StoreInfo s where s.storeCode like %:storeCode%")
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 	
+<<<<<<< HEAD
 	
 	public User findByUserId(String userId);
 
@@ -28,3 +37,10 @@ public interface UserRepository extends JpaRepository<User, String> {
 //	public User changeByUserId(@Param("userId") String userId);
 
 }
+=======
+	@Query("SELECT u FROM User u WHERE u.userId = :userId and u.userPw = :userPw")
+	public User checkUser(@Param("userId") String id, @Param("userPw") String pw);
+	
+
+}
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git

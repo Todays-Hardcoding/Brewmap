@@ -104,4 +104,8 @@ public class User {
 		this.userQuestion = userQuestion;
 		this.userAnswer = userAnswer;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
