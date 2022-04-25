@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head th:replace="layout/head :: headFragment"></head>
+<head th:replace="layout/head :: headFragment">
+</head>
 
 <th:block layout:fragment="customCss">
 	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
 	<title>boardMain</title>
 	<style>
-		a {
-			text-decoration: none;
-			border-color: white;
-		}
-		
-		.list-group-item {
-			border-color: white;
-		}
-	</style>
+a {
+	text-decoration: none;
+	border-color: white;
+}
+
+.list-group-item {
+	border-color: white;
+}
+</style>
 </th:block>
 
 <body>
@@ -34,11 +35,15 @@
 							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
 								th:href="@{/board/hotPage}"><i
 									class="fas fa-fire bi-speedometer2 fs-5 ms-2"></i><span
-									class="ms-1 d-none d-sm-inline">술집랭킹</span></a></li>
+									class="ms-1 d-none d-sm-inline">Hot게시판</span></a></li>
+							<li class="w-100"><a class="px-2 nav-link px-sm-0"
+								th:href="@{/board/freePage}"><i
+									class="fa fa-table fs-5 bi-table ms-2"></i><span
+									class="ms-1 d-none d-sm-inline">자유게시판</span></a></li>
 							<li class="w-100"><a class="px-1 nav-link px-sm-0 ps-2"
-								th:href="@{/board/reviewPage}"><i
+								th:href="@{/board/recommendStore}"><i
 									class="fas fa-utensils bi-bootstrap fs-5 ms-2"></i><span
-									class="ms-1 d-none d-sm-inline">술집추천</span></a></li>
+									class="ms-1 d-none d-sm-inline">맛집추천</span></a></li>
 							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
 								th:href="@{/board/serviceCenter}"><i
 									class="fa fa-group bi-people fs-5 ms-2"></i><span
@@ -50,22 +55,26 @@
 					<h4 class="display-6" th:text="${boardCategory}"></h4>
 					<hr />
 					<ul class="list-group list-group-flush"
-						th:each="board : ${boardList}">
-						<a th:href="@{/board (boardId=${board.boardId})}">
+						th:each="boardContent: ${boardList}">
+						<!-- <a th:href="@{/board(boardId=${boardContent.boardId})}"> -->
+						<a th:href="@{/board (boardId=${boardContent.boardId})}">
 							<li class="list-group-item">
-								<h4 style="margin-bottom: 2px" th:text="${board.boardTitle}"></h4>
-								<span th:text="${board.boardContent}"></span>
+								<h4 style="margin-bottom: 2px"
+									th:text="${boardContent.boardTitle}"></h4> <span
+								th:text="${boardContent.boardContent}"></span>
 								<div class="row">
 									<div class="col">
-										<small th:text="${board.user.userName}"></small>
-										<small style="margin-right: 10px" th:text="${#temporals.format(board.boardDate, 'dd-MM-yy HH:mm:ss')}"></small>
+										<small style="margin-right: 10px"
+											th:text="${boardContent.boardDate}"></small><small
+											th:text="boardContent.user.userName"></small>
 									</div>
 									<div
 										class="col d-flex d-lg-flex justify-content-end justify-content-lg-end">
-										<i class="fa fa-thumbs-o-up"></i>
-										<small style="margin-right: 10px" th:text="${board.boardLikeCount}"></small>
-										<i class="fa fa-comment-o"></i>
-										<small th:text="${board.reply.size}"></small>
+										<i class="fa fa-thumbs-o-up"></i> <small
+											style="margin-right: 10px"
+											th:text="${boardContent.boardLikeCount}"></small> <i
+											class="fa fa-comment-o"></i> <small
+											th:text="${boardContent.reply.size}"></small>
 									</div>
 								</div>
 						</li>
@@ -108,23 +117,23 @@
 							</a></li>
 						</ul>
 					</nav>
-					<div class="row" th:style="${boardCategoryCode} == 'hotPage' ? 'display:none'">
+					<div class="row">
 						<div class="col d-flex">
-							<div class="input-group d-md-flex" >
+							<div class="input-group d-md-flex">
 								<form action="/board/searchTitleAndContent">
-									<input type="hidden" name="boardCategoryCode" th:value="${boardCategoryCode}">
-									<input class="form-control" type="text" id="keyword"
-										name="keyword" th:value="${keyword} ? ${keyword} : ''"
+									<input class="form-control d-flex" type="text" id="keyword"
+										name="keyword" th:value="${keyword} ? ${keyword}"
 										placeholder="제목+내용으로 검색" />
 									<button class="btn btn-primary" type="submit">
 										<i class="fa fa-search"></i>
 									</button>
 								</form>
 							</div>
-							<div th:if="${boardCategoryCode} == serviceCenter"
+						</div>
+						<div
 							class="col-4 col-md-3 col-lg-3 d-flex justify-content-end align-items-center"
 							style="padding-left: 0px; padding-right: 0px">
-							<form action="/board/createPage">
+							<form action="/board/edit">
 								<button class="btn btn-primary" type="submit"
 									style="margin-right: 2em">글쓰기</button>
 							</form>

@@ -72,11 +72,4 @@ public class StoreListService {
 		
 		return result;
 	}
-	
-	
-	
-	
-	
-	
-	
 }

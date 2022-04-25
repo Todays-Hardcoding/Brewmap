@@ -40,11 +40,10 @@
 				<div class="col">
 					<!-- 게시판 내용 들어갈 자리-->
 					<div class="container">
-						<form method="get" action="/board/update">
+						<form method="get" action="/board/create">
 						<!-- id를 숨겨서 저장해 수정용이라는 것을 표시해서 전달. -->
 						<!-- 저장 시 null 값으로 변경돼 누락 방지(dynamic update 적용안됨.) -->
 						<input type="hidden" name="boardId" th:value="${board.boardId}">
-						<input type="hidden" name="userId" th:value="${board.user.userId}">						
 							<div class="text-center container"
 								style="margin: 40px; text-align: left;">
 								<p style="text-align: center; transform: translate(-26px);">
