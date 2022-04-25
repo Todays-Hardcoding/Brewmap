@@ -11,15 +11,7 @@ import com.brew.domain.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
 
-<<<<<<< HEAD
-=======
-	public User findByUserId(String userId);
 
-//	@Query("select s from StoreInfo s where s.storeCode like %:storeCode%")
->>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
-	
-<<<<<<< HEAD
-	
 	public User findByUserId(String userId);
 
 	public User findByUserName(String userName);
@@ -36,11 +28,11 @@ public interface UserRepository extends JpaRepository<User, String> {
 //	@Query(value="Update user set userId = :userId where userId = :userId ")
 //	public User changeByUserId(@Param("userId") String userId);
 
-}
-=======
-	@Query("SELECT u FROM User u WHERE u.userId = :userId and u.userPw = :userPw")
-	public User checkUser(@Param("userId") String id, @Param("userPw") String pw);
+
+
+//	@Query("SELECT u FROM User u WHERE u.userId = :userId and u.userPw = :userPw")
+//	public User checkUser(@Param("userId") String id, @Param("userPw") String pw);
 	
 
 }
->>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
+

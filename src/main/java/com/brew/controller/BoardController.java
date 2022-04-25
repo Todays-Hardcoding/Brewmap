@@ -190,8 +190,5 @@ public class BoardController {
 		return "redirect:?boardId="+boardId;
 	}
 	
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
+
