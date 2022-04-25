@@ -30,8 +30,6 @@ public class StoreListController {
 	@Autowired
 	StoreListService storeListService;
 	
-
-	
 	@GetMapping("/storeList") // 내 주변 리스트 검색 후 페이지 이동
     public String returnStoreJoinList(HttpServletResponse response, @RequestParam Map<String, String> params,
     		@PageableDefault(page=0, size=6) Pageable pageable, Model model) {
@@ -41,6 +39,6 @@ public class StoreListController {
 		HashMap<String, StoreInfo> infoList = storeListService.getCloseStores(params);
 		model.addAttribute("infoList", infoList);
 
-		return "view/pages/storeList";
+		return "view/store/storeList";
     }
 }

@@ -36,14 +36,13 @@ public class StoreDetailController {
 	@GetMapping("/detail")
     public String returnStoreJoinList(HttpServletResponse response, 
     		@RequestParam Map<String, String> params, Model model) {
-		
 		System.out.println(params.values());
 		
 		StoreInfo storeDetail = storeDetailService.findByStoreCode(params);
 		 
 		model.addAttribute("storeDetail", storeDetail);
 
-		return "view/pages/detail";
+		return "view/store/storeDetail";
     }
 	
 	@RequestMapping("/reviewInsert")
@@ -65,8 +64,7 @@ public class StoreDetailController {
 	}
 	
 	@RequestMapping("/reviewDelete")
-	public String reviewDelete(Model model, String storeCode, long reviewId) {
-		
+	public String reviewDelete(Model model, String storeCode, long reviewId) {		
 		storeDetailService.deleteByReviewId(reviewId);
 
 		return "redirect:/detail?id="+storeCode;	
