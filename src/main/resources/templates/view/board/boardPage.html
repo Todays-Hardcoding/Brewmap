@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head th:replace="layout/head :: headFragment"></head>
+<html
+	lang="ko"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+	<head th:replace="layout/head :: headFragment"> </head>
 
-<th:block layout:fragment="customCss">
-	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
+	<th:block layout:fragment="customCss">
+		<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
 	<title>boardPage</title>
 	<style>
 		a {
@@ -61,7 +64,7 @@
 						<span class="d-md-flex align-items-md-center" style="margin-right: 5px;margin-left: 5px;font-size: 15px;" th:text="${#temporals.format(board.boardDate, 'yy-MM-dd HH:mm:ss')}"></span>
 					</h5>
 					<h5 class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
-						<a class="d-flex justify-content-center" th:href="@{/board/likeCount(boardId=${board.boardId})}"><i class="fa fa-thumbs-o-up" style="margin-right: 5px; margin-left: 5px;"></i>
+						<a class="d-flex justify-content-center" onclick="checkLikeOrNot()" th:href="@{/board/likeCount(boardId=${board.boardId})}"><i class="fa fa-thumbs-o-up" style="margin-right: 5px; margin-left: 5px;"></i>
 						<span class="d-md-flex align-items-md-center" style="margin-right: 5px; margin-left: 5px; font-size: 15px;" th:text="${board.boardLikeCount}">좋아요</span></a>
 						<i class="fa fa-comment-o" style="margin-right: 5px; margin-left: 5px;"></i>
 						<span class="d-md-flex align-items-md-center" style="margin-right: 5px; margin-left: 5px; font-size: 15px;" th:text="${board.reply.size}">댓글수</span>
@@ -126,11 +129,11 @@
 	<!-- [content] 영역 끝 -->
 
 	<!-- 푸터 페이지 불러오기 -->
-		<footer th:replace="layout/footer :: footer"></footer>
+	<footer th:replace="layout/footer :: footer"></footer>
 
-		<!-- 스크립트 -->
-		<div th:replace="layout/script :: scriptFragment">
-			<!-- 이 안에 개별적인 js 넣으면 됨. -->
-		</div>
-	</body>
+	<!-- 스크립트 -->
+	<div th:replace="layout/script :: scriptFragment">
+		<!-- 이 안에 개별적인 js 넣으면 됨. -->
+	</div>
+</body>
 </html>

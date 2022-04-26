@@ -219,7 +219,6 @@ public class BoardController {
 	@RequestMapping(value="/likeCount", method=RequestMethod.GET)
 	public String countLike(Model model, Long boardId) {
 		Board board = boardService.findByBoardId(boardId);
-		board.setBoardLikeCount(board.getBoardLikeCount() + 1);
 		boardService.saveBoard(board);
 		return "redirect:?boardId="+boardId;
 	}
