@@ -2,8 +2,6 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="layout/head :: headFragment">
-<<<<<<< HEAD
-=======
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -33,56 +31,16 @@
 <script src="./js/signup.js"></script>
 <title>회원가입</title>
 
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 </head>
-<<<<<<< HEAD
-
 <th:block layout:fragment="customCss">
 	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
 </th:block>
-
-
-=======
-<th:block layout:fragment="customCss">
-	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
-</th:block>
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 <body>
 	<!-- 헤더 페이지 불러오기 -->
 	<div th:replace="/layout/header.html :: header"></div>
 
-<<<<<<< HEAD
-	<!-- 회원가입 페이지 ======================================================== -->
-	<div class="signup-container">
-		<div class="signup-desc">
-			<h1>BREW MAP 회원가입</h1>
-			<p>회원가입으로 더 많은 서비스를 즐길 수 있습니다.</p>
-		</div>
-=======
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 
-<<<<<<< HEAD
-		<!-- 회원가입 폼 ======================================================== -->
-		<form action="/signUp" method="POST" class="signup-form">
-=======
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 
-<<<<<<< HEAD
-			<!-- 회원분류 ======================================================== -->
-			<div class="input-box">
-				<select class="form-select form-select-lg form-textbox" required
-					aria-label=".form-select-lg example" name="whoru-input"
-					id="whoru-input">
-					<option value="">회원등급 설정</option>
-					<option value="1">유저</option>
-					<option value="2">영업자</option>
-					<option value="3">관리자</option>
-				</select>
-				<div class="valid-check">
-					<span title="whoru-value" class="valid-check"></span>
-				</div>
-			</div>
-=======
 	<!-- 
          글넣는 구간은 <section></section>
 -->
@@ -99,35 +57,7 @@
 				</p>
 			</div>
 		</div>
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <!-- 이름입력 ======================================================== -->
-      <div class="input-box">
-        <div class="form-floating">
-          <input type="text" class="form-control form-textbox" name="name-input" id="name-input" placeholder="이름" required>
-          <label for="userName">이름</label>
-          <div class="valid-check">
-            <span title="name-value" class="valid-check"></span>
-          </div>
-        </div>
-      </div>
-      
-=======
-			<!-- 이름입력 ======================================================== -->
-			<div class="input-box">
-				<div class="form-floating">
-					<input type="text" class="form-control form-textbox"
-						name="name-input" id="name-input" placeholder="이름" required>
-					<label for="name-input">이름</label>
-					<div class="valid-check">
-						<span title="name-value" class="valid-check"></span>
-					</div>
-				</div>
-			</div>
->>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
-=======
 		<form class="signup-form" id="signup-form" action="/signUpPage"
 			method="POST">
 			<!--회원분류-->
@@ -175,7 +105,33 @@
 					<span title="pwcheck-value" class="valid-check"></span>
 				</div>
 			</div> -->
-			
+      <!--비밀번호 힌트질문-->
+      <div>
+				<select class="form-select form-select-lg form-textbox" required
+					aria-label=".form-select-lg example" name="userQuestion"
+					id="userQuestion">
+					<option value="">비밀번호 힌트 설정</option>
+					<option value="1">아버지 성함은?</option>
+					<option value="2">어머니 성함은?</option>
+					<option value="3">좋아하는 색깔은?</option>
+				</select>
+				<div class="valid-check">
+					<span title="userQuestion-value" class="valid-check"></span>
+				</div>
+			</div>
+      <!--비밀번호 힌트답변-->
+      <div class="input-section">
+				<div class="input-container">
+					<div class="form-floating">
+						<input type="text" class="form-control form-textbox"
+							name="userAnswer" id="userAnswer" placeholder="이름" required>
+						<label for="userAnswer-input">비밀번호 힌트답변</label>
+						<div class="valid-check">
+							<span title="userAnswer-value" class="valid-check"></span>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!-- 이름 -->
 			<div class="input-section">
 				<div class="input-container">
@@ -210,26 +166,7 @@
 					<option value="">성별</option>
 					<option value="1">여</option>
 					<option value="2">남</option>
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <!-- 아이디 입력 ======================================================== -->
-      <div class="input-box">
-        <div class="form-floating id-input-box">
-          <input type="text" class="form-control form-textbox  input-id-field" name="id-input" id="id-input" placeholder="아이디" required>
-          <label for="userId">아이디</label>
-          <p>새 ID로 사용될 주소입니다.</p>
-          <div class="valid-check">
-            <span title="email-value" class="valid-check"></span>
-          </div>
-          <!-- 중복확인 글씨 바꿔야함 -->
-          <button class="btn btn-outline-secondary check-id" type="button" id="button-addon2">중복확인</button>
-        </div>
-      </div>
-=======
->>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
-=======
 				</select>
 				<div class="valid-check">
 					<span title="userGender-value" class="valid-check"></span>
@@ -241,7 +178,7 @@
 					<div class="form-floating">
 						<input type="text" class="form-control form-textbox"
 							name="userBirthDate" id="userBirthDate" placeholder="19980407"
-							required> <label for="userBirthDate">19980407</label>
+							required> <label for="userBirthDate">yyyymmdd</label>
 						<div class="valid-check">
 							<span title="userBirthDate-value" class="valid-check"></span>
 						</div>
@@ -256,7 +193,7 @@
 					<option value="">회원등급 설정</option>
 					<option value="1">브론즈</option>
 					<option value="2">실버</option>
-					<option value="2">골드</option>
+					<option value="3">골드</option>
 				</select>
 				<div class="valid-check">
 					<span title="userGrade-value" class="valid-check"></span>
@@ -264,7 +201,7 @@
 			</div>
 			<div class="input-section">
 				<div class="input-container">
-					<!-- 이메일 아이디 -->
+					<!-- 이메일-->
 					<div class="input-email">
 						<div class="form-floating">
 							<input type="email"
@@ -281,430 +218,40 @@
 			<!--전화번호-->
 			<div class="input-section">
 				<div class="input-container">
-					<div class="form-floating">
-						<input type="text" class="form-control form-textbox"
-							name="userTel" id="userTel" placeholder="전화번호 (-) 제외하고 입력"
-							required> <label for="floatingPassword">전화번호 (-)
-							제외하고 입력</label> <span title="userTel-value" class="valid-check"></span>
-					</div>
-				</div>
+          <div class="form-floating">
+            <input type="text" class="form-control form-textbox" name="userTel" id="userTel" placeholder="전화번호 (-) 제외하고 입력" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" required>
+            <label for="floatingPassword">전화번호 (-) 제외하고 입력</label>
+            <div class="valid-check">
+              <span title="phone-value" class="valid-check"></span>
+            </div>
+          </div>
+          <div>
 			</div>
 			<div class="input-section">
 				<div class="input-container"></div>
 			</div>
 			<div class="change-line"></div>
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <!-- 전화번호 입력 ======================================================== -->
-      <div class="form-floating">
-        <input type="text" class="form-control form-textbox" name="phone-input" id="phone-input" placeholder="전화번호 (-) 제외하고 입력" required>
-        <label for="userTel">전화번호 (-) 제외하고 입력</label>
-        <span title="phone-value" class="valid-check"></span>
-      </div>
-=======
-			<!-- 아이디 입력 ======================================================== -->
-			<div class="input-box">
-				<div class="form-floating id-input-box">
-					<input type="text"
-						class="form-control form-textbox  input-id-field" name="id-input"
-						id="id-input" placeholder="아이디" required> <label
-						for="floatingInput">아이디</label>
-					<p>새 ID로 사용될 주소입니다.</p>
-					<div class="valid-check">
-						<span title="email-value" class="valid-check"></span>
-					</div>
-					<!-- 중복확인 글씨 바꿔야함 -->
-					<button class="btn btn-outline-secondary check-id" type="button"
-						id="button-addon2">중복확인</button>
-				</div>
-			</div>
->>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
-=======
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <!-- 이메일 입력 ======================================================== -->
-      <div class="input-box">
-        <div class="form-floating">
-          <input type="email" class="form-control form-textbox  input-email-field" name="email-input" id="email-input" placeholder="name@example.com" required>
-          <label for="userEmail">name@example.com</label>
-          <div class="valid-check">
-            <span title="email-value" class="valid-check"></span>
-          </div>
-        </div>
-      </div>
-=======
-			<!-- 전화번호 입력 ======================================================== -->
-			<div class="form-floating">
-				<input type="text" class="form-control form-textbox"
-					name="phone-input" id="phone-input" placeholder="전화번호 (-) 제외하고 입력"
-					required> <label for="floatingPassword">전화번호 (-)
-					제외하고 입력</label> <span title="phone-value" class="valid-check"></span>
-			</div>
->>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
-=======
 			<!-- 버튼 -->
 			<div class="btn-box">
 				<button type="submit" class="btn btn-primary button"
 					name="signup-button" id="signup-button">완료</button>
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <!-- 성별 입력 ======================================================== -->
-      <div class="input-box">
-        <select class="form-select form-select-lg form-textbox"  required aria-label=".form-select-lg example" name="userGender" id="userGender">
-          <option value="">성별</option>
-          <option value="1">남</option>
-          <option value="2">녀</option>
-        </select>
-        <div class="valid-check">
-          <span title="whoru-value" class="valid-check"></span>
-        </div>
-      </div>
-=======
-			<!-- 이메일 입력 ======================================================== -->
-			<div class="input-box">
-				<div class="form-floating">
-					<input type="email"
-						class="form-control form-textbox  input-email-field"
-						name="email-input" id="email-input" placeholder="name@example.com"
-						required> <label for="floatingInput">name@example.com</label>
-					<div class="valid-check">
-						<span title="email-value" class="valid-check"></span>
-					</div>
-				</div>
-			</div>
->>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
-=======
 			</div>
 		</form>
 	</div>
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <!-- 주소 입력 ======== 주소검색 api로 나중에 변경 ====================
-      <div class="input-box">
-        <div class="form-floating">
-          <input type="text" class="form-control form-textbox" name="addr-input" id="addr-input" placeholder="주소는 api로 변경하세요" required>
-          <label for="name-input">주소는 api로 변경하세요</label>
-          <div class="valid-check">
-            <span title="name-value" class="valid-check"></span>
-          </div>
-        </div>
-      </div>
- -->
-      <!-- 질문 입력 ======================================================== 
-      <div class="input-box">
-        <select class="form-select form-select-lg form-textbox"  required aria-label=".form-select-lg example" name="question-input" id="question-input">
-          <option value="">질문</option>
-          <option value="1">질문1</option>
-          <option value="2">질문2</option>
-          <option value="3">질문3</option>
-        </select>
-        <div class="valid-check">
-          <span title="whoru-value" class="valid-check"></span>
-        </div>
-      </div>
--->
-      <!-- 답변 입력 ======================================================== 
-      <div class="input-box">
-        <div class="form-floating">
-          <input type="text" class="form-control form-textbox" name="answer-input" id="answer-input" placeholder="답변" required>
-          <label for="name-input">답변</label>
-          <div class="valid-check">
-            <span title="name-value" class="valid-check"></span>
-          </div>
-        </div>
-      </div>
-  -->    
-      <!-- 버튼 ======================================================== -->
-      <div class="input-box">
-        <div class="btn-box">
-          <button type="button" class="btn btn-primary button" name="signup-button" id="signup-button">완료</button>
-        </div>
-      </div>
-      
-=======
-			<!-- 성별 입력 ======================================================== -->
-			<div class="input-box">
-				<select class="form-select form-select-lg form-textbox" required
-					aria-label=".form-select-lg example" name="gender-input"
-					id="gender-input">
-					<option value="">성별</option>
-					<option value="0">남</option>
-					<option value="1">녀</option>
-				</select>
-				<div class="valid-check">
-					<span title="whoru-value" class="valid-check"></span>
-				</div>
-			</div>
-=======
 
 	<!-- 푸터 페이지 불러오기 -->
 	<footer th:replace="/layout/footer.html :: footer"></footer>
 
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 
-<<<<<<< HEAD
-			<!-- 주소 입력 ======== 주소검색 api로 나중에 변경 ==================== -->
-			<div class="input-box">
-				<div class="form-floating">
-					<input type="text" class="form-control form-textbox"
-						name="addr-input" id="addr-input" placeholder="주소는 api로 변경하세요"
-						required> <label for="name-input">주소는 api로 변경하세요</label>
-					<div class="valid-check">
-						<span title="name-value" class="valid-check"></span>
-					</div>
-				</div>
-			</div>
-=======
-	<script type="text/javascript">
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
+	<script type="text/javascript" src="/assets/js/signup.js"">
 
-<<<<<<< HEAD
-			<!-- 질문 입력 ======================================================== -->
-			<div class="input-box">
-				<select class="form-select form-select-lg form-textbox" required
-					aria-label=".form-select-lg example" name="question-input"
-					id="question-input">
-					<option value="">질문</option>
-					<option value="1">질문1</option>
-					<option value="2">질문2</option>
-					<option value="3">질문3</option>
-				</select>
-				<div class="valid-check">
-					<span title="whoru-value" class="valid-check"></span>
-				</div>
-			</div>
->>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
-=======
     
-$(document).ready(function () {
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
-
-<<<<<<< HEAD
-			<!-- 답변 입력 ======================================================== -->
-			<div class="input-box">
-				<div class="form-floating">
-					<input type="text" class="form-control form-textbox"
-						name="answer-input" id="answer-input" placeholder="답변" required>
-					<label for="name-input">답변</label>
-					<div class="valid-check">
-						<span title="name-value" class="valid-check"></span>
-					</div>
-				</div>
-			</div>
-=======
-// lastname 유효성 검사
-$('#signup-form button[name="signup-button"]').click(function(evt) {
-  // 회원분류 설정
-  var userCategory = $('#userCategory > option:checked')
-  // console.log(countryselect);
-  if(userCategory.val() != '') {
-    $('span[title="userCategory-value"]').show().html('GOOD!').css('color', 'green')
-    // countryselect.removeClass('is-invalid')
-    // countryselect.addClass('is-valid')
-  } else {
-    $('span[title="userCategory-value"]').show().html('카테고리를 설정해주세요').css('color', 'red')
-    // countryselect.removeClass('is-valid')
-    // countryselect.addClass('is-invalid')
-  }
-      // 회원등급 설정
-      var userGrade = $('#userGrade > option:checked')
-    // console.log(countryselect);
-    if(userGrade.val() != '') {
-      $('span[title="userGrade-value"]').show().html('GOOD!').css('color', 'green')
-      // countryselect.removeClass('is-invalid')
-      // countryselect.addClass('is-valid')
-    } else {
-      $('span[title="userGrade-value"]').show().html('등급을 설정해주세요').css('color', 'red')
-      // countryselect.removeClass('is-valid')
-      // countryselect.addClass('is-invalid')
-    }
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
-
-<<<<<<< HEAD
-			<!-- 버튼 ======================================================== -->
-			<div class="input-box">
-				<div class="btn-box">
-					<button type="button" class="btn btn-primary button"
-						name="signup-button" id="signup-button">완료</button>
-				</div>
-			</div>
-		</form>
-
-	</div>
-
-	<!-- 푸터 페이지 불러오기 -->
-	<footer th:replace="/layout/footer.html :: footer"></footer>
-=======
-//닉네임설정
-  var nickname = $('#signup-form input[name="userNickName"]')
-  // console.log(nickname.val());
-  if(nickname.val()) {
-    $('span[title="nickname-value"]').show().html('GOOD!').css('color', 'green')
-    nickname.removeClass('is-invalid')
-    nickname.addClass('is-valid')
-  } else {
-    $('span[title="nickname-value"]').show().html('닉네임을 입력해주세요').css('color', 'red')
-    nickname.removeClass('is-valid')
-    nickname.addClass('is-invalid')
-    evt.preventDefault();
-    nickname.focus();
-    // last.value = '';
-  }
-  //닉네임설정
-  var userBirthDate = $('#signup-form input[name="userBirthDate"]')
-  // console.log(userBirthDate.val());
-  if(userBirthDate.val()) {
-    $('span[title="userBirthDate-value"]').show().html('GOOD!').css('color', 'green')
-    userBirthDate.removeClass('is-invalid')
-    userBirthDate.addClass('is-valid')
-  } else {
-    $('span[title="userBirthDate-value"]').show().html('생년월일을 입력해주세요').css('color', 'red')
-    userBirthDate.removeClass('is-valid')
-    userBirthDate.addClass('is-invalid')
-    evt.preventDefault();
-    userBirthDate.focus();
-    // last.value = '';
-  }
-  //이름설정
-  var username = $('#signup-form input[name="userName"]')
-  // console.log(nickname.val());
-  if(username.val()) {
-    $('span[title="username-value"]').show().html('GOOD!').css('color', 'green')
-    username.removeClass('is-invalid')
-    username.addClass('is-valid')
-  } else {
-    $('span[title="username-value"]').show().html('이름을 올바르게 입력해주세요').css('color', 'red')
-    username.removeClass('is-valid')
-    username.addClass('is-invalid')
-    evt.preventDefault();
-    username.focus();
-    // last.value = '';
-  }
-    //이름설정
-    var userId = $('#signup-form input[name="userId"]')
-  // console.log(userId.val());
-  if(userId.val()) {
-    $('span[title="userId-value"]').show().html('GOOD!').css('color', 'green')
-    userId.removeClass('is-invalid')
-    userId.addClass('is-valid')
-  } else {
-    $('span[title="userId-value"]').show().html('아이디를 올바르게 입력해주세요').css('color', 'red')
-    userId.removeClass('is-valid')
-    userId.addClass('is-invalid')
-    evt.preventDefault();
-    userId.focus();
-    // last.value = '';
-  }
-
-  // 이메일 정규성 검사
-  var email = $('#signup-form input[name="userEmail"]')
-  var emailcheck =  /\S+@\S+\.\S+/.test(email.val())
-  if ( !emailcheck ){
-    $('span[title="email-value"]').show().html('올바른 이메일 형식으로 입력해주세요.').css('color', 'red');
-    email.removeClass('is-valid')
-    email.addClass('is-invalid')
-    evt.preventDefault();
-    email.focus();
-  } else {
-    $('span[title="email-value"]').show().html('GOOD!').css('color', 'green');
-    email.removeClass('is-invalid')
-    email.addClass('is-valid')
-  }
-    // 전화번호
-    var userTel = $('#signup-form input[name="userTel"]')
-  // console.log(userTel);
-  if(userTel.val()) {
-    $('span[title="userTel-value"]').show().html('GOOD!').css('color', 'green')
-    userTel.removeClass('is-invalid')
-    userTel.addClass('is-valid')
-  } else {
-    $('span[title="userTel-value"]').show().html('전화번호를 입력하시오.').css('color', 'red')
-    userTel.removeClass('is-valid')
-    userTel.addClass('is-invalid')
-    evt.preventDefault();
-    userTel.focus();
-    // last.value = '';
-  }
-  // 성별 
-    var userGender = $('#userGender > option:checked')
-    // console.log(countryselect);
-    if(userGender.val() != '') {
-      $('span[title="userGender-value"]').show().html('GOOD!').css('color', 'green')
-      // countryselect.removeClass('is-invalid')
-      // countryselect.addClass('is-valid')
-    } else {
-      $('span[title="userGender-value"]').show().html('성별을 선택하세요').css('color', 'red')
-      // countryselect.removeClass('is-valid')
-      // countryselect.addClass('is-invalid')
-    }
-
-  
-  // 암호
-  var userPw = $('#signup-form input[name="userPw"]')
-  var num = userPw.val().search(/[0-9]/g);
-  var eng = userPw.val().search(/[a-z]/ig);
-  var spe = userPw.val().search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-  // console.log(password.val());
-  // 길이가 8 ~ 20
-  if(userPw.val().length < 8 || userPw.length > 20) {
-    $('span[title="pw-value"]').show().html('8자리 ~ 20자리 이내로 입력하시오.').css('color', 'red');
-    userPw.removeClass('is-valid')
-    userPw.addClass('is-invalid')
-    evt.preventDefault();
-    userPw.focus();
-    // return false
-    //공백체크
-    } else if (userPw.val().search(/\s/) != -1 ) {
-      $('span[title="pw-value"]').show().html('공백 없이 입력하시오.').css('color', 'red');
-      userPw.removeClass('is-valid')
-      userPw.addClass('is-invalid')
-      evt.preventDefault();
-      userPw.focus();
-      // return false
-      // 영문, 숫자, 특수문자 확인
-    } else if (num < 0 || eng < 0 || spe < 0) {
-      $('span[title="pw-value"]').show().html('영문, 숫자, 특수문자를 혼합하여 입력하시오..').css('color', 'red');
-      userPw.removeClass('is-valid')
-      userPw.addClass('is-invalid')
-      evt.preventDefault();
-      userPw.focus();
-      // return false
-    } else {
-      $('span[title="pw-value"]').show().html('GOOD!').css('color', 'green');
-      userPw.removeClass('is-invalid')
-      userPw.addClass('is-valid')
-      // return true
-    }
-  
-
-/*   // 암호 확인
-  var pwcheck = $('#signup-form input[name="password-check-input"]')
-  // console.log(pwcheck);
-  if(pwcheck.val() == password.val() && pwcheck.val().length != 0) {
-    $('span[title="pwcheck-value"]').show().html('GOOD!').css('color', 'green')
-    pwcheck.removeClass('is-invalid')
-    pwcheck.addClass('is-valid')
-  } else {
-    $('span[title="pwcheck-value"]').show().html('비밀번호가 일치하지 않습니다.').css('color', 'red')
-    pwcheck.removeClass('is-valid')
-    pwcheck.addClass('is-invalid')
-  } */
-
-
-});
-
-});
 
   </script>
 
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 </body>
 </html>
