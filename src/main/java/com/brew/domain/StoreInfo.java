@@ -53,25 +53,25 @@ public class StoreInfo {
 	@NotNull
 	@Column
 	private String storeRoadAddr;
-	
+
 	@NotNull
 	@Column
 	private String storeAddr;
-	
+
 	@Column
 	private LocalDateTime storeRegdate;
-	
+
 	@NotNull
 	@Column
 	private double storeLatitude;
-	
+
 	@NotNull
 	@Column
 	private double storeLongitude;
-	
+
 	@Column
 	private String storeTag;
-	
+
 	@Column
 	private Float storeStaravg;
 	
@@ -99,4 +99,5 @@ public class StoreInfo {
 		this.storeTag = storeTag;
 		this.storeStaravg = storeStaravg;
 	}	
+
 }
