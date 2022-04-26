@@ -90,7 +90,7 @@ public class BoardController {
 	
 	// 제목 + 내용 검색 메소드
 	@RequestMapping("/searchTitleAndContent")
-	public String boardSearchTitleAndContent(Model model, @PageableDefault(page=0, size=10) Pageable pageable, @RequestParam String keyword, String boardCategoryCode) {
+	public String searchBoardByTitleAndContent(Model model, @PageableDefault(page=0, size=10) Pageable pageable, @RequestParam String keyword, String boardCategoryCode) {
 		String boardCategory = "검색결과";
 		// String boardCategoryCode = "searchTitleAndContent";
 		Page<Board> searchResult = boardService.findPageByTitleAndContent(boardCategoryCode, keyword, pageable);
@@ -178,20 +178,8 @@ public class BoardController {
 		return "view/board/boardMain";
 	}
 	
-	@RequestMapping("/recommendStore")
-	public String boardRecommendStore(Model model, @PageableDefault(page=0, size=10) @SortDefault.SortDefaults({
-		@SortDefault(sort = "boardDate", direction = Direction.DESC)
-	}) Pageable pageable) {
-		String boardCategory = "술집추천";
-		String boardCategoryCode = "recommendStore";
-		// 카테고리에 속하는 목록들만 불러옴.
-		Page<Board> boardList = boardService.findByBoardCategory(boardCategoryCode, pageable);
-		// 페이징 및 출력함수 호출
-		return this.boardPagination(model, pageable, boardCategory, boardCategoryCode, boardList);
-	}
-	
 	@RequestMapping("/serviceCenter")
-	public String boardServiceCenter(Model model, @PageableDefault(page=0, size=10) @SortDefault.SortDefaults({
+	public String boardServiceCenterPage(Model model, @PageableDefault(page=0, size=10) @SortDefault.SortDefaults({
 		@SortDefault(sort = "boardDate", direction = Direction.DESC)
 	}) Pageable pageable) {
 		String boardCategory = "고객센터";
@@ -211,7 +199,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/insertReply")
-	public String replyInsert(Model model, long boardId, String userId, String replyContent) {
+	public String insertReply(Model model, long boardId, String userId, String replyContent) {
 		User user = userservice.findByUserId(userId);
 		Board board = boardService.findByBoardId(boardId);
 		Reply reply = Reply.builder().user(user).board(board).replyContent(replyContent).build();
@@ -222,14 +210,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/deleteReply", method=RequestMethod.POST)
-	public String replyDelete(Model model, long boardId, long replyId) {
+	public String deleteReply(Model model, long boardId, long replyId) {
 		boardService.deleteByReplyId(replyId);
 	
 		return "redirect:?boardId="+boardId;
 	}
 	
 	@RequestMapping(value="/likeCount", method=RequestMethod.GET)
-	public String likecount(Model model, Long boardId) {
+	public String countLike(Model model, Long boardId) {
 		Board board = boardService.findByBoardId(boardId);
 		board.setBoardLikeCount(board.getBoardLikeCount() + 1);
 		boardService.saveBoard(board);
