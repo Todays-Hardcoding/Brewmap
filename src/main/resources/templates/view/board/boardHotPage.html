@@ -73,7 +73,7 @@
 					</ul>
 					<nav class="d-flex justify-content-center">
 						<ul class="pagination"
-							th:with="currentStart=${currentStart}, currentLast=${currentLast}, boardCategory=${boardCategory}">
+							th:with="currentStart=${currentStart}, currentLast = ${currentLast}, boardCategory=${boardCategory}">
 
 
 							<li th:style="${nowPage} == ${startPage} ? 'display:none'"
