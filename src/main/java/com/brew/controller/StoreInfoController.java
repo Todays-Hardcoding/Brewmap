@@ -39,15 +39,15 @@ public class StoreInfoController {
 	@RequestMapping(value = { "/", "/index" })
 	public String index(@PageableDefault(page = 0, size = 5) Pageable pageable, Model model, HttpSession session) {
 		
-<<<<<<< HEAD
+
 
 		session.setAttribute("user", userservice.findByUserId("ab"));
 
 //		session.setAttribute("user", userservice.findByUserId("ab"));
 
-=======
+
 		session.setAttribute("user", userservice.findByUserId("abc"));
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
+
 		
 		Page<StoreInfo> storePage = storeinfoService.findHotStores(pageable);
 
