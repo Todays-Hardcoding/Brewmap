@@ -72,7 +72,7 @@
 	                    <div class="col-9 col-md-10" style="width: 100%;">
 	                        <!-- 댓글 작성자 -->
 	                        <div>
-		                    	<h4 style="font-size: 22px;" th:text="${review.user.userId}">댓글 작성자</h4>
+		                    	<h4 style="font-size: 22px;" th:text="${review.user.userName}">댓글 작성자</h4>
 								<span th:each="index : ${#numbers.sequence(1, review.reviewStar)}">
 									<i class="fa fa-star"></i>
 								</span>
@@ -132,9 +132,17 @@
 	    form.addEventListener('submit', function (evt) {
 	
 	      	const reviewContent = document.querySelector('textarea[name="reviewContent"]');
+	      		  reviewStar = document.querySelector('input[name="reviewStar"]');
 	      	var contentCheck = /^[\s]+$/;		
 			    longCheck = /^[\S\s]{0,2}$/;
 	      
+			if (!reviewStar.value) {
+				alert('별점을 입력해 주세요!');
+				reviewStar.focus();
+				reviewStar.value = '';
+	        	evt.preventDefault();
+	        	return false;
+			}
 	      	if (!reviewContent.value) {
 	       	 	alert('댓글 내용을 입력해 주세요');
 	       		reviewContent.focus();

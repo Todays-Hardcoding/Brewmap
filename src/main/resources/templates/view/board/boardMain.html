@@ -72,11 +72,11 @@
 										<small th:text="${board.reply.size}"></small>
 									</div>
 								</div>
-						</li>
+							</li>
 						</a>
 					</ul>
 					<nav class="d-flex justify-content-center">
-						<ul class="pagination"
+						<ul class="pagination" th:if="${boardList.content.size} != 0"
 							th:with="currentStart=${currentStart}, currentLast=${currentLast}, boardCategory=${boardCategory}">
 
 

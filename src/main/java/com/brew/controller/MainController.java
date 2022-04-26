@@ -10,16 +10,7 @@ public class MainController {
 	public String chat() {
 		return "view/pages/chat";
 	}
-	
-	@RequestMapping("/login")
-	public String login() {
-		return "view/login";
-	}
-	
-	@RequestMapping("/mypage")
-	public String mypage() {
-		return "view/pages/mypage";
-	}
+
 	// 방명록
 	
 	//수정
