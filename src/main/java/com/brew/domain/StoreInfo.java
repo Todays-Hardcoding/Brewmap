@@ -10,6 +10,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ import lombok.NoArgsConstructor;
 public class StoreInfo {
 	
 	@OneToMany(mappedBy = "storeInfo")
+	@JsonManagedReference
 	private List<Review> review;
 	
 	@NotNull
@@ -80,14 +83,5 @@ public class StoreInfo {
 		this.storeLongitude = storeLongitude;
 		this.storeTag = storeTag;
 		this.storeStaravg = storeStaravg;
-	}
-
-	@Override
-	public String toString() {
-		return "StoreInfo [storeCategory=" + storeCategory + ", storeCode=" + storeCode + ", storeName=" + storeName
-				+ ", storeTel=" + storeTel + ", storeRoadAddr=" + storeRoadAddr + ", storeAddr=" + storeAddr
-				+ ", storeRegdate=" + storeRegdate + ", storeLatitude=" + storeLatitude + ", storeLongitude="
-				+ storeLongitude + ", storeTag=" + storeTag + ", storeStaravg=" + storeStaravg + "]";
-	}
-	
+	}	
 }

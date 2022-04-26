@@ -84,12 +84,4 @@ public class StoreInfoController {
 
 		return "view/pages/map";
 	}
-
-	@GetMapping("/sendPosition")
-	public @ResponseBody void ajax(@RequestParam Map<String, String> map) {
-		System.out.println(map.get("lat"));
-		System.out.println(map.get("lon"));
-
-	}
-
 }

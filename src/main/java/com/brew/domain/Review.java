@@ -9,8 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -24,17 +27,23 @@ public class Review {
 	
 	@ManyToOne
 	@JoinColumn(name="store_code")
+	@JsonBackReference
 	private StoreInfo storeInfo;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
+	@JsonBackReference
 	private User user;
 	
 	@Id
 	@NotNull
 	@Column
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String reviewId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long reviewId;
+	
+	@NotNull
+	@Column
+	private String reviewUser;
 	
 	@NotNull
 	@Column
@@ -46,16 +55,22 @@ public class Review {
 	
 	@Column
 	private LocalDateTime reviewDate;
-
+	
+	@PrePersist
+	public void createdAt() {
+		this.reviewDate = LocalDateTime.now();
+	}
+	
 	@Builder
-	public Review(@NotNull String reviewId, @NotNull int reviewStar, @NotNull String reviewComment,
-			LocalDateTime reviewDate) {
+	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull String reviewUser,
+			@NotNull int reviewStar, @NotNull String reviewComment, LocalDateTime reviewDate) {
 		super();
+		this.storeInfo = storeInfo;
+		this.user = user;
 		this.reviewId = reviewId;
+		this.reviewUser = reviewUser;
 		this.reviewStar = reviewStar;
 		this.reviewComment = reviewComment;
 		this.reviewDate = reviewDate;
-
 	}
-	
 }
