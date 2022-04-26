@@ -36,7 +36,7 @@
                 
                 
            <!-- 댓글 작성 -->
-           <form role="form" method="POST" action="/reviewInsert">
+           <form id="createReview" role="form" method="POST" action="/reviewInsert">
                <!-- hidden 영역 -->
                <input type="hidden" name="userId" th:value="${session.user.userId}"> 
                <input type="hidden" name="reviewUser" th:value="${session.user.userName}">
@@ -44,7 +44,7 @@
                <input type="hidden" name="reviewStar" th:value='3'>
                <!-- 입력 영역 --> 
                <div class="form-group">
-                   <textarea class="form-control form-control" rows="3" required style="font-size: 16px;" name="reviewContent" placeholder="리뷰를 작성하세요"></textarea>
+                   <textarea class="form-control form-control" rows="3" style="font-size: 16px;" name="reviewContent" placeholder="리뷰를 작성하세요"></textarea>
                </div>
                <div class="d-flex d-md-flex justify-content-end justify-content-md-end">
                    <button class="btn btn-primary d-sm-flex btn btn-success" type="submit" style="margin: 5px; margin-right: 0px;" name="insert">Submit</button>
@@ -111,6 +111,37 @@
 
 		marker.setMap(map); // 지도 위에 마커를 표출합니다
 	</script>
+	<script type="text/javascript">
+	    const form = document.querySelector('#createReview');
+	    
+	    form.addEventListener('submit', function (evt) {
+	
+	      	const reviewContent = document.querySelector('textarea[name="reviewContent"]');
+	      	var contentCheck = /^[\s]+$/;		
+			    longCheck = /^[\S\s]{0,2}$/;
+	      
+	      	if (!reviewContent.value) {
+	       	 	alert('댓글 내용을 입력해 주세요');
+	       		reviewContent.focus();
+	        	reviewContent.value = '';
+	        	evt.preventDefault();
+	        	return false;
+	      	}else if(contentCheck.test(reviewContent.value)){
+				alert('댓글이 공백으로 시작합니다.');
+				reviewContent.focus();
+				reviewContent.value = '';
+				evt.preventDefault();
+				return false;
+			}else if(longCheck.test(reviewContent.value)){
+				alert('댓글은 최소 세글자부터 입력이 가능합니다.');
+				reviewContent.focus();
+				reviewContent.value = '';
+				evt.preventDefault();
+				return false;
+			}
+		})
+	        
+    </script>
 	<div th:replace="layout/script :: scriptFragment">
 	<!-- 이 안에 개별적인 js 넣으면 됨. -->
 	</div>

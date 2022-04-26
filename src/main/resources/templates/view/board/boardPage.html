@@ -64,7 +64,7 @@
 						<span class="d-md-flex align-items-md-center" style="margin-right: 5px;margin-left: 5px;font-size: 15px;" th:text="${#temporals.format(board.boardDate, 'yy-MM-dd HH:mm:ss')}"></span>
 					</h5>
 					<h5 class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
-						<a class="d-flex justify-content-center" onclick="checkLikeOrNot()" th:href="@{/board/likeCount(boardId=${board.boardId})}"><i class="fa fa-thumbs-o-up" style="margin-right: 5px; margin-left: 5px;"></i>
+						<a class="d-flex justify-content-center" th:href="@{/board/likeCount(boardId=${board.boardId})}"><i class="fa fa-thumbs-o-up" style="margin-right: 5px; margin-left: 5px;"></i>
 						<span class="d-md-flex align-items-md-center" style="margin-right: 5px; margin-left: 5px; font-size: 15px;" th:text="${board.boardLikeCount}">좋아요</span></a>
 						<i class="fa fa-comment-o" style="margin-right: 5px; margin-left: 5px;"></i>
 						<span class="d-md-flex align-items-md-center" style="margin-right: 5px; margin-left: 5px; font-size: 15px;" th:text="${board.reply.size}">댓글수</span>
@@ -84,14 +84,14 @@
 					
 					<h4 style="font-size: 22px;">Leave a Comment:</h4>
 					<!-- 댓글 작성 -->
-					<form role="form" method="POST" action="/board/insertReply">
+					<form id="createReply" role="form" method="POST" action="/board/insertReply">
 						<!-- hidden 영역 -->
 						<input type="hidden" name="userId" th:value="${session.user.userId}">
 						<input type="hidden" name="boardId" th:value="${board.boardId}">
 
 						<!-- 입력 영역 -->
 						<div class="form-group">
-							<textarea class="form-control form-control" rows="3" required style="font-size: 16px;" name="replyContent" placeholder="댓글을 작성하세요"></textarea>
+							<textarea class="form-control form-control" rows="3" style="font-size: 16px;" name="replyContent" placeholder="댓글을 작성하세요"></textarea>
 						</div>
 						<div class="d-flex d-md-flex justify-content-end justify-content-md-end">
 							<button class="btn btn-primary d-sm-flex btn btn-success" type="submit" style="margin: 5px; margin-right: 0px;" name="insert">Submit</button>
@@ -129,30 +129,42 @@
 	<!-- [content] 영역 끝 -->
 
 	<!-- 푸터 페이지 불러오기 -->
-		<footer th:replace="layout/footer :: footer"></footer>
+	<footer th:replace="layout/footer :: footer"></footer>
 
-		<!-- 스크립트 -->
-		<div th:replace="layout/script :: scriptFragment"></div>
-		<th:block layout:fragment="customJS">
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-			<script type="text/javascript">
-				var like = false;
-				function checkLikeOrNot(params) {
-					like = !like;
-					console.log(like);
-					console.log(params);
-					$.ajax({
-						url:"/board/likeCount",
-						data: {like: like},
-						method: "get",
-						dataType: "json"
-					}).done(function(json) {
-						alert("성공");
-					}).fail(function(params) {
-						alert("실패");
-					})
-				}
-			</script>
-		</th:block>
-	</body>
+	<!-- 스크립트 -->
+	<div th:replace="layout/script :: scriptFragment">
+		<!-- 이 안에 개별적인 js 넣으면 됨. -->
+	</div>
+	<script type="text/javascript">
+	    const form = document.querySelector('#createReply');
+	    
+	    form.addEventListener('submit', function (evt) {
+	
+	    	const replyContent = document.querySelector('textarea[name="replyContent"]');
+	      	var contentCheck = /^[\s]+$/;		
+				longCheck = /^[\S\s]{0,2}$/;
+   
+			if (!replyContent.value) {
+				alert('댓글 내용을 입력해 주세요');
+				replyContent.focus();
+				replyContent.value = '';
+				evt.preventDefault();
+				return false;
+			}else if(contentCheck.test(replyContent.value)){
+				alert('댓글이 공백으로 시작합니다.');
+				replyContent.focus();
+				replyContent.value = '';
+				evt.preventDefault();
+				return false;
+			}else if(longCheck.test(replyContent.value)){
+				alert('댓글은 최소 세글자부터 입력이 가능합니다.');
+				replyContent.focus();
+				replyContent.value = '';
+				evt.preventDefault();
+				return false;
+			}
+				
+		})  
+    </script>
+</body>
 </html>
