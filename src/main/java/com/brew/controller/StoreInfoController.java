@@ -95,6 +95,4 @@ public class StoreInfoController {
 		System.out.println(map.get("lon"));
 
 	}
-
-
 }

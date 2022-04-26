@@ -69,7 +69,4 @@ public class Reply {
 		this.replyDate = replyDate;
 		this.replyLikeCount = replyLikeCount;
 	}
-	
-	
-
 }

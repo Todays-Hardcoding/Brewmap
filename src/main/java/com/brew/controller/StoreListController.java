@@ -1,5 +1,6 @@
 package com.brew.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,20 +22,13 @@ import com.brew.service.StoreListService;
 
 
 @Controller
-//@RequestMapping("/store")
 public class StoreListController {
 
-//	@RequestMapping("/storeList")
-//	public String storeListnav() {
-//		return "view/pages/storeList";
-//	}
 	@Autowired
 	StoreInfoService storeInfoService;
 	
 	@Autowired
 	StoreListService storeListService;
-	
-	List<StoreInfo> infoList;
 	
 	@GetMapping("/storeList") // 내 주변 리스트 검색 후 페이지 이동
     public String returnStoreJoinList(HttpServletResponse response, @RequestParam Map<String, String> params,
@@ -42,22 +36,9 @@ public class StoreListController {
 		
 		System.out.println("controller");
 		
-//		List<StoreInfo> infoList = null;
-//		if(!this.infoList.isEmpty())
-//			infoList = storeListService.getCloseStores(params); 
-//		else
-//			infoList = this.infoList;
-		infoList = storeListService.getCloseStores(params); 
+		HashMap<String, StoreInfo> infoList = storeListService.getCloseStores(params);
 		model.addAttribute("infoList", infoList);
 
-		return "view/pages/storeList";
+		return "view/store/storeList";
     }
-	
-	@GetMapping("/latlon") // 내 주변 리스트 검색
-	@ResponseBody
-	public void returnLatlon(HttpServletResponse response, @RequestParam Map<String, String> params) {	
-		infoList = storeListService.getCloseStores(params);
-		
-		System.out.println(this.infoList);
-	}
 }

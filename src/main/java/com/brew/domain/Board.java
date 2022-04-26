@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Builder;
@@ -39,6 +40,7 @@ public class Board {
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
+	@JsonBackReference
 	private User user;
 	
 	@Id

@@ -35,7 +35,7 @@ public class User {
 
 	@OneToMany(mappedBy = "user")
 	private List<Review> Review;
-
+	
 	@NotNull
 	@Column
 	private String userCategory;

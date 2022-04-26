@@ -21,16 +21,16 @@
 	            <th:block th:each="storeList : ${infoList}">
 	            	<!-- 리스트 정보 표시 -->
 	                <div class="col-sm-6 col-md-4 item">
-	                	<a th:href="@{/detail (id=${storeList.storeCode})}">
+	                	<a th:href="@{/detail (id=${storeList.value.storeCode})}">
 	                	<img class="img-fluid" src="assets/img/desk.jpg"></a> 
-	                	<h3 class="name" th:text="${storeList.storeName}">
+	                	<h3 class="name" th:text="${storeList.value.storeName}">
 	                	<a href="#"></a></h3>
-	                    <div th:text="${storeList.storeCategory}"></div>
-	                    <div th:text="${storeList.storeTag}"></div>
-	                    <div th:text="${storeList.storeRoadAddr}"></div>
+						<div th:text="${storeList.key} + ' 킬로미터 부근'" ></div>    	
+	                    <div th:text="${storeList.value.storeCategory}"></div>
+	                    <div th:text="${storeList.value.storeTag}"></div>
+	                    <div th:text="${storeList.value.storeRoadAddr}"></div>
 	                </div>
-	            </th:block>
-	            
+	            </th:block>  
             </div>
             
             <!-- 
@@ -57,7 +57,7 @@
 	$(document).ready(function(){
 		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 		if (navigator.geolocation) {
-		    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+		    //GeoLocation을 이용해서 접속 위치를 얻어옵니다
 		    navigator.geolocation.getCurrentPosition(function(position) { 
 	        var lat = position.coords.latitude, // 위도
 	            lon = position.coords.longitude; // 경도  
@@ -81,8 +81,6 @@
 			alert("geolocation error");
 		}	
     });
-	
-	
 	</script>
 </body>
 </html>
