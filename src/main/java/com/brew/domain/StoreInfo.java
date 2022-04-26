@@ -1,5 +1,6 @@
 package com.brew.domain;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -75,7 +76,7 @@ public class StoreInfo {
 	
 	@Builder
 	public StoreInfo(String storeCategory, String storeCode, String storeName, String storeRoadAddr, String storeTel, String storeAddr,
-			String storeRegDate, double storeLatitude, double storeLongitude, String storeTag, Float storeStaravg) {
+			LocalDateTime storeRegDate, double storeLatitude, double storeLongitude, String storeTag, Float storeStaravg) {
 		super();
 		this.storeCategory = storeCategory;
 		this.storeCode = storeCode;
