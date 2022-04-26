@@ -23,6 +23,7 @@
 	    	console.log(params.lat);
 	        console.log(params.lon);
 	        
+<<<<<<< HEAD
 	        document.location.href = "/storeList?lat="+lat+"&lon="+lon;
 /*	        
 	    	$.ajax({
@@ -31,10 +32,18 @@
 	    		data : params
 	    	})
 */
+=======
+	    	$.ajax({
+	    		type: "get",   //get방식으로 명시
+	    		url : "/latlon",  //이동할 jsp 파일 주소
+	    		data : params
+	    	})
+>>>>>>> origin/pipi
 		});
 		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 			alert("geolocation error");
 		}	
+<<<<<<< HEAD
 	};
 	</script>
 
@@ -72,13 +81,24 @@
 <div class="whole-section">
 
 
+=======
+		location.href="/storeList";
+	};
+	</script>
+
+>>>>>>> origin/pipi
 	<!-- navigation -->
 	<div class="nav-container">
 		<div class="nav-wrap">
 
 			<!-- 1번 nav -->
+<<<<<<< HEAD
 			<div class="logo-container nav-color">
 				<nav class="navbar navbar-expand-lg navbar-light">
+=======
+			<div class="logo-container">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+>>>>>>> origin/pipi
 					<div class="container-fluid">
 						<!-- 로고, 홈으로 이동 -->
 						<a class="navbar-brand" th:href="@{/index}">Logo</a>
@@ -86,9 +106,16 @@
 				</nav>
 			</div>
 			
+<<<<<<< HEAD
 			<!-- 2번 nav -->
 			<div class="menu-container nav-color">
 				<nav class="navbar navbar-expand-lg navbar-light">
+=======
+
+			<!-- 2번 nav -->
+			<div class="menu-container">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+>>>>>>> origin/pipi
 					<div class="container-fluid">
 
 						<button class="navbar-toggler" type="button"
@@ -101,10 +128,17 @@
 							<ul class="navbar-nav">
 								<li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/index}">Home</a></li>
 								<li class="nav-item"><a class="nav-link" th:href="@{/login}">로그인</a></li>
+<<<<<<< HEAD
 								<li class="nav-item" th:if="${session.user} != null"><a class="nav-link" th:href="@{/userpage}">마이페이지</a></li>
 								<li class="nav-item"><a class="nav-link" th:href="@{/map}">지도페이지</a></li>
 								<li class="nav-item"><a class="nav-link" onClick="toList()">술집리스트</a></li>
 								<li class="nav-item"><a class="nav-link" th:href="@{/board/hotPage}">게시판</a></li>
+=======
+								<li class="nav-item"><a class="nav-link" th:href="@{/userpage}">마이페이지</a></li>
+								<li class="nav-item"><a class="nav-link" th:href="@{/map}">지도페이지</a></li>
+								<li class="nav-item"><a class="nav-link" onClick="toList()">술집리스트</a></li>
+								<li class="nav-item"><a class="nav-link" th:href="@{/board}">게시판</a></li>
+>>>>>>> origin/pipi
 							</ul>
 						</div>
 					</div>
@@ -112,6 +146,7 @@
 			</div>
 
 			<!-- 3번 nav -->
+<<<<<<< HEAD
 			<div class="search-container nav-color">
 				<nav class="navbar navbar-expand-lg navbar-light">
 					<div class="container-fluid">
@@ -144,6 +179,24 @@
 </div>
 	
 
+=======
+			<div class="search-container">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<div class="container-fluid">
+						<form class="d-flex" method="get" action="/map">
+							<input class="form-control me-2" type="text" id="keyword" name="keyword" size="15" placeholder="Search" aria-label="Search">
+							<button class="btn btn-outline-success" type="submit">Search</button>
+						</form>
+					</div>
+				</nav>
+			</div>
+
+		</div>
+	</div>
+
+	
+</div>
+>>>>>>> origin/pipi
 <!-- navigation 끝 -->
 
 </html>

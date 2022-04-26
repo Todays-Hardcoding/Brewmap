@@ -1,3 +1,4 @@
+
 package com.brew.repository;
 
 import org.springframework.data.domain.Page;
@@ -26,4 +27,10 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	
 	// 게시판 아이디로 검색
 	Board findByBoardId(long boardId);
+<<<<<<< HEAD
 }
+=======
+
+}
+
+>>>>>>> origin/pipi

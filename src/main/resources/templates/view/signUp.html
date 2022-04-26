@@ -1,28 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Title</title>
-	
-	<!-- 공통적인 css -->    
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.css">
-    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
-    <link rel="stylesheet" href="assets/css/Simple-Slider.css">
-    <link rel="stylesheet" href="assets/css/Social-Icons.css">
-    <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/index.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
-
-    <link rel="stylesheet" href="assets/css/signUp.css">
-	
-	<!-- 아이콘 -->
-    <script src="https://kit.fontawesome.com/62cf104d13.js" ></script>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="layout/head :: headFragment">
 </head>
+
+<th:block layout:fragment="customCss">
+	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
+</th:block>
+
 
 <body>
 	<!-- 헤더 페이지 불러오기 -->
@@ -30,44 +15,61 @@
 
 	<!-- 회원가입 페이지 ======================================================== -->
 	<div class="signup-container">
-    <div class="signup-desc">
-      <h1>BREW MAP 회원가입</h1>
-      <p>회원가입으로 더 많은 서비스를 즐길 수 있습니다.</p>
-    </div>
+		<div class="signup-desc">
+			<h1>BREW MAP 회원가입</h1>
+			<p>회원가입으로 더 많은 서비스를 즐길 수 있습니다.</p>
+		</div>
 
-    <!-- 회원가입 폼 ======================================================== -->
-    <form class="signup-form">
+		<!-- 회원가입 폼 ======================================================== -->
+		<form action="/signUp" method="POST" class="signup-form">
 
-      <!-- 회원분류 ======================================================== -->
-      <div class="input-box">
-        <select class="form-select form-select-lg form-textbox"  required aria-label=".form-select-lg example" name="whoru-input" id="whoru-input">
-          <option value="">회원등급 설정</option>
-          <option value="1">유저</option>
-          <option value="2">영업자</option>
-          <option value="3">관리자</option>
-        </select>
-        <div class="valid-check">
-          <span title="whoru-value" class="valid-check"></span>
-        </div>
-      </div>
+			<!-- 회원분류 ======================================================== -->
+			<div class="input-box">
+				<select class="form-select form-select-lg form-textbox" required
+					aria-label=".form-select-lg example" name="whoru-input"
+					id="whoru-input">
+					<option value="">회원등급 설정</option>
+					<option value="1">유저</option>
+					<option value="2">영업자</option>
+					<option value="3">관리자</option>
+				</select>
+				<div class="valid-check">
+					<span title="whoru-value" class="valid-check"></span>
+				</div>
+			</div>
 
+<<<<<<< HEAD
       <!-- 이름입력 ======================================================== -->
       <div class="input-box">
         <div class="form-floating">
           <input type="text" class="form-control form-textbox" name="name-input" id="name-input" placeholder="이름" required>
-          <label for="name-input">이름</label>
+          <label for="userName">이름</label>
           <div class="valid-check">
             <span title="name-value" class="valid-check"></span>
           </div>
         </div>
       </div>
       
+=======
+			<!-- 이름입력 ======================================================== -->
+			<div class="input-box">
+				<div class="form-floating">
+					<input type="text" class="form-control form-textbox"
+						name="name-input" id="name-input" placeholder="이름" required>
+					<label for="name-input">이름</label>
+					<div class="valid-check">
+						<span title="name-value" class="valid-check"></span>
+					</div>
+				</div>
+			</div>
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 
+<<<<<<< HEAD
       <!-- 아이디 입력 ======================================================== -->
       <div class="input-box">
         <div class="form-floating id-input-box">
           <input type="text" class="form-control form-textbox  input-id-field" name="id-input" id="id-input" placeholder="아이디" required>
-          <label for="floatingInput">아이디</label>
+          <label for="userId">아이디</label>
           <p>새 ID로 사용될 주소입니다.</p>
           <div class="valid-check">
             <span title="email-value" class="valid-check"></span>
@@ -76,28 +78,60 @@
           <button class="btn btn-outline-secondary check-id" type="button" id="button-addon2">중복확인</button>
         </div>
       </div>
+=======
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 
+<<<<<<< HEAD
       <!-- 전화번호 입력 ======================================================== -->
       <div class="form-floating">
         <input type="text" class="form-control form-textbox" name="phone-input" id="phone-input" placeholder="전화번호 (-) 제외하고 입력" required>
-        <label for="floatingPassword">전화번호 (-) 제외하고 입력</label>
+        <label for="userTel">전화번호 (-) 제외하고 입력</label>
         <span title="phone-value" class="valid-check"></span>
       </div>
+=======
+			<!-- 아이디 입력 ======================================================== -->
+			<div class="input-box">
+				<div class="form-floating id-input-box">
+					<input type="text"
+						class="form-control form-textbox  input-id-field" name="id-input"
+						id="id-input" placeholder="아이디" required> <label
+						for="floatingInput">아이디</label>
+					<p>새 ID로 사용될 주소입니다.</p>
+					<div class="valid-check">
+						<span title="email-value" class="valid-check"></span>
+					</div>
+					<!-- 중복확인 글씨 바꿔야함 -->
+					<button class="btn btn-outline-secondary check-id" type="button"
+						id="button-addon2">중복확인</button>
+				</div>
+			</div>
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 
+<<<<<<< HEAD
       <!-- 이메일 입력 ======================================================== -->
       <div class="input-box">
         <div class="form-floating">
           <input type="email" class="form-control form-textbox  input-email-field" name="email-input" id="email-input" placeholder="name@example.com" required>
-          <label for="floatingInput">name@example.com</label>
+          <label for="userEmail">name@example.com</label>
           <div class="valid-check">
             <span title="email-value" class="valid-check"></span>
           </div>
         </div>
       </div>
+=======
+			<!-- 전화번호 입력 ======================================================== -->
+			<div class="form-floating">
+				<input type="text" class="form-control form-textbox"
+					name="phone-input" id="phone-input" placeholder="전화번호 (-) 제외하고 입력"
+					required> <label for="floatingPassword">전화번호 (-)
+					제외하고 입력</label> <span title="phone-value" class="valid-check"></span>
+			</div>
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 
+<<<<<<< HEAD
       <!-- 성별 입력 ======================================================== -->
       <div class="input-box">
-        <select class="form-select form-select-lg form-textbox"  required aria-label=".form-select-lg example" name="gender-input" id="gender-input">
+        <select class="form-select form-select-lg form-textbox"  required aria-label=".form-select-lg example" name="userGender" id="userGender">
           <option value="">성별</option>
           <option value="1">남</option>
           <option value="2">녀</option>
@@ -106,8 +140,23 @@
           <span title="whoru-value" class="valid-check"></span>
         </div>
       </div>
+=======
+			<!-- 이메일 입력 ======================================================== -->
+			<div class="input-box">
+				<div class="form-floating">
+					<input type="email"
+						class="form-control form-textbox  input-email-field"
+						name="email-input" id="email-input" placeholder="name@example.com"
+						required> <label for="floatingInput">name@example.com</label>
+					<div class="valid-check">
+						<span title="email-value" class="valid-check"></span>
+					</div>
+				</div>
+			</div>
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 
-      <!-- 주소 입력 ======== 주소검색 api로 나중에 변경 ==================== -->
+<<<<<<< HEAD
+      <!-- 주소 입력 ======== 주소검색 api로 나중에 변경 ====================
       <div class="input-box">
         <div class="form-floating">
           <input type="text" class="form-control form-textbox" name="addr-input" id="addr-input" placeholder="주소는 api로 변경하세요" required>
@@ -117,8 +166,8 @@
           </div>
         </div>
       </div>
-
-      <!-- 질문 입력 ======================================================== -->
+ -->
+      <!-- 질문 입력 ======================================================== 
       <div class="input-box">
         <select class="form-select form-select-lg form-textbox"  required aria-label=".form-select-lg example" name="question-input" id="question-input">
           <option value="">질문</option>
@@ -130,8 +179,8 @@
           <span title="whoru-value" class="valid-check"></span>
         </div>
       </div>
-
-      <!-- 답변 입력 ======================================================== -->
+-->
+      <!-- 답변 입력 ======================================================== 
       <div class="input-box">
         <div class="form-floating">
           <input type="text" class="form-control form-textbox" name="answer-input" id="answer-input" placeholder="답변" required>
@@ -141,7 +190,7 @@
           </div>
         </div>
       </div>
-      
+  -->    
       <!-- 버튼 ======================================================== -->
       <div class="input-box">
         <div class="btn-box">
@@ -149,18 +198,74 @@
         </div>
       </div>
       
+=======
+			<!-- 성별 입력 ======================================================== -->
+			<div class="input-box">
+				<select class="form-select form-select-lg form-textbox" required
+					aria-label=".form-select-lg example" name="gender-input"
+					id="gender-input">
+					<option value="">성별</option>
+					<option value="0">남</option>
+					<option value="1">녀</option>
+				</select>
+				<div class="valid-check">
+					<span title="whoru-value" class="valid-check"></span>
+				</div>
+			</div>
 
-    </form>
+			<!-- 주소 입력 ======== 주소검색 api로 나중에 변경 ==================== -->
+			<div class="input-box">
+				<div class="form-floating">
+					<input type="text" class="form-control form-textbox"
+						name="addr-input" id="addr-input" placeholder="주소는 api로 변경하세요"
+						required> <label for="name-input">주소는 api로 변경하세요</label>
+					<div class="valid-check">
+						<span title="name-value" class="valid-check"></span>
+					</div>
+				</div>
+			</div>
 
-  </div>
+			<!-- 질문 입력 ======================================================== -->
+			<div class="input-box">
+				<select class="form-select form-select-lg form-textbox" required
+					aria-label=".form-select-lg example" name="question-input"
+					id="question-input">
+					<option value="">질문</option>
+					<option value="1">질문1</option>
+					<option value="2">질문2</option>
+					<option value="3">질문3</option>
+				</select>
+				<div class="valid-check">
+					<span title="whoru-value" class="valid-check"></span>
+				</div>
+			</div>
+>>>>>>> branch 'GY' of https://github.com/Todays-Hardcoding/Brewmap.git
 
-    <!-- 푸터 페이지 불러오기 -->
-    <footer th:replace="/layout/footer.html :: footer"></footer>
+			<!-- 답변 입력 ======================================================== -->
+			<div class="input-box">
+				<div class="form-floating">
+					<input type="text" class="form-control form-textbox"
+						name="answer-input" id="answer-input" placeholder="답변" required>
+					<label for="name-input">답변</label>
+					<div class="valid-check">
+						<span title="name-value" class="valid-check"></span>
+					</div>
+				</div>
+			</div>
 
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.js"></script>
-    <script src="assets/js/Simple-Slider.js"></script>
+			<!-- 버튼 ======================================================== -->
+			<div class="input-box">
+				<div class="btn-box">
+					<button type="button" class="btn btn-primary button"
+						name="signup-button" id="signup-button">완료</button>
+				</div>
+			</div>
+		</form>
+
+	</div>
+
+	<!-- 푸터 페이지 불러오기 -->
+	<footer th:replace="/layout/footer.html :: footer"></footer>
 </body>
 
 </html>

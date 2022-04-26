@@ -1,6 +1,10 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="ko" 
 	xmlns:th="http://www.thymeleaf.org"
+=======
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+>>>>>>> origin/pipi
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="layout/head :: headFragment">
 </head>
@@ -17,8 +21,15 @@
 	<div th:replace="layout/header :: header"></div>
 
 	<!-- [content] 영역 시작, 아래 태그 지우고 이 자리 채우면 됨. -->
+<<<<<<< HEAD
 	<div class="container profile profile-view" id="profile">
 		<form action="/modifyUserInfo" method="POST">
+=======
+	<h1 th:text="${userId}"></h1>
+
+	<div class="container profile profile-view" id="profile">
+		<form>
+>>>>>>> origin/pipi
 			<div class="row profile-row">
 				<div class="col-md-4 relative" style="height: 300px;">
 					<div class="avatar" style="height: 300px;">
@@ -27,56 +38,100 @@
 							<strong>User</strong>
 						</div>
 						<div class="text-center">
+<<<<<<< HEAD
 							<a class="bs4_modal_trigger" href="#">사진 변경</a>
 							<a class="bs4_modal_trigger" th:href="@{/delete(userId=${session.user.userId})}" >회원 탈퇴</a>
 							<!-- <a class="bs4_modal_trigger" th:href="@{/delete}" > 탈퇴</a> -->
+=======
+							<a class="bs4_modal_trigger" href="#">사진 변경</a><a
+								class="bs4_modal_trigger" th:href="@{/modify}">정보 수정</a>
+>>>>>>> origin/pipi
 						</div>
 					</div>
 				</div>
 				<div class="col-md-8">
 					<div class="d-xl-flex justify-content-xl-center social-icons"
 						style="height: 100xp;">
+<<<<<<< HEAD
 						<a href="#"><i class="fab fa-product-hunt" href="#"></i></a>
 						<a href="#"><i class="fas fa-ticket-alt" href="#"></i></a>
 						<a href="#"><i class="fas fa-comment-dots" href="#"></i></a>
 						<a href="#"><i class="fa fa-calendar-check-o" href="#"></i></a>
+=======
+						<a href="#"><i class="fab fa-product-hunt" href="#"></i></a><a
+							href="#"><i class="fas fa-ticket-alt" href="#"></i><i
+							class="fas fa-comment-dots" href="#"></i></a><a href="#"></a><a
+							href="#"><i class="fa fa-calendar-check-o" href="#"></i></a>
+>>>>>>> origin/pipi
 					</div>
 					<hr>
 					<div class="row">
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group mb-3">
+<<<<<<< HEAD
 								<strong>회원아이디</strong>
 								<input th:value="${session.user.userId}" class="form-control-plaintext" name="userId"></input>
+=======
+								<strong>회원아이디</strong> <input th:value="${user.userId}"
+									class="form-control-plaintext"></input> <input
+									th:value="${session.userId}" class="form-control-plaintext"></input>
+>>>>>>> origin/pipi
 							</div>
 						</div>
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group mb-3">
+<<<<<<< HEAD
 								<strong>이름</strong>
 								<input th:value="${session.user.userName}" class="form-control-plaintext" name="userName"></input>
+=======
+								<strong>이름</strong> <input th:value="${user.userName}"
+									class="form-control-plaintext"></input> <input
+									th:value="${session.userName}" class="form-control-plaintext"></input>
+>>>>>>> origin/pipi
 							</div>
 						</div>
 						<div class="col">
 							<div class="form-group mb-3">
+<<<<<<< HEAD
 								<strong>생년월일</strong>
 								<input th:value="${session.user.userBirthDate}" class="form-control-plaintext" name="userBirthDate"></input>
+=======
+								<strong>생년월일</strong> <input th:value="${user.userBirthDate}"
+									class="form-control-plaintext"></input> <input
+									th:value="${session.userBirthDate}"
+									class="form-control-plaintext"></input>
+>>>>>>> origin/pipi
 							</div>
 						</div>
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group mb-3">
+<<<<<<< HEAD
 								<strong>회원등급</strong>
 								<input th:value="${session.user.userGrade}" class="form-control-plaintext" name="userGrade"></input>
+=======
+								<strong>회원등급</strong> <input th:value="${user.userGrade}"
+									class="form-control-plaintext"></input> <input
+									th:value="${session.userGrade}" class="form-control-plaintext"></input>
+>>>>>>> origin/pipi
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group mb-3">
+<<<<<<< HEAD
 								<strong>전화번호</strong>
 								<input th:value="${session.user.userTel}" class="form-control-plaintext" name="userTel"></input>
+=======
+								<strong>전화번호</strong> <input th:value="${user.userTel}"
+									class="form-control-plaintext"></input> <input
+									th:value="${session.userTel}" class="form-control-plaintext"></input>
+>>>>>>> origin/pipi
 							</div>
 						</div>
 						<div class="col-sm-12 col-md-6">
 							<div class="form-group mb-3">
+<<<<<<< HEAD
 								<strong>이메일</strong>
 								<input th:value="${session.user.userEmail}" class="form-control-plaintext" name="userEmail"></input>
 							</div>
@@ -84,13 +139,27 @@
 							<input type="hidden" name="userCategory"  th:value="${session.user.userCategory}"></input>
 							<input type="hidden" name="userNickName"  th:value="${session.user.userNickName}"></input>
 							<input type="hidden" name="userPw"  th:value="${session.user.userPw}"></input>
+=======
+								<strong>이메일</strong> <input th:value="${user.userEmail}"
+									class="form-control-plaintext"></input> <input
+									th:value="${session.userEmail}" class="form-control-plaintext"></input>
+							</div>
+						</div>
+>>>>>>> origin/pipi
 					</div>
 					<hr>
 					<div class="row">
 						<div class="col-md-12 content-right">
+<<<<<<< HEAD
 							<button class="btn btn-primary form-btn" type="submit" >SAVE</button>
 							<button class="btn btn-danger form-btn" type="reset"
 								onclick="location.href='userpage';">CANCEL</button>
+=======
+							<button class="btn btn-primary form-btn" type="submit">SAVE
+							</button>
+							<button class="btn btn-danger form-btn" type="reset"
+								onclick="moveUserpage()">CANCEL</button>
+>>>>>>> origin/pipi
 						</div>
 					</div>
 				</div>
@@ -106,6 +175,19 @@
 <div th:replace="layout/script :: scriptFragment">
 	<!-- 이 안에 개별적인 js 넣으면 됨. -->
 	<script th:inline="javascript">
+<<<<<<< HEAD
+=======
+		/* 확인용 코드입니다 */
+		/*     var userlist = [[${user}]];
+		 console.log(userlist);  */
+		/* 	var checkuser = [[${session.userId}]];
+		 console.log(checkuser);
+		 */
+
+		function moveUserpage() {
+			location.href = "userpage"
+		}
+>>>>>>> origin/pipi
 	</script>
 </div>
 </body>

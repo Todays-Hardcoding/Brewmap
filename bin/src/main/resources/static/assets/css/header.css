@@ -4,7 +4,10 @@
   display: flex;
   margin: 0 auto;
   justify-content: center;
+<<<<<<< HEAD
   height: 70px;
+=======
+>>>>>>> origin/pipi
 }
 
 .nav-wrap .logo-container{
@@ -41,6 +44,7 @@
   .navbar-nav{
     white-space: nowrap;
   }
+<<<<<<< HEAD
 }
 
 .nav-color{
@@ -131,4 +135,6 @@ button {
   position: absolute;
   top: 17px;
   right: 20px;
+=======
+>>>>>>> origin/pipi
 }

@@ -11,6 +11,7 @@ public class PageController {
 		return "view/pages/chat";
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("/login")
 	public String loginnav() {
 		return "view/login";
@@ -20,6 +21,27 @@ public class PageController {
 	public String mypagenav() {
 		return "view/pages/mypage";
 	}
+=======
+//	@RequestMapping("/storeList")
+//	public String storeListnav() {
+//		return "view/pages/storeList";
+//	}
+	
+	/*
+	 * @RequestMapping("/board") public String boardnav() { return
+	 * "view/board/boardMain"; }
+	 */
+	
+//	@RequestMapping("/login")
+//	public String loginnav() {
+//		return "view/login";
+//	}
+//	
+//	@RequestMapping("/mypage")
+//	public String mypagenav() {
+//		return "view/pages/mypage";
+//	}
+>>>>>>> origin/pipi
 	// 방명록
 	
 	//수정

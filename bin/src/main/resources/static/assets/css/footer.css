@@ -1,7 +1,11 @@
 .footer-container {
   display: flex;
+<<<<<<< HEAD
   height: 100px;
   justify-content: space-around;
   bottom: 0;
   padding: 20px;
+=======
+  justify-content: space-around;
+>>>>>>> origin/pipi
 }

@@ -32,7 +32,15 @@ public class StoreInfoController {
 	@RequestMapping(value = { "/", "/index" })
 	public String index(@PageableDefault(page = 0, size = 5) Pageable pageable, Model model, HttpSession session) {
 		
+<<<<<<< HEAD
 		session.setAttribute("user", userservice.findByUserId("abc"));
+=======
+
+		session.setAttribute("user", userservice.findByUserId("ab"));
+
+//		session.setAttribute("user", userservice.findByUserId("ab"));
+
+>>>>>>> origin/pipi
 		
 		Page<StoreInfo> storePage = storeinfoService.findHotStores(pageable);
 
@@ -86,4 +94,9 @@ public class StoreInfoController {
 
 		return "view/pages/map";
 	}
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/pipi
 }

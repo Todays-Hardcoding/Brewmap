@@ -190,4 +190,9 @@ public class BoardController {
 		return "redirect:?boardId="+boardId;
 	}
 	
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> origin/pipi

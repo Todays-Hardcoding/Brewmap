@@ -1,6 +1,7 @@
 package com.brew.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -16,10 +17,12 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
+	// 유저 전체조회
 	public List<User> findAllUser() {
 		return userRepository.findAll();
 	}
 
+	// 유저 id 조회
 	public User findByUserId(String userId) {
 		return userRepository.findByUserId(userId);
 	}
@@ -36,5 +39,4 @@ public class UserService {
 	public void delete(User user) {
 		userRepository.delete(user);
 	}
-	
 }

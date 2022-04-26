@@ -126,5 +126,9 @@ public class User {
 		this.userAnswer = userAnswer;
 	}
 
+<<<<<<< HEAD
 	
 }
+=======
+}
+>>>>>>> origin/pipi

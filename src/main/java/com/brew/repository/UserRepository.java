@@ -2,6 +2,8 @@ package com.brew.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.brew.domain.User;
@@ -9,8 +11,7 @@ import com.brew.domain.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
 
-	
-	
+
 	public User findByUserId(String userId);
 
 	public User findByUserName(String userName);
@@ -27,4 +28,11 @@ public interface UserRepository extends JpaRepository<User, String> {
 //	@Query(value="Update user set userId = :userId where userId = :userId ")
 //	public User changeByUserId(@Param("userId") String userId);
 
+
+
+//	@Query("SELECT u FROM User u WHERE u.userId = :userId and u.userPw = :userPw")
+//	public User checkUser(@Param("userId") String id, @Param("userPw") String pw);
+	
+
 }
+
