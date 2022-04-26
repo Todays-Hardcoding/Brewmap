@@ -57,18 +57,30 @@ public class StoreInfoController {
 		Page<StoreInfo> storePage = storeinfoService.findPageByKeyword(keyword, pageable);
 		List<StoreInfo> storeList = storeinfoService.findListByKeyword(keyword, pageable);
 
-		int nowPage = storePage.getPageable().getPageNumber() + 1;
-		int startPage = Math.max(nowPage - 2, 1);
-		int endPage = Math.min(nowPage + 2, storePage.getTotalPages());
-
 		model.addAttribute("storePage", storePage);
 		model.addAttribute("storeList", storeList);
 		model.addAttribute("keyword", keyword);
+
+		int TotalPages = storePage.getTotalPages();
+		// 시각적인 현재 페이지
+		int nowPage = storePage.getPageable().getPageNumber()+1;
+		// 시각적인 맨 첫 페이지, 맨 끝 페이지
+		int startPage = 1;
+		int endPage = storePage.getTotalPages();
+		// 10페이지 단위로 나눌 예정.
+		int currentStart = (nowPage/10)*10 + 1;
+		int	currentLast = currentStart + 9 < TotalPages ? currentStart + 9 : TotalPages;
+		
+		model.addAttribute("list", storePage);
+		model.addAttribute("boardTotalPages", TotalPages);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
-
+		model.addAttribute("currentStart", currentStart);
+		model.addAttribute("currentLast", currentLast);
+		
 		return "view/pages/mapSearch";
+
 	}
 	
 	@GetMapping("/click")
