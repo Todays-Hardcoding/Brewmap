@@ -87,10 +87,30 @@
 
 	<th:block layout:fragment="js">
 		<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
-		<script type="text/javascript" th:inline="javascript">
-			
-		</script>
+
 	</th:block>
+	<script type="text/javascript">
+		const form = document.querySelector('form');
+
+		form.addEventListener('submit', function (evt) {
+
+			const boardTitle = document.querySelector('input[name="boardTitle"]');
+			var boardTitleCheck = /[\s]/g;
+			if(str.replace(boardTitle, '' ) == "" ){
+				alert('제목을 입력해주세요');
+			}
+			if (!boardTitleCheck.test(boardTitle.value)) {
+				alert('제목은 3글자 이상으로 써주세요.');
+				boardTitle.focus();
+				//boardTitle.value = '';
+				evt.preventDefault();
+				return false;
+			}
+			if( boardTitleCheck.test(boardTitle) == true){
+					alert('공백이 입력되었습니다.');
+			}
+		});
+	</script>
 </body>
 
 </html>
