@@ -41,7 +41,6 @@ public class Board {
 	private List<Reply> reply;
 	
 	@ManyToOne
-	@JsonBackReference
 	@JoinColumn(name="user_id")
 	@JsonBackReference
 	private User user;

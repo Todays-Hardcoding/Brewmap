@@ -35,14 +35,12 @@ public class Review {
 	
 	@NotNull
 	@ManyToOne
-	@JsonBackReference
 	@JoinColumn(name="store_code")
 	@JsonBackReference
 	private StoreInfo storeInfo;
 
 	@NotNull
 	@ManyToOne
-	@JsonBackReference
 	@JoinColumn(name="user_id")
 	@JsonBackReference
 	private User user;
@@ -74,10 +72,10 @@ public class Review {
 	 storeInfo.setReviewCount(storeInfo.getReview().size()); 
 	 this.reviewDate = LocalDateTime.now();
 	 }
-	
+
 	@Builder
-	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull int reviewStar,
-			@NotNull String reviewComment, LocalDateTime reviewDate) {
+	public Review(@NotNull StoreInfo storeInfo, @NotNull User user, @NotNull long reviewId, @NotNull String reviewUser,
+			@NotNull int reviewStar, @NotNull String reviewComment, LocalDateTime reviewDate) {
 		super();
 		this.storeInfo = storeInfo;
 		this.user = user;
@@ -87,4 +85,7 @@ public class Review {
 		this.reviewComment = reviewComment;
 		this.reviewDate = reviewDate;
 	}
+	
+	
+	
 }
