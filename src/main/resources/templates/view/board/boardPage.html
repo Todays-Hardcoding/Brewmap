@@ -111,7 +111,6 @@
 									<!-- 댓글 내용 -->
 									<p style="font-size: 16px;" th:text="${reply.replyContent}">댓글 내용</p>
 									<div th:if="${session.user.userId} == ${reply.user.userId}" class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end">
-										<button class="btn btn-primary d-flex d-xxl-flex justify-content-center align-items-center" type="submit" style="margin-right: 5px;margin-left: 5px;width: 60px;height: 30px;font-size: 13px;">수정</button>
 										<button class="btn btn-primary d-flex d-xxl-flex justify-content-center align-items-center" type="submit" style="margin-left: 5px;width: 60px;height: 30px;font-size: 13px;" formaction="/board/deleteReply">삭제</button>
 									</div>
 								</div>

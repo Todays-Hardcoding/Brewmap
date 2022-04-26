@@ -26,7 +26,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Entity
 @Table
@@ -65,8 +64,7 @@ public class Review {
 	@PrePersist
 	@PreUpdate
 	 public void createdAt() {
-	 storeInfo.setReviewCount(storeInfo.getReview().size()); 
-	 this.reviewDate = LocalDateTime.now();
+		this.reviewDate = LocalDateTime.now();
 	 }
 	
 	@Builder
