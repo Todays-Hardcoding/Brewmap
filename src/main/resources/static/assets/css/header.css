@@ -216,3 +216,9 @@ button {
 .second-nav {
   height: 100%;
 }
+
+a {
+	text-decoration: none;
+	border-color: white;
+}
+a:hover { text-decoration:none !important }
