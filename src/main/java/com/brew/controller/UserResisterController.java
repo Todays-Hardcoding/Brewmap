@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.brew.domain.User;
@@ -39,10 +40,13 @@ public class UserResisterController {
 		return "view/index";
 	}
 	
-	@RequestMapping(value = "/dupUser")
-	public String checkUser(HttpServletRequest req, @RequestParam String result) {
+	@RequestMapping(value = "/dupUser", method = RequestMethod.POST)
+	public String checkUser(HttpServletRequest req, @RequestParam String userId) {
 		String checkUserId = req.getParameter("userId");
-		User idCheck = userservice.checkUserId(checkUserId);
+		User idCheck = userservice.checkUserId(userId);
+		System.out.println(userId);
+		
+		String result = "idUnchecked";
 		
 		 if( idCheck != null) {
 			 result = "idChecked";
@@ -50,7 +54,7 @@ public class UserResisterController {
 			 result = "idUnchecked";
 		 }
 		 req.setAttribute("result", result);
-		return result;
+		return "view/signUp";
 	}
 	
 	
