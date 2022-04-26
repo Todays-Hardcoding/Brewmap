@@ -1,42 +1,52 @@
 /* 홈페이지 색상 정보*/
 /* 글자색 변경 */
 .color-black {
-  color: #343a40;
+  border-color: #362222;
 }
-.color-purple {
-  color: #7952b3;
+.color-dark-brown {
+  border-color: #5c3d2e;
 }
-.color-yellow {
-  color: #ffc107;
+.color-brown {
+  border-color: #b85c38;
 }
-.color-white {
-  color: #e1e8eb;
+.color-light-brown {
+  border-color: #e0c097;
 }
+.color-gray {
+  border-color: #e6e6e6;
+}
+
 /* 배경색 변경 */
-.color-black {
-  background-color: #343a40;
+.background-color-black {
+  background-color: #362222;
 }
-.color-purple {
-  background-color: #7952b3;
+.background-color-dark-brown {
+  background-color: #5c3d2e;
 }
-.color-yellow {
-  background-color: #ffc107;
+.background-color-brown {
+  background-color: #b85c38;
 }
-.color-white {
-  background-color: #e1e8eb;
+.background-color-light-brown {
+  background-color: #e0c097;
+}
+.background-color-gray {
+  border-color: #e6e6e6;
 }
 /* 테두리 변경 */
-.color-black {
-  border-color: #343a40;
+.border-color-black {
+  border-color: #362222;
 }
-.color-purple {
-  border-color: #7952b3;
+.border-color-dark-brown {
+  border-color: #5c3d2e;
 }
-.color-yellow {
-  border-color: #ffc107;
+.border-color-brown {
+  border-color: #b85c38;
 }
-.color-white {
-  border-color: #e1e8eb;
+.border-color-light-brown {
+  border-color: #e0c097;
+}
+.border-color-gray {
+  border-color: #e6e6e6;
 }
 
 .z-9999 {
@@ -124,8 +134,14 @@ button {
   border-radius: 15px;
   text-decoration: none;
   /* transition: 0.25s; */
-  background-color: #ffc107;
-  color: #7952b3;
+  background-color: #362222;
+  color: #b85c38;
+  font-weight: 800;
+}
+.nav-search-button:hover {
+  background-color: #b85c38;
+  color: #e0c097;
+  font-weight: 800;
 }
 
 #nav-search-input {
@@ -136,13 +152,16 @@ button {
 .storeListClass a {
   text-decoration: none;
 }
-
+/* 돋보기 */
 .nav-search-icon {
   font-size: 36px;
-  color: #ffc107;
+  color: #362222;
 }
+
 .nav-search-icon:hover {
   cursor: pointer;
+  font-size: 40px;
+  color: #b85c38;
 }
 .search-input-container {
   padding-left: 20px;
@@ -151,7 +170,7 @@ button {
   width: 20%;
   min-width: 200px;
   display: inline-block;
-  border: 1px solid #ffc107;
+  border: 1px solid #b85c38;
   border-radius: 10px;
   margin-right: 0;
 }
@@ -204,4 +223,19 @@ button {
 }
 .second-nav {
   height: 100%;
+}
+
+a {
+  text-decoration: none;
+  border-color: white;
+}
+a:hover {
+  text-decoration: none !important;
+}
+
+.nav-list li a span {
+  font-weight: 900;
+  color: #362222;
+  /* color: #b85c38; */
+  /* color: #e0c097; */
 }

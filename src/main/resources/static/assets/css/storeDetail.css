@@ -33,6 +33,10 @@ li {
   color: gray;
 }
 
+.test{
+	color: blue;
+}
+
 
 @media (max-width:980px) {
   .container {
