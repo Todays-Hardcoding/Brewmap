@@ -76,10 +76,8 @@ public class StoreInfo {
 	private Float storeStaravg;
 	
 	@PrePersist
-	@PreUpdate
 	public void createdAt() {
 		this.storeRegdate = LocalDateTime.now();
-		this.storeStaravg = (float) 3.0;
 	}
 
 	@Builder
