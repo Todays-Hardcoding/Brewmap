@@ -49,6 +49,10 @@
 				<div class="col">
 					<h4 class="display-6" th:text="${boardCategory}"></h4>
 					<hr />
+					<div th:if="${boardList.content.size} == 0">
+						<img class="img-fluid" style="width: 100%;height:90%;" th:src="'/download.jpg'"/>
+						<h5 style ="text-align: center">검색 결과가 없습니다...</h5>
+					</div>
 					<ul class="list-group list-group-flush"
 						th:each="board : ${boardList}">
 						<a th:href="@{/board (boardId=${board.boardId})}">
@@ -68,11 +72,11 @@
 										<small th:text="${board.reply.size}"></small>
 									</div>
 								</div>
-						</li>
+							</li>
 						</a>
 					</ul>
 					<nav class="d-flex justify-content-center">
-						<ul class="pagination"
+						<ul class="pagination" th:if="${boardList.content.size} != 0"
 							th:with="currentStart=${currentStart}, currentLast=${currentLast}, boardCategory=${boardCategory}">
 
 
@@ -144,5 +148,9 @@
 	<div th:replace="layout/script :: scriptFragment">
 		<!-- 이 안에 개별적인 js 넣으면 됨. -->
 	</div>
+	<script th:inline="javascript">
+		var store = [[${boardList}]]
+		console.log(store)
+	</script>
 </body>
 </html>
