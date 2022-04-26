@@ -1,13 +1,11 @@
 package com.brew.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -71,11 +69,8 @@ public class StoreListService {
 		}
 		
 		return result;
-<<<<<<< HEAD
+
 		}
-}
-=======
-	}
 	
 	
 //	거리 가져와서 평점순으로 정렬
@@ -169,4 +164,3 @@ public class StoreListService {
 	}
 
 }
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
