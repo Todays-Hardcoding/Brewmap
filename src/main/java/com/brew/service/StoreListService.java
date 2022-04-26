@@ -71,10 +71,6 @@ public class StoreListService {
 		}
 		
 		return result;
-<<<<<<< HEAD
-		}
-}
-=======
 	}
 	
 	
@@ -169,4 +165,3 @@ public class StoreListService {
 	}
 
 }
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
