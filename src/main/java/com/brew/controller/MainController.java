@@ -4,20 +4,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class PageController {
+public class MainController {
 	
 	@RequestMapping("/footer3")
-	public String footer3() {
+	public String chat() {
 		return "view/pages/chat";
 	}
 	
 	@RequestMapping("/login")
-	public String loginnav() {
+	public String login() {
 		return "view/login";
 	}
 	
 	@RequestMapping("/mypage")
-	public String mypagenav() {
+	public String mypage() {
 		return "view/pages/mypage";
 	}
 	// 방명록

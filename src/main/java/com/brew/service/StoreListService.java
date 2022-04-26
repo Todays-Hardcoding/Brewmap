@@ -1,7 +1,6 @@
 package com.brew.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -56,7 +55,7 @@ public class StoreListService {
 
 		    distance = 2 * radius * Math.asin(squareRoot);
 	        
-		    if(distance < 20) {
+		    if(distance < 2) {
 		        storesDistance.put(distance, store);                
 		    }   	
 		}

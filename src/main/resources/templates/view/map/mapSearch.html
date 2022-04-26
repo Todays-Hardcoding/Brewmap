@@ -2,31 +2,35 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="css/css :: css"></head>
-<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript">
-	function toMap() {
-		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
-		if (navigator.geolocation) {
-		    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-		    navigator.geolocation.getCurrentPosition(function(position) { 
-	        var lat = position.coords.latitude, // 위도
-	            lon = position.coords.longitude; // 경도  
-	            
-	         // 위도, 경도를 Map<String, String> 형식으로 저장
-	    	var params = {
-    			"lat" : lat,
-    			"lon" : lon 
-	   		}
-
-	        document.location.href = "/click?lat="+lat+"&lon="+lon;
-
-		});
-		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-			alert("geolocation error");
-		}	
-	};
-</script>
-
+	<style>
+	ul{
+	   list-style:none;
+	}
+	</style>
+	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript">
+		function toMap() {
+			// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+			if (navigator.geolocation) {
+			    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+			    navigator.geolocation.getCurrentPosition(function(position) { 
+		        var lat = position.coords.latitude, // 위도
+		            lon = position.coords.longitude; // 경도  
+		            
+		         // 위도, 경도를 Map<String, String> 형식으로 저장
+		    	var params = {
+	    			"lat" : lat,
+	    			"lon" : lon 
+		   		}
+	
+		        document.location.href = "/click?lat="+lat+"&lon="+lon;
+	
+			});
+			} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+				alert("geolocation error");
+			}	
+		};
+	</script>
 <body>
 	<div th:replace="/layout/header.html :: header"></div>
 	<form class="search-form">
@@ -45,9 +49,20 @@
 			style="width: 100%; height: 500px; position: relative; overflow: hidden;"></div>
 			</div>
 			<div id="menu_wrap" class="col-lg-4">
+				<div class="input-group">
+					<form method="get" action="/map">
+						<span class="input-group-text"><i class="fa fa-search"></i></span>
+						<input class="form-control" type="text" id="keyword" name="keyword" size="15" placeholder="I am looking for..">
+						<button class="btn btn-light" type="submit">Search</button>
+					</form>
+				</div>
 				<ul id="placesList" class="list-group">
 				</ul>
 				<div id="pagination">
+					<th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+						<a th:if="${page != nowPage}" th:href="@{/map(page=${page-1}, keyword=${keyword})}" th:text="${page}"></a>
+						<a th:if="${page == nowPage}" th:text="${page}"></a>
+					</th:block>
 				</div>
 			</div>
 		</div>
@@ -59,10 +74,10 @@
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb3950b2c101dc6b62f59a629977b969&libraries=services"></script>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="assets/js/Map-locations-2.js"></script>
-	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script th:inline="javascript">
 		
 		var storeList = [[${storeList}]];
+		console.log(storeList);
 		
 		// 마커를 담을 배열입니다
 		var markers = [];
@@ -77,126 +92,15 @@
 		// 지도를 생성합니다    
 		var map = new kakao.maps.Map(mapContainer, mapOption);
 		
-		// 현재 위치 마커를 생성합니다.
-		var myImageSrc = 'mylocation.png';
-        var myImageSize = new kakao.maps.Size(20, 30); // 마커 이미지 생성
-        var myMarkerImage = new kakao.maps.MarkerImage(myImageSrc, myImageSize);
-		var myMarker = new kakao.maps.Marker({	
-				image: myMarkerImage
-			});
-		
-		// 현재 위치 인포윈도우를 생성합니다
-	    var myInfowindow = new kakao.maps.InfoWindow({
-	        zIndex : 1,
-	    });
-		
-	 	// 현재 위치로 이동하는 함수
-		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
-		
-		getCurrentPosition();
-		
-		function getCurrentPosition(){
-				if (navigator.geolocation) {
-				    
-				    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-				    navigator.geolocation.getCurrentPosition(function(position) {
-				        
-				        var lat = position.coords.latitude, // 위도
-				            lon = position.coords.longitude; // 경도
-				        
-				        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-				            message = '<div style="padding:5px;">현재 위치</div>'; // 인포윈도우에 표시될 내용입니다
-				        
-				        // 마커와 인포윈도우를 표시합니다
-				        displayPlaces(storeList);
-				            
-				        displayMarker(locPosition, message);
-
-				      });
-				    
-				} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-				    
-				    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
-				        message = 'geolocation을 사용할수 없어요..'
-				        
-				    	displayMarker(locPosition, message);
-				}		
-		}
-	 		
-		function sendPosition(lat, lon) {
-			
-			const sendData = {
-		 		"lat": lat, 
-		 		"lon": lon
-		 	}
-			
-			$.ajax({
-				method: 'POST', 
-				url: '/move',
-				data: JSON.stringify(sendData),
-				contentType: 'application/json; charset=UTF-8',
-				success: function(data) {
-					console.log(data);
-					displayPlaces(data);
-				},
-				error: function(error) {
-					alert("why?")
-				}
-			})
-		}
-	 	
-	 	var radius = 500;
-	 	// 검색 반경 설정 함수
-	 	function setRaius(event) {
-	 		radius = Number(event.target.value);
-	 		console.log(radius);
-	 	}
-		
-		// 지도 클릭 시 해당 위치로 이동
-		kakao.maps.event.addListener(map, 'click', moveMyPosition);       
-			
-		function moveMyPosition(mouseEvent) {
-	    	// 클릭한 위도, 경도 정보를 가져옵니다 
-	    	var latlng = mouseEvent.latLng,
-	    		locPosition = new kakao.maps.LatLng(latlng.getLat(), latlng.getLng()),
-	    		message = '<div style="padding:5px;">현재 위치</div>';
-	    	
-	    	sendPosition(latlng.getLat(), latlng.getLng());
-	    		
-	    	displayMarker(locPosition, message);
-	   		
-	   		
-		}
-
-		// 지도에 마커와 인포윈도우를 표시하는 함수입니다
-		function displayMarker(locPosition, message) {
-			// 기존 마커와 인포윈도우 삭제
-			myMarker.setMap(null);
-			infowindow.close();
-			myInfowindow.close();
-			
-			// 새로운 위치에 마커 표시
-			myMarker.setPosition(locPosition);
-			myMarker.setMap(map);
-		    
-		    var iwContent = message; // 인포윈도우에 표시할 내용
-
-		    // 인포윈도우를 생성합니다
-		    myInfowindow.setContent(message);
-		    
-		    // 인포윈도우를 마커위에 표시합니다 
-		    myInfowindow.open(map, myMarker);
-		    
-		    // 지도 중심좌표를 접속위치로 변경합니다
-		    map.setCenter(locPosition);
-		}
-		
 		// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 		var infowindow = new kakao.maps.InfoWindow({
 			zIndex : 1,
 			removable : true
 			});
-
+	
+		// 검색 결과 목록과 마커를 표출하는 함수입니다
+		displayPlaces(storeList);
+		
 		function displayPlaces(storeList) {
 			var listEl = document.getElementById('placesList'),
 				menuEl = document.getElementById('menu_wrap'),
@@ -209,14 +113,12 @@
 
 			// 지도에 표시되고 있는 마커를 제거합니다
 			removeMarker();
-			
-			var i = 0;
-			for(let key in storeList) {
-				console.log(i);
+
+			for (var i = 0; i < storeList.length; i++) {
 				// 마커를 생성하고 지도에 표시합니다
-				var placePosition = new kakao.maps.LatLng(storeList[key].storeLatitude, storeList[key].storeLongitude),
+				var placePosition = new kakao.maps.LatLng(storeList[i].storeLatitude, storeList[i].storeLongitude),
 				marker = addMarker(placePosition, i),
-				itemEl = getListItem(i, storeList[key]); // 검색 결과 항목 Element를 생성합니다
+				itemEl = getListItem(i, storeList[i]); // 검색 결과 항목 Element를 생성합니다
 
 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 				// LatLngBounds 객체에 좌표를 추가합니다
@@ -237,10 +139,9 @@
 						map.setCenter(position);
 					};
 
-				})(marker, storeList[key]);
+				})(marker, storeList[i]);
 
-				fragment.appendChild(itemEl);
-				i++;
+				fragment.appendChild(itemEl);			
 			}
 
 			// 검색결과 항목들을 검색결과 목록 Element에 추가합니다
@@ -248,7 +149,7 @@
 			menuEl.scrollTop = 0;
 
 			// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-			/* map.setBounds(bounds); */
+			map.setBounds(bounds);
 		}
 
 		// 검색결과 항목을 Element로 반환하는 함수입니다
@@ -260,17 +161,17 @@
 						+ '"></span>'
 						+ '<div class="info">'
 						+ '   <h5>' + store.storeName + '</h5>';
-
+	
 			if (store.storeRoadAddr) {
-				itemStr += '<span>' + store.storeRoadAddr + '</span>'
-						+ '<span class="jibun gray">' + store.storeAddr
-						+ '</span>';
+				itemStr += '<span>' + store.storeRoadAddr + '</span><br>'
+						+ '<span>' + store.storeAddr + '</span><br>';
 			} else {
-				itemStr += '<span>' + store.storeAddr + '</span>';
+				itemStr += '<span>' + store.storeAddr + '</span><br>';
 			}
-
-			itemStr += '<span class="tel">' + store.storeTel + '</span>'
-					+ '</div>' + '<span>';
+			if (store.storeTel) {
+				itemStr += '<span class="tel">' + store.storeTel + '</span><br>'
+				+ '</div>' + '<span>';
+			}
 					
 			var storeTagList = new Array();
 		    storeTagList = store.storeTag.split(",");
