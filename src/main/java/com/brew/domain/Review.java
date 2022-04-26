@@ -13,13 +13,17 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+
+import org.hibernate.annotations.DynamicUpdate;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.NoArgsConstructor;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table
@@ -32,7 +36,6 @@ public class Review {
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
-	@JsonBackReference
 	private User user;
 	
 	@Id
@@ -60,6 +63,7 @@ public class Review {
 	public void createdAt() {
 		this.reviewDate = LocalDateTime.now();
 	}
+
 	
 	@Builder
 	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull String reviewUser,
@@ -73,4 +77,6 @@ public class Review {
 		this.reviewComment = reviewComment;
 		this.reviewDate = reviewDate;
 	}
+
 }
+

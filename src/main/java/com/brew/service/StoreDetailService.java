@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
-import com.brew.domain.Board;
 import com.brew.domain.Review;
 import com.brew.domain.StoreInfo;
 import com.brew.repository.ReviewRepository;
