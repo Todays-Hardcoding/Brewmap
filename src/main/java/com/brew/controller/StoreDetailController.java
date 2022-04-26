@@ -22,8 +22,6 @@ import com.brew.domain.User;
 import com.brew.service.StoreDetailService;
 import com.brew.service.UserService;
 
-
-
 @Controller
 public class StoreDetailController {
 
@@ -69,4 +67,8 @@ public class StoreDetailController {
 
 		return "redirect:/detail?id="+storeCode;	
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/Jinhwan

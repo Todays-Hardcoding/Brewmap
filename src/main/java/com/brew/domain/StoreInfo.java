@@ -84,4 +84,8 @@ public class StoreInfo {
 		this.storeTag = storeTag;
 		this.storeStaravg = storeStaravg;
 	}	
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/Jinhwan

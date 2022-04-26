@@ -6,6 +6,7 @@
 
 <body>
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<<<<<<< HEAD
 	<script type="text/javascript">
 	function toListByRate(){
 		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
@@ -70,6 +71,8 @@
 		}	
 	};
 	</script>
+=======
+>>>>>>> origin/Jinhwan
 	
 	<!-- 헤더 페이지 불러오기 -->
 	<div th:replace="/layout/header.html :: header"></div>
@@ -78,9 +81,12 @@
         <div class="input-group"><span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control" type="text" placeholder="I am looking for.."><button class="btn btn-light" type="button">Search </button></div>
     </form>
     <section class="article-list">
+<<<<<<< HEAD
     
     <p><a class="" onClick="toListByRate()">평점정렬</a></p>
     <p><a class="" onClick="toListByReview()">리뷰정렬</a></p>
+=======
+>>>>>>> origin/Jinhwan
 
         <div class="container">
             <div class="row articles" >
@@ -88,6 +94,7 @@
 	            <th:block th:each="storeList : ${infoList}">
 	            	<!-- 리스트 정보 표시 -->
 	                <div class="col-sm-6 col-md-4 item">
+<<<<<<< HEAD
 	                	<a th:href="@{/detail (id=${storeList.value.storeCode})}">
 	                	<img class="img-fluid" src="assets/img/desk.jpg"></a> 
 	                	<h3 class="name" th:text="${storeList.value.storeName}">
@@ -100,6 +107,18 @@
 	                    <div th:text="${storeList.value.storeStaravg}"></div>
 	                </div>
 	            </th:block>  
+=======
+	                	<a th:href="@{/detail (id=${storeList.storeCode})}">
+	                	<img class="img-fluid" src="assets/img/desk.jpg"></a> 
+	                	<h3 class="name" th:text="${storeList.storeName}">
+	                	<a href="#"></a></h3>
+	                    <div th:text="${storeList.storeCategory}"></div>
+	                    <div th:text="${storeList.storeTag}"></div>
+	                    <div th:text="${storeList.storeRoadAddr}"></div>
+	                </div>
+	            </th:block>
+	            
+>>>>>>> origin/Jinhwan
             </div>
             
             <!-- 
@@ -126,7 +145,11 @@
 	$(document).ready(function(){
 		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 		if (navigator.geolocation) {
+<<<<<<< HEAD
 		    //GeoLocation을 이용해서 접속 위치를 얻어옵니다
+=======
+		    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+>>>>>>> origin/Jinhwan
 		    navigator.geolocation.getCurrentPosition(function(position) { 
 	        var lat = position.coords.latitude, // 위도
 	            lon = position.coords.longitude; // 경도  
@@ -150,6 +173,11 @@
 			alert("geolocation error");
 		}	
     });
+<<<<<<< HEAD
+=======
+	
+	
+>>>>>>> origin/Jinhwan
 	</script>
 </body>
 </html>

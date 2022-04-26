@@ -73,4 +73,8 @@ public class Review {
 		this.reviewComment = reviewComment;
 		this.reviewDate = reviewDate;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/Jinhwan
