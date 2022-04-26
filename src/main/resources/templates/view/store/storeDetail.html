@@ -34,25 +34,42 @@
 	        <div id="map" style="width: 100%; height: 500px; position: relative; overflow: hidden;">
 	   		</div>
                 
-                
+           <h4 style="font-size: 22px;">Leave a Comment:</h4>
+           <div id="star">
+	           <button onclick="star()" type="button" value="1"><i class="fa fa-star fa-star-o"></i></button>
+	           <button onclick="star()" type="button" value="2"><i class="fa fa-star fa-star-o"></i></button>
+	           <button onclick="star()" type="button" value="3"><i class="fa fa-star fa-star-o"></i></button>
+	           <button onclick="star()" type="button" value="4"><i class="fa fa-star fa-star-o"></i></button>
+	           <button onclick="star()" type="button" value="5"><i class="fa fa-star fa-star-o"></i></button>
+           </div> 
            <!-- 댓글 작성 -->
-           <form id="createReview" role="form" method="POST" action="/reviewInsert">
-               <!-- hidden 영역 -->
-               <input type="hidden" name="userId" th:value="${session.user.userId}"> 
-               <input type="hidden" name="reviewUser" value="${session.user.userName">
-               <input type="hidden" name="reviewUser" th:value="${session.user.userName}">
-               <input type="hidden" name="storeCode" th:value="${storeDetail.storeCode}">
-               <input type="hidden" name="reviewStar" th:value='3'>
-               <!-- 입력 영역 --> 
-               <div class="form-group">
-                   <textarea class="form-control form-control" rows="3" style="font-size: 16px;" name="reviewContent" placeholder="리뷰를 작성하세요"></textarea>
-               </div>
-               <div class="d-flex d-md-flex justify-content-end justify-content-md-end">
-                   <button class="btn btn-primary d-sm-flex btn btn-success" type="submit" style="margin: 5px; margin-right: 0px;" name="insert">Submit</button>
-               </div>
-           </form>
+           <th:block th:if="${session.user != null}">
+	           <form id="createReview" role="form" method="POST" action="/reviewInsert">
+	               <!-- hidden 영역 -->
+	               <input type="hidden" name="userId" th:value="${session.user.userId}"> 
+	               <input type="hidden" name="reviewUser" value="${session.user.userName">
+	               <input type="hidden" name="reviewUser" th:value="${session.user.userName}">
+	               <input type="hidden" name="storeCode" th:value="${storeDetail.storeCode}">
+	               <input type="hidden" name="reviewStar">
+	               <!-- 입력 영역 --> 
+	               <div class="form-group">
+	                   <textarea class="form-control form-control" rows="3" style="font-size: 16px;" name="reviewContent" placeholder="리뷰를 작성하세요"></textarea>
+	               </div>
+	               <div class="d-flex d-md-flex justify-content-end justify-content-md-end">
+	                   <button class="btn btn-primary d-sm-flex btn btn-success" type="submit" style="margin: 5px; margin-right: 0px;" name="insert">Submit</button>
+	               </div>
+	           </form>
+           </th:block>
+           <th:block th:unless="${session.user != null}">
+	           <form id="createReview" role="form" method="POST" action="/reviewInsert">
+	               <!-- 입력 영역 --> 
+	               <div class="form-group">
+	                   <textarea class="form-control form-control" rows="3" style="font-size: 16px;" name="reviewContent" placeholder="리뷰를 작성하세요" readonly></textarea>
+	               </div>
+	           </form>
+           </th:block>
            
-			<!-- 댓글 목록 -->
+		   <!-- 댓글 목록 -->
            <p>
                <span class="badge bg-secondary" th:text="${storeDetail.review.size}"></span>
                <span class="ms-2" style="font-size: 15px;">Comments</span>
@@ -63,17 +80,32 @@
 						<input type="hidden" name="storeCode" th:value="${storeDetail.storeCode}">
                     	<input type="hidden" name="reviewId" th:value="${review.reviewId}">
 	                    <div class="col-9 col-md-10" style="width: 100%;">
-	                           <!-- 댓글 작성자 -->
-	                    	<h4 style="font-size: 22px;" th:text="${review.user.userId}">댓글 작성자
-	                           <!-- 댓글 작성일 -->
-	                    		<small class="font-monospace d-md-flex justify-content-md-end align-items-md-end small" style="font-size: 15px;" th:text="${reply.replyDate}">작성 날짜</small>
-	                    	</h4>
-	                           <!-- 댓글 내용 -->
+	                        <!-- 댓글 작성자 -->
+	                        <div>
+		                    	<h4 style="font-size: 22px;" th:text="${review.user.userName}">댓글 작성자</h4>
+								<th:block th:if="${review.reviewStar} != 5">
+									<span th:each="index : ${#numbers.sequence(1, review.reviewStar)}">
+										<i class="fa fa-star"></i>
+									</span>
+									<span th:each="index : ${#numbers.sequence(1, 5 - review.reviewStar)}">
+										<i class="fa fa-star fa-star-o"></i>
+									</span>
+								</th:block>
+								<th:block th:unless="${review.reviewStar} != 5">
+									<span th:each="index : ${#numbers.sequence(1, review.reviewStar)}">
+										<i class="fa fa-star"></i>
+									</span>
+								</th:block>
+							</div>
+	                        <!-- 댓글 작성일 -->
+	                    	<span class="font-monospace d-md-flex justify-content-md-end align-items-md-end small" style="font-size: 15px;" th:text="${#temporals.format(review.reviewDate, 'yy-MM-dd HH:mm:ss')}">작성 날짜</span>
+	                        <!-- 댓글 내용 -->
 	                    	<p style="font-size: 16px;" th:text="${review.reviewComment}">댓글 내용</p>
-	                        <div th:if="${session.user.userId == review.user.userId}" class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end">
-	                        	<span><button class="btn btn-primary d-flex d-xxl-flex justify-content-center align-items-center" type="submit" name="delete">삭제</button></span>
-	                        </div> 
-
+	                    	<th:block th:if="${session.user != null}">
+		                        <div th:if="${session.user.userId == review.user.userId}" class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end">
+		                        	<span><button class="btn btn-primary d-flex d-xxl-flex justify-content-center align-items-center" type="submit" name="delete">삭제</button></span>
+		                        </div> 
+							</th:block>
 	                    </div>
 					</form>  
 				</div>
@@ -118,9 +150,17 @@
 	    form.addEventListener('submit', function (evt) {
 	
 	      	const reviewContent = document.querySelector('textarea[name="reviewContent"]');
+	      		  reviewStar = document.querySelector('input[name="reviewStar"]');
 	      	var contentCheck = /^[\s]+$/;		
 			    longCheck = /^[\S\s]{0,2}$/;
 	      
+			if (!reviewStar.value) {
+				alert('별점을 입력해 주세요!');
+				reviewStar.focus();
+				reviewStar.value = '';
+	        	evt.preventDefault();
+	        	return false;
+			}
 	      	if (!reviewContent.value) {
 	       	 	alert('댓글 내용을 입력해 주세요');
 	       		reviewContent.focus();
@@ -142,6 +182,28 @@
 			}
 		})
 	        
+    </script>
+    <script type="text/javascript">
+    	function star(e){
+    		var cnt = event.target.parentElement.value;
+    		console.log(cnt)
+    		
+    		var reviewStar = document.querySelector('input[name="reviewStar"]');
+    		reviewStar.value = cnt;
+    		console.log(reviewStar)
+    		
+    		var stars = document.querySelector('#star').children; 
+    		
+    		for(var i = 0; i < stars.length; i++) {
+    			stars[i].firstChild.className = 'fa fa-star fa-star-o';
+    		}
+    		
+    		for(i = 0; i < cnt; i++) {
+    			stars[i].firstChild.className = 'fa fa-star';
+    		}
+    			
+    	}
+    	
     </script>
 	<div th:replace="layout/script :: scriptFragment">
 	<!-- 이 안에 개별적인 js 넣으면 됨. -->

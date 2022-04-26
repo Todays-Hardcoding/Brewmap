@@ -49,6 +49,10 @@
 				<div class="col">
 					<h4 class="display-6" th:text="${boardCategory}"></h4>
 					<hr />
+					<div th:if="${boardList.content.size} == 0">
+						<img class="img-fluid" style="width: 100%;height:90%;" th:src="'/download.jpg'"/>
+						<h5 style ="text-align: center">검색 결과가 없습니다...</h5>
+					</div>
 					<ul class="list-group list-group-flush"
 						th:each="board : ${boardList}">
 						<a th:href="@{/board (boardId=${board.boardId})}">
@@ -68,11 +72,11 @@
 										<small th:text="${board.reply.size}"></small>
 									</div>
 								</div>
-						</li>
+							</li>
 						</a>
 					</ul>
 					<nav class="d-flex justify-content-center">
-						<ul class="pagination"
+						<ul class="pagination" th:if="${boardList.content.size} != 0"
 							th:with="currentStart=${currentStart}, currentLast=${currentLast}, boardCategory=${boardCategory}">
 
 
@@ -124,7 +128,7 @@
 							<div
 							class="col-4 col-md-3 col-lg-3 d-flex justify-content-end align-items-center"
 							style="padding-left: 0px; padding-right: 0px">
-							<form action="/board/createPage">
+							<form th:if="${session.user != null}" action="/board/createPage">
 								<button class="btn btn-primary" type="submit" 
 									style="margin-right: 2em">글쓰기</button>
 							</form>
