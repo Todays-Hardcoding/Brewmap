@@ -21,15 +21,11 @@
 							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
 								th:href="@{/board/hotPage}"><i
 									class="fas fa-fire bi-speedometer2 fs-5 ms-2"></i><span
-									class="ms-1 d-none d-sm-inline">Hot게시판</span></a></li>
-							<li class="w-100"><a class="px-2 nav-link px-sm-0"
-								th:href="@{/board/freePage}"><i
-									class="fa fa-table fs-5 bi-table ms-2"></i><span
-									class="ms-1 d-none d-sm-inline">자유게시판</span></a></li>
+									class="ms-1 d-none d-sm-inline">술집랭킹</span></a></li>
 							<li class="w-100"><a class="px-1 nav-link px-sm-0 ps-2"
 								th:href="@{/board/recommendStore}"><i
 									class="fas fa-utensils bi-bootstrap fs-5 ms-2"></i><span
-									class="ms-1 d-none d-sm-inline">맛집추천</span></a></li>
+									class="ms-1 d-none d-sm-inline">술집추천</span></a></li>
 							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
 								th:href="@{/board/serviceCenter}"><i
 									class="fa fa-group bi-people fs-5 ms-2"></i><span
@@ -53,8 +49,6 @@
 								<select class="form-select" aria-label="Default select example" name="boardCategory" th:value="${board.boardCategory}"
 									style="transform: translate(-26px); margin-bottom: 10px; color: gray;" required>
 									<option disabled>게시판 분류를 선택해주세요.</option>
-									<option th:selected="${board.boardCategory}=='freePage'" value="freePage">자유게시판</option>
-									<option th:selected="${board.boardCategory}=='recommendStore'" value="recommendStore">맛집추천</option>
 									<option th:selected="${board.boardCategory}=='serviceCenter'" value="serviceCenter">고객센터</option>
 								</select>
 
@@ -99,7 +93,52 @@
 
 	</th:block>
 	<script type="text/javascript">
+		const form = document.querySelector("#boardCreate");
 
+		form.addEventListener('submit', function (evt) {
+			console.log("submit!");
+
+			const boardCategory = form.querySelector('select[name="boardCategory"]');
+			const boardTitle = form.querySelector('input[name="boardTitle"]');
+			const boardContent = form.querySelector('textarea[name="boardContent"]');
+
+			var boardCheck = /^[^\s]{1}[\wㄱ-ㅎ가-힣]{1}[\w\sㄱ-ㅎ가-힣]*/;	
+			var boardContentCheck = /^[\s]+$/;
+			var boardLongCheck = /^[\s\S]{0,2}$/;
+			// 카테고리 유효성 검사
+			console.log(boardCategory.value);
+			if(boardCategory.value === "게시판 분류를 선택해주세요."){
+				alert('게시판 분류를 선택해주세요.');
+				evt.preventDefault();
+			}
+			// 제목 유효성 검사
+			else if(!boardTitle.value){
+				alert('제목을 입력해주세요');
+				boardTitle.value.replace(boardTitle.value, '' )
+				evt.preventDefault();
+			}
+			else if(boardContentCheck.test(boardTitle.value)){
+				alert('제목이 공백으로 시작합니다.');
+				evt.preventDefault();
+			}
+			else if(boardLongCheck.test(boardTitle.value)){
+				alert('제목은 3글자 이상으로 써주세요.');
+				evt.preventDefault();
+			}
+
+
+			// 내용 유효성 검사
+			else if(!boardContent.value){
+				alert('내용을 입력해주세요');
+				boardContent.value.replace(boardContent.value, '' )
+				evt.preventDefault();
+			}
+			else if(boardLongCheck.test(boardContent.value)){
+				alert('내용은 3글자 이상으로 써주세요.');
+				evt.preventDefault();
+			}
+
+		});
 	</script>
 </body>
 
