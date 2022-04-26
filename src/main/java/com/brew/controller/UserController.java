@@ -25,12 +25,12 @@ public class UserController {
 	@GetMapping("/userpage")
 	public String userpage(HttpSession session) {
 //		session.setAttribute("user", userservice.findByUserId("abc"));
-		return "view/pages/userpage";
+		return "view/user/userpage";
 	}
 
 	@RequestMapping("/modify")
 	public String usermodifypage() {
-		return "view/pages/usermodifypage";
+		return "view/user/usermodifypage";
 	}
 
 	@RequestMapping(value = "/modifyUserInfo", method = RequestMethod.POST)
@@ -50,7 +50,7 @@ public class UserController {
 		System.out.println(user.getUserEmail());
 
 		session.setAttribute("user", newuser);
-		return "view/pages/userpage";
+		return "view/user/userpage";
 	}
 
 

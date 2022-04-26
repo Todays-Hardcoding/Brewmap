@@ -1,6 +1,5 @@
 package com.brew.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +47,7 @@ public class StoreInfoController {
 
 		session.setAttribute("user", userservice.findByUserId("abc"));
 
+
 		
 		Page<StoreInfo> storePage = storeinfoService.findHotStores(pageable);
 
@@ -65,18 +65,37 @@ public class StoreInfoController {
 		Page<StoreInfo> storePage = storeinfoService.findPageByKeyword(keyword, pageable);
 		List<StoreInfo> storeList = storeinfoService.findListByKeyword(keyword, pageable);
 
-		int nowPage = storePage.getPageable().getPageNumber() + 1;
-		int startPage = Math.max(nowPage - 2, 1);
-		int endPage = Math.min(nowPage + 2, storePage.getTotalPages());
-
 		model.addAttribute("storePage", storePage);
 		model.addAttribute("storeList", storeList);
 		model.addAttribute("keyword", keyword);
+
+		int totalPages = storePage.getTotalPages();
+		// 시각적인 현재 페이지
+		int nowPage = storePage.getPageable().getPageNumber()+1;
+		// 시각적인 맨 첫 페이지, 맨 끝 페이지
+		int startPage = 1;
+		int endPage = storePage.getTotalPages();
+		if(endPage == 0)
+			endPage = 1;
+		// 10페이지 단위로 나눌 예정.
+		int currentStart = (nowPage/10)*10 + 1;
+		int	currentLast = currentStart + 9 < totalPages ? currentStart + 9 : totalPages;
+		if(currentLast == 0) {
+			currentLast = 1;
+		}
+		
+		model.addAttribute("list", storePage);
+
+		
+		model.addAttribute("list", storePage);
+		model.addAttribute("boardTotalPages", totalPages);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
+		model.addAttribute("currentStart", currentStart);
+		model.addAttribute("currentLast", currentLast);
 
-		return "view/pages/mapSearch";
+		return "view/map/mapSearch";
 	}
 	
 	@GetMapping("/click")
@@ -87,7 +106,7 @@ public class StoreInfoController {
 
 		model.addAttribute("storeList", storeList);
 
-		return "view/pages/mapClick";
+		return "view/map/mapClick";
 	}
 	
 	@PostMapping("/move")
@@ -104,6 +123,7 @@ public class StoreInfoController {
 		return storeList;
 	}
 
+
 	@GetMapping("/sendPosition")
 	public @ResponseBody void ajax(@RequestParam Map<String, String> map) {
 		System.out.println(map.get("lat"));
@@ -111,3 +131,4 @@ public class StoreInfoController {
 
 	}
 }
+

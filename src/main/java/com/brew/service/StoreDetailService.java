@@ -36,5 +36,5 @@ public class StoreDetailService {
 	public void deleteByReviewId(long reviewId) {
 		reviewRepository.deleteById(reviewId);
 	}
-
 }
+

@@ -4,8 +4,8 @@ INSERT INTO `brewmap`.`user` (`user_category`, `user_id`, `user_pw`, `user_name`
 INSERT INTO `brewmap`.`user` (`user_category`, `user_id`, `user_pw`, `user_name`, `user_tel`, `user_email`, `user_grade`, `user_birth_date`, `user_nick_name`, `user_gender`) VALUES ('user', 'ab', '1237', '홍동잉', '010-1234-5671', 'abcf@naver.com', '브론즈3', '19940717', 'ABCDEF', 0);
 INSERT INTO `brewmap`.`user` (`user_category`, `user_id`, `user_pw`, `user_name`, `user_tel`, `user_email`, `user_grade`, `user_birth_date`, `user_nick_name`, `user_gender`) VALUES ('user', 'bc', '1238', '김동', '010-1234-5672', 'abcg@naver.com', '브론즈4', '19940718', 'ABCDEF', 0);
 
-insert into store_info(store_code, store_name, store_category, store_road_addr, store_addr, store_tel, store_tag , store_regdate, store_latitude, store_longitude, review_count, store_staravg)
-select k.store_code, k.store_name, k.store_category, k.store_addr, k.store_Oldaddr, k.store_tel, s.store_tag, s.store_regdate, k.y, k.x, 0, 0
+insert into store_info(store_code, store_name, store_category, store_road_addr, store_addr, store_tel, store_tag , store_regdate, store_latitude, store_longitude, store_staravg)
+select k.store_code, k.store_name, k.store_category, k.store_addr, k.store_Oldaddr, k.store_tel, s.store_tag, s.store_regdate, k.y, k.x, 0
 from store as s
 inner join kakao as k 
 on s.store_addr = k.store_addr or s.store_name = k.store_name;
@@ -76,6 +76,7 @@ INSERT INTO board (board_title, board_content, board_category, board_like_count,
 INSERT INTO board (board_title, board_content, board_category, board_like_count, board_date, user_id) VALUES ('맛집추천 64', '글 내용 64', 'recommendStore', 0, now(), 'abc');
 INSERT INTO board (board_title, board_content, board_category, board_like_count, board_date, user_id) VALUES ('맛집추천 65', '글 내용 65', 'recommendStore', 0, now(), 'abc');
 INSERT INTO board (board_title, board_content, board_category, board_like_count, board_date, user_id) VALUES ('맛집추천 66', '글 내용 66', 'recommendStore', 0, now(), 'abc');
+
 INSERT INTO board (board_title, board_content, board_category, board_like_count, board_date, user_id) VALUES ('고객센터 01', '글 내용 01', 'serviceCenter', 0, now(), 'abc');
 INSERT INTO board (board_title, board_content, board_category, board_like_count, board_date, user_id) VALUES ('고객센터 02', '글 내용 02', 'serviceCenter', 0, now(), 'abc');
 INSERT INTO board (board_title, board_content, board_category, board_like_count, board_date, user_id) VALUES ('고객센터 03', '글 내용 03', 'serviceCenter', 0, now(), 'abc');

@@ -48,4 +48,6 @@ public class UserService {
 	public User checkUser(String userId, String userPw) {
 		return userRepository.checkUser(userId, userPw);
 	}
+
+
 }

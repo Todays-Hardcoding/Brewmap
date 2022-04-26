@@ -1,134 +1,218 @@
+/* 홈페이지 색상 정보*/
+/* 글자색 변경 */
+.color-black {
+  color: #343a40;
+}
+.color-purple {
+  color: #7952b3;
+}
+.color-yellow {
+  color: #ffc107;
+}
+.color-white {
+  color: #e1e8eb;
+}
+/* 배경색 변경 */
+.color-black {
+  background-color: #343a40;
+}
+.color-purple {
+  background-color: #7952b3;
+}
+.color-yellow {
+  background-color: #ffc107;
+}
+.color-white {
+  background-color: #e1e8eb;
+}
+/* 테두리 변경 */
+.color-black {
+  border-color: #343a40;
+}
+.color-purple {
+  border-color: #7952b3;
+}
+.color-yellow {
+  border-color: #ffc107;
+}
+.color-white {
+  border-color: #e1e8eb;
+}
 
-.nav-wrap{
+.z-9999 {
+  z-index: 9999;
+}
+
+.nav-wrap {
   width: 100%;
   display: flex;
   margin: 0 auto;
   justify-content: center;
-  height: 70px;
+  height: 100px;
+  min-width: 390px;
 }
 
-.nav-wrap .logo-container{
-  
+.nav-wrap .logo-container {
   width: 40%;
   order: 2;
 }
 
-.nav-wrap .menu-container{
+.nav-wrap .menu-container {
   width: 30%;
   order: 1;
 }
 
-.nav-wrap .search-container{
+.nav-wrap .search-container {
   width: 30%;
   order: 3;
 }
 
-@media (min-width:991px) {
-  .nav-wrap > .logo-container{
+@media (min-width: 991px) {
+  .nav-wrap > .logo-container {
     width: 15%;
     order: 1;
   }
-  
-  .nav-wrap > .menu-container{
+
+  .nav-wrap > .menu-container {
     width: 52%;
     order: 2;
   }
-  
-  .nav-wrap > .search-container{
+
+  .nav-wrap > .search-container {
     width: 33%;
     order: 3;
   }
-  .navbar-nav{
+  .navbar-nav {
     white-space: nowrap;
   }
 }
 
-.nav-color{
-	background-color: #e9ecef;
+.nav-color {
+  background-color: #e6e6e6;
   padding-top: 5px;
 }
 
 .nav-sticky .nav-container {
-	width: 100%;
-	position: fixed;
-	top: 0;
-	background: #e9ecef;
-	backdrop-filter: saturate(180%) blur(15px);
-	transition: all;
-	transition-duration: 2s;
-	z-index: 9999;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background: #e6e6e6;
+  backdrop-filter: saturate(180%) blur(15px);
+  transition: all;
+  /* transition-duration: 2s; */
+  z-index: 9999;
 }
 
-.nav-sticky .nav-color{
-	background: #e9ecef;
-	backdrop-filter: saturate(180%) blur(15px);
-	transition: all;
-	transition-duration: 2s;
-	z-index: 9999;
+.nav-sticky .nav-color {
+  background: #e6e6e6;
+  backdrop-filter: saturate(180%) blur(15px);
+  transition: all;
+  transition-duration: 2s;
+  z-index: 9999;
+}
+.nav-list {
+  background-color: #e6e6e6;
+}
+.nav-list li {
+  font-size: 20px;
+}
+.nav-list li a {
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 10px;
 }
 
 button {
   margin: 20px;
 }
 
-.w-btn {
-    position: relative;
-    border: none;
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 15px;  
-    text-decoration: none;
-    transition: 0.25s;
-    background-color: aliceblue;
-    color: #1e6b7b;
+.nav-search-button {
+  margin: 0 0 auto 0;
+  position: relative;
+  border: none;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 15px;
+  text-decoration: none;
+  /* transition: 0.25s; */
+  background-color: #ffc107;
+  color: #7952b3;
 }
 
 #nav-search-input {
   display: none;
-  /* display: block; */
-
+  width: 310px;
 }
 
-#nav-search-button{
-  /* transform: translateX(700%); */
-}
-/* 
-.search-container{
-  position: absolute;
+.storeListClass a {
+  text-decoration: none;
 }
 
-.search-input-container{
-  position: relative;
-} */
-
-.nav-search-icon{
+.nav-search-icon {
   font-size: 36px;
-  color: #1e6b7b;
+  color: #ffc107;
 }
-.nav-search-icon:hover{
+.nav-search-icon:hover {
   cursor: pointer;
 }
-.search-input-container{
-  display: flex;
+.search-input-container {
+  padding-left: 20px;
 }
-.search-input-container .nav-search-input{
+.search-input-container .nav-search-input {
   width: 20%;
   min-width: 200px;
   display: inline-block;
+  border: 1px solid #ffc107;
+  border-radius: 10px;
+  margin-right: 0;
 }
+
 .search-section {
   /* margin-right: 0; */
   display: inline-block;
 }
 
-.search-input-position-box{
+.search-input-position-box {
   position: absolute;
   top: 80px;
   right: 20px;
   z-index: 9999;
 }
-.search-icon-position-box{
+.search-icon-position-box {
   position: absolute;
-  top: 17px;
-  right: 20px;
+  top: 30px;
+  right: 40px;
+}
+
+.content-left {
+  justify-content: start;
+}
+
+.nav-list {
+  margin-top: 10px;
+}
+
+.nav-list .nav-itme {
+  margin-top: 10px;
+}
+
+.navbar-brand .logo-image {
+  height: 100%;
+}
+
+.swiper-slide img {
+  height: 100%;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.whole-section {
+  background-color: #e6e6e6 !important;
+}
+
+.main-menu-container {
+  background-color: #e6e6e6 !important;
+}
+.second-nav {
+  height: 100%;
 }
