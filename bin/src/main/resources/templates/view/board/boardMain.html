@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="layout/head :: headFragment">
+</head>
+
+<th:block layout:fragment="customCss">
+	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
+	<title>boardMain</title>
+	<style>
+a {
+	text-decoration: none;
+	border-color: white;
+}
+
+.list-group-item {
+	border-color: white;
+}
+</style>
+</th:block>
+
+<body>
+	<!-- 헤더 페이지 불러오기 -->
+	<div th:replace="layout/header :: header"></div>
+
+	<!-- [content] 영역 시작, 아래 태그 지우고 이 자리 채우면 됨. -->
+	<section>
+		<div class="container">
+			<div class="row py-1 py-md-5">
+				<div class="col-12 col-sm-3">
+					<div
+						class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 text-white">
+						<ul id="menu-1"
+							class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 my-3 mb-sm-auto justify-content-center align-items-center align-items-sm-start w-100">
+							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
+								th:href="@{/board/hotPage}"><i
+									class="fas fa-fire bi-speedometer2 fs-5 ms-2"></i><span
+									class="ms-1 d-none d-sm-inline">Hot게시판</span></a></li>
+							<li class="w-100"><a class="px-2 nav-link px-sm-0"
+								th:href="@{/board/freePage}"><i
+									class="fa fa-table fs-5 bi-table ms-2"></i><span
+									class="ms-1 d-none d-sm-inline">자유게시판</span></a></li>
+							<li class="w-100"><a class="px-1 nav-link px-sm-0 ps-2"
+								th:href="@{/board/recommendStore}"><i
+									class="fas fa-utensils bi-bootstrap fs-5 ms-2"></i><span
+									class="ms-1 d-none d-sm-inline">맛집추천</span></a></li>
+							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
+								th:href="@{/board/serviceCenter}"><i
+									class="fa fa-group bi-people fs-5 ms-2"></i><span
+									class="ms-1 d-none d-sm-inline">고객센터</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col">
+					<h4 class="display-6" th:text="${boardCategory}"></h4>
+					<hr />
+					<ul class="list-group list-group-flush"
+						th:each="boardContent: ${boardList}">
+						<!-- <a th:href="@{/board(boardId=${boardContent.boardId})}"> -->
+						<a th:href="@{/board (boardId=${boardContent.boardId})}">
+							<li class="list-group-item">
+								<h4 style="margin-bottom: 2px"
+									th:text="${boardContent.boardTitle}"></h4> <span
+								th:text="${boardContent.boardContent}"></span>
+								<div class="row">
+									<div class="col">
+										<small style="margin-right: 10px"
+											th:text="${boardContent.boardDate}"></small><small
+											th:text="boardContent.user.userName"></small>
+									</div>
+									<div
+										class="col d-flex d-lg-flex justify-content-end justify-content-lg-end">
+										<i class="fa fa-thumbs-o-up"></i> <small
+											style="margin-right: 10px"
+											th:text="${boardContent.boardLikeCount}"></small> <i
+											class="fa fa-comment-o"></i> <small
+											th:text="${boardContent.reply.size}"></small>
+									</div>
+								</div>
+						</li>
+						</a>
+					</ul>
+					<nav class="d-flex justify-content-center">
+						<ul class="pagination"
+							th:with="currentStart=${currentStart}, currentLast=${currentLast}, boardCategory=${boardCategory}">
+
+
+							<li th:style="${nowPage} == ${startPage} ? 'display:none'"
+								class="page-item"><a class="page-link"
+								th:href="|${boardCategoryCode}?page=0&keyword=${keyword}|"
+								aria-label="First"> <span aria-hidden="true">처음으로</span>
+							</a></li>
+
+							<li th:style="${nowPage} == ${startPage} ? 'display:none'"
+								class="page-item"><a class="page-link"
+								th:href="${nowPage} == ${startPage} ? '#' :|${boardCategoryCode}?page=${nowPage-2}&keyword=${keyword}|"
+								aria-label="Previous"> <span aria-hidden="true">&lt;</span>
+							</a></li>
+
+							<li
+								th:each="page: ${#numbers.sequence(currentStart, currentLast)}"
+								th:class="${page == nowPage} ? 'active'" class="page-item">
+								<a class="page-link" th:text="${page}"
+								th:href="|${boardCategoryCode}?page=${page-1}&keyword=${keyword}|"></a>
+							</li>
+
+							<li th:style="${nowPage} == ${endPage} ? 'display:none'"
+								class="page-item"><a class="page-link"
+								th:href="${nowPage} == ${endPage} ? '#' : |${boardCategoryCode}?page=${nowPage}&keyword=${keyword}|"
+								aria-label="Next"> <span aria-hidden="true">&gt;</span> <!-- @{/${boardCategoryCode}(page=${nowPage}, keyword=${keyword})}  |${boardCategoryCode}?page=${nowPage}| -->
+							</a></li>
+
+							<li th:style="${nowPage} == ${endPage} ? 'display:none'"
+								class="page-item"><a class="page-link"
+								th:href="|${boardCategoryCode}?page=${endPage-1}&keyword=${keyword}|"
+								aria-label="Last"> <span aria-hidden="true">마지막으로</span>
+							</a></li>
+						</ul>
+					</nav>
+					<div class="row">
+						<div class="col d-flex">
+							<div class="input-group d-md-flex">
+								<form action="/board/searchTitleAndContent">
+									<input class="form-control d-flex" type="text" id="keyword"
+										name="keyword" th:value="${keyword} ? ${keyword}"
+										placeholder="제목+내용으로 검색" />
+									<button class="btn btn-primary" type="submit">
+										<i class="fa fa-search"></i>
+									</button>
+								</form>
+							</div>
+						</div>
+						<div
+							class="col-4 col-md-3 col-lg-3 d-flex justify-content-end align-items-center"
+							style="padding-left: 0px; padding-right: 0px">
+							<form action="/board/edit">
+								<button class="btn btn-primary" type="submit"
+									style="margin-right: 2em">글쓰기</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- [content] 영역 끝 -->
+
+	<!-- 푸터 페이지 불러오기 -->
+	<footer th:replace="layout/footer :: footer"></footer>
+
+	<!-- 스크립트 -->
+	<div th:replace="layout/script :: scriptFragment">
+		<!-- 이 안에 개별적인 js 넣으면 됨. -->
+	</div>
+</body>
+</html>
