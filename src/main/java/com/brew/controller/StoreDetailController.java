@@ -67,8 +67,4 @@ public class StoreDetailController {
 
 		return "redirect:/detail?id="+storeCode;	
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/Jinhwan

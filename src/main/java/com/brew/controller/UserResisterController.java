@@ -38,32 +38,10 @@ public class UserResisterController {
 		// 보내온 value 가 0 이면 user.isUserGender() ==  true
 		return "view/index";
 	}
-	
-	
 	@RequestMapping("/login")
 	public String loginpage() {
 		return "view/login";
 	}
-	
-<<<<<<< HEAD
-//	@RequestMapping(value="/login2")
-//	public String login(HttpServletRequest req, HttpSession session, @ModelAttribute User user) {
-//		
-//		
-//		User checkuser = userservice.checkUser(req.getParameter("userId"), req.getParameter("userPw"));
-//		
-//		if(checkuser != null) {
-//			//	DB에서 userId로 받아온 파라미터 값을 user에 넣고 session에 등록 시킴
-//			session.setAttribute("user",userservice.findByUserId(req.getParameter("userId")));
-//		}else {
-//			return "view/login";
-//		}
-//		
-//		System.out.println(userservice.findByUserId(user.getUserId()));
-//		System.out.println(req.getParameter("userId"));
-//		return "view/index";
-//	}
-=======
 	@RequestMapping(value="/loginPage")
 	public String login(HttpServletRequest req, HttpSession session, @ModelAttribute User user) {
 		
@@ -81,7 +59,6 @@ public class UserResisterController {
 		System.out.println(req.getParameter("userId"));
 		return "view/index";
 	}
->>>>>>> origin/GY
 	
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
