@@ -10,16 +10,21 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table
+@DynamicUpdate
 public class StoreInfo {
 	
 	@OneToMany(mappedBy = "storeInfo")
@@ -52,7 +57,7 @@ public class StoreInfo {
 	private String storeAddr;
 	
 	@Column
-	private String storeRegdate;
+	private LocalDateTime storeRegdate;
 	
 	@NotNull
 	@Column
