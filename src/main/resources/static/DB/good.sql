@@ -149,28 +149,3 @@ INSERT INTO board (board_title, board_content, board_category, board_like_count,
 INSERT INTO board (board_title, board_content, board_category, board_like_count, board_date, user_id) VALUES ('고객센터 71', '글 내용 71', 'serviceCenter', 0, now(), 'abc');
 INSERT INTO board (board_title, board_content, board_category, board_like_count, board_date, user_id) VALUES ('고객센터 72', '글 내용 72', 'serviceCenter', 0, now(), 'abc');
 INSERT INTO board (board_title, board_content, board_category, board_like_count, board_date, user_id) VALUES ('고객센터 73', '글 내용 73', 'serviceCenter', 0, now(), 'abc');
-
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1862375392", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1862375392", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1862375392", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1862375392", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1862375392", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1843118217", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1843118217", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1843118217", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1843118217", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1843118217", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "18618051", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "18618051", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "18618051", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "18779912", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "18779912", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "18779912", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1920553701", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1920553701", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1920553701", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1920553701", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1930450758", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1930450758", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1930450758", "bc", now());
-INSERT INTO review (review_comment, review_star, store_code, user_id, review_date) VALUES ("맛있어요!!", 3, "1930450758", "bc", now());
