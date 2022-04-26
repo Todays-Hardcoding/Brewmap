@@ -6,6 +6,70 @@
 
 <body>
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript">
+	function toListByRate(){
+		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+		if (navigator.geolocation) {
+		    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+		    navigator.geolocation.getCurrentPosition(function(position) { 
+	        var lat = position.coords.latitude, // 위도
+	            lon = position.coords.longitude; // 경도  
+	            
+	         // 위도, 경도를 Map<String, String> 형식으로 저장
+	    	var params = {
+    			"lat" : lat,
+    			"lon" : lon 
+	   		}
+	         
+	    	console.log(params.lat);
+	        console.log(params.lon);
+	        
+	        document.location.href = "/storeListByRate?lat="+lat+"&lon="+lon;
+/*	        
+	    	$.ajax({
+	    		type: "get",   //get방식으로 명시
+	    		url : "/storeList",  //이동할 jsp 파일 주소
+	    		data : params
+	    	})
+*/
+		});
+		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+			alert("geolocation error");
+		}	
+	};
+	</script>
+	<script type="text/javascript">
+	function toListByReview(){
+		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+		if (navigator.geolocation) {
+		    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+		    navigator.geolocation.getCurrentPosition(function(position) { 
+	        var lat = position.coords.latitude, // 위도
+	            lon = position.coords.longitude; // 경도  
+	            
+	         // 위도, 경도를 Map<String, String> 형식으로 저장
+	    	var params = {
+    			"lat" : lat,
+    			"lon" : lon 
+	   		}
+	         
+	    	console.log(params.lat);
+	        console.log(params.lon);
+	        
+	        document.location.href = "/storeListByReview?lat="+lat+"&lon="+lon;
+/*	        
+	    	$.ajax({
+	    		type: "get",   //get방식으로 명시
+	    		url : "/storeList",  //이동할 jsp 파일 주소
+	    		data : params
+	    	})
+*/
+		});
+		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+			alert("geolocation error");
+		}	
+	};
+	</script>
 	
 	<!-- 헤더 페이지 불러오기 -->
 	<div th:replace="/layout/header.html :: header"></div>
@@ -14,6 +78,9 @@
         <div class="input-group"><span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control" type="text" placeholder="I am looking for.."><button class="btn btn-light" type="button">Search </button></div>
     </form>
     <section class="article-list">
+    
+    <p><a class="" onClick="toListByRate()">평점정렬</a></p>
+    <p><a class="" onClick="toListByReview()">리뷰정렬</a></p>
 
         <div class="container">
             <div class="row articles" >
@@ -22,13 +89,16 @@
 	            	<!-- 리스트 정보 표시 -->
 	                <div class="col-sm-6 col-md-4 item">
 	                	<a th:href="@{/detail (id=${storeList.value.storeCode})}">
-	                	<img class="img-fluid" src="assets/img/desk.jpg"></a> 
+	                	<img class="img-fluid" th:src="'assets/img/storeImg/' + ${storeList.value.storeName} + '/' + ${storeList.value.storeCode} + '_1.png/'" /></a>
+	                	<!--<img class="img-fluid" src="assets/img/desk.jpg">-->
 	                	<h3 class="name" th:text="${storeList.value.storeName}">
 	                	<a href="#"></a></h3>
+
 						<div th:text="${storeList.key} + ' 킬로미터 부근'" ></div>    	
 	                    <div th:text="${storeList.value.storeCategory}"></div>
 	                    <div th:text="${storeList.value.storeTag}"></div>
 	                    <div th:text="${storeList.value.storeRoadAddr}"></div>
+	                    <div th:text="${storeList.value.storeStaravg}"></div>
 	                </div>
 	            </th:block>  
             </div>

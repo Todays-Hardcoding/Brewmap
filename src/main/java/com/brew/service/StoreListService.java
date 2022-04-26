@@ -22,8 +22,6 @@ public class StoreListService {
 	
 	@Autowired
 	private StoreInfoRepository storeInfoRepository;
-	
-	
 		
 	public Page<StoreInfo> getInfoList(Map<String, String> params, Pageable pageable) {
 		return storeInfoRepository.findAllStores(pageable);
@@ -59,7 +57,7 @@ public class StoreListService {
 
 		    distance = 2 * radius * Math.asin(squareRoot);
 	        
-		    if(distance < 20) {
+		    if(distance < 100) {
 		        storesDistance.put(distance, store);                
 		    }   	
 		}

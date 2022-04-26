@@ -31,7 +31,7 @@ public class StoreListController {
 	StoreListService storeListService;
 	
 	@GetMapping("/storeList") // 내 주변 리스트 검색 후 페이지 이동
-    public String returnStoreJoinList(@RequestParam Map<String, String> params,
+    public String returnStoreJoinList(HttpServletResponse response, @RequestParam Map<String, String> params,
     		@PageableDefault(page=0, size=6) Pageable pageable, Model model) {
 		
 		System.out.println("controller");
