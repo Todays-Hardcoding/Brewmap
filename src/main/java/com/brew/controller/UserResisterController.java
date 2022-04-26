@@ -40,7 +40,7 @@ public class UserResisterController {
 	}
 	
 	@RequestMapping(value = "/dupUser")
-	public String checkUser(HttpServletRequest req, @RequestParam int result) {
+	public int checkUser(HttpServletRequest req, @RequestParam int result) {
 		String checkUserId = req.getParameter("userId");
 		User idCheck = userservice.checkUserId(checkUserId);
 		
@@ -50,7 +50,7 @@ public class UserResisterController {
 			 result = 0;
 		 }
 		 req.setAttribute("result", result);
-		return "result";
+		return result;
 	}
 	
 	
