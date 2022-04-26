@@ -129,30 +129,11 @@
 	<!-- [content] 영역 끝 -->
 
 	<!-- 푸터 페이지 불러오기 -->
-		<footer th:replace="layout/footer :: footer"></footer>
+	<footer th:replace="layout/footer :: footer"></footer>
 
-		<!-- 스크립트 -->
-		<div th:replace="layout/script :: scriptFragment"></div>
-		<th:block layout:fragment="customJS">
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-			<script type="text/javascript">
-				var like = false;
-				function checkLikeOrNot(params) {
-					like = !like;
-					console.log(like);
-					console.log(params);
-					$.ajax({
-						url:"/board/likeCount",
-						data: {like: like},
-						method: "get",
-						dataType: "json"
-					}).done(function(json) {
-						alert("성공");
-					}).fail(function(params) {
-						alert("실패");
-					})
-				}
-			</script>
-		</th:block>
-	</body>
+	<!-- 스크립트 -->
+	<div th:replace="layout/script :: scriptFragment">
+		<!-- 이 안에 개별적인 js 넣으면 됨. -->
+	</div>
+</body>
 </html>

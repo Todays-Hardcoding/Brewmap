@@ -1,6 +1,5 @@
 package com.brew.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -86,9 +85,8 @@ public class StoreInfoController {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("currentStart", currentStart);
 		model.addAttribute("currentLast", currentLast);
-		
-		return "view/pages/mapSearch";
 
+		return "view/map/mapSearch";
 	}
 	
 	@GetMapping("/click")
@@ -99,7 +97,7 @@ public class StoreInfoController {
 
 		model.addAttribute("storeList", storeList);
 
-		return "view/pages/mapClick";
+		return "view/map/mapClick";
 	}
 	
 	@PostMapping("/move")
