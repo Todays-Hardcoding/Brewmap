@@ -5,3 +5,11 @@
   bottom: 0;
   padding: 20px;
 }
+.footer-social-icons li i {
+  color: #2d2424;
+}
+
+.footer-social-icons li i:hover {
+  color: #b85c38;
+  font-size: 60px;
+}

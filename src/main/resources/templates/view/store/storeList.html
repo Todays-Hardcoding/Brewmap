@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<!-- css 파일 링크 -->
-<head th:replace="css/css :: css">
+<html
+	lang="ko"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head th:replace="layout/head :: headFragment"> </head>
+	<th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{/assets/css/storeList.css}" type="text/css">
+	</th:block>
 
 <body>
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -75,29 +79,38 @@
 	<div th:replace="/layout/header.html :: header"></div>
 	
     <section class="article-list">
-    
-    <p><a class="" onClick="toListByRate()">평점정렬</a></p>
-    <p><a class="" onClick="toListByReview()">리뷰정렬</a></p>
 
         <div class="container">
+					<div class="sorting-container">
+						<spqn>정렬방법&nbsp;&nbsp;&nbsp;| </spqn>
+						<a class="" onClick="toListByRate()">평점순서</a>
+    				<a class="" onClick="toListByReview()">리뷰 많은 순서</a>
+					</div>
+					
             <div class="row articles" >
             	<!-- 리스트 불러오기 반복문 -->
-	            <th:block th:each="storeList : ${infoList}">
-	            	<!-- 리스트 정보 표시 -->
-	                <div class="col-sm-6 col-md-4 item">
-	                	<a th:href="@{/detail (id=${storeList.value.storeCode})}">
-	                	<img class="img-fluid" th:src="'assets/img/storeImg/' + ${storeList.value.storeName} + '/' + ${storeList.value.storeCode} + '_1.png/'" /></a>
-	                	<!--<img class="img-fluid" src="assets/img/desk.jpg">-->
-	                	<h3 class="name" th:text="${storeList.value.storeName}">
-	                	<a href="#"></a></h3>
+							<th:block th:each="storeList : ${infoList}">
+								<div class="col-sm-6 col-md-4 item">
+									<div class="card-container">
 
-						<div th:text="${storeList.key} + ' 킬로미터 부근'" ></div>    	
-	                    <div th:text="${storeList.value.storeCategory}"></div>
-	                    <div th:text="${storeList.value.storeTag}"></div>
-	                    <div th:text="${storeList.value.storeRoadAddr}"></div>
-	                    <div th:text="${storeList.value.storeStaravg}"></div>
-	                </div>
-	            </th:block>  
+										<div class="card">
+											<a th:href="@{/detail (id=${storeList.value.storeCode})}">
+												<img class="img-fluid" th:src="'assets/img/storeImg/' + ${storeList.value.storeName} + '/' + ${storeList.value.storeCode} + '_1.png/'" />
+												<div class="card-body">
+													<h5 class="card-title" th:text="${storeList.value.storeName}"></h5>
+													<p class="card-text"th:text="${storeList.key} + ' 킬로미터 부근'" ></p>
+													<p class="card-text"th:text="${storeList.value.storeCategory}"></p>
+													<p class="card-text"th:text="${storeList.value.storeRoadAddr}"></p>
+													<span class="star">★</span>
+													<span class="card-text rate"th:text="${storeList.value.storeStaravg}"></span>
+												</div>
+											</a>
+										</div>
+										
+									</div>
+						</div>
+						</th:block>
+
             </div>
             
             <!-- 

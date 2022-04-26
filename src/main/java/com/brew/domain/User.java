@@ -36,9 +36,8 @@ public class User {
 	private List<Board> board;
 
 	@OneToMany(mappedBy = "user")
-	@JsonManagedReference
 	private List<Review> Review;
-
+	
 	@NotNull
 	@Column
 	private String userCategory;
