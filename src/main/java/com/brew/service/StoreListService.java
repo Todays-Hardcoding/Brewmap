@@ -57,7 +57,7 @@ public class StoreListService {
 
 		    distance = 2 * radius * Math.asin(squareRoot);
 	        
-		    if(distance < 2) {
+		    if(distance < 30) {
 		        storesDistance.put(distance, store);                
 		    }   	
 		}

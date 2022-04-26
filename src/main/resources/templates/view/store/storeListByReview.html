@@ -90,18 +90,17 @@
 	            	<!-- 리스트 정보 표시 -->
 	                <div class="col-sm-6 col-md-4 item">
 	                	<a th:href="@{/detail (id=${storeList.storeCode})}">
-	                	<img class="img-fluid" src="assets/img/desk.jpg"></a> 
+	                	<img class="img-fluid" th:src="'assets/img/storeImg/' + ${storeList.storeName} + '/' + ${storeList.storeCode} + '_1.png/'" /></a>
 	                	<h3 class="name" th:text="${storeList.storeName}">
 	                	<a href="#"></a></h3>
-						    	
-	                    <div th:text="${storeList.storeCategory}"></div>
+
+						<div th:text="${storeList.storeCategory}"></div>
 	                    <div th:text="${storeList.storeTag}"></div>
 	                    <div th:text="${storeList.storeRoadAddr}"></div>
 	                    <div th:text="${storeList.storeStaravg}"></div>
 	                    <div th:text="${storeList.review.size}"></div>
 	                </div>
-	                
-	            </th:block>
+	            </th:block>  
 	            
             </div>
             
