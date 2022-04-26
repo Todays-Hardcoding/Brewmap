@@ -7,26 +7,53 @@
 <title>Document</title>
 </head>
 <body>
-	<div th:fragment="main">
+	<div th:fragment="main" class="main-container">
 		<div class="row">
 			<div class="col">
-				<div class="simple-slider">
-					<div class="swiper-container">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide"
-								style="background: url('https://cdn.bootstrapstudio.io/placeholders/1400x800.png') center center/cover no-repeat;"></div>
-							<div class="swiper-slide"
-								style="background: url('https://cdn.bootstrapstudio.io/placeholders/1400x800.png') center center/cover no-repeat;"></div>
-							<div class="swiper-slide"
-								style="background: url('https://cdn.bootstrapstudio.io/placeholders/1400x800.png') center center/cover no-repeat;"></div>
-						</div>
-						<div class="swiper-pagination"></div>
-						<div class="swiper-button-prev"></div>
-						<div class="swiper-button-next"></div>
+									<!-- 배너 슬라이드 시작 -->
+					<div id="carouselExampleIndicators" class="carousel slide"
+					data-bs-ride="carousel">
+					<div class="carousel-indicators">
+						<button type="button" data-bs-target="#carouselExampleIndicators"
+							data-bs-slide-to="0" class="active" aria-current="true"
+							aria-label="Slide 1"></button>
+						<button type="button" data-bs-target="#carouselExampleIndicators"
+							data-bs-slide-to="1" aria-label="Slide 2"></button>
+						<button type="button" data-bs-target="#carouselExampleIndicators"
+							data-bs-slide-to="2" aria-label="Slide 3"></button>
 					</div>
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img
+								th:src="@{assets/img/banner/mainBanner03.png}"
+								class="d-block w-100" alt="banner1" />
+						</div>
+						<div class="carousel-item">
+							<img
+							th:src="@{assets/img/banner/mainBanner01.png}"
+								class="d-block w-100" alt="banner2" />
+						</div>
+						<div class="carousel-item">
+							<img
+							th:src="@{assets/img/banner/mainBanner02.png}"
+								class="d-block w-100" alt="banner3" />
+						</div>
+					</div>
+					<button class="carousel-control-prev" type="button"
+						data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">이전</span>
+					</button>
+					<button class="carousel-control-next" type="button"
+						data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">다음</span>
+					</button>
 				</div>
+				<!-- 배너 슬라이드 끝 -->
 			</div>
 		</div>
+		
 		
 	<div class="row main-menu-container">
 			<div class="col-3 col-md-1 social-icons">
@@ -60,7 +87,7 @@
 					<div class="container">
 						<div class="intro">
 							<h2 class="text-center">술집 추천 리스트</h2>
-							<ul th:each="store, stat : ${storePage}">
+							<ul th:each="store, stat : ${storePage}" class="storeListClass">
 								<a th:href="@{/detail (id=${store.storeCode})}">
 									<li class="item">
 										<span class="markerbg marker_숫자값"></span>
@@ -79,28 +106,6 @@
 									</li>
 								</a>
 							</ul>
-						</div>
-					</div>
-				</section>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<section class="photo-gallery">
-					<div class="container">
-						<div class="intro">
-							<h2 class="text-center">즐겨찾는 게시판</h2>
-						</div>
-					</div>
-				</section>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<section class="photo-gallery">
-					<div class="container">
-						<div class="intro">
-							<h2 class="text-center">채팅(일단)</h2>
 						</div>
 					</div>
 				</section>

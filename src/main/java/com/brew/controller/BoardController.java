@@ -168,9 +168,14 @@ public class BoardController {
 		// 시각적인 맨 첫 페이지, 맨 끝 페이지
 		int startPage = 1;
 		int endPage = boardList.getTotalPages();
+		if(endPage == 0)
+			endPage = 1;
 		// 10페이지 단위로 나눌 예정.
 		int currentStart = (nowPage/10)*10 + 1;
 		int	currentLast = currentStart + 9 < boardTotalPages ? currentStart + 9 : boardTotalPages;
+		if(currentLast == 0) {
+			currentLast = 1;
+		}
 		
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("boardTotalPages", boardTotalPages);
