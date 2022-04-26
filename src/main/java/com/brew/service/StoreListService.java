@@ -71,12 +71,7 @@ public class StoreListService {
 		}
 		
 		return result;
-<<<<<<< HEAD
-		}
-}
-=======
 	}
-	
 	
 //	거리 가져와서 평점순으로 정렬
 	public List<StoreInfo> getStoresByRate(Map<String, String> params) {
@@ -169,4 +164,3 @@ public class StoreListService {
 	}
 
 }
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
