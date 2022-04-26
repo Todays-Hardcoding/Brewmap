@@ -60,18 +60,26 @@ public class StoreInfoController {
 		model.addAttribute("storeList", storeList);
 		model.addAttribute("keyword", keyword);
 
-		int TotalPages = storePage.getTotalPages();
+		int totalPages = storePage.getTotalPages();
 		// 시각적인 현재 페이지
 		int nowPage = storePage.getPageable().getPageNumber()+1;
 		// 시각적인 맨 첫 페이지, 맨 끝 페이지
 		int startPage = 1;
 		int endPage = storePage.getTotalPages();
+		if(endPage == 0)
+			endPage = 1;
 		// 10페이지 단위로 나눌 예정.
 		int currentStart = (nowPage/10)*10 + 1;
-		int	currentLast = currentStart + 9 < TotalPages ? currentStart + 9 : TotalPages;
+		int	currentLast = currentStart + 9 < totalPages ? currentStart + 9 : totalPages;
+		if(currentLast == 0) {
+			currentLast = 1;
+		}
 		
 		model.addAttribute("list", storePage);
-		model.addAttribute("boardTotalPages", TotalPages);
+
+		
+		model.addAttribute("list", storePage);
+		model.addAttribute("boardTotalPages", totalPages);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
