@@ -54,12 +54,43 @@
 				</div>
 				<ul id="placesList" class="list-group">
 				</ul>
-				<div id="pagination">
-					<th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
-						<a th:if="${page != nowPage}" th:href="@{/map(page=${page-1}, keyword=${keyword})}" th:text="${page}"></a>
-						<a th:if="${page == nowPage}" th:text="${page}"></a>
-					</th:block>
-				</div>
+				<nav class="d-flex justify-content-center">
+						<ul class="pagination"
+							th:with="currentStart=${currentStart}, currentLast=${currentLast}">
+
+
+							<li th:style="${nowPage} == ${startPage} ? 'display:none'"
+								class="page-item"><a class="page-link"
+								th:href="@{/map(page=0, keyword=${keyword})}"
+								aria-label="First"> <span aria-hidden="true">처음으로</span>
+							</a></li>
+
+							<li th:style="${nowPage} == ${startPage} ? 'display:none'"
+								class="page-item"><a class="page-link"
+								th:href="${nowPage} == ${startPage} ? '#' :@{/map(page=${nowPage-2}, keyword=${keyword})}"
+								aria-label="Previous"> <span aria-hidden="true">&lt;</span>
+							</a></li>
+
+							<li
+								th:each="page: ${#numbers.sequence(currentStart, currentLast)}"
+								th:class="${page == nowPage} ? 'active'" class="page-item">
+								<a class="page-link" th:text="${page}"
+								th:href="@{/map(page=${page-1}, keyword=${keyword})}"></a>
+							</li>
+
+							<li th:style="${nowPage} == ${endPage} ? 'display:none'"
+								class="page-item"><a class="page-link"
+								th:href="${nowPage} == ${endPage} ? '#' : @{/map(page=${nowPage}, keyword=${keyword})}"
+								aria-label="Next"> <span aria-hidden="true">&gt;</span> <!-- @{/${boardCategoryCode}(page=${nowPage}, keyword=${keyword})}  |${boardCategoryCode}?page=${nowPage}| -->
+							</a></li>
+
+							<li th:style="${nowPage} == ${endPage} ? 'display:none'"
+								class="page-item"><a class="page-link"
+								th:href="@{/map(page=${endPage-1}, keyword=${keyword})}"
+								aria-label="Last"> <span aria-hidden="true">마지막으로</span>
+							</a></li>
+						</ul>
+					</nav>
 			</div>
 		</div>
 	</form>

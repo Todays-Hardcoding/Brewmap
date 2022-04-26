@@ -8,11 +8,11 @@
 		<version>2.6.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.my</groupId>
-	<artifactId>MyPro</artifactId>
+	<groupId>com.brew</groupId>
+	<artifactId>Brewmap</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>MyPro</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Brewmap</name>
+	<description>Brewmap Project</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
