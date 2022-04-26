@@ -40,14 +40,14 @@ public class UserResisterController {
 	}
 	
 	@RequestMapping(value = "/dupUser")
-	public int checkUser(HttpServletRequest req, @RequestParam int result) {
+	public String checkUser(HttpServletRequest req, @RequestParam String result) {
 		String checkUserId = req.getParameter("userId");
 		User idCheck = userservice.checkUserId(checkUserId);
 		
 		 if( idCheck != null) {
-			 result = 1;
+			 result = "idChecked";
 		 }else {
-			 result = 0;
+			 result = "idUnchecked";
 		 }
 		 req.setAttribute("result", result);
 		return result;

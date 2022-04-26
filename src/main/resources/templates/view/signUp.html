@@ -81,6 +81,7 @@
 							id="userId" placeholder="아이디" required> <label
 							for="userId">아이디</label>
 						<button onclick="idCheck()">중복확인</button>
+						<input type="hidden" name="idDup" value="idUnchecked">
 						<div class="valid-check">
 							<span title="userId-value" class="valid-check"></span>
 						</div>
@@ -298,13 +299,16 @@ $('#signup-form button[name="signup-button"]').click(function(evt) {
     // last.value = '';
   }
     //이름설정
-    var userId = $('#signup-form input[name="userId"]')
+    var userId = $('#signup-form input[name="userId"]');
+		var userIdDup = $('#idDup');
   // console.log(userId.val());
   if(userId.val()) {
     $('span[title="userId-value"]').show().html('GOOD!').css('color', 'green')
     userId.removeClass('is-invalid')
     userId.addClass('is-valid')
-  } else {
+  } else if(userIdDup.val != "idCheck") {
+		alert("중복 검사를 해주세요");
+	} else {
     $('span[title="userId-value"]').show().html('아이디를 올바르게 입력해주세요').css('color', 'red')
     userId.removeClass('is-valid')
     userId.addClass('is-invalid')
@@ -407,7 +411,21 @@ $('#signup-form button[name="signup-button"]').click(function(evt) {
     pwcheck.addClass('is-invalid')
   } */
 	function idCheck(param) {  
-		
+		var signupForm = $('#signup-form');
+		var id = signupForm.userId.val();
+		$.ajax({
+			method: get,
+			actions: "/dupUser",
+			data: {id: id},
+			dataType: JSON,
+			success: function() {
+				alert("success");
+			},
+			error: function (error) {  
+				alert("failed");
+			}
+		});
+
 
 	}
 
