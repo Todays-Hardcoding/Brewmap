@@ -148,7 +148,7 @@ public class BoardController {
 		model.addAttribute("boardCategoryCode", boardCategoryCode);
 		
 		if(boardCategoryCode.equals("reviewPage"))
-			return "view/board/boradReviewPage";
+			return "view/board/boardReviewPage";
 		else
 			return "view/board/boardHotPage";
 	}
