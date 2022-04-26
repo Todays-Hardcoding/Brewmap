@@ -1,0 +1,134 @@
+
+.nav-wrap{
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  height: 70px;
+}
+
+.nav-wrap .logo-container{
+  
+  width: 40%;
+  order: 2;
+}
+
+.nav-wrap .menu-container{
+  width: 30%;
+  order: 1;
+}
+
+.nav-wrap .search-container{
+  width: 30%;
+  order: 3;
+}
+
+@media (min-width:991px) {
+  .nav-wrap > .logo-container{
+    width: 15%;
+    order: 1;
+  }
+  
+  .nav-wrap > .menu-container{
+    width: 52%;
+    order: 2;
+  }
+  
+  .nav-wrap > .search-container{
+    width: 33%;
+    order: 3;
+  }
+  .navbar-nav{
+    white-space: nowrap;
+  }
+}
+
+.nav-color{
+	background-color: #e9ecef;
+  padding-top: 5px;
+}
+
+.nav-sticky .nav-container {
+	width: 100%;
+	position: fixed;
+	top: 0;
+	background: #e9ecef;
+	backdrop-filter: saturate(180%) blur(15px);
+	transition: all;
+	transition-duration: 2s;
+	z-index: 9999;
+}
+
+.nav-sticky .nav-color{
+	background: #e9ecef;
+	backdrop-filter: saturate(180%) blur(15px);
+	transition: all;
+	transition-duration: 2s;
+	z-index: 9999;
+}
+
+button {
+  margin: 20px;
+}
+
+.w-btn {
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 15px;  
+    text-decoration: none;
+    transition: 0.25s;
+    background-color: aliceblue;
+    color: #1e6b7b;
+}
+
+#nav-search-input {
+  display: none;
+  /* display: block; */
+
+}
+
+#nav-search-button{
+  /* transform: translateX(700%); */
+}
+/* 
+.search-container{
+  position: absolute;
+}
+
+.search-input-container{
+  position: relative;
+} */
+
+.nav-search-icon{
+  font-size: 36px;
+  color: #1e6b7b;
+}
+.nav-search-icon:hover{
+  cursor: pointer;
+}
+.search-input-container{
+  display: flex;
+}
+.search-input-container .nav-search-input{
+  width: 20%;
+  min-width: 200px;
+  display: inline-block;
+}
+.search-section {
+  /* margin-right: 0; */
+  display: inline-block;
+}
+
+.search-input-position-box{
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  z-index: 9999;
+}
+.search-icon-position-box{
+  position: absolute;
+  top: 17px;
+  right: 20px;
+}

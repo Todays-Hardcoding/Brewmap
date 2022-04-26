@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="layout/head :: headFragment"></head>
+
+<th:block layout:fragment="customCss">
+	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
+	<title>boardReviewPageMain</title>
+	<style>
+		a {
+			text-decoration: none;
+			border-color: white;
+		}
+		
+		.list-group-item {
+			border-color: white;
+		}
+	</style>
+</th:block>
+
+<body>
+	<!-- 헤더 페이지 불러오기 -->
+	<div th:replace="layout/header :: header"></div>
+
+	<!-- [content] 영역 시작, 아래 태그 지우고 이 자리 채우면 됨. -->
+	<section>
+		<div class="container">
+			<div class="row py-1 py-md-5">
+				<div class="col-12 col-sm-3">
+					<div
+						class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 text-white">
+						<ul id="menu-1"
+							class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 my-3 mb-sm-auto justify-content-center align-items-center align-items-sm-start w-100">
+							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
+								th:href="@{/board/hotPage}"><i
+									class="fas fa-fire bi-speedometer2 fs-5 ms-2"></i><span
+									class="ms-1 d-none d-sm-inline">술집랭킹</span></a></li>
+							<li class="w-100"><a class="px-1 nav-link px-sm-0 ps-2"
+								th:href="@{/board/reviewPage}"><i
+									class="fas fa-utensils bi-bootstrap fs-5 ms-2"></i><span
+									class="ms-1 d-none d-sm-inline">술집추천</span></a></li>
+							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
+								th:href="@{/board/serviceCenter}"><i
+									class="fa fa-group bi-people fs-5 ms-2"></i><span
+									class="ms-1 d-none d-sm-inline">고객센터</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col">
+					<h4 class="display-6" th:text="${boardCategory}"></h4>
+					<hr />
+					<ul class="list-group list-group-flush"
+						th:each="review : ${list}">
+						<!-- 여기에 storeDetail로 가는 링크 매핑해주세여! -->
+						<a th:href="@{/detail (id=${review.storeInfo.storeCode})}">				
+							<li class="list-group-item">
+								<h4 style="margin-bottom: 2px" th:text="${review.storeInfo.storeName}"></h4> 
+								<span th:text="${review.reviewComment}"></span>
+								<div class="row">
+									<div class="col">
+										<small th:text="${review.user.userName}"></small>
+										<small style="margin-right: 10px" th:text="${#temporals.format(review.reviewDate, 'dd-MM-yy HH:mm:ss')}"></small>
+									</div>
+									<div class="col d-flex d-lg-flex justify-content-end justify-content-lg-end">
+										<!-- <i class="fa fa-star"></i>
+										<i class="fa fa-star fa-star-half-o"></i>
+										<i class="fa fa-star fa-star-o"></i> -->
+										<!-- <small style="margin-right: 10px" th:text="${review.reviewStar}"></small> -->
+										<th:block>
+											<div th:each="index : ${#numbers.sequence(1, review.reviewStar)}">
+												<i class="fa fa-star"></i>
+											</div><div th:each="index : ${#numbers.sequence(1, 5 - review.reviewStar)}">
+												<i class="fa fa-star fa-star-o"></i>
+											</div>
+										</th:block>
+								</div>
+							</li>
+						</a>
+					</ul>
+					<nav class="d-flex justify-content-center">
+						<ul class="pagination"
+							th:with="currentStart=${currentStart}, currentLast=${currentLast}, boardCategory=${boardCategory}">
+
+
+							<li th:style="${nowPage} == ${startPage} ? 'display:none'"
+								class="page-item"><a class="page-link"
+								th:href="|${boardCategoryCode}?page=0&keyword=${keyword}|"
+								aria-label="First"> <span aria-hidden="true">처음으로</span>
+							</a></li>
+
+							<li th:style="${nowPage} == ${startPage} ? 'display:none'"
+								class="page-item"><a class="page-link"
+								th:href="${nowPage} == ${startPage} ? '#' :|${boardCategoryCode}?page=${nowPage-2}&keyword=${keyword}|"
+								aria-label="Previous"> <span aria-hidden="true">&lt;</span>
+							</a></li>
+
+							<li
+								th:each="page: ${#numbers.sequence(currentStart, currentLast)}"
+								th:class="${page == nowPage} ? 'active'" class="page-item">
+								<a class="page-link" th:text="${page}"
+								th:href="|${boardCategoryCode}?page=${page-1}&keyword=${keyword}|"></a>
+							</li>
+
+							<li th:style="${nowPage} == ${endPage} ? 'display:none'"
+								class="page-item"><a class="page-link"
+								th:href="${nowPage} == ${endPage} ? '#' : |${boardCategoryCode}?page=${nowPage}&keyword=${keyword}|"
+								aria-label="Next"> <span aria-hidden="true">&gt;</span> <!-- @{/${boardCategoryCode}(page=${nowPage}, keyword=${keyword})}  |${boardCategoryCode}?page=${nowPage}| -->
+							</a></li>
+
+							<li th:style="${nowPage} == ${endPage} ? 'display:none'"
+								class="page-item"><a class="page-link"
+								th:href="|${boardCategoryCode}?page=${endPage-1}&keyword=${keyword}|"
+								aria-label="Last"> <span aria-hidden="true">마지막으로</span>
+							</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- [content] 영역 끝 -->
+
+	<!-- 푸터 페이지 불러오기 -->
+	<footer th:replace="layout/footer :: footer"></footer>
+
+	<!-- 스크립트 -->
+	<div th:replace="layout/script :: scriptFragment">
+		<!-- 이 안에 개별적인 js 넣으면 됨. -->
+	</div>
+</body>
+</html>
