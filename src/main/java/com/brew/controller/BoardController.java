@@ -153,7 +153,7 @@ public class BoardController {
 		model.addAttribute("boardCategoryCode", boardCategoryCode);
 		
 		if(boardCategoryCode.equals("reviewPage"))
-			return "view/board/boradReviewPage";
+			return "view/board/boardReviewPage";
 		else
 			return "view/board/boardHotPage";
 	}
@@ -229,6 +229,7 @@ public class BoardController {
 	@RequestMapping(value="/likeCount", method=RequestMethod.GET)
 	public String countLike(Model model, Long boardId) {
 		Board board = boardService.findByBoardId(boardId);
+		board.setBoardLikeCount(board.getBoardLikeCount() + 1);
 		boardService.saveBoard(board);
 		return "redirect:?boardId="+boardId;
 	}
