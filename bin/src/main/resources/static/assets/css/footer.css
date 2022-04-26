@@ -1,4 +1,11 @@
 .footer-container {
   display: flex;
+<<<<<<< HEAD
   justify-content: space-around;
+=======
+  height: 100px;
+  justify-content: space-around;
+  bottom: 0;
+  padding: 20px;
+>>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 }

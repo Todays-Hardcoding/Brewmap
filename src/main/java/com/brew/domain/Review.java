@@ -10,29 +10,37 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.DynamicUpdate;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.NoArgsConstructor;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table
+@DynamicUpdate
 public class Review {
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name="store_code")
 	@JsonBackReference
 	private StoreInfo storeInfo;
-	
+
+	@NotNull
 	@ManyToOne
-	@JoinColumn(name="user_id")
 	@JsonBackReference
+	@JoinColumn(name="user_id")
 	private User user;
 	
 	@Id
@@ -57,9 +65,10 @@ public class Review {
 	private LocalDateTime reviewDate;
 	
 	@PrePersist
-	public void createdAt() {
+	@PreUpdate
+	 public void createdAt() {
 		this.reviewDate = LocalDateTime.now();
-	}
+	 }
 	
 	@Builder
 	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull String reviewUser,

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="layout/head :: headFragment">
@@ -121,6 +122,115 @@
 		function moveUserpage() {
 			location.href = "userpage"
 		}
+=======
+<html lang="ko" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="layout/head :: headFragment">
+</head>
+
+<th:block layout:fragment="customCss">
+	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
+    <link rel="stylesheet" href="assets/css/userpage/Modal-commerce-popup-button.css">
+    <link rel="stylesheet" href="assets/css/userpage/Profile-Edit-Form.css">
+    <link rel="stylesheet" href="assets/css/userpage/Social-Icons.css">
+</th:block>
+
+<body>
+	<!-- 헤더 페이지 불러오기 -->
+	<div th:replace="layout/header :: header"></div>
+
+	<!-- [content] 영역 시작, 아래 태그 지우고 이 자리 채우면 됨. -->
+	<div class="container profile profile-view" id="profile">
+		<form action="/modifyUserInfo" method="POST">
+			<div class="row profile-row">
+				<div class="col-md-4 relative" style="height: 300px;">
+					<div class="avatar" style="height: 300px;">
+						<div class="avatar-bg center" style="margin-bottom: 10px;"></div>
+						<div style="text-align: center;">
+							<strong>User</strong>
+						</div>
+						<div class="text-center">
+							<a class="bs4_modal_trigger" href="#">사진 변경</a>
+							<a class="bs4_modal_trigger" th:href="@{/delete(userId=${session.user.userId})}" >회원 탈퇴</a>
+							<!-- <a class="bs4_modal_trigger" th:href="@{/delete}" > 탈퇴</a> -->
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="d-xl-flex justify-content-xl-center social-icons"
+						style="height: 100xp;">
+						<a href="#"><i class="fab fa-product-hunt" href="#"></i></a>
+						<a href="#"><i class="fas fa-ticket-alt" href="#"></i></a>
+						<a href="#"><i class="fas fa-comment-dots" href="#"></i></a>
+						<a href="#"><i class="fa fa-calendar-check-o" href="#"></i></a>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-sm-12 col-md-6">
+							<div class="form-group mb-3">
+								<strong>회원아이디</strong>
+								<input th:value="${session.user.userId}" class="form-control-plaintext" name="userId"></input>
+							</div>
+						</div>
+						<div class="col-sm-12 col-md-6">
+							<div class="form-group mb-3">
+								<strong>이름</strong>
+								<input th:value="${session.user.userName}" class="form-control-plaintext" name="userName"></input>
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-group mb-3">
+								<strong>생년월일</strong>
+								<input th:value="${session.user.userBirthDate}" class="form-control-plaintext" name="userBirthDate"></input>
+							</div>
+						</div>
+						<div class="col-sm-12 col-md-6">
+							<div class="form-group mb-3">
+								<strong>회원등급</strong>
+								<input th:value="${session.user.userGrade}" class="form-control-plaintext" name="userGrade"></input>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-md-6">
+							<div class="form-group mb-3">
+								<strong>전화번호</strong>
+								<input th:value="${session.user.userTel}" class="form-control-plaintext" name="userTel"></input>
+							</div>
+						</div>
+						<div class="col-sm-12 col-md-6">
+							<div class="form-group mb-3">
+								<strong>이메일</strong>
+								<input th:value="${session.user.userEmail}" class="form-control-plaintext" name="userEmail"></input>
+							</div>
+						</div>
+							<input type="hidden" name="userCategory"  th:value="${session.user.userCategory}"></input>
+							<input type="hidden" name="userNickName"  th:value="${session.user.userNickName}"></input>
+							<input type="hidden" name="userPw"  th:value="${session.user.userPw}"></input>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-md-12 content-right">
+							<button class="btn btn-primary form-btn" type="submit" >SAVE</button>
+							<button class="btn btn-danger form-btn" type="reset"
+								onclick="location.href='userpage';">CANCEL</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+<!-- [content] 영역 끝 -->
+
+<!-- 푸터 페이지 불러오기 -->
+<footer th:replace="layout/footer :: footer"></footer>
+
+<!-- 스크립트 -->
+<div th:replace="layout/script :: scriptFragment">
+	<!-- 이 안에 개별적인 js 넣으면 됨. -->
+	<script th:inline="javascript">
+>>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 	</script>
 </div>
 </body>

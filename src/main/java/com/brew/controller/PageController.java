@@ -11,6 +11,7 @@ public class PageController {
 		return "view/pages/chat";
 	}
 	
+<<<<<<< HEAD
 //	@RequestMapping("/storeList")
 //	public String storeListnav() {
 //		return "view/pages/storeList";
@@ -30,6 +31,17 @@ public class PageController {
 //	public String mypagenav() {
 //		return "view/pages/mypage";
 //	}
+=======
+	@RequestMapping("/login")
+	public String loginnav() {
+		return "view/login";
+	}
+	
+	@RequestMapping("/mypage")
+	public String mypagenav() {
+		return "view/pages/mypage";
+	}
+>>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 	// 방명록
 	
 	//수정
