@@ -48,3 +48,15 @@
 body {
   min-width: 390px;
 }
+
+.default-background {
+  background-color: #e6e6e6;
+}
+
+.default-background div {
+  background-color: #e6e6e6;
+}
+
+.main-icon-container {
+  justify-content: space-between;
+}

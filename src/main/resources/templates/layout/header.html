@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="layout/head :: headFragment">
+  </head>
   <div th:fragment="header">
+  <link rel="stylesheet" th:href="@{/assets/css/default.css}" />
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
 	function toList(){
@@ -39,19 +42,19 @@
       <div class="nav-container">
         <div class="nav-wrap">
           <!-- 1번 nav 로고있는곳 -->
-          <div class="logo-container nav-color">
+          <div class="logo-container background-color-gray">
             <nav class="navbar navbar-expand-lg navbar-light">
               <div class="container-fluid">
                 <!-- 로고, 홈으로 이동 -->
-                <a class="navbar-brand" th:href="@{/index}">Logo</a>
+                <a class="navbar-brand" th:href="@{/index}"><img class="logo-image" th:src="@{/assets/img/logo/brewmapLogoStretch02.png}" alt="brewmapLogo mad version"></a>
               </div>
             </nav>
           </div>
 
           <!-- 2번 nav 메뉴버튼 있는곳-->
-          <div class="menu-container nav-color justify-content-start">
-            <nav class="navbar navbar-expand-lg navbar-light justify-content-start z-9999">
-              <div class="container-fluid justify-content-start">
+          <div class="menu-container background-color-gray justify-content-start">
+            <nav class="navbar navbar-expand-lg navbar-light justify-content-start z-9999 second-nav">
+              <div class="container-fluid justify-content-start  second-nav">
                 <button
                   class="navbar-toggler"
                   type="button"
@@ -78,7 +81,7 @@
           </div>
 
           <!-- 3번 nav -->
-          <div class="search-container nav-color">
+          <div class="search-container background-color-gray">
             <nav class="navbar navbar-expand-lg navbar-light">
               <div class="container-fluid">
                 <div class="search-icon-position-box">
