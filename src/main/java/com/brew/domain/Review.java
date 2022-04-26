@@ -37,12 +37,14 @@ public class Review {
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name="store_code")
+	@JsonBackReference
 	private StoreInfo storeInfo;
 
 	@NotNull
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name="user_id")
+	@JsonBackReference
 	private User user;
 	
 	@Id
@@ -50,6 +52,10 @@ public class Review {
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long reviewId;
+	
+	@NotNull
+	@Column
+	private String reviewUser;
 	
 	@NotNull
 	@Column
@@ -76,9 +82,9 @@ public class Review {
 		this.storeInfo = storeInfo;
 		this.user = user;
 		this.reviewId = reviewId;
+		this.reviewUser = reviewUser;
 		this.reviewStar = reviewStar;
 		this.reviewComment = reviewComment;
 		this.reviewDate = reviewDate;
 	}
-	
 }

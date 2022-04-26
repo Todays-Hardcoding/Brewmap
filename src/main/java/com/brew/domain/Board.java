@@ -43,6 +43,7 @@ public class Board {
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name="user_id")
+	@JsonBackReference
 	private User user;
 	
 	@Id

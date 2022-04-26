@@ -36,9 +36,16 @@ public class User {
 	private List<Board> board;
 
 	@OneToMany(mappedBy = "user")
+<<<<<<< HEAD
 	@JsonManagedReference
+=======
+>>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 	private List<Review> Review;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 	@NotNull
 	@Column
 	private String userCategory;

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.brew.domain.Review;
 
 public interface ReviewRepository extends JpaRepository<Review, Long>{
+<<<<<<< HEAD
 	
 	@Query(value="select count(*) from review where review_date >= '2022-04-22' and review_date <= '2022-04-25'", nativeQuery = true)
 	int calReviewCount();
@@ -17,4 +18,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long>{
 	Page<Review> findRecentReview(Pageable pageable);
 	
 	Review getByReviewId(long id);
+=======
+
+>>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 }

@@ -12,8 +12,11 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+<<<<<<< HEAD
 import org.hibernate.annotations.DynamicUpdate;
 
+=======
+>>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Builder;
@@ -105,5 +108,8 @@ public class StoreInfo {
 		this.storeTag = storeTag;
 		this.storeStaravg = storeStaravg;
 	}	
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 }

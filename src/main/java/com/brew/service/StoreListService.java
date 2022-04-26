@@ -1,6 +1,10 @@
 package com.brew.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,11 +25,12 @@ public class StoreListService {
 	public Page<StoreInfo> getInfoList(Map<String, String> params, Pageable pageable) {
 		return storeInfoRepository.findAllStores(pageable);
 	}
-	
-	public List<StoreInfo> getCloseStores(Map<String, String> params) {
+		
+	public HashMap<String, StoreInfo> getCloseStores(Map<String, String> params) {
 		
 		List<StoreInfo> stores = storeInfoRepository.findAll();
-		List<StoreInfo> result = new ArrayList<StoreInfo>();
+		HashMap<String, StoreInfo> result = new LinkedHashMap<String, StoreInfo>();
+		HashMap<Double, StoreInfo> storesDistance = new HashMap<Double, StoreInfo>();
 		
 		System.out.println(params.values());
 		
@@ -51,13 +56,20 @@ public class StoreListService {
 
 		    distance = 2 * radius * Math.asin(squareRoot);
 	        
-		    if(distance < 9) {
-		    	result.add(store);
-		    	System.out.println(distance);
-		    }
+		    if(distance < 25) {
+		        storesDistance.put(distance, store);                
+		    }   	
 		}
-					
+		
+		List<Double> keys = new ArrayList<>(storesDistance.keySet());
+        Collections.sort(keys);	
+        
+		for(Double key : keys) {
+			result.put(String.format("%.2f", key.floatValue()), storesDistance.get(key));
+			System.out.println(key);
+			System.out.println(storesDistance.get(key));
+		}
+		
 		return result;
 	}
-
 }
