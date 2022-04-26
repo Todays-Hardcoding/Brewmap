@@ -36,7 +36,7 @@
 				<div class="col">
 					<!-- 게시판 내용 들어갈 자리-->
 					<div class="container">
-						<form method="get" action="/board/create">
+						<form method="get" action="/board/create" id="boardCreate">
 							<div class="text-center container"
 								style="margin: 40px; text-align: left;">
 								<p style="text-align: center; transform: translate(-26px);">
@@ -90,25 +90,41 @@
 
 	</th:block>
 	<script type="text/javascript">
-		const form = document.querySelector('form');
+		const form = document.querySelector("#boardCreate");
 
 		form.addEventListener('submit', function (evt) {
+			console.log("submit!");
 
-			const boardTitle = document.querySelector('input[name="boardTitle"]');
-			var boardTitleCheck = /[\s]/g;
-			if(str.replace(boardTitle, '' ) == "" ){
+			const boardTitle = form.querySelector('input[name="boardTitle"]');
+			const boardContent = form.querySelector('input[name="boardContent"]');
+			var boardCheck = /^[^\s]{1}[\wㄱ-ㅎ가-힣]{1}[\w\sㄱ-ㅎ가-힣]*/;	
+			var boardContentCheck = /^[\s]+$/;		
+			var boardLongCheck = /^[\S]{0,3}$/;
+			// 제목 유효성 검사
+			if(!boardTitle.value){
 				alert('제목을 입력해주세요');
-			}
-			if (!boardTitleCheck.test(boardTitle.value)) {
-				alert('제목은 3글자 이상으로 써주세요.');
-				boardTitle.focus();
-				//boardTitle.value = '';
+				boardTitle.value.replace(boardTitle.value, '' )
 				evt.preventDefault();
-				return false;
 			}
-			if( boardTitleCheck.test(boardTitle) == true){
-					alert('공백이 입력되었습니다.');
+			if(boardLongCheck.test(boardTitle.value)){
+				alert('제목은 3글자 이상으로 써주세요.');
+				evt.preventDefault();
 			}
+			if(boardContentCheck.test(boardTitle.value)){
+				alert('제목이 공백으로 시작합니다.');
+				evt.preventDefault();
+			}
+
+			if(!boardContent.value){
+				alert('내용을 입력해주세요');
+				boardContent.value.replace(boardContent.value, '' )
+				evt.preventDefault();
+			}
+			if(boardLongCheck.test(boardContent.value)){
+				alert('내용은 3글자 이상으로 써주세요.');
+				evt.preventDefault();
+			}
+
 		});
 	</script>
 </body>
