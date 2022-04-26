@@ -34,14 +34,21 @@
 	        <div id="map" style="width: 100%; height: 500px; position: relative; overflow: hidden;">
 	   		</div>
                 
-                
+           <h4 style="font-size: 22px;">Leave a Comment:</h4>
+           <div id="star">
+	           <button onclick="star()" type="button" value="1"><i class="fa fa-star fa-star-o"></i></button>
+	           <button onclick="star()" type="button" value="2"><i class="fa fa-star fa-star-o"></i></button>
+	           <button onclick="star()" type="button" value="3"><i class="fa fa-star fa-star-o"></i></button>
+	           <button onclick="star()" type="button" value="4"><i class="fa fa-star fa-star-o"></i></button>
+	           <button onclick="star()" type="button" value="5"><i class="fa fa-star fa-star-o"></i></button>
+           </div> 
            <!-- 댓글 작성 -->
            <form id="createReview" role="form" method="POST" action="/reviewInsert">
                <!-- hidden 영역 -->
                <input type="hidden" name="userId" th:value="${session.user.userId}"> 
                <input type="hidden" name="reviewUser" th:value="${session.user.userName}">
                <input type="hidden" name="storeCode" th:value="${storeDetail.storeCode}">
-               <input type="hidden" name="reviewStar" th:value='3'>
+               <input type="hidden" name="reviewStar">
                <!-- 입력 영역 --> 
                <div class="form-group">
                    <textarea class="form-control form-control" rows="3" style="font-size: 16px;" name="reviewContent" placeholder="리뷰를 작성하세요"></textarea>
@@ -62,12 +69,19 @@
 						<input type="hidden" name="storeCode" th:value="${storeDetail.storeCode}">
                     	<input type="hidden" name="reviewId" th:value="${review.reviewId}">
 	                    <div class="col-9 col-md-10" style="width: 100%;">
-	                           <!-- 댓글 작성자 -->
-	                    	<h4 style="font-size: 22px;" th:text="${review.user.userId}">댓글 작성자
-	                           <!-- 댓글 작성일 -->
-	                    		<small class="font-monospace d-md-flex justify-content-md-end align-items-md-end small" style="font-size: 15px;" th:text="${reply.replyDate}">작성 날짜</small>
-	                    	</h4>
-	                           <!-- 댓글 내용 -->
+	                        <!-- 댓글 작성자 -->
+	                        <div>
+		                    	<h4 style="font-size: 22px;" th:text="${review.user.userId}">댓글 작성자</h4>
+								<span th:each="index : ${#numbers.sequence(1, review.reviewStar)}">
+									<i class="fa fa-star"></i>
+								</span>
+								<span th:each="index : ${#numbers.sequence(1, 5 - review.reviewStar)}">
+									<i class="fa fa-star fa-star-o"></i>
+								</span>
+							</div>
+	                        <!-- 댓글 작성일 -->
+	                    	<span class="font-monospace d-md-flex justify-content-md-end align-items-md-end small" style="font-size: 15px;" th:text="${#temporals.format(review.reviewDate, 'yy-MM-dd HH:mm:ss')}">작성 날짜</span>
+	                        <!-- 댓글 내용 -->
 	                    	<p style="font-size: 16px;" th:text="${review.reviewComment}">댓글 내용</p>
 	                        <div th:if="${session.user.userId == review.user.userId}" class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end">
 	                        	<span><button class="btn btn-primary d-flex d-xxl-flex justify-content-center align-items-center" type="submit" name="delete">삭제</button></span>
@@ -141,6 +155,43 @@
 			}
 		})
 	        
+    </script>
+    <script type="text/javascript">
+    	function star(e){
+    		var cnt = event.target.parentElement.value;
+    		console.log(cnt)
+    		
+    		var reviewStar = document.querySelector('input[name="reviewStar"]');
+    		reviewStar.value = cnt;
+    		console.log(reviewStar)
+    		
+    		var stars = document.querySelector('#star').children; 
+    		
+    		for(var i = 0; i < stars.length; i++) {
+    			stars[i].firstChild.className = 'fa fa-star fa-star-o';
+    		}
+    		
+    		for(i = 0; i < cnt; i++) {
+    			stars[i].firstChild.className = 'fa fa-star';
+    		}
+    			
+    	}
+    	
+    		
+    		
+    		
+    		/* var stars = document.querySelector('#star').children;
+    		console.log(stars)
+    		
+    		for(var i = 0; i < cnt; i++) {
+    			stars[i].firstChild.className = 'fa fa-star';
+    		}
+    		
+    		for(i = cnt + 1; i < 5; i++) {
+    			console.log(stars[i].firstChild)
+    			stars[i].firstChild.className = 'fa fa-star fa-star-o';
+    		} */
+    	
     </script>
 	<div th:replace="layout/script :: scriptFragment">
 	<!-- 이 안에 개별적인 js 넣으면 됨. -->
