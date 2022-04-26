@@ -31,4 +31,8 @@ public class StoreDetailService {
 		System.out.println(review.toString());
 		return reviewRepository.save(review);
 	}
+	
+	public void deleteByReviewId(long reviewId) {
+		reviewRepository.deleteById(reviewId);
+	}
 }

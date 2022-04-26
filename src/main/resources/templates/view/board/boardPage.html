@@ -105,9 +105,16 @@
 								<input type="hidden" name="replyId" th:value="${reply.replyId}">
 								<div class="col-9 col-md-10" style="width: 100%;">
 									<!-- 댓글 작성자 -->
+<<<<<<< HEAD
 									<h4 style="font-size: 22px;" th:text="${reply.user.userName}">댓글 작성자</h4>
 									<!-- 댓글 작성 날짜 -->
 									<span class="font-monospace d-md-flex justify-content-md-end align-items-md-end small" style="font-size: 15px; color: black;" th:text="${#temporals.format(reply.replyDate, 'yy-MM-dd HH:mm:ss')}">작성 날짜</span>
+=======
+									<h4 style="font-size: 22px;" th:text="${reply.replyUser}">
+										<!-- 댓글 작성 날짜 -->
+										<small class="font-monospace d-md-flex justify-content-md-end align-items-md-end small" style="font-size: 15px;" th:text="${reply.replyDate}">작성 날짜</small>
+									</h4>
+>>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 									<!-- 댓글 내용 -->
 									<p style="font-size: 16px;" th:text="${reply.replyContent}">댓글 내용</p>
 									<div th:if="${session.user.userId} == ${reply.user.userId}" class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end">

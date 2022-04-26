@@ -35,6 +35,6 @@ public class StoreListController {
 		HashMap<String, StoreInfo> infoList = storeListService.getCloseStores(params);
 		model.addAttribute("infoList", infoList);
 
-		return "view/pages/storeList";
+		return "view/store/storeList";
     }
 }

@@ -20,9 +20,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
@@ -34,8 +33,8 @@ public class Review {
 	
 	@NotNull
 	@ManyToOne
-	@JsonBackReference
 	@JoinColumn(name="store_code")
+	@JsonBackReference
 	private StoreInfo storeInfo;
 
 	@NotNull
@@ -49,6 +48,10 @@ public class Review {
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long reviewId;
+	
+	@NotNull
+	@Column
+	private String reviewUser;
 	
 	@NotNull
 	@Column
@@ -68,23 +71,15 @@ public class Review {
 	 }
 	
 	@Builder
-	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull int reviewStar,
-			@NotNull String reviewComment, LocalDateTime reviewDate) {
+	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull String reviewUser,
+			@NotNull int reviewStar, @NotNull String reviewComment, LocalDateTime reviewDate) {
 		super();
 		this.storeInfo = storeInfo;
 		this.user = user;
 		this.reviewId = reviewId;
+		this.reviewUser = reviewUser;
 		this.reviewStar = reviewStar;
 		this.reviewComment = reviewComment;
 		this.reviewDate = reviewDate;
 	}
-
-	@Override
-	public String toString() {
-		return "Review [storeInfo=" + storeInfo + ", user=" + user + ", reviewId=" + reviewId + ", reviewStar="
-				+ reviewStar + ", reviewComment=" + reviewComment + ", reviewDate=" + reviewDate + "]";
-	}
-
-	
-
 }

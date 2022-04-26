@@ -43,7 +43,7 @@
            <form role="form" method="POST" action="/reviewInsert">
                <!-- hidden 영역 -->
                <input type="hidden" name="userId" th:value="ab"> 
-               <input type="hidden" name="replyUser" value="홍길동">
+               <input type="hidden" name="reviewUser" value="홍길동">
                <input type="hidden" name="storeCode" th:value="${storeDetail.storeCode}">
                <input type="hidden" name="reviewStar" th:value='5'>
                <!-- 입력 영역 --> 
@@ -55,15 +55,15 @@
                </div>
            </form>
            
-           
 			<!-- 댓글 목록 -->
            <p>
-               <span class="badge bg-secondary">0</span>
+               <span class="badge bg-secondary" th:text="${storeDetail.review.size}"></span>
                <span class="ms-2" style="font-size: 15px;">Comments</span>
            </p>
            <div class="row d-md-flex justify-content-md-center row" style="border-color: rgb(255,255,255);">
    				<div th:each="review:${storeDetail.review}">
-					<form method="POST">
+					<form method="POST" action="/reviewDelete">
+						<input type="hidden" name="storeCode" th:value="${storeDetail.storeCode}">
                     	<input type="hidden" name="reviewId" th:value="${review.reviewId}">
 	                    <div class="col-9 col-md-10" style="width: 100%;">
 	                           <!-- 댓글 작성자 -->
@@ -73,17 +73,14 @@
 	                    	</h4>
 	                           <!-- 댓글 내용 -->
 	                    	<p style="font-size: 16px;" th:text="${review.reviewComment}">댓글 내용</p>
-	                            
-	                            <!-- 
-	                           	<div th:if="${review.userId == user.userId}">
-	                               <span><button type="submit" name="update">수정</button></span>
+
+	                           	<div th:if="${session.user.userId == review.user.userId}">
 	                               <span><button type="submit" name="delete">삭제</button></span>
 	                           </div> 
-	                            -->
+
 	                    </div>
 					</form>  
 				</div>
-                
            </div>
  	</div>
 </div>
