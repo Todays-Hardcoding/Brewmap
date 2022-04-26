@@ -69,15 +69,19 @@ public class Board {
 	@Column
 	private String boardCategory;
 	
+	@Column
+	private Integer boardLikeCount;
+	
 	@PrePersist
-	// @PreUpdate
 	public void createdAt() {
 		this.boardDate = LocalDateTime.now();
+		this.boardLikeCount = 0;
 	}
 
 	@Builder
 	public Board(List<Reply> reply, User user, @NotNull long boardId, @NotNull String boardTitle,
-			@NotNull String boardContent, LocalDateTime boardDate, Integer boardViews, @NotNull String boardCategory) {
+			@NotNull String boardContent, LocalDateTime boardDate, Integer boardViews, @NotNull String boardCategory,
+			Integer boardLikeCount) {
 		super();
 		this.reply = reply;
 		this.user = user;
@@ -87,5 +91,6 @@ public class Board {
 		this.boardDate = boardDate;
 		this.boardViews = boardViews;
 		this.boardCategory = boardCategory;
+		this.boardLikeCount = boardLikeCount;
 	}		
 }

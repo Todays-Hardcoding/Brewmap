@@ -18,13 +18,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Entity
 @Table
@@ -34,9 +32,6 @@ public class StoreInfo {
 	@OneToMany(mappedBy = "storeInfo")
 	@JsonManagedReference
 	private List<Review> review;
-
-	@Column
-	private int reviewCount;
 
 	@NotNull
 	@Column
@@ -85,7 +80,6 @@ public class StoreInfo {
 	public void createdAt() {
 		this.storeRegdate = LocalDateTime.now();
 		this.storeStaravg = (float) 3.0;
-		this.reviewCount = review.size();
 	}
 
 	@Builder
@@ -105,4 +99,5 @@ public class StoreInfo {
 		this.storeTag = storeTag;
 		this.storeStaravg = storeStaravg;
 	}	
+
 }

@@ -20,13 +20,11 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Entity
 @Table
@@ -41,8 +39,8 @@ public class Review {
 
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name="user_id")
 	@JsonBackReference
+	@JoinColumn(name="user_id")
 	private User user;
 	
 	@Id
@@ -69,12 +67,11 @@ public class Review {
 	@PrePersist
 	@PreUpdate
 	 public void createdAt() {
-	 storeInfo.setReviewCount(storeInfo.getReview().size()); 
-	 this.reviewDate = LocalDateTime.now();
+		this.reviewDate = LocalDateTime.now();
 	 }
-
+	
 	@Builder
-	public Review(@NotNull StoreInfo storeInfo, @NotNull User user, @NotNull long reviewId, @NotNull String reviewUser,
+	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull String reviewUser,
 			@NotNull int reviewStar, @NotNull String reviewComment, LocalDateTime reviewDate) {
 		super();
 		this.storeInfo = storeInfo;
@@ -85,7 +82,4 @@ public class Review {
 		this.reviewComment = reviewComment;
 		this.reviewDate = reviewDate;
 	}
-	
-	
-	
 }
