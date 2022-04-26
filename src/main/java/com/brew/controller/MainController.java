@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 	
 	@RequestMapping("/footer3")
-	public String chat() {
+	public String footer3() {
 		return "view/pages/chat";
 	}
-
 	// 방명록
 	
 	//수정
