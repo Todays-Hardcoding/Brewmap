@@ -12,11 +12,14 @@ import com.brew.domain.User;
 public interface UserRepository extends JpaRepository<User, String> {
 
 	public User findByUserId(String userId);
+	public User UserId(User userId);
 
 //	@Query("select s from StoreInfo s where s.storeCode like %:storeCode%")
 	
 	@Query("SELECT u FROM User u WHERE u.userId = :userId and u.userPw = :userPw")
 	public User checkUser(@Param("userId") String id, @Param("userPw") String pw);
 	
+	@Query("SELECT u FROM User u WHERE u.userId = :userId")
+	public User checkUserId(@Param("userId") String id);
 
 }
