@@ -1,7 +1,7 @@
 /* 홈페이지 색상 정보*/
 /* 글자색 변경 */
 .color-black {
-  border-color: #2d2424;
+  border-color: #362222;
 }
 .color-dark-brown {
   border-color: #5c3d2e;
@@ -18,7 +18,7 @@
 
 /* 배경색 변경 */
 .background-color-black {
-  background-color: #2d2424;
+  background-color: #362222;
 }
 .background-color-dark-brown {
   background-color: #5c3d2e;
@@ -34,7 +34,7 @@
 }
 /* 테두리 변경 */
 .border-color-black {
-  border-color: #2d2424;
+  border-color: #362222;
 }
 .border-color-dark-brown {
   border-color: #5c3d2e;
@@ -145,8 +145,14 @@ button {
   border-radius: 15px;
   text-decoration: none;
   /* transition: 0.25s; */
-  background-color: #ffc107;
-  color: #7952b3;
+  background-color: #362222;
+  color: #b85c38;
+  font-weight: 800;
+}
+.nav-search-button:hover {
+  background-color: #b85c38;
+  color: #e0c097;
+  font-weight: 800;
 }
 
 #nav-search-input {
@@ -157,13 +163,16 @@ button {
 .storeListClass a {
   text-decoration: none;
 }
-
+/* 돋보기 */
 .nav-search-icon {
   font-size: 36px;
-  color: #ffc107;
+  color: #362222;
 }
+
 .nav-search-icon:hover {
   cursor: pointer;
+  font-size: 40px;
+  color: #b85c38;
 }
 .search-input-container {
   padding-left: 20px;
@@ -172,7 +181,7 @@ button {
   width: 20%;
   min-width: 200px;
   display: inline-block;
-  border: 1px solid #ffc107;
+  border: 1px solid #b85c38;
   border-radius: 10px;
   margin-right: 0;
 }
@@ -237,7 +246,7 @@ a:hover {
 
 .nav-list li a span {
   font-weight: 900;
-  color: #2d2424;
+  color: #362222;
   /* color: #b85c38; */
   /* color: #e0c097; */
 }
