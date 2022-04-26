@@ -42,6 +42,7 @@
            <form id="createReview" role="form" method="POST" action="/reviewInsert">
                <!-- hidden 영역 -->
                <input type="hidden" name="userId" th:value="${session.user.userId}"> 
+               <input type="hidden" name="reviewUser" value="${session.user.userName">
                <input type="hidden" name="reviewUser" th:value="${session.user.userName}">
                <input type="hidden" name="storeCode" th:value="${storeDetail.storeCode}">
                <input type="hidden" name="reviewStar" th:value='3'>

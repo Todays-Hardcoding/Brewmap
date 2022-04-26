@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="layout/head :: headFragment">
 </head>
+
+<th:block layout:fragment="customCss">
+	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
+</th:block>
+
+
 <body>
-	<h1>LOGIN</h1>
+	<!-- 헤더 페이지 불러오기 -->
+	<div th:replace="/layout/header.html :: header"></div>
+
+	<!-- 로그인 페이지 ======================================================== -->
+	<div >
+		<div >
+			<h1>BREW MAP 로그인</h1>
+		</div>
+		<!-- 로그인 폼 ======================================================== -->
+		<form action="/loginPage" method="POST" >
+			<!-- 아이디 입력 ======================================================== -->
+			<div class="input-box">
+				<label for="userId">아이디</label> 
+				<input type="text" name="userId">
+			</div>
+
+			<!-- 비밀번호 입력 ======================================================== -->
+			<div class="input-box">
+				<label for="userPw">비밀번호</label> 
+				<input type="text" name="userPw">
+			</div>
+
+			<!-- 로그인 버튼 ======================================================== -->
+			<button class="btn btn-primary form-btn" type="submit" >로그인</button>
+		</form>
+	</div>
+
+	<!-- 푸터 페이지 불러오기 -->
+	<footer th:replace="/layout/footer.html :: footer"></footer>
 </body>
+
 </html>

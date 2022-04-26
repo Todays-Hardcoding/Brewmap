@@ -61,7 +61,6 @@ public class StoreListService {
 		        storesDistance.put(distance, store);                
 		    }   	
 		}
-		
 		List<Double> keys = new ArrayList<>(storesDistance.keySet());
         Collections.sort(keys);	
         
@@ -73,7 +72,6 @@ public class StoreListService {
 		
 		return result;
 	}
-	
 	
 //	거리 가져와서 평점순으로 정렬
 	public List<StoreInfo> getStoresByRate(Map<String, String> params) {
