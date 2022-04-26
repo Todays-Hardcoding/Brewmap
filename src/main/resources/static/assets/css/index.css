@@ -1,62 +1,82 @@
 .main-menu-container {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .photo-gallery {
-  color: #313437;
-  background-color: #fff;
+	color: #313437;
+	background-color: #fff;
 }
 
 .photo-gallery p {
-  color: #7d8285;
+	color: #7d8285;
 }
 
 .photo-gallery h2 {
-  font-weight: bold;
-  margin-bottom: 40px;
-  padding-top: 40px;
-  color: inherit;
+	font-weight: bold;
+	margin-bottom: 40px;
+	padding-top: 40px;
+	color: inherit;
 }
 
 .photo-gallery .intro {
-  font-size: 16px;
-  max-width: 500px;
-  margin: 0 auto 40px;
+	font-size: 16px;
+	max-width: 500px;
+	margin: 0 auto 40px;
 }
 
 .photo-gallery .intro p {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .photo-gallery .photos {
-  padding-bottom: 20px;
+	padding-bottom: 20px;
 }
 
 .photo-gallery .item {
-  padding-bottom: 30px;
+	padding-bottom: 30px;
 }
 
-@media (max-width: 767px) {
-  .photo-gallery h2 {
-    margin-bottom: 25px;
-    padding-top: 25px;
-    font-size: 24px;
-  }
+/* Slider */
+.col{
+	background-color:whitesmoke;
+}
+.slider-box {
+	width: 80%;
+	height: 65vh;
+	transform: translate(13%);
+	object-fit: contain;
+}
+
+@media ( max-width : 767px) {
+	.photo-gallery h2 {
+		margin-bottom: 25px;
+		padding-top: 25px;
+		font-size: 24px;
+	}
+
+}
+@media ( max-width : 1307px) {
+	.slider-box {
+	 width: 90%;
+ 	height: 90%;
+ 	transform: translate(7%);
+}
+
 }
 
 body {
-  min-width: 390px;
+	min-width: 390px;
 }
 
 .default-background {
-  background-color: #e6e6e6;
+	background-color: #e6e6e6;
 }
 
 .default-background div {
-  background-color: #e6e6e6;
+	background-color: #e6e6e6;
 }
 
 .main-icon-container {
-  justify-content: space-between;
+	justify-content: space-between;
 }

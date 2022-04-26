@@ -69,11 +69,13 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                   <ul class="navbar-nav nav-list">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/index}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/login}">로그인</a></li>
                     <li class="nav-item" th:if="${session.user} != null"><a class="nav-link" th:href="@{/userpage}">마이페이지</a></li>
                     <li class="nav-item"><a class="nav-link" th:href="@{/map}">지도페이지</a></li>
                     <li class="nav-item"><a class="nav-link" onClick="toList()">술집리스트</a></li>
                     <li class="nav-item"><a class="nav-link" th:href="@{/board/hotPage}">게시판</a></li>
+                   	<li class="nav-item" th:if="${session.user} != null" ><a class="nav-link" th:href="@{/logout}">로그아웃</a></li>
+					<li class="nav-item" th:if="${session.user} == null" ><a class="nav-link" th:href="@{/login}">로그인</a></li>
+					<li class="nav-item" th:if="${session.user} == null" ><a class="nav-link" th:href="@{/signUp}">회원가입</a></li>
                   </ul>
                 </div>
               </div>

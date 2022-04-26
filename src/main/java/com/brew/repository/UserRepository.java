@@ -2,6 +2,8 @@ package com.brew.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.brew.domain.User;
@@ -9,22 +11,15 @@ import com.brew.domain.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
 
-	
-	
 	public User findByUserId(String userId);
+	public User UserId(User userId);
 
-	public User findByUserName(String userName);
-
-	public User findByUserBirthDate(String userBirthDate);
-
-	public User findByUserGrade(String userGrade);
-
-	public User findByUserTel(String userTel);
-
-	public User findByUserEmail(String userEmail);
+//	@Query("select s from StoreInfo s where s.storeCode like %:storeCode%")
 	
+	@Query("SELECT u FROM User u WHERE u.userId = :userId and u.userPw = :userPw")
+	public User checkUser(@Param("userId") String id, @Param("userPw") String pw);
 	
-//	@Query(value="Update user set userId = :userId where userId = :userId ")
-//	public User changeByUserId(@Param("userId") String userId);
+	@Query("SELECT u FROM User u WHERE u.userId = :userId")
+	public User checkUserId(@Param("userId") String id);
 
 }
