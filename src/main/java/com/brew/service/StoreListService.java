@@ -61,7 +61,6 @@ public class StoreListService {
 		        storesDistance.put(distance, store);                
 		    }   	
 		}
-		
 		List<Double> keys = new ArrayList<>(storesDistance.keySet());
         Collections.sort(keys);	
         
@@ -72,6 +71,10 @@ public class StoreListService {
 		}
 		
 		return result;
+<<<<<<< HEAD
+		}
+}
+=======
 	}
 	
 	
@@ -166,3 +169,4 @@ public class StoreListService {
 	}
 
 }
+>>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
