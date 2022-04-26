@@ -9,7 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -39,9 +42,13 @@ public class User {
 	@Id
 	@NotNull
 	@Column
+	@NotBlank(message="아이디는필수값")
 	private String userId;
 	@NotNull
 	@Column
+	@NotBlank(message="비밀번호는 필수값")
+	@Pattern(regexp="(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{4,20}",
+    message = "비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 4자 ~ 20자의 비밀번호여야 합니다.")
 	private String userPw;
 	@NotNull
 	@Column
@@ -51,6 +58,8 @@ public class User {
 	private String userTel;
 	@NotNull
 	@Column
+    @NotBlank(message = "이메일은 필수 입력 값입니다.")
+    @Email(message = "이메일 형식에 맞지 않습니다.")
 	private String userEmail;
 	@NotNull
 	@Column
@@ -104,5 +113,4 @@ public class User {
 		this.userQuestion = userQuestion;
 		this.userAnswer = userAnswer;
 	}
-
 }

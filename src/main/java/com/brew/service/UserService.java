@@ -39,4 +39,13 @@ public class UserService {
 	public void delete(User user) {
 		userRepository.delete(user);
 	}
+	
+	public void insert(User user) {
+		userRepository.save(user);
+		
+	};
+
+	public User checkUser(String userId, String userPw) {
+		return userRepository.checkUser(userId, userPw);
+	}
 }
