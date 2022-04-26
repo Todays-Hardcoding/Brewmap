@@ -285,18 +285,23 @@
 		// 인포윈도우에 장소명을 표시합니다
 		function displayInfowindow(marker, store) {
 
-			var content = '<div class="info">'
-						+ '<h5>' + store.storeName + '</h5><br>';
+			var content = '<h5 style="margin-bottom: 2px">' + store.storeName + '</h5>'
+						+ '<div class="row">'
+						+ 	'<div class="col">'
+						+		'<small>' + store.storeCategory + '</small><br>'
 
 			if (store.storeRoadAddr) {
-				content += '<span>' + store.storeRoadAddr + '</span><br>'
-						+ '<span class="jibun gray">' + store.storeAddr
-						+ '</span><br>';
+				content += 		'<small>' + store.storeRoadAddr + '</small><br>'
+						+ 		'<small>' + store.storeAddr + '</small><br>';
 			} else {
-				content += '<span>' + store.storeAddr + '</span><br>';
+				content += 		'<small>' + store.storeAddr + '</small><br>';
 			}
 
-			content += '<span class="tel">' + store.storeTel + '</span><br>';
+			if (store.storeTel) {
+				content += 		'<small class="tel">' + store.storeTel + '</small><br>';
+			}
+				content +=  '</div>'
+						+ '</div>';
 			
 			var storeTagList = new Array();
             storeTagList = store.storeTag.split(",");
