@@ -66,13 +66,18 @@
 										<i class="fa fa-star fa-star-half-o"></i>
 										<i class="fa fa-star fa-star-o"></i> -->
 										<!-- <small style="margin-right: 10px" th:text="${review.reviewStar}"></small> -->
-										<th:block>
-											<div th:each="index : ${#numbers.sequence(1, review.reviewStar)}">
-												<i class="fa fa-star"></i>
-											</div><div th:each="index : ${#numbers.sequence(1, 5 - review.reviewStar)}">
-												<i class="fa fa-star fa-star-o"></i>
-											</div>
-										</th:block>
+									<th:block th:if="${review.reviewStar} != 5">
+										<div th:each="index : ${#numbers.sequence(1, review.reviewStar)}">
+											<i class="fa fa-star"></i>
+										</div><div th:each="index : ${#numbers.sequence(1, 5 - review.reviewStar)}">
+											<i class="fa fa-star fa-star-o"></i>
+										</div>
+									</th:block>
+									<th:block th:unless="${review.reviewStar} != 5">
+										<div th:each="index : ${#numbers.sequence(1, review.reviewStar)}">
+											<i class="fa fa-star"></i>
+										</div>
+									</th:block>
 								</div>
 							</li>
 						</a>
