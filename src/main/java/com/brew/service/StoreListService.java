@@ -25,7 +25,7 @@ public class StoreListService {
 		return storeInfoRepository.findAllStores(pageable);
 	}
 
-	public HashMap<String, StoreInfo> getCloseStores(Map<String, String> params) {
+	public HashMap<String, StoreInfo> getCloseStores(Map<String, String> params, String radi) {
 
 		List<StoreInfo> stores = storeInfoRepository.findAll();
 		HashMap<String, StoreInfo> result = new LinkedHashMap<String, StoreInfo>();
@@ -54,7 +54,7 @@ public class StoreListService {
 
 			distance = 2 * radius * Math.asin(squareRoot);
 
-			if (distance < 5) {
+			if (distance < Double.parseDouble(radi)) {
 				storesDistance.put(distance, store);
 			}
 		}
