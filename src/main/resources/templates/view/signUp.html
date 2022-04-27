@@ -259,10 +259,8 @@ $('#signup-form button[name="signup-button"]').click(function(evt) {
  
   if(userCategory.val() != '') {
     $('span[title="userCategory-value"]').show().html('GOOD!').css('color', 'green')
-
   } else {
     $('span[title="userCategory-value"]').show().html('카테고리를 설정해주세요').css('color', 'red')
-
   }
       // 회원등급 설정
       var userGrade = $('#userGrade > option:checked')
@@ -343,22 +341,6 @@ $('#signup-form button[name="signup-button"]').click(function(evt) {
     username.focus();
     // last.value = '';
   }
-    //아이디설정
-    var userId = $('#signup-form input[name="userId"]')
-    var idReg = /^[A-Za-z0-9]{4,12}$/.test(userId.val())
-  // console.log(userId.val());
-  if( !idReg ){
-    $('span[title="userId-value"]').show().html('아이디는 영문자로 시작하는 4~12자 영문자 또는 숫자이어야 합니다.').css('color', 'red');
-    userId.removeClass('is-valid')
-    userId.addClass('is-invalid')
-    evt.preventDefault();
-    userId.focus();
-  } else {
-    $('span[title="userId-value"]').show().html('GOOD!').css('color', 'green');
-    userId.removeClass('is-invalid')
-    userId.addClass('is-valid')
-  }
-
   // 이메일 정규성 검사
   var email = $('#signup-form input[name="userEmail"]')
   var emailcheck =  /\S+@\S+\.\S+/.test(email.val())
@@ -452,6 +434,21 @@ $('#signup-form button[name="signup-button"]').click(function(evt) {
     pwcheck.addClass('is-invalid')
   } */
 
+  //아이디설정
+  var userId = $('#signup-form input[name="userId"]')
+  var idReg = /^[A-Za-z0-9]{4,12}$/.test(userId.val())
+// console.log(userId.val());
+if( !idReg ){
+  $('span[title="userId-value"]').show().html('아이디는 영문자로 시작하는 4~12자 영문자 또는 숫자이어야 합니다.').css('color', 'red');
+  userId.removeClass('is-valid')
+  userId.addClass('is-invalid')
+  evt.preventDefault();
+  userId.focus();
+} else {
+  $('span[title="userId-value"]').show().html('GOOD!').css('color', 'green');
+  userId.removeClass('is-invalid')
+  userId.addClass('is-valid')
+}
 
 });
 
@@ -459,7 +456,7 @@ $('#signup-form button[name="signup-button"]').click(function(evt) {
 
 function idChecker(){
 	idCheck = document.querySelector('input[name="userId"]');
-	
+	console.log(idCheck.value);
 	$.ajax({
 		url: "/dupUser",
 		data:{
@@ -468,7 +465,7 @@ function idChecker(){
 		success: function(data){
 			console.log(idCheck.value);
 			if(data.result == 0 || idCheck.value ==""){
-				alert("이미 존재하는 아이디 입니다.");
+				alert("사용이 불가능한 아이디 입니다.");
 				$("#signup-button").attr("disabled", "disabled");
 			}else if(data.result == 1){
 				alert("사용가능한 아이디 입니다.");

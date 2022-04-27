@@ -47,14 +47,15 @@ public class UserResisterController {
 	@ResponseBody
 	public Map<String, Integer> checkUser(HttpServletRequest req, @RequestParam("id") String id) {
 		User idCheck = userservice.checkUserId(id);
-		
+	
 		Map<String, Integer> result = new HashMap<String, Integer>();
-		 if( idCheck != null) {
+		 if( idCheck != null || id.length() < 4) {
 			 result.put("result", 0);
 		 }else {
 			 result.put("result", 1);
 		 }
 		 System.out.println(idCheck);
+		 System.out.println(id);
 		return result;
 	}
 	

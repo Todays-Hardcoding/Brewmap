@@ -57,9 +57,9 @@
 }
 @media (max-width: 1307px) {
   .slider-box {
-    width: 90%;
+    width: 80%;
     height: 90%;
-    transform: translate(7%);
+    transform: translate(13%);
   }
 }
 
