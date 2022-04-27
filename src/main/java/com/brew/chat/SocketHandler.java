@@ -2,6 +2,9 @@ package com.brew.chat;
 
 import java.util.HashMap;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -16,6 +19,7 @@ public class SocketHandler extends TextWebSocketHandler{
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		// 메시지 발송
 		String msg = message.getPayload();
+		JSONObject obj = jsonToObjectParser(msg);
 		for(String key : sessionMap.keySet()) {
 			WebSocketSession wss = sessionMap.get(key);
 			try {
@@ -31,6 +35,10 @@ public class SocketHandler extends TextWebSocketHandler{
 		// 소켓 연결
 		super.afterConnectionEstablished(session);
 		sessionMap.put(session.getId(), session);
+		JSONObject obj = new JSONObject();
+		obj.put("type", "getId");
+		obj.put("sessionId", session.getId());
+		session.sendMessage(new TextMessage(obj.toJSONString()));
 	}
 	
 	@Override
@@ -38,6 +46,17 @@ public class SocketHandler extends TextWebSocketHandler{
 		// 소켓 종료
 		sessionMap.remove(session.getId());
 		super.afterConnectionClosed(session, status);		
+	}
+	
+	private static JSONObject jsonToObjectParser(String jsonStr) {
+		JSONParser parser = new JSONParser();
+		JSONObject obj = null;
+		try {
+			obj = (JSONObject) parser.parse(jsonStr);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return obj;
 	}
 
 }
