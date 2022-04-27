@@ -1,5 +1,7 @@
 package com.brew.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,16 +14,11 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.brew.domain.StoreInfo;
 import com.brew.service.StoreInfoService;
 import com.brew.service.StoreListService;
-import com.brew.service.UserService;
 
 @Controller
 public class StoreInfoController {
@@ -29,8 +26,6 @@ public class StoreInfoController {
 	@Autowired
 	private StoreInfoService storeinfoService;
 	
-	@Autowired
-	private UserService userservice;
 	
 	@Autowired
 	private StoreListService storeListService;
@@ -75,7 +70,6 @@ public class StoreInfoController {
 		
 		model.addAttribute("list", storePage);
 
-		
 		model.addAttribute("list", storePage);
 		model.addAttribute("boardTotalPages", totalPages);
 		model.addAttribute("nowPage", nowPage);
@@ -88,27 +82,38 @@ public class StoreInfoController {
 	}
 	
 	@GetMapping("/click")
-	public String clickMap(@RequestParam Map<String, String> params, Pageable pageable, Model model) {
-		System.out.println(params);
-		System.out.println("=====================================================================");
-		Map<String, StoreInfo> storeList = storeListService.getCloseStores(params);	
-
-		model.addAttribute("storeList", storeList);
-
+	public String clickMap(String lat, String lon, Integer page, Model model) {
+		Map<String, String> params = new HashMap<>();
+		params.put("lat", lat);
+		params.put("lon", lon);
+		
+		Map<String, StoreInfo> storeMap = storeListService.getCloseStores(params);	
+		List<List<StoreInfo>> storePage = new ArrayList<>();
+		List<StoreInfo> storeList = new ArrayList<>();
+		
+		int i = 0;
+		for(Map.Entry<String, StoreInfo> entry : storeMap.entrySet()) {
+			if(i == 5) {
+				storePage.add(storeList);
+				storeList = new ArrayList<>();
+				storeList.add(entry.getValue());
+				i %= 5;
+			} else {
+				storeList.add(entry.getValue());
+			}
+			i++;
+		}
+		storePage.add(storeList);
+		if(page == null)
+			page = 0;
+		
+		model.addAttribute("storePage", storePage.get(page));
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", storePage.size());
+		model.addAttribute("totalElements", storeMap.size());
+		model.addAttribute("latlon", params);
+		
 		return "view/map/mapClick";
 	}
 	
-	@PostMapping("/move")
-	@ResponseBody
-	public Map<String, StoreInfo> moveMap(@RequestBody Map<String, String> params) {
-		System.out.println(params);
-		System.out.println("=====================================================================");
-		
-		Map<String, StoreInfo> storeList = storeListService.getCloseStores(params);	
-		
-		System.out.println(storeList);
-		System.out.println("=====================================================================");
-
-		return storeList;
-	}
 }

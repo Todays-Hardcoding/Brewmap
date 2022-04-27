@@ -15,11 +15,15 @@ import com.brew.domain.Review;
 import com.brew.domain.StoreInfo;
 import com.brew.domain.User;
 import com.brew.service.StoreDetailService;
+import com.brew.service.StoreInfoService;
 import com.brew.service.UserService;
 
 @Controller
 public class StoreDetailController {
 
+	@Autowired
+	StoreInfoService storeInfoService;
+	
 	@Autowired
 	StoreDetailService storeDetailService;
 	
@@ -41,14 +45,12 @@ public class StoreDetailController {
 	@RequestMapping("/reviewInsert")
 	public String reviewInsert(Model model, String storeCode, 
 			String userId, String reviewContent, String reviewUser, int reviewStar) {
-		System.out.println(storeCode);
-		System.out.println(reviewContent);
-		
 		User user = userService.findByUserId(userId);
 		StoreInfo storeDetail = storeDetailService.findByStoreCode(storeCode);
-		
 		Review review = Review.builder().storeInfo(storeDetail).user(user).reviewStar(reviewStar).
 				reviewUser(reviewUser).reviewComment(reviewContent).build();
+		
+		storeInfoService.updateStoreStaravg(storeDetail, reviewStar);
 		storeDetailService.saveReview(review);
 		
 		model.addAttribute("storeDetail", storeDetail);
