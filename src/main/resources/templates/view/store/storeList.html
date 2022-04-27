@@ -66,6 +66,19 @@
 	<div th:replace="/layout/header.html :: header"></div>
     <section class="article-list">
         <div class="container">
+        	<div>
+				<h3>내주변 맛집</h3>
+				<span th:text="${totalElements}"></span>
+				<span>곳의 맛집</span>
+				<div>
+					<button type="button" onclick="setRadius(event)" value="0.3">300m</button>
+					<button type="button" onclick="setRadius(event)" value="0.5">500m</button>
+					<button type="button" onclick="setRadius(event)" value="0.7">700m</button>
+					<button type="button" onclick="setRadius(event)" value="1">1km</button>
+					<button type="button" onclick="setRadius(event)" value="3">3km</button>
+					<button type="button" onclick="setRadius(event)" value="5">5km</button>
+				</div>
+			</div>
 			<div class="sorting-container">
 				<spqn>정렬방법&nbsp;&nbsp;&nbsp;| </spqn>
 				<a class="" onClick="toListByRate()">평점 순서</a>
@@ -130,10 +143,18 @@
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 
 <script th:inline="javascript">
-
 	var storePage = [[${storePage}]];
+	var latlon = [[${latlon}]];
 	console.log(storePage);
-
+	
+	//검색 반경 설정 함수
+	function setRadius(event) {
+		var radius = Number(event.target.value);
+		console.log(radius);
+		var lat = latlon['lat'], // 위도
+			lon = latlon['lon']; // 경도
+		document.location.href = "/storeList?lat="+lat+"&lon="+lon+"&radius="+radius;
+	}
 </script>
 </body>
 </html>
