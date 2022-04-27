@@ -37,11 +37,22 @@
   padding-bottom: 30px;
 }
 .login-box{
-	width:60%;
-	transform: translate(33%);
+	margin-top: 60px;
+	width:50%;
+	transform: translate(47%);
+	padding: 10px;
+	border: 1px solid #161616b9;
 }
-.login-button{
-	width:50px;
+#login-button{
+	margin-top: 30px;
+	float: right;
+	
+}
+.login-form{
+	margin-top: 40px;
+	height : 400px;
+	justify-content: center;
+    align-items: center;	
 }
 
 /* Slider */
