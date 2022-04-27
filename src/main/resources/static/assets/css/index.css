@@ -36,6 +36,13 @@
 .photo-gallery .item {
   padding-bottom: 30px;
 }
+.login-box{
+	width:60%;
+	transform: translate(33%);
+}
+.login-button{
+	width:50px;
+}
 
 /* Slider */
 .col {
