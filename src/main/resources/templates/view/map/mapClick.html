@@ -45,23 +45,23 @@
 		</ul>
 		<section class="map-clean"></section>
 		<div class="row">
-			<div class="col">
-				<div id="map"
-			style="width: 100%; height: 500px; position: relative; overflow: hidden;"></div>
-			</div>
 			<div>
 				<h3>내주변 맛집</h3>
 				<span th:text="${totalElements}"></span>
 				<span>곳의 맛집</span>
 				<button type="button" onclick="getCurrentPosition()">현재 위치로</button>
 				<div>
-					<button type="button" onclick="setRaius(event)" value="100">100m</button>
-					<button type="button" onclick="setRaius(event)" value="300">300m</button>
-					<button type="button" onclick="setRaius(event)" value="500">500m</button>
-					<button type="button" onclick="setRaius(event)" value="700">700m</button>
-					<button type="button" onclick="setRaius(event)" value="1000">1km</button>
-					<button type="button" onclick="setRaius(event)" value="2000">2km</button>
+					<button type="button" onclick="setRaius(event)" value="0.3">300m</button>
+					<button type="button" onclick="setRaius(event)" value="0.5">500m</button>
+					<button type="button" onclick="setRaius(event)" value="0.7">700m</button>
+					<button type="button" onclick="setRaius(event)" value="1">1km</button>
+					<button type="button" onclick="setRaius(event)" value="3">3km</button>
+					<button type="button" onclick="setRaius(event)" value="5">5km</button>
 				</div>
+			</div>
+			<div class="col">
+				<div id="map"
+			style="width: 100%; height: 500px; position: relative; overflow: hidden;"></div>
 			</div>
 			<div id="menu_wrap" class="col-lg-4">
 				<ul id="placesList" class="list-group">
@@ -108,7 +108,6 @@
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb3950b2c101dc6b62f59a629977b969&libraries=services"></script>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/js/Map-locations-2.js"></script>
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script th:inline="javascript">
 		
@@ -151,9 +150,6 @@
 		if(latlon) {
 			var lat = latlon['lat'], // 위도
            		lon = latlon['lon']; // 경도
-           		
-           		console.log(lat)
-           		console.log(lon)
            		
         	var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
             	message = '<div style="padding:5px;">현재 위치</div>'; // 인포윈도우에 표시될 내용입니다
@@ -202,11 +198,13 @@
 			}		
 		}
 	 	
-	 	var radius = 500;
 	 	// 검색 반경 설정 함수
 	 	function setRaius(event) {
-	 		radius = Number(event.target.value);
+	 		var radius = Number(event.target.value);
 	 		console.log(radius);
+	 		var lat = latlon['lat'], // 위도
+       			lon = latlon['lon']; // 경도
+	 		document.location.href = "/click?lat="+lat+"&lon="+lon+"&radius="+radius;
 	 	}
 		
 		// 지도 클릭 시 해당 위치로 이동

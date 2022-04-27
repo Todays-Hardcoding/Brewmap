@@ -25,7 +25,7 @@ public class StoreListService {
 		return storeInfoRepository.findAllStores(pageable);
 	}
 
-	public HashMap<String, StoreInfo> getCloseStores(Map<String, String> params) {
+	public HashMap<String, StoreInfo> getCloseStores(Map<String, String> params, String radi) {
 
 		List<StoreInfo> stores = storeInfoRepository.findAll();
 		HashMap<String, StoreInfo> result = new LinkedHashMap<String, StoreInfo>();
@@ -54,7 +54,7 @@ public class StoreListService {
 
 			distance = 2 * radius * Math.asin(squareRoot);
 
-			if (distance < 5) {
+			if (distance < Double.parseDouble(radi)) {
 				storesDistance.put(distance, store);
 			}
 		}
@@ -71,7 +71,7 @@ public class StoreListService {
 	}
 
 //	거리 가져와서 평점순으로 정렬
-	public List<StoreInfo> getStoresByRate(Map<String, String> params) {
+	public List<StoreInfo> getStoresByRate(Map<String, String> params, String radi) {
 
 		List<StoreInfo> stores = storeInfoRepository.findAll();
 		ArrayList<StoreInfo> result = new ArrayList<StoreInfo>();
@@ -99,7 +99,7 @@ public class StoreListService {
 
 			distance = 2 * radius * Math.asin(squareRoot);
 
-			if (distance < 25) {
+			if (distance < Double.parseDouble(radi)) {
 				result.add(store);
 			}
 		}
@@ -111,7 +111,7 @@ public class StoreListService {
 	}
 
 //  거리 가져와서 리뷰순으로 분류
-	public List<StoreInfo> getStoresByReview(Map<String, String> params) {
+	public List<StoreInfo> getStoresByReview(Map<String, String> params, String radi) {
 
 		List<StoreInfo> stores = storeInfoRepository.findAll();
 		ArrayList<StoreInfo> result = new ArrayList<StoreInfo>();
@@ -124,7 +124,6 @@ public class StoreListService {
 		for (StoreInfo store : stores) {
 			double sLat = store.getStoreLatitude();
 			double sLon = store.getStoreLongitude();
-			float sRate = store.getStoreStaravg();
 
 			double distance;
 			double radius = 6371; // 지구 반지름(km)
@@ -140,7 +139,7 @@ public class StoreListService {
 
 			distance = 2 * radius * Math.asin(squareRoot);
 
-			if (distance < 25) {
+			if (distance < Double.parseDouble(radi)) {
 				result.add(store);
 			}
 		}

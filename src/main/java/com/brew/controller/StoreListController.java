@@ -5,15 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.brew.domain.StoreInfo;
 import com.brew.service.StoreInfoService;
@@ -29,12 +24,15 @@ public class StoreListController {
 	StoreListService storeListService;
 	
 	@GetMapping("/storeList") // 내 주변 리스트 검색 후 페이지 이동
-    public String returnStoreJoinList(String lat, String lon, Integer page, Model model) {
+    public String returnStoreJoinList(String lat, String lon, Integer page, String radius, Model model) {
 		Map<String, String> params = new HashMap<>();
 		params.put("lat", lat);
 		params.put("lon", lon);
 		
-		Map<String, StoreInfo> storeMap = storeListService.getCloseStores(params);	
+		if(radius == null)
+			radius = "1";
+		
+		Map<String, StoreInfo> storeMap = storeListService.getCloseStores(params, radius);	
 		List<List<StoreInfo>> storePage = new ArrayList<>();
 		List<List<String>> storeDistancePage = new ArrayList<>();
 		List<StoreInfo> storeList = new ArrayList<>();
@@ -42,7 +40,7 @@ public class StoreListController {
 		
 		int i = 0;
 		for(Map.Entry<String, StoreInfo> entry : storeMap.entrySet()) {
-			if(i == 10) {
+			if(i == 9) {
 				storePage.add(storeList);
 				storeDistancePage.add(storeDistance);
 				
@@ -76,12 +74,15 @@ public class StoreListController {
 	
 	
 	@GetMapping("/storeListByRate") // 내 주변 리스트 검색 후 페이지 이동
-    public String returnStoreListByRate(String lat, String lon, Integer page, Model model) {
+    public String returnStoreListByRate(String lat, String lon, Integer page, String radius, Model model) {
 		Map<String, String> params = new HashMap<>();
 		params.put("lat", lat);
 		params.put("lon", lon);
 		
-		List<StoreInfo> storeList = storeListService.getStoresByRate(params);	
+		if(radius == null)
+			radius = "1";
+		
+		List<StoreInfo> storeList = storeListService.getStoresByRate(params, radius);	
 		List<List<StoreInfo>> storePage = new ArrayList<>();
 		List<StoreInfo> temp = new ArrayList<>();
 		
@@ -113,12 +114,15 @@ public class StoreListController {
     }
 	
 	@GetMapping("/storeListByReview") // 내 주변 리스트 검색 후 페이지 이동
-    public String returnStoreListByReview(String lat, String lon, Integer page, Model model) {
+    public String returnStoreListByReview(String lat, String lon, Integer page, String radius, Model model) {
 		Map<String, String> params = new HashMap<>();
 		params.put("lat", lat);
 		params.put("lon", lon);
 		
-		List<StoreInfo> storeList = storeListService.getStoresByReview(params);	
+		if(radius == null)
+			radius = "1";
+		
+		List<StoreInfo> storeList = storeListService.getStoresByReview(params, radius);	
 		List<List<StoreInfo>> storePage = new ArrayList<>();
 		List<StoreInfo> temp = new ArrayList<>();
 		
