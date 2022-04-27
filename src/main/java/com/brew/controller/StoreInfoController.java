@@ -82,12 +82,15 @@ public class StoreInfoController {
 	}
 	
 	@GetMapping("/click")
-	public String clickMap(String lat, String lon, Integer page, Model model) {
+	public String clickMap(String lat, String lon, Integer page, String radius, Model model) {
 		Map<String, String> params = new HashMap<>();
 		params.put("lat", lat);
 		params.put("lon", lon);
 		
-		Map<String, StoreInfo> storeMap = storeListService.getCloseStores(params);	
+		if(radius == null)
+			radius = "1";
+		
+		Map<String, StoreInfo> storeMap = storeListService.getCloseStores(params, radius);	
 		List<List<StoreInfo>> storePage = new ArrayList<>();
 		List<StoreInfo> storeList = new ArrayList<>();
 		
