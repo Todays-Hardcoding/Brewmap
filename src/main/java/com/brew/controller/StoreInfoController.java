@@ -14,14 +14,11 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.brew.domain.StoreInfo;
 import com.brew.service.StoreInfoService;
 import com.brew.service.StoreListService;
-import com.brew.service.UserService;
 
 @Controller
 public class StoreInfoController {
@@ -29,8 +26,6 @@ public class StoreInfoController {
 	@Autowired
 	private StoreInfoService storeinfoService;
 	
-	@Autowired
-	private UserService userservice;
 	
 	@Autowired
 	private StoreListService storeListService;
@@ -75,7 +70,6 @@ public class StoreInfoController {
 		
 		model.addAttribute("list", storePage);
 
-		
 		model.addAttribute("list", storePage);
 		model.addAttribute("boardTotalPages", totalPages);
 		model.addAttribute("nowPage", nowPage);
@@ -116,37 +110,10 @@ public class StoreInfoController {
 		model.addAttribute("storePage", storePage.get(page));
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", storePage.size());
+		model.addAttribute("totalElements", storeMap.size());
 		model.addAttribute("latlon", params);
 		
 		return "view/map/mapClick";
 	}
 	
-	@PostMapping("/move")
-	public String moveMap(@RequestBody Map<String, String> params, Model model) {
-		Map<String, StoreInfo> storeList = storeListService.getCloseStores(params);
-		List<List<StoreInfo>> storePage = new ArrayList<>();
-		List<StoreInfo> stores = new ArrayList<>();
-		
-		int i = 0;
-		for(Map.Entry<String, StoreInfo> entry : storeList.entrySet()) {
-			if(i == 5) {
-				storePage.add(stores);
-				stores = new ArrayList<>();
-				stores.add(entry.getValue());
-				i %= 5;
-			} else {
-				stores.add(entry.getValue());
-			}
-			i++;
-		}
-		storePage.add(stores);
-		int page = 0;
-		
-		model.addAttribute("storePage", storePage.get(page));
-		model.addAttribute("currentPage", page);
-		model.addAttribute("totalPages", storePage.size());
-		model.addAttribute("latlon", params);
-		
-		return "view/map/mapClick";
-	}
 }

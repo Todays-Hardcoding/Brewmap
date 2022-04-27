@@ -45,15 +45,6 @@ public class StoreInfoService {
 	public void updateStoreStaravg(StoreInfo storeInfo ,int reviewStar) {
 		float newStaravg = ((storeInfo.getStoreStaravg() * storeInfo.getReview().size()) + reviewStar) / (storeInfo.getReview().size() + 1);
 		
-		System.out.println(reviewStar);
-		System.out.println("======================================================================================");
-		System.out.println(storeInfo.getStoreStaravg());
-		System.out.println("======================================================================================");
-		System.out.println(storeInfo.getReview().size());
-		System.out.println("======================================================================================");
-		System.out.println(newStaravg);
-		System.out.println("======================================================================================");
-		
 		storeInfo.setStoreStaravg(newStaravg);
 		storeInfoRepository.save(storeInfo);
 	}
