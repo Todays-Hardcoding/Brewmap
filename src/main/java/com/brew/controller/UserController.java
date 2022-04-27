@@ -43,6 +43,7 @@ public class UserController {
 //		System.out.println(user.getUserEmail());
 		
 		User newuser = userservice.findByUserId(user.getUserId());
+		
 		System.out.println(newuser);
 
 		System.out.println(user.getUserId());
