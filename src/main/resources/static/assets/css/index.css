@@ -36,12 +36,12 @@
 .photo-gallery .item {
   padding-bottom: 30px;
 }
-.login-box{
-	width:60%;
-	transform: translate(33%);
+.login-box {
+  width: 60%;
+  transform: translate(33%);
 }
-.login-button{
-	width:50px;
+.login-button {
+  width: 50px;
 }
 
 /* Slider */
@@ -92,4 +92,9 @@ body {
 
 .intro .list-recommendation {
   color: #362222;
+  letter-spacing: 0.5rem;
+}
+
+.info {
+  letter-spacing: 0.3rem;
 }
