@@ -4606,10 +4606,12 @@ fieldset:disabled .btn {
     padding-bottom: .5rem
 }
 
+/* 네비게이션 백그라운드 */
 .navbar-collapse {
     flex-basis: 100%;
     flex-grow: 1;
-    align-items: center
+    align-items: center;
+    background-color: rgba(95, 95, 95, 0.6);
 }
 
 .navbar-toggler {
