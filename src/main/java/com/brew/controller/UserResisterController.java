@@ -49,7 +49,7 @@ public class UserResisterController {
 		User idCheck = userservice.checkUserId(id);
 		
 		Map<String, Integer> result = new HashMap<String, Integer>();
-		 if( idCheck != null) {
+		 if( idCheck != null || id.length() < 4) {
 			 result.put("result", 0);
 		 }else {
 			 result.put("result", 1);
