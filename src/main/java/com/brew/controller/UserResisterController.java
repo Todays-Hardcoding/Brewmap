@@ -1,6 +1,10 @@
 package com.brew.controller;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.brew.domain.User;
 import com.brew.service.UserService;
@@ -33,26 +38,26 @@ public class UserResisterController {
 	
 	@RequestMapping(value = "/signUpPage")
 	public String resisterUser(HttpServletRequest req, @ModelAttribute User user) {
+		
 		userservice.userUpdate(user);
 		
-		// 보내온 value 가 0 이면 user.isUserGender() ==  true
 		return "view/index";
 	}
 	
-	@RequestMapping(value = "/dupUser")
-	public int checkUser(HttpServletRequest req, @RequestParam int result) {
-		String checkUserId = req.getParameter("userId");
-		User idCheck = userservice.checkUserId(checkUserId);
+	@GetMapping(value = "/dupUser")
+	@ResponseBody
+	public Map<String, Integer> checkUser(HttpServletRequest req, @RequestParam("id") String id) {
+		User idCheck = userservice.checkUserId(id);
 		
+		Map<String, Integer> result = new HashMap<String, Integer>();
 		 if( idCheck != null) {
-			 result = 1;
+			 result.put("result", 0);
 		 }else {
-			 result = 0;
+			 result.put("result", 1);
 		 }
-		 req.setAttribute("result", result);
+		 System.out.println(idCheck);
 		return result;
 	}
-	
 	
 	
 	@RequestMapping("/login")
@@ -82,7 +87,6 @@ public class UserResisterController {
 		session.removeAttribute("user");
 		return "view/index";
 	}
-
 	
 
 }

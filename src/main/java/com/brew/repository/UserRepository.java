@@ -19,9 +19,14 @@ public interface UserRepository extends JpaRepository<User, String> {
 	@Query("SELECT u FROM User u WHERE u.userId = :userId and u.userPw = :userPw")
 	public User checkUser(@Param("userId") String id, @Param("userPw") String pw);
 	
+<<<<<<< HEAD
 
 //	@Query("SELECT u FROM User u WHERE u.userId = :userId")
 //	public User checkUserId(@Param("userId") String id);
 
+=======
+	@Query("SELECT u FROM User u WHERE u.userId = :userId")
+	public User checkUserId(@Param("userId") String id);
+>>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 
 }

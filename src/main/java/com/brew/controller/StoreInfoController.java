@@ -48,7 +48,7 @@ public class StoreInfoController {
 		session.setAttribute("user", userservice.findByUserId("abc"));
 
 
-		
+
 		Page<StoreInfo> storePage = storeinfoService.findHotStores(pageable);
 
 		model.addAttribute("storePage", storePage);
@@ -131,4 +131,5 @@ public class StoreInfoController {
 
 	}
 }
+
 

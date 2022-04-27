@@ -1,4 +1,3 @@
-
 package com.brew.domain;
 
 import java.time.LocalDateTime;
@@ -94,4 +93,5 @@ public class Board {
 		this.boardCategory = boardCategory;
 		this.boardLikeCount = boardLikeCount;
 	}		
+
 }

@@ -153,4 +153,8 @@ public class StoreListService {
 		return reviewList;
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git

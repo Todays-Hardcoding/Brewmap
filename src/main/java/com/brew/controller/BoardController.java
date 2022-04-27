@@ -189,7 +189,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/serviceCenter")
-	public String boardServiceCenterPage(Model model, @PageableDefault(page=0, size=10) @SortDefault.SortDefaults({
+	public String boardServiceCenter(Model model, @PageableDefault(page=0, size=10) @SortDefault.SortDefaults({
+
 		@SortDefault(sort = "boardDate", direction = Direction.DESC)
 	}) Pageable pageable) {
 		String boardCategory = "고객센터";
@@ -234,6 +235,7 @@ public class BoardController {
 		return "redirect:?boardId="+boardId;
 	}
 	
+
 }
 
 
