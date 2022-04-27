@@ -41,5 +41,12 @@ public class StoreInfoService {
 	public Page<StoreInfo> findHotStores(Pageable pageable) {
 		return storeInfoRepository.findHotStores(pageable);
 	}
+	
+	public void updateStoreStaravg(StoreInfo storeInfo ,int reviewStar) {
+		float newStaravg = ((storeInfo.getStoreStaravg() * storeInfo.getReview().size()) + reviewStar) / (storeInfo.getReview().size() + 1);
+		
+		storeInfo.setStoreStaravg(newStaravg);
+		storeInfoRepository.save(storeInfo);
+	}
 
 }

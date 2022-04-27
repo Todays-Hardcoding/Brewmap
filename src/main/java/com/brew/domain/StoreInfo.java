@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -76,10 +75,8 @@ public class StoreInfo {
 	private Float storeStaravg;
 	
 	@PrePersist
-	@PreUpdate
 	public void createdAt() {
 		this.storeRegdate = LocalDateTime.now();
-		this.storeStaravg = (float) 3.0;
 	}
 
 	@Builder
