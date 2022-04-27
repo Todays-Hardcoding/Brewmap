@@ -1,5 +1,8 @@
 package com.brew.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,8 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.brew.domain.User;
 import com.brew.service.UserService;
@@ -34,29 +37,26 @@ public class UserResisterController {
 	
 	@RequestMapping(value = "/signUpPage")
 	public String resisterUser(HttpServletRequest req, @ModelAttribute User user) {
+		
 		userservice.userUpdate(user);
 		
-		// 보내온 value 가 0 이면 user.isUserGender() ==  true
 		return "view/index";
 	}
 	
-	@RequestMapping(value = "/dupUser", method = RequestMethod.POST)
-	public String checkUser(HttpServletRequest req, @RequestParam String userId) {
-		String checkUserId = req.getParameter("userId");
-		User idCheck = userservice.checkUserId(userId);
-		System.out.println(userId);
+	@GetMapping(value = "/dupUser")
+	@ResponseBody
+	public Map<String, Integer> checkUser(HttpServletRequest req, @RequestParam("id") String id) {
+		User idCheck = userservice.checkUserId(id);
 		
-		String result = "idUnchecked";
-		
+		Map<String, Integer> result = new HashMap<String, Integer>();
 		 if( idCheck != null) {
-			 result = "idChecked";
+			 result.put("result", 0);
 		 }else {
-			 result = "idUnchecked";
+			 result.put("result", 1);
 		 }
-		 req.setAttribute("result", result);
-		return "view/signUp";
+		 System.out.println(idCheck);
+		return result;
 	}
-	
 	
 	
 	@RequestMapping("/login")

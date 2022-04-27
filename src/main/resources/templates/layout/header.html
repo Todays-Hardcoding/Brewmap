@@ -68,14 +68,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                   <ul class="navbar-nav nav-list">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/index}">Home</a></li>
-                    <li class="nav-item" th:if="${session.user} != null"><a class="nav-link" th:href="@{/userpage}">마이페이지</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/map}">지도페이지</a></li>
-                    <li class="nav-item"><a class="nav-link" onClick="toList()">술집리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/board/hotPage}">게시판</a></li>
-                   	<li class="nav-item" th:if="${session.user} != null" ><a class="nav-link" th:href="@{/logout}">로그아웃</a></li>
-					<li class="nav-item" th:if="${session.user} == null" ><a class="nav-link" th:href="@{/login}">로그인</a></li>
-					<li class="nav-item" th:if="${session.user} == null" ><a class="nav-link" th:href="@{/signUp}">회원가입</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/index}"><span>Home</span></a></li>
+                    <li class="nav-item" th:if="${session.user} != null"><a class="nav-link" th:href="@{/userpage}"><span>마이페이지</span></a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/map}"><span>지도페이지</span></a></li>
+                    <li class="nav-item"><a class="nav-link" onClick="toList()"><span>술집리스트</span></a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/board/hotPage}"><span>게시판</span></a></li>
+                   	<li class="nav-item" th:if="${session.user} != null" ><a class="nav-link" th:href="@{/logout}"><span>로그아웃</span></a></li>
+					          <li class="nav-item" th:if="${session.user} == null" ><a class="nav-link" th:href="@{/login}"><span>로그인</span></a></li>
+					          <li class="nav-item" th:if="${session.user} == null" ><a class="nav-link" th:href="@{/signUp}"><span>회원가입</span></a></li>
                   </ul>
                 </div>
               </div>
