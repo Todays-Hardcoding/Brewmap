@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.brew.domain.User;
+import com.brew.service.BoardService;
 import com.brew.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,10 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
 	@Autowired
-	private UserService userservice;
+	private UserService userService;
+	
+	@Autowired
+	private BoardService boardService;
 
 	@GetMapping("/userpage")
 	public String userPage(HttpSession session) {
@@ -33,9 +37,9 @@ public class UserController {
 
 	@RequestMapping(value = "/modifyUserInfo", method = RequestMethod.POST)
 	public String userUpdate(HttpSession session, @ModelAttribute User user) {
-		userservice.userUpdate(user);
+		userService.userUpdate(user);
 
-		User newuser = userservice.findByUserId(user.getUserId());
+		User newuser = userService.findByUserId(user.getUserId());
 
 		session.setAttribute("user", newuser);
 		return "view/user/userpage";
@@ -43,7 +47,11 @@ public class UserController {
 
 	@RequestMapping(value = "/delete", method=RequestMethod.GET)
 	public String userDelete(String userId, HttpSession session) {
-		userservice.deleteUser(userId);
+		User user = userService.findByUserId(userId);
+		userService.deleteAllBoardInUser(user.getBoard());
+	 	userService.deleteAllReviewInUser(user.getReview());
+	 	boardService.deleteAllReplyInBoard(user.getReply());
+		userService.deleteUser(userId);
 		
 		session.removeAttribute("user");
 		return "view/index";
