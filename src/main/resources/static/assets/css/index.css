@@ -103,4 +103,9 @@ body {
 
 .intro .list-recommendation {
   color: #362222;
+  letter-spacing: 0.5rem;
+}
+
+.info {
+  letter-spacing: 0.3rem;
 }
