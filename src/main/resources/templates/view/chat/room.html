@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout%22%3E">
+    
+<head th:replace="layout/head :: headFragment">
+</head>
+<th:block layout:fragment="customCss">
+    <!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
+    <link rel="stylesheet" th:href="@{/assets/css/room.css}" type="text/css">
+    <title>room</title>
+</th:block>
+	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	var ws;
+	
+	window.onload = function(){
+		getRoom();
+		createRoom();
+	}
+	$(document).ready(function(){
+		var good = $('#good').val();
+		console.log(good);
+		if(good == 1){
+			alert("로그인이 필요한 서비스 입니다.")
+			document.location.href = "/";
+		}
+	});
+	function getRoom(){
+		commonAjax('/getRoom', "", 'post', function(result){
+			createChatingRoom(result);
+		});
+	}
+	
+	function createRoom(){
+		$("#createRoom").click(function(){
+			var msg = {	roomName : $('#roomName').val()	};
+
+			commonAjax('/createRoom', msg, 'post', function(result){
+				createChatingRoom(result);
+			});
+
+			$("#roomName").val("");
+		});
+	}
+
+	function goRoom(number, name){
+		location.href="/moveChating?roomName="+name+"&"+"roomNumber="+number;
+	}
+
+	function createChatingRoom(res){
+		if(res != null){
+			var tag = "<tr><th class='num'>순서</th><th class='room'>방 이름</th><th class='go'></th></tr>";
+			res.forEach(function(d, idx){
+				var rn = d.roomName.trim();
+				var roomNumber = d.roomNumber;
+				tag += "<tr>"+
+							"<td class='num'>"+(idx+1)+"</td>"+
+							"<td class='room'>"+ rn +"</td>"+
+							"<td class='go'><button type='button' onclick='goRoom(\""+roomNumber+"\", \""+rn+"\")'>참여</button></td>" +
+						"</tr>";	
+			});
+			$("#roomList").empty().append(tag);
+		}
+	}
+
+	function commonAjax(url, parameter, type, calbak, contentType){
+		$.ajax({
+			url: url,
+			data: parameter,
+			type: type,
+			contentType : contentType!=null?contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+			success: function (res) {
+				calbak(res);
+			},
+			error : function(err){
+				console.log('error');
+				calbak(err);
+			}
+		});
+	}
+</script>
+<body>
+	<!-- 헤더 페이지 불러오기 -->
+	<div th:replace="layout/header :: header"></div>
+	
+	<div class="container">
+		<h1>채팅방</h1>
+		<div id="roomContainer" class="roomContainer">
+			<table id="roomList" class="roomList"></table>
+		</div>
+		<div>
+			<table class="inputTable">
+				<tr>
+					<th>방 제목</th>
+					<th><input type="text" name="roomName" id="roomName"></th>
+					<th><button id="createRoom">방 만들기</button></th>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	<!-- 푸터 페이지 불러오기 -->
+	<footer th:replace="layout/footer :: footer"></footer>
+</body>
+</html>

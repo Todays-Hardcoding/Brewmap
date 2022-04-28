@@ -1,3 +1,7 @@
+html {
+  max-width: 3333px;
+  min-width: 390px;
+}
 /* 홈페이지 색상 정보*/
 /* 글자색 변경 */
 .color-black {
@@ -249,7 +253,7 @@ a:hover {
   font-weight: 900;
   color: #362222;
   font-size: 19px;
-  letter-spacing: 0.5rem;
+  letter-spacing: 0.38rem;
   margin: 0 10px 0 5px;
   /* color: #b85c38; */
   /* color: #e0c097; */

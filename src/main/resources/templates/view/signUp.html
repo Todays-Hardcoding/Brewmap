@@ -187,15 +187,15 @@
                id="userCategory">
                <option value="">회원분류 설정</option>
                <option value="user">유저</option>
-               <option value="premiumUser">프리미엄유저</option>
             </select>
             <div class="valid-check">
                <span title="userCategory-value" class="valid-check"></span>
             </div>
          </div>
          <!-- 아이디 -->
+
          <div class="input-section">
-            <div class="input-container">
+            <div class="id-input-container">
                <div class="form-floating">
                   <input type="text" class="form-control form-textbox" name="userId"
                      id="userId" placeholder="아이디" required> <label
@@ -203,9 +203,10 @@
                   <div class="valid-check">
                      <span title="userId-value" class="valid-check"></span>
                   </div>
-                  <button onclick="idChecker()" type="submit">중복확인</button>
                </div>
+               <button onclick="idChecker()" type="submit" class="dupCheck-button btn btn-danger button">중복확인</button>
             </div>
+                  	
          </div>
          <!--암호-->
          <div class="form-floating">
@@ -430,7 +431,7 @@
 =======
          <!-- 버튼 -->
          <div class="btn-box">
-            <button type="submit" class="btn btn-primary button"
+            <button type="submit" class="btn btn-danger button"
                name="signup-button" id="signup-button"  disabled="disabled">완료</button>
 >>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 

@@ -10,7 +10,9 @@
 
 <body>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
+	var radius = [[${radius}]];
+
 	function toListByReview(){
 		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 		if (navigator.geolocation) {
@@ -28,16 +30,15 @@
 	    	console.log(params.lat);
 	        console.log(params.lon);
 	        
-	        document.location.href = "/storeListByReview?lat="+lat+"&lon="+lon;
+	        document.location.href = "/storeListByReview?lat="+lat+"&lon="+lon+"&radius="+radius;
 
 		});
 		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 			alert("geolocation error");
 		}	
 	};
-</script>
-<script type="text/javascript">
-	function toList(){
+
+	function toList3(){
 		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 		if (navigator.geolocation) {
 		    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
@@ -54,37 +55,12 @@
 	    	console.log(params.lat);
 	        console.log(params.lon);
 	      
-	        document.location.href = "/storeList?lat="+lat+"&lon="+lon;
+	        document.location.href = "/storeList?lat="+lat+"&lon="+lon+"&radius="+radius;
 		});
 		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 			alert("geolocation error");
 		}	
 	};
-</script>
-<!-- 네비게이션  고정 -->
-<script>
-	var checkMenu = () => {
-		//console.log(yOffset)
-		if (yOffset > 0) {
-			document.body.classList.add('nav-sticky');
-		} else {
-			document.body.classList.remove('nav-sticky');
-		}
-	};
-	window.addEventListener('scroll', () => {
-		yOffset = window.pageYOffset;
-		checkMenu();
-	})
-
-	// 검색버튼 on/off
-	function openCloseSearch() {
-	    if(document.getElementById('nav-search-input').style.display === 'block') {
-			document.getElementById('nav-search-input').style.display = 'none';
-	    } else {
-			document.getElementById('nav-search-input').style.display = 'block';
-	    }
-	}
-
 </script>
 	<!-- 헤더 페이지 불러오기 -->
 	<div th:replace="/layout/header.html :: header"></div>
@@ -101,13 +77,13 @@
 					<button type="button" onclick="setRadius(event)" value="1">1km</button>
 					<button type="button" onclick="setRadius(event)" value="3">3km</button>
 					<button type="button" onclick="setRadius(event)" value="5">5km</button>
-					<button type="button" onclick="setRadius(event)" value="20">20km</button>
+					<button type="button" onclick="setRadius(event)" value="25">25km</button>
 				</div>
 			</div>
         	<div class="sorting-container">
 				<spqn>정렬방법&nbsp;&nbsp;&nbsp;| </spqn>
 				<a class="" onClick="toListByReview()">리뷰 많은 순서</a>
-  				<a class="" onClick="toList()">가까운 순서</a>
+  				<a class="" onClick="toList3()">가까운 순서</a>
 			</div>
             <div class="row articles" >
 							<!-- 리스트 불러오기 반복문 -->
@@ -123,7 +99,7 @@
 													<p class="card-text"th:text="${storeList.storeCategory}"></p>
 													<p class="card-text"th:text="${storeList.storeRoadAddr}"></p>
 													<span class="star">★</span>
-													<span class="card-text rate"th:text="${storeList.storeStaravg}"></span>
+													<span class="card-text rate"th:text="${#numbers.formatDecimal(storeList.storeStaravg, 1, 1)}"></span>
 												</div>
 											</a>
 										</div>

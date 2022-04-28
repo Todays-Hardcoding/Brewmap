@@ -88,7 +88,6 @@ public class StoreInfoController {
 		params.put("lon", lon);
 		
 		System.out.println(radius);
-		System.out.println("====================================================================");
 		
 		if(radius == null)
 			radius = "1";

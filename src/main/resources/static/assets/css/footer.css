@@ -7,6 +7,8 @@
   align-items: center;
   border-top: 5px solid #b85c38;
   background-color: #362222;
+  max-width: 3333px;
+  min-width: 390px;
 }
 .footer-social-icons li i {
   color: #b85c38;
