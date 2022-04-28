@@ -3,7 +3,10 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="layout/head :: headFragment">
 </head>
-<th:block layout:fragment="title">
+<th:block layout:fragment="customCss">
+	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
+	<link rel="stylesheet" th:href="@{/assets/css/board.css}" type="text/css">
+	<title>글 수정</title>
 </th:block>
 
 <body>

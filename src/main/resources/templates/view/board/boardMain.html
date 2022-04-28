@@ -5,7 +5,8 @@
 
 <th:block layout:fragment="customCss">
 	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
-	<link rel="stylesheet" th:href="@{/assets/css/board.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/assets/css/board.css}"
+		type="text/css">
 	<title>boardMain</title>
 </th:block>
 
@@ -18,26 +19,22 @@
 		<div class="container">
 			<div class="row py-1 py-md-5">
 				<div class="col-12 col-sm-3">
-					<div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 text-white">
-						<ul id="menu-1" class="board-category nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 my-3 mb-sm-auto justify-content-center align-items-center align-items-sm-start w-100">
-							<li class="w-100">
-								<a class="" th:href="@{/board/hotPage}">
-									<i class="fas fa-fire bi-speedometer2 fs-5 ms-2"></i>
-									<span class="">금주의 술집 랭킹</span>
-								</a>
-							</li>
-							<li class="w-100">
-								<a class="" th:href="@{/board/reviewPage}">
-									<i class="fas fa-utensils bi-bootstrap fs-5 ms-2"></i>
-									<span class="">금주의 술집 리뷰</span>
-								</a>
-							</li>
-							<li class="w-100">
-								<a class="" th:href="@{/board/serviceCenter}">
-									<i class="fa fa-group bi-people fs-5 ms-2"></i>
-									<span class="">고객센터</span>
-								</a>
-							</li>
+					<div
+						class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 text-white">
+						<ul id="menu-1"
+							class="board-category nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 my-3 mb-sm-auto justify-content-center align-items-center align-items-sm-start w-100">
+							<li class="w-100"><a class="" th:href="@{/board/hotPage}">
+									<i class="fas fa-fire bi-speedometer2 fs-5 ms-2"></i> <span
+									class="">금주의 술집 랭킹</span>
+							</a></li>
+							<li class="w-100"><a class="" th:href="@{/board/reviewPage}">
+									<i class="fas fa-utensils bi-bootstrap fs-5 ms-2"></i> <span
+									class="">금주의 술집 리뷰</span>
+							</a></li>
+							<li class="w-100"><a class=""
+								th:href="@{/board/serviceCenter}"> <i
+									class="fa fa-group bi-people fs-5 ms-2"></i> <span class="">고객센터</span>
+							</a></li>
 						</ul>
 					</div>
 				</div>
@@ -45,29 +42,32 @@
 					<h4 class="display-6" th:text="${boardCategory}"></h4>
 					<hr />
 					<div th:if="${boardList.content.size} == 0">
-						<img class="img-fluid" style="width: 100%;height:90%;" th:src="'/download.jpg'"/>
-						<h5 style ="text-align: center">검색 결과가 없습니다...</h5>
+						<img class="img-fluid" style="width: 100%; height: 90%;"
+							th:src="'/download.jpg'" />
+						<h5 style="text-align: center">검색 결과가 없습니다...</h5>
 					</div>
 					<ul class="list-group list-group-flush"
 						th:each="board : ${boardList}">
-						<a class="store-info-container" th:href="@{/board (boardId=${board.boardId})}">
+						<a class="store-info-container"
+							th:href="@{/board (boardId=${board.boardId})}">
 							<li class="list-group-item">
 								<h4 style="margin-bottom: 2px" th:text="${board.boardTitle}"></h4>
 								<span th:text="${board.boardContent}"></span>
 								<div class="row">
 									<div class="col">
-										<small th:text="${board.user.userName}"></small>
-										<small style="margin-right: 10px" th:text="${#temporals.format(board.boardDate, 'dd-MM-yy HH:mm:ss')}"></small>
+										<small th:text="${board.user.userName}"></small> <small
+											style="margin-right: 10px"
+											th:text="${#temporals.format(board.boardDate, 'dd-MM-yy HH:mm:ss')}"></small>
 									</div>
 									<div
 										class="col d-flex d-lg-flex justify-content-end justify-content-lg-end">
-										<i class="fa fa-thumbs-o-up"></i>
-										<small style="margin-right: 10px" th:text="${board.boardLikeCount}"></small>
-										<i class="fa fa-comment-o"></i>
-										<small th:text="${board.reply.size}"></small>
+										<i class="fa fa-thumbs-o-up"></i> <small
+											style="margin-right: 10px" th:text="${board.boardLikeCount}"></small>
+										<i class="fa fa-comment-o"></i> <small
+											th:text="${board.reply.size}"></small>
 									</div>
 								</div>
-							</li>
+						</li>
 						</a>
 					</ul>
 					<nav class="d-flex justify-content-center">
@@ -107,22 +107,28 @@
 							</a></li>
 						</ul>
 					</nav>
-					<div class="row" th:style="${boardCategoryCode} == 'hotPage' ? 'display:none'">
-						<div class="col d-flex">
-							<div class="input-group d-md-flex" >
-								<form class="form-container" action="/board/searchTitleAndContent">
-									<input type="hidden" name="boardCategoryCode" th:value="${boardCategoryCode}">
-									<input class="form-control" type="text" id="keyword" name="keyword" th:value="${keyword} ? ${keyword} : ''" placeholder="제목+내용으로 검색" />
-									<button class="btn btn-primary" type="submit">
-										<i class="fa fa-search"></i>
-									</button>
-								</form>
-							</div>
-							<div class="col-4 col-md-3 d-flex justify-content-end align-items-center">
+					<div class="row"
+						th:style="${boardCategoryCode} == 'hotPage' ? 'display:none'">
+
+
+						<div class="input-group">
+							<form class="form-container"
+								action="/board/searchTitleAndContent">
+								<input type="hidden" name="boardCategoryCode"
+									th:value="${boardCategoryCode}"> <input
+									class="form-control keyword-input" type="text" id="keyword"
+									name="keyword" th:value="${keyword} ? ${keyword} : ''"
+									placeholder="제목+내용으로 검색" />
+								<button class="btn btn-primary search-button" type="submit">
+									<i class="fa fa-search"></i>
+								</button>
+							</form>
+							<div class="write-form">
 							<form th:if="${session.user != null}" action="/board/createPage">
-								<button class="btn btn-primary" type="submit" 
+								<button class="btn btn-primary write-button" type="submit"
 									style="margin-right: 2em">글쓰기</button>
 							</form>
+							</div>
 						</div>
 					</div>
 				</div>
