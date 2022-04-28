@@ -1,95 +1,98 @@
+
 <!DOCTYPE html>
-<html
-	lang="ko"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-	<head th:replace="layout/head :: headFragment">
-    <meta charset="UTF-8">
-    <title>채팅 서비스</title>
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-    <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" th:href="@{/assets/css/chat.css}" type="text/css">
-
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-
-</head>
-<body>
-		<!-- 헤더 페이지 불러오기  -->
-		<div th:replace="layout/header :: header"></div>
-		<div style="display: flex; justify-content: center;">
-		<div>
-		
-		<h1 th:text="${userNickName}"></h1>
-		<input type="hidden" id="nickname" class="form-inline" th:value="${userNickName}"> 
-		<button class = "btn btn-primary" id = "name">채팅시작</button>
-		
-		<br>
-
-		<label for="roomName" class="label label-default">방 이름</label>
-		<label th:text="*{room.name}" id="roomName" class="form-inline"></label>
-		<div id = "chatroom" style = "overflow:auto; width:400px;  height: 600px; border:1px solid; background-color : gray;"></div>
-		<input type = "text" id = "message" style = "height : 30px; width : 340px" placeholder="내용을 입력하세요" autofocus>
-		<button class = "btn btn-primary" id = "send">전송</button>
-		</div>
-		</div>
-		<!-- 푸터 페이지 불러오기 -->
-		<footer th:replace="layout/footer :: footer"></footer>
-<script>
-
-</script>
-</body>
-<script th:inline = "javascript">
-	//var user = [[${user}]];
-
-	console.log("[(${userNickName})]");
-	var nickname;
-    var webSocket;
-    var roomId;
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout%22%3E">
     
-    /* <![CDATA[*/
-    roomId = /*[[${room.roomId}]]*/;
-    /* ]]> */
-    document.getElementById("name").addEventListener("click",function(){
-    	nickname = document.getElementById("nickname").value;
-        document.getElementById("nickname").style.display = "none";
-        document.getElementById("name").style.display = "none";
-        connect();
-    })
-   
-    document.getElementById("send").addEventListener("click",function(){
-        send();
-    })
-    function connect(){
-        webSocket = new WebSocket("ws://localhost:8282/chat");
-        webSocket.onopen = onOpen;
-        webSocket.onclose = onClose;
-        webSocket.onmessage = onMessage;
-    }
-    function disconnect(){
-        webSocket.send(JSON.stringify({chatRoomId : roomId,type:'LEAVE',writer:nickname}));
-        webSocket.close();
-    }
-    function send(){
-        msg = document.getElementById("message").value;
-        webSocket.send(JSON.stringify({chatRoomId : roomId,type:'CHAT',writer:nickname,message : msg}));
-        document.getElementById("message").value = "";
-    }
-    function onOpen(){
-        webSocket.send(JSON.stringify({chatRoomId : roomId,type:'ENTER',writer:nickname}));
-    }
-    function onMessage(e){
-        data = e.data;
-        chatroom = document.getElementById("chatroom");
-        chatroom.innerHTML = chatroom.innerHTML + "<br>" + data;
-    }
-    function onClose(){
-        disconnect();
-    }
+<head th:replace="layout/head :: headFragment">
+</head>
+<th:block layout:fragment="customCss">
+    <!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
+    <link rel="stylesheet" th:href="@{/assets/css/room.css}" type="text/css">
+    <title>room</title>
+</th:block>
 
+<script type="text/javascript">
+	var ws;
+	window.onload = function(){
+		getRoom();
+		createRoom();
+	}
+
+	function getRoom(){
+		commonAjax('/getRoom', "", 'post', function(result){
+			createChatingRoom(result);
+		});
+	}
+	
+	function createRoom(){
+		$("#createRoom").click(function(){
+			var msg = {	roomName : $('#roomName').val()	};
+
+			commonAjax('/createRoom', msg, 'post', function(result){
+				createChatingRoom(result);
+			});
+
+			$("#roomName").val("");
+		});
+	}
+
+	function goRoom(number, name){
+		location.href="/moveChating?roomName="+name+"&"+"roomNumber="+number;
+	}
+
+	function createChatingRoom(res){
+		if(res != null){
+			var tag = "<tr><th class='num'>순서</th><th class='room'>방 이름</th><th class='go'></th></tr>";
+			res.forEach(function(d, idx){
+				var rn = d.roomName.trim();
+				var roomNumber = d.roomNumber;
+				tag += "<tr>"+
+							"<td class='num'>"+(idx+1)+"</td>"+
+							"<td class='room'>"+ rn +"</td>"+
+							"<td class='go'><button type='button' onclick='goRoom(\""+roomNumber+"\", \""+rn+"\")'>참여</button></td>" +
+						"</tr>";	
+			});
+			$("#roomList").empty().append(tag);
+		}
+	}
+
+	function commonAjax(url, parameter, type, calbak, contentType){
+		$.ajax({
+			url: url,
+			data: parameter,
+			type: type,
+			contentType : contentType!=null?contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+			success: function (res) {
+				calbak(res);
+			},
+			error : function(err){
+				console.log('error');
+				calbak(err);
+			}
+		});
+	}
 </script>
+<body>
+	<!-- 헤더 페이지 불러오기 -->
+	<div th:replace="layout/header :: header"></div>
+	
+	<div class="container">
+		<h1>채팅방</h1>
+		<div id="roomContainer" class="roomContainer">
+			<table id="roomList" class="roomList"></table>
+		</div>
+		<div>
+			<table class="inputTable">
+				<tr>
+					<th>방 제목</th>
+					<th><input type="text" name="roomName" id="roomName"></th>
+					<th><button id="createRoom">방 만들기</button></th>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	<!-- 푸터 페이지 불러오기 -->
+	<footer th:replace="layout/footer :: footer"></footer>
+</body>
 </html>
