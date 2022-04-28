@@ -35,19 +35,12 @@ public class UserController {
 
 	@RequestMapping(value = "/modifyUserInfo", method = RequestMethod.POST)
 	public String update(HttpSession session, @ModelAttribute User user) {
+		
 		userservice.userUpdate(user);
-		
-//		System.out.println(user);
-//		System.out.println(user.getUserId());
-//		System.out.println(user.getUserName());
-//		System.out.println(user.getUserEmail());
-		
+
 		User newuser = userservice.findByUserId(user.getUserId());
 		System.out.println(newuser);
 
-		System.out.println(user.getUserId());
-		System.out.println(user.getUserName());
-		System.out.println(user.getUserEmail());
 
 		session.setAttribute("user", newuser);
 		return "view/user/userpage";

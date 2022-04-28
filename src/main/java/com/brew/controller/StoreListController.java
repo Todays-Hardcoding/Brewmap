@@ -29,8 +29,13 @@ public class StoreListController {
 		params.put("lat", lat);
 		params.put("lon", lon);
 		
+		System.out.println(radius);
+		System.out.println("====================================================================");
+		
 		if(radius == null)
 			radius = "1";
+		
+		System.out.println("==================================================");
 		
 		Map<String, StoreInfo> storeMap = storeListService.getCloseStores(params, radius);	
 		List<List<StoreInfo>> storePage = new ArrayList<>();
@@ -38,6 +43,7 @@ public class StoreListController {
 		List<StoreInfo> storeList = new ArrayList<>();
 		List<String> storeDistance = new ArrayList<>();
 		
+		System.out.println("==================================================");
 		int i = 0;
 		for(Map.Entry<String, StoreInfo> entry : storeMap.entrySet()) {
 			if(i == 9) {
@@ -49,7 +55,7 @@ public class StoreListController {
 				
 				storeList.add(entry.getValue());
 				storeDistance.add(entry.getKey());
-				i %= 5;
+				i %= 9;
 			} else {
 				storeList.add(entry.getValue());
 				storeDistance.add(entry.getKey());
@@ -62,12 +68,17 @@ public class StoreListController {
 		if(page == null)
 			page = 0;
 		
+		System.out.println("==================================================");
+		System.out.println(storePage.size());
+		System.out.println(storeDistancePage.size());
+		
 		model.addAttribute("storePage", storePage.get(page));
 		model.addAttribute("storeDistancePage", storeDistancePage.get(page));
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", storePage.size());
 		model.addAttribute("totalElements", storeMap.size());
 		model.addAttribute("latlon", params);
+		model.addAttribute("radius", radius);
 
 		return "view/store/storeList";
     }
@@ -93,7 +104,7 @@ public class StoreListController {
 				temp = new ArrayList<>();
 				
 				temp.add(store);
-				i %= 5;
+				i %= 9;
 			} else {
 				temp.add(store);
 			}
@@ -108,6 +119,7 @@ public class StoreListController {
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", storePage.size());
 		model.addAttribute("latlon", params);
+		model.addAttribute("radius", radius);
 
 		return "view/store/storeListByRate";
     }
@@ -133,7 +145,7 @@ public class StoreListController {
 				temp = new ArrayList<>();
 				
 				temp.add(store);
-				i %= 5;
+				i %= 9;
 			} else {
 				temp.add(store);
 			}
@@ -148,6 +160,7 @@ public class StoreListController {
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", storePage.size());
 		model.addAttribute("latlon", params);
+		model.addAttribute("radius", radius);
 
 		return "view/store/storeListByReview";
     }
