@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.brew.domain.ChatRoom;
+import com.brew.domain.ChatRoomForm;
 import com.brew.domain.User;
 import com.brew.repository.ChatRoomRepository;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class ChatController {
@@ -34,10 +33,6 @@ public class ChatController {
         User user = (User)req.getSession().getAttribute("user");
         
         model.addAttribute("room",room);
-//        model.addAttribute("user", user);
-//        model.addAttribute("userName", "1111");
-//        model.addAttribute("userNickName", "22222");
-//        model.addAttribute("userName", user.getUserName());
         if(user.getUserNickName() != null)
         	model.addAttribute("userNickName", user.getUserNickName());
         else

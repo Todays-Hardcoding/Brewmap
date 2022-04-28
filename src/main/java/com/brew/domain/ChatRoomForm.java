@@ -1,4 +1,4 @@
-package com.brew.controller;
+package com.brew.domain;
 
 import lombok.Getter;
 import lombok.Setter;
