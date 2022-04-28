@@ -21,18 +21,22 @@
 <body>
 		<!-- 헤더 페이지 불러오기  -->
 		<div th:replace="layout/header :: header"></div>
+		<div style="display: flex; justify-content: center;">
+		<div>
 		
 		<h1 th:text="${userNickName}"></h1>
 		<input type="hidden" id="nickname" class="form-inline" th:value="${userNickName}"> 
 		<button class = "btn btn-primary" id = "name">채팅시작</button>
 		
 		<br>
+
 		<label for="roomName" class="label label-default">방 이름</label>
 		<label th:text="*{room.name}" id="roomName" class="form-inline"></label>
-		<div id = "chatroom" style = "overflow:auto; width:400px;  height: 600px; border:1px solid; background-color : gray"></div>
+		<div id = "chatroom" style = "overflow:auto; width:400px;  height: 600px; border:1px solid; background-color : gray;"></div>
 		<input type = "text" id = "message" style = "height : 30px; width : 340px" placeholder="내용을 입력하세요" autofocus>
 		<button class = "btn btn-primary" id = "send">전송</button>
-
+		</div>
+		</div>
 		<!-- 푸터 페이지 불러오기 -->
 		<footer th:replace="layout/footer :: footer"></footer>
 <script>
