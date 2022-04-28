@@ -6,7 +6,8 @@
 .container{
 	width: 500px;
 	margin: 0 auto;
-	padding: 25px
+	padding: 25px;
+	margin-bottom: 71px;
 }
 .container h1{
 	text-align: left;
