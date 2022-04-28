@@ -3,6 +3,10 @@
 	transform: translate(33%);
 	margin-bottom: 20%;
 }
+.signup-header{
+	margin-top: 50px;
+}
+
 #signup-button{
 	margin-top: 10px;
 	margin-bottom: 10px;
