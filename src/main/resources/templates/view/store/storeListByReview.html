@@ -62,30 +62,7 @@
 	};
 </script>
 
-<!-- 네비게이션  고정 -->
-<script>
-	var checkMenu = () => {
-		//console.log(yOffset)
-		if (yOffset > 0) {
-			document.body.classList.add('nav-sticky');
-		} else {
-			document.body.classList.remove('nav-sticky');
-		}
-	};
-	window.addEventListener('scroll', () => {
-	   yOffset = window.pageYOffset;
-	   checkMenu();
-	})
 
-	// 검색버튼 on/off
-	function openCloseSearch() {
-		if(document.getElementById('nav-search-input').style.display === 'block') {
-			document.getElementById('nav-search-input').style.display = 'none';
-		} else {
-			document.getElementById('nav-search-input').style.display = 'block';
-		}
-	}
-</script>
 	<!-- 헤더 페이지 불러오기 -->
 	<div th:replace="/layout/header.html :: header"></div>
     <section class="article-list">
