@@ -130,27 +130,27 @@
             <nav class="d-flex justify-content-center">
 	            <ul class="pagination" th:with="startNumber=${T(java.lang.Math).floor(currentPage/10)}*10+1, endNumber=(${totalPages} > ${startNumber}+9) ? ${startNumber}+9 : ${totalPages}">
 	                <li th:style="${currentPage} == 0 ? 'display:none'" class="page-item">
-		                <a class="page-link" th:href="@{/storeListByRate(page=0, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="First">
+		                <a class="page-link" th:href="@{/storeListByRate(page=0, radius=${radius}, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="First">
 		                	<span aria-hidden="true">처음으로</span>
 						</a>
 					</li>
 	                 <li th:style="${currentPage} == 0 ? 'display:none'" class="page-item">
-	                    <a class="page-link" th:href="@{/storeListByRate(page=${currentPage} - 1, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Previous">
+	                    <a class="page-link" th:href="@{/storeListByRate(page=${currentPage} - 1, radius=${radius}, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Previous">
 	                    	<span aria-hidden="true">&gt;</span>
 	                    </a>
 	                </li>
 	                <li th:each="page :${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${currentPage} + 1) ? 'active'" class="page-item">
-	                    <a class="page-link" th:href="@{/storeListByRate(page=${page} - 1, lat=${latlon['lat']}, lon=${latlon['lon']})}" th:text="${page}">
+	                    <a class="page-link" th:href="@{/storeListByRate(page=${page} - 1, radius=${radius}, lat=${latlon['lat']}, lon=${latlon['lon']})}" th:text="${page}">
 	                    	<span class="sr-only"></span>
 	                    </a>
 	                </li>
 	                <li th:style="${currentPage} == ${totalPages} - 1 ? 'display:none'" class="page-item">
-	                    <a class="page-link" th:href="@{/storeListByRate(page=${currentPage} + 1, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Next">
+	                    <a class="page-link" th:href="@{/storeListByRate(page=${currentPage} + 1, radius=${radius}, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Next">
 	                    	<span aria-hidden="true">&gt;</span>
 	                    </a>
 	                </li>
 	                <li th:style="${currentPage} == ${totalPages} - 1 ? 'display:none'" class="page-item">
-		                <a class="page-link" th:href="@{/storeListByRate(page=${totalPages} - 1, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Last">
+		                <a class="page-link" th:href="@{/storeListByRate(page=${totalPages} - 1, radius=${radius}, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Last">
 		                	<span aria-hidden="true">마지막으로</span>
 						</a>
 					</li>
