@@ -29,6 +29,9 @@ public class StoreListController {
 		params.put("lat", lat);
 		params.put("lon", lon);
 		
+		System.out.println(radius);
+		System.out.println("====================================================================");
+		
 		if(radius == null)
 			radius = "1";
 		
@@ -75,6 +78,7 @@ public class StoreListController {
 		model.addAttribute("totalPages", storePage.size());
 		model.addAttribute("totalElements", storeMap.size());
 		model.addAttribute("latlon", params);
+		model.addAttribute("radius", radius);
 
 		return "view/store/storeList";
     }
@@ -101,7 +105,7 @@ public class StoreListController {
 				temp = new ArrayList<>();
 				
 				temp.add(store);
-				i %= 5;
+				i %= 9;
 			} else {
 				temp.add(store);
 			}
@@ -116,6 +120,7 @@ public class StoreListController {
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", storePage.size());
 		model.addAttribute("latlon", params);
+		model.addAttribute("radius", radius);
 
 		return "view/store/storeListByRate";
     }
@@ -141,7 +146,7 @@ public class StoreListController {
 				temp = new ArrayList<>();
 				
 				temp.add(store);
-				i %= 5;
+				i %= 9;
 			} else {
 				temp.add(store);
 			}
@@ -156,6 +161,7 @@ public class StoreListController {
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", storePage.size());
 		model.addAttribute("latlon", params);
+		model.addAttribute("radius", radius);
 
 		return "view/store/storeListByReview";
     }
