@@ -10,7 +10,9 @@
 
 <body>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
+	var radius = [[${radius}]];
+
 	function toListByReview(){
 		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 		if (navigator.geolocation) {
@@ -28,15 +30,14 @@
 	    	console.log(params.lat);
 	        console.log(params.lon);
 	        
-	        document.location.href = "/storeListByReview?lat="+lat+"&lon="+lon;
+	        document.location.href = "/storeListByReview?lat="+lat+"&lon="+lon+"&radius="+radius;
 
 		});
 		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 			alert("geolocation error");
 		}	
 	};
-</script>
-<script type="text/javascript">
+
 	function toList(){
 		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 		if (navigator.geolocation) {
@@ -54,14 +55,13 @@
 	    	console.log(params.lat);
 	        console.log(params.lon);
 	      
-	        document.location.href = "/storeList?lat="+lat+"&lon="+lon;
+	        document.location.href = "/storeList?lat="+lat+"&lon="+lon+"&radius="+radius;
 		});
 		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 			alert("geolocation error");
 		}	
 	};
 </script>
-
 	<!-- 헤더 페이지 불러오기 -->
 	<div th:replace="/layout/header.html :: header"></div>
     <section class="article-list">
@@ -78,10 +78,6 @@
 					<button type="button" onclick="setRadius(event)" value="3">3km</button>
 					<button type="button" onclick="setRadius(event)" value="5">5km</button>
 					<button type="button" onclick="setRadius(event)" value="25">25km</button>
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 				</div>
 			</div>
         	<div class="sorting-container">
