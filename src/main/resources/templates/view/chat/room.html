@@ -56,14 +56,9 @@
     /* ]]> */
     document.getElementById("name").addEventListener("click",function(){
     	nickname = document.getElementById("nickname").value;
-    	console.log(nickname);
-    	if(nickname != null){
-	        document.getElementById("nickname").style.display = "none";
-	        document.getElementById("name").style.display = "none";
-	        connect();
-    	}
-    	else
-    		alert("로그인 후 이용해주세요.");
+        document.getElementById("nickname").style.display = "none";
+        document.getElementById("name").style.display = "none";
+        connect();
     })
    
     document.getElementById("send").addEventListener("click",function(){

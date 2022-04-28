@@ -37,7 +37,7 @@ public class ChatController {
         	model.addAttribute("userNickName", user.getUserNickName());
         else
         	model.addAttribute("userNickName", "nullUserNickname");
-        System.out.println(user);
+//        System.out.println(user);
         return "view/chat/room";
     }
 
