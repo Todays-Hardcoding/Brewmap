@@ -61,31 +61,7 @@
 		}	
 	};
 </script>
-<!-- 네비게이션  고정 -->
-<script>
-	var checkMenu = () => {
-		//console.log(yOffset)
-		if (yOffset > 0) {
-			document.body.classList.add('nav-sticky');
-		} else {
-			document.body.classList.remove('nav-sticky');
-		}
-	};
-	window.addEventListener('scroll', () => {
-		yOffset = window.pageYOffset;
-		checkMenu();
-	})
 
-	// 검색버튼 on/off
-	function openCloseSearch() {
-	    if(document.getElementById('nav-search-input').style.display === 'block') {
-			document.getElementById('nav-search-input').style.display = 'none';
-	    } else {
-			document.getElementById('nav-search-input').style.display = 'block';
-	    }
-	}
-
-</script>
 	<!-- 헤더 페이지 불러오기 -->
 	<div th:replace="/layout/header.html :: header"></div>
     <section class="article-list">
@@ -101,11 +77,8 @@
 					<button type="button" onclick="setRadius(event)" value="1">1km</button>
 					<button type="button" onclick="setRadius(event)" value="3">3km</button>
 					<button type="button" onclick="setRadius(event)" value="5">5km</button>
-<<<<<<< HEAD
 					<button type="button" onclick="setRadius(event)" value="25">25km</button>
-=======
-					<button type="button" onclick="setRadius(event)" value="20">20km</button>
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
+
 				</div>
 			</div>
         	<div class="sorting-container">
