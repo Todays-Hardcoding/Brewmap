@@ -1,5 +1,6 @@
 
 use brewmap;
+drop table kakao;
 CREATE TABLE `kakao`
 (
 	`store_code` VARCHAR(10) NOT NULL COMMENT '코드',
