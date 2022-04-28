@@ -79,3 +79,14 @@ li {
 .review-list {
   margin-bottom: 50px;
 }
+
+.page-nav {
+  color: #362222;
+}
+
+.page-link-number {
+  color: #362222;
+}
+.pagenation li {
+  border: 1px solid #362222;
+}
