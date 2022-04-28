@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<!-- css 파일 링크 -->
-<head th:replace="css/css :: css">
+<html
+	lang="ko"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head th:replace="layout/head :: headFragment"> </head>
+	<th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{/assets/css/storeList.css}" type="text/css">
+	</th:block>
 
 <body>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -97,6 +101,7 @@
 					<button type="button" onclick="setRadius(event)" value="1">1km</button>
 					<button type="button" onclick="setRadius(event)" value="3">3km</button>
 					<button type="button" onclick="setRadius(event)" value="5">5km</button>
+					<button type="button" onclick="setRadius(event)" value="20">20km</button>
 				</div>
 			</div>
         	<div class="sorting-container">
@@ -105,52 +110,52 @@
   				<a class="" onClick="toList()">가까운 순서</a>
 			</div>
             <div class="row articles" >
-	            <!-- 리스트 불러오기 반복문 -->
-	            <th:block th:each="storeList : ${storePage}">
-	            	<!-- 리스트 정보 표시 -->
-	                <div class="col-sm-6 col-md-4 item">
-	                	<div class="card-container">
-							<div class="card">
-			                	<a th:href="@{/detail (id=${storeList.storeCode})}">
-				                	<img class="img-fluid" th:src="'assets/img/storeImg/' + ${storeList.storeName} + '/' + ${storeList.storeCode} + '_1.png/'" />
-				                	<div class="card-body">
-										<h5 class="card-title" th:text="${storeList.storeName}"></h5>
-										<p class="card-text"th:text="${storeList.review.size} + ' 개의 리뷰'" ></p>
-										<p class="card-text"th:text="${storeList.storeCategory}"></p>
-										<p class="card-text"th:text="${storeList.storeRoadAddr}"></p>
-										<span class="star">★</span>
-										<span class="card-text rate"th:text="${storeList.storeStaravg}"></span>
-				                    </div>
-				            	</a>
-	                		</div>
-						</div>
-	                </div>
-	            </th:block>  
+							<!-- 리스트 불러오기 반복문 -->
+							<th:block th:each="storeList : ${storePage}">
+								<div class="col-sm-6 col-md-4 item">
+									<div class="card-container">
+										<div class="card">
+											<a th:href="@{/detail (id=${storeList.storeCode})}">
+												<img class="img-fluid" th:src="'assets/img/storeImg/' + ${storeList.storeName} + '/' + ${storeList.storeCode} + '_1.png/'" />
+												<div class="card-body">
+													<h5 class="card-title" th:text="${storeList.storeName}"></h5>
+													<p class="card-text"th:text="${storeList.review.size} + ' 개의 리뷰'" ></p>
+													<p class="card-text"th:text="${storeList.storeCategory}"></p>
+													<p class="card-text"th:text="${storeList.storeRoadAddr}"></p>
+													<span class="star">★</span>
+													<span class="card-text rate"th:text="${storeList.storeStaravg}"></span>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							</th:block>
+
             </div>
             <nav class="d-flex justify-content-center">
 	            <ul class="pagination" th:with="startNumber=${T(java.lang.Math).floor(currentPage/10)}*10+1, endNumber=(${totalPages} > ${startNumber}+9) ? ${startNumber}+9 : ${totalPages}">
 	                <li th:style="${currentPage} == 0 ? 'display:none'" class="page-item">
-		                <a class="page-link" th:href="@{/storeListByRate(page=0, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="First">
+		                <a class="page-link" th:href="@{/storeListByRate(page=0, radius=${radius}, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="First">
 		                	<span aria-hidden="true">처음으로</span>
 						</a>
 					</li>
 	                 <li th:style="${currentPage} == 0 ? 'display:none'" class="page-item">
-	                    <a class="page-link" th:href="@{/storeListByRate(page=${currentPage} - 1, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Previous">
+	                    <a class="page-link" th:href="@{/storeListByRate(page=${currentPage} - 1, radius=${radius}, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Previous">
 	                    	<span aria-hidden="true">&gt;</span>
 	                    </a>
 	                </li>
 	                <li th:each="page :${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${currentPage} + 1) ? 'active'" class="page-item">
-	                    <a class="page-link" th:href="@{/storeListByRate(page=${page} - 1, lat=${latlon['lat']}, lon=${latlon['lon']})}" th:text="${page}">
+	                    <a class="page-link" th:href="@{/storeListByRate(page=${page} - 1, radius=${radius}, lat=${latlon['lat']}, lon=${latlon['lon']})}" th:text="${page}">
 	                    	<span class="sr-only"></span>
 	                    </a>
 	                </li>
 	                <li th:style="${currentPage} == ${totalPages} - 1 ? 'display:none'" class="page-item">
-	                    <a class="page-link" th:href="@{/storeListByRate(page=${currentPage} + 1, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Next">
+	                    <a class="page-link" th:href="@{/storeListByRate(page=${currentPage} + 1, radius=${radius}, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Next">
 	                    	<span aria-hidden="true">&gt;</span>
 	                    </a>
 	                </li>
 	                <li th:style="${currentPage} == ${totalPages} - 1 ? 'display:none'" class="page-item">
-		                <a class="page-link" th:href="@{/storeListByRate(page=${totalPages} - 1, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Last">
+		                <a class="page-link" th:href="@{/storeListByRate(page=${totalPages} - 1, radius=${radius}, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Last">
 		                	<span aria-hidden="true">마지막으로</span>
 						</a>
 					</li>

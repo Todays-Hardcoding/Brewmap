@@ -7,9 +7,12 @@ li {
   display: list-item;
   text-align: -webkit-match-parent;
 }
+section {
+  min-height: 800px;
+}
 
 .container {
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .sorting-container {
@@ -43,7 +46,8 @@ li {
   width: 100%;
 }
 .card a img {
-  width: 290px;
+  /* width: 290px; */
+  width: 100%;
   height: 170px;
   border-radius: 10px;
 }

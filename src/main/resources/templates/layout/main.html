@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col">
           <!-- 배너 슬라이드 시작 -->
-          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+          <div id="carouselExampleIndicators" class="carousel slide banner-container" data-bs-ride="carousel">
             <div class="carousel-indicators">
               <button
                 type="button"
@@ -32,13 +32,9 @@
                 <img th:src="@{assets/img/banner/mainBanner01.png}" class="slider-box" alt="banner2" />
               </div>
               <div class="carousel-item">
-<<<<<<< HEAD
                 <a href="https://ko.wikipedia.org/wiki/%EC%9C%84%EC%8A%A4%ED%82%A4">
-                  <img th:src="@{assets/img/banner/mainBanner02.png}" class="slider-box " alt="banner3" />
+                  <img th:src="@{assets/img/banner/mainBanner02.png}" class="slider-box" alt="banner3" />
                 </a>
-=======
-                <img th:src="@{assets/img/banner/mainBanner02.png}" class="slider-box" alt="banner3" />
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -56,46 +52,57 @@
 
       <div class="row main-menu-container default-background main-icon-container">
         <div class="col-3 col-md-1 social-icons">
-          <a href="http://localhost:8282/map?keyword=%ED%96%84%EB%B2%84%EA%B1%B0" style="padding: 0px"
-            ><i class="fa-solid fa-burger" style="margin-bottom: 10px; margin-top: 10px"></i
-          ></a>
+          <div class="icon-box">
+            <a href="http://localhost:8282/map?keyword=%ED%96%84%EB%B2%84%EA%B1%B0" style="padding: 0px">
+              <i class="fa-solid fa-burger"></i>
+              <h5 class="icon-word">햄버거</h5>
+            </a>
+          </div>
         </div>
         <div class="col-3 col-md-1 social-icons">
-          <a href="http://localhost:8282/map?keyword=%EC%99%80%EC%9D%B8" style="padding: 0px"
-            ><i class="fa-solid fa-champagne-glasses" style="margin-bottom: 10px; margin-top: 10px"></i
-          ></a>
+          <a href="http://localhost:8282/map?keyword=%EC%99%80%EC%9D%B8" style="padding: 0px">
+            <i class="fa-solid fa-champagne-glasses"></i>
+            <h5 class="icon-word">와인</h5>
+          </a>
         </div>
         <div class="col-3 col-md-1 social-icons">
-          <a href="http://localhost:8282/map?keyword=%ED%94%BC%EC%9E%90" style="padding: 0px"
-            ><i class="fa-solid fa-pizza-slice" style="margin-bottom: 10px; margin-top: 10px"></i
-          ></a>
+          <a href="http://localhost:8282/map?keyword=%ED%94%BC%EC%9E%90" style="padding: 0px">
+            <i class="fa-solid fa-pizza-slice"></i>
+            <h5 class="icon-word">피자</h5>
+          </a>
         </div>
         <div class="col-3 col-md-1 social-icons">
-          <a href="http://localhost:8282/map?keyword=%EB%A7%A5%EC%A3%BC" style="padding: 0px"
-            ><i class="fa-solid fa-beer-mug-empty" style="margin-bottom: 10px; margin-top: 10px"></i
-          ></a>
+          <a href="http://localhost:8282/map?keyword=%EB%A7%A5%EC%A3%BC" style="padding: 0px">
+            <i class="fa-solid fa-beer-mug-empty"></i>
+            <h5 class="icon-word">맥주</h5>
+          </a>
         </div>
         <div class="col-3 col-md-1 social-icons">
-          <a href="http://localhost:8282/map?keyword=%EB%8B%AD" style="padding: 0px"
-            ><i class="fa-solid fa-drumstick-bite" style="margin-bottom: 10px; margin-top: 10px"></i
-          ></a>
+          <a href="http://localhost:8282/map?keyword=%EB%8B%AD" style="padding: 0px">
+            <i class="fa-solid fa-drumstick-bite"></i>
+            <h5 class="icon-word">치킨</h5>
+          </a>
         </div>
         <div class="col-3 col-md-1 social-icons">
-          <a href="http://localhost:8282/map?keyword=%EB%A7%9B%EC%A7%91" style="padding: 0px"
-            ><i class="fa-solid fa-utensils" style="margin-bottom: 10px; margin-top: 10px"></i
-          ></a>
+          <a href="http://localhost:8282/map?keyword=%EB%A7%9B%EC%A7%91" style="padding: 0px">
+            <i class="fa-solid fa-utensils"></i>
+            <h5 class="icon-word">맛집</h5>
+          </a>
         </div>
         <div class="col-3 col-md-1 social-icons">
-          <a href="http://localhost:8282/map?keyword=%ED%9A%8C" style="padding: 0px"
-            ><i class="fa-solid fa-fish" style="margin-bottom: 10px; margin-top: 10px"></i
-          ></a>
+          <a href="http://localhost:8282/map?keyword=%ED%9A%8C" style="padding: 0px">
+            <i class="fa-solid fa-fish"></i>
+            <h5 class="icon-word">회</h5>
+          </a>
         </div>
         <div class="col-3 col-md-1 social-icons">
-          <a href="http://localhost:8282/map?keyword=%EC%9C%84%EC%8A%A4%ED%82%A4" style="padding: 0px"
-            ><i class="fa-solid fa-whiskey-glass" style="margin-bottom: 10px; margin-top: 10px"></i
-          ></a>
+          <a href="http://localhost:8282/map?keyword=%EC%9C%84%EC%8A%A4%ED%82%A4" style="padding: 0px">
+            <i class="fa-solid fa-whiskey-glass"></i>
+            <h5 class="icon-word">위스키</h5>
+          </a>
         </div>
       </div>
+
       <div class="row">
         <div class="col">
           <section class="photo-gallery">

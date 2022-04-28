@@ -1,15 +1,27 @@
 .footer-container {
   display: flex;
-  height: 100px;
+  height: 130px;
   justify-content: space-around;
   bottom: 0;
   padding: 20px;
+  align-items: center;
+  border-top: 5px solid #b85c38;
+  background-color: #362222;
 }
 .footer-social-icons li i {
-  color: #2d2424;
+  color: #b85c38;
+  font-size: 40px;
+  margin: 0 auto;
 }
 
 .footer-social-icons li i:hover {
-  color: #b85c38;
-  font-size: 60px;
+  color: #e0c097;
+  font-size: 50px;
+}
+
+/* 너비가 768이상이라면 */
+@media (min-width: 768px) {
+  .footer-social-icons li i {
+    margin: 0 50px;
+  }
 }
