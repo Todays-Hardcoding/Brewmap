@@ -1,44 +1,39 @@
 ul {
   display: block;
-  
-  list-style:none;
+
+  list-style: none;
 }
 li {
   display: list-item;
   text-align: -webkit-match-parent;
 }
-.store-picture{
+.store-picture {
   width: 100%;
   margin: 5px auto;
 }
 
-.container{
+.container {
   width: 80%;
   margin: 0px auto;
 }
-.store-info{
+.store-info {
   margin: 10px 0 20px 0;
 }
-.store-info h7{
+.store-info h7 {
   margin: 50px 0 10px 0;
 }
-.store-info .marker-img{
+.store-info .marker-img {
   width: 1rem;
 }
-.store-addr{
+.store-addr {
   font-size: 20px;
 }
-.store-tag{
+.store-tag {
   margin: 20px 0;
   color: gray;
 }
 
-.test{
-	color: blue;
-}
-
-
-@media (max-width:980px) {
+@media (max-width: 980px) {
   .container {
     width: 99%;
   }
