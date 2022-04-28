@@ -1,9 +1,19 @@
+section {
+  max-width: 1440px;
+  margin: 0 auto;
+  min-width: 390px;
+  min-height: 800px;
+  white-space: nowrap;
+}
 .board-section {
   min-height: 800px;
   min-width: 390px;
   white-space: nowrap;
   color: #362222;
   letter-spacing: 0.3rem;
+}
+.board-container {
+  margin: 10px auto;
 }
 
 .board-category {
@@ -61,12 +71,13 @@
 }
 
 .input-group .form-container {
-  display: inline-block;
-  width: 100%;
+  margin: 0 auto;
+}
+.keword-input {
+  width: 80%;
 }
 
 .input-group .form-container button {
-  position: relative;
-  top: -36px;
-  right: -485px;
+  width: 100px;
+  margin: 20px auto;
 }

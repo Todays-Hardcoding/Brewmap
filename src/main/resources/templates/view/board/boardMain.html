@@ -108,23 +108,23 @@
 						</ul>
 					</nav>
 					<div class="row" th:style="${boardCategoryCode} == 'hotPage' ? 'display:none'">
-						<div class="col d-flex">
-							<div class="input-group d-md-flex" >
+
+						
+							<div class="input-group">
 								<form class="form-container" action="/board/searchTitleAndContent">
 									<input type="hidden" name="boardCategoryCode" th:value="${boardCategoryCode}">
-									<input class="form-control" type="text" id="keyword" name="keyword" th:value="${keyword} ? ${keyword} : ''" placeholder="제목+내용으로 검색" />
+									<input class="form-control keword-input" type="text" id="keyword" name="keyword" th:value="${keyword} ? ${keyword} : ''" placeholder="제목+내용으로 검색" />
 									<button class="btn btn-primary" type="submit">
 										<i class="fa fa-search"></i>
 									</button>
 								</form>
+								<div class="d-flex">
+									<form th:if="${session.user != null}" action="/board/createPage">
+										<button class="btn btn-primary" type="submit" 
+											style="margin-right: 2em">글쓰기</button>
+									</form>
+								</div>
 							</div>
-							<div class="col-4 col-md-3 d-flex justify-content-end align-items-center">
-							<form th:if="${session.user != null}" action="/board/createPage">
-								<button class="btn btn-primary" type="submit" 
-									style="margin-right: 2em">글쓰기</button>
-							</form>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
