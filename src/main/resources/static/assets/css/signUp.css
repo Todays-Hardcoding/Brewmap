@@ -1,5 +1,35 @@
 .app-container{
 	width:60%;
 	transform: translate(33%);
+	margin-bottom: 20%;
 }
-
+#signup-button{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	float: right;
+}
+.dupCheck-button{
+	width: 90px;
+	height: 50px;
+	margin-top: 13px;
+	margin-left: 60px;
+}
+.id-input-container{
+	display: grid;
+	grid-template-columns: 1.2fr 0.2fr;
+}
+.input-section{
+	margin-top: 10px;
+}
+#userQuestion{
+	margin-top: 10px;
+}
+.form-floating{
+	margin-top: 10px;
+}
+ #userGrade{
+ 	margin-top: 10px;
+ }
+ #userGender{
+ 	margin-top: 10px;
+ }

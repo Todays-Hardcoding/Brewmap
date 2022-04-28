@@ -69,31 +69,31 @@
 				<nav class="d-flex justify-content-center">
 		            <ul class="pagination" th:with="startNumber=${T(java.lang.Math).floor(currentPage/10)}*10+1, endNumber=(${totalPages} > ${startNumber}+9) ? ${startNumber}+9 : ${totalPages}">
 		                <li th:style="${currentPage} == 0 ? 'display:none'" class="page-item">
-			                <a class="page-link" th:href="@{/click(page=0, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="First">
+			                <a class="page-link" th:href="@{/click(page=0, radius=${radius}, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="First">
 			                	<span aria-hidden="true">처음으로</span>
 							</a>
 						</li>
 		                
 		                 <li th:style="${currentPage} == 0 ? 'display:none'" class="page-item">
-		                    <a class="page-link" th:href="@{/click(page=${currentPage} - 1, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Previous">
+		                    <a class="page-link" th:href="@{/click(page=${currentPage} - 1, radius=${radius}, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Previous">
 		                    	<span aria-hidden="true">&gt;</span>
 		                    </a>
 		                </li>
 		                
 		                <li th:each="page :${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${currentPage} + 1) ? 'active'" class="page-item">
-		                    <a class="page-link" th:href="@{/click(page=${page} - 1, lat=${latlon['lat']}, lon=${latlon['lon']})}" th:text="${page}">
+		                    <a class="page-link" th:href="@{/click(page=${page} - 1, radius=${radius}, lat=${latlon['lat']}, lon=${latlon['lon']})}" th:text="${page}">
 		                    	<span class="sr-only"></span>
 		                    </a>
 		                </li>
 		
 		                <li th:style="${currentPage} == ${totalPages} - 1 ? 'display:none'" class="page-item">
-		                    <a class="page-link" th:href="@{/click(page=${currentPage} + 1, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Next">
+		                    <a class="page-link" th:href="@{/click(page=${currentPage} + 1, radius=${radius}, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Next">
 		                    	<span aria-hidden="true">&gt;</span>
 		                    </a>
 		                </li>
 		                
 		                <li th:style="${currentPage} == ${totalPages} - 1 ? 'display:none'" class="page-item">
-			                <a class="page-link" th:href="@{/click(page=${totalPages} - 1, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Last">
+			                <a class="page-link" th:href="@{/click(page=${totalPages} - 1, radius=${radius}, lat=${latlon['lat']}, lon=${latlon['lon']})}" aria-label="Last">
 			                	<span aria-hidden="true">마지막으로</span>
 							</a>
 						</li>
@@ -132,8 +132,8 @@
 		var map = new kakao.maps.Map(mapContainer, mapOption);
 		
 		// 현재 위치 마커를 생성합니다.
-		var myImageSrc = 'mylocation.png';
-        var myImageSize = new kakao.maps.Size(20, 30); // 마커 이미지 생성
+		var myImageSrc = 'a1866850b14ae47d0a2fd61f409dfc057154249a3890514a43687a85e6b6cc82.png';
+        var myImageSize = new kakao.maps.Size(50, 60); // 마커 이미지 생성
         var myMarkerImage = new kakao.maps.MarkerImage(myImageSrc, myImageSize);
 		var myMarker = new kakao.maps.Marker({	
 				image: myMarkerImage
