@@ -26,14 +26,14 @@
 										<img class="img-fluid" style="width: 100%;height:90%;" th:src="'assets/img/storeImg/' + ${storeDetail.storeName} + '/' + ${storeDetail.storeCode} + '_' + ${num} + '.png/'" /></a>
 									</div>
 								</th:block>  
-                            </div>
-                        </div>
-                        <!-- 가게 정보 -->                       
-                        <h7 th:text="${storeDetail.storeCategory}"></h7>
-                        <h1 th:text="${storeDetail.storeName}"></h1>
-                        <h5 th:text="${storeDetail.storeRoadAddr}"></h5>
-						<h5 th:text="${storeDetail.storeTel}"></h5>
-						<h5 th:text="${storeDetail.storeTag}"></h5>
+                  </div>
+                    </div>
+											<!-- 가게 정보 -->                       
+											<h7 th:text="${storeDetail.storeCategory}"></h7>
+											<h1 th:text="${storeDetail.storeName}"></h1>
+											<h5 th:text="${storeDetail.storeRoadAddr}"></h5>
+											<h5 th:text="${storeDetail.storeTel}"></h5>
+											<h5 th:text="${storeDetail.storeTag}"></h5>
                     </div>                        
                 </div>
 	        <div id="map" style="width: 100%; height: 500px; position: relative; overflow: hidden;">
