@@ -98,12 +98,12 @@
 	<!-- 스크립트 -->
 	<div th:replace="layout/script :: scriptFragment">
 		<!-- 이 안에 개별적인 js 넣으면 됨. -->
-		<script th:inline="javascript">
-   /* 확인용 코드입니다 */
-	var userlist = [[${user}]];
-   console.log(userlist);
-    var checkuser = [[${session.userId}]];
-   console.log(checkuser);
+	<script th:inline="javascript">
+	   /* 확인용 코드입니다 */
+		var userlist = [[${user}]];
+	   console.log(userlist);
+	    var checkuser = [[${session.userId}]];
+	   console.log(checkuser);
    </script>
 	</div>
 </body>
