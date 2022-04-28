@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.brew.domain.ChatRoom;
+import com.brew.domain.ChatRoomForm;
 import com.brew.domain.User;
 import com.brew.repository.ChatRoomRepository;
 
