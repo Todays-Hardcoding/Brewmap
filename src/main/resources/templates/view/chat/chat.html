@@ -9,10 +9,10 @@
     <link rel="stylesheet" th:href="@{/assets/css/chat.css}" type="text/css">
     <title>chatting</title>
 </th:block>
-
+	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	var ws;
-
+	
 	function wsOpen(){
 		//웹소켓 전송시 현재 방의 번호를 넘겨서 보낸다.
 		ws = new WebSocket("ws://" + location.host + "/chating/"+"[(${roomNumber})]");
@@ -45,6 +45,7 @@
 					console.warn("unknown type!")
 				}
 			}
+			$('#chating').scrollTop($('#chating')[0].scrollHeight);
 		}
 
 		document.addEventListener("keypress", function(e){
