@@ -57,14 +57,4 @@ public class UserController {
 		System.out.println("유저가 여기에서 삭제 됐습니다");
 		return "view/index";
 	}
-//	@RequestMapping(value = "/delete2")
-//	public String delete2(HttpSession session, @ModelAttribute User user) {
-//		
-//		System.out.println(session.getAttribute(user.getUserId()));
-//		
-//		return "view/index";
-//	}
-	
-
-	// input 태그안에 name에 들어있는 값이 key!! //// value Attribute안에 있는 값이 value
 }
