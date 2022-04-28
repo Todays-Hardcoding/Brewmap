@@ -83,7 +83,6 @@ public class StoreListController {
 		return "view/store/storeList";
     }
 	
-	
 	@GetMapping("/storeListByRate") // 내 주변 리스트 검색 후 페이지 이동
     public String returnStoreListByRate(String lat, String lon, Integer page, String radius, Model model) {
 		Map<String, String> params = new HashMap<>();
@@ -165,5 +164,4 @@ public class StoreListController {
 
 		return "view/store/storeListByReview";
     }
-	
 }
