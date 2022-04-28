@@ -48,14 +48,10 @@ public class UserService {
 	public User checkUser(String userId, String userPw) {
 		return userRepository.checkUser(userId, userPw);
 	}
-<<<<<<< HEAD
-
-
-=======
 	
 	// 유저 id 조회
 	public User checkUserId(String userId) {
 		return userRepository.checkUserId(userId);
 	}
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
+
 }

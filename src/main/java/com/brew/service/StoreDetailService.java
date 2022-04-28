@@ -36,9 +36,8 @@ public class StoreDetailService {
 	public void deleteByReviewId(long reviewId) {
 		reviewRepository.deleteById(reviewId);
 	}
-<<<<<<< HEAD
+
 }
 
-=======
-}
->>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
+
+

@@ -36,6 +36,24 @@
 .photo-gallery .item {
   padding-bottom: 30px;
 }
+.login-box{
+	margin-top: 60px;
+	width:50%;
+	transform: translate(47%);
+	padding: 10px;
+	border: 1px solid #161616b9;
+}
+#login-button{
+	margin-top: 30px;
+	float: right;
+	
+}
+.login-form{
+	margin-top: 40px;
+	height : 400px;
+	justify-content: center;
+    align-items: center;	
+}
 
 /* Slider */
 .col {
@@ -57,9 +75,9 @@
 }
 @media (max-width: 1307px) {
   .slider-box {
-    width: 90%;
+    width: 80%;
     height: 90%;
-    transform: translate(7%);
+    transform: translate(13%);
   }
 }
 
@@ -77,12 +95,39 @@ body {
 
 .main-icon-container {
   justify-content: space-between;
+  margin: 20px auto;
 }
 
 .social-icons a i {
   color: #362222;
+  margin: 0;
+}
+.social-icons a i:hover {
+  color: #b85c38;
+  font-size: 50px;
+  margin: 0;
+}
+
+.social-icons a h5 {
+  color: #362222;
+  margin: 10px 0;
+  font-weight: 800;
+  font-size: 17px;
 }
 
 .intro .list-recommendation {
   color: #362222;
+  letter-spacing: 0.5rem;
+}
+
+.info {
+  letter-spacing: 0.3rem;
+}
+
+.banner-container {
+  margin-bottom: 30px;
+}
+
+.carousel-inner {
+  margin-top: 30px;
 }

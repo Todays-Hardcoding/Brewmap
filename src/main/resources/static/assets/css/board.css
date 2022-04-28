@@ -1,0 +1,72 @@
+.board-section {
+  min-height: 800px;
+  min-width: 390px;
+  white-space: nowrap;
+  color: #362222;
+  letter-spacing: 0.3rem;
+}
+
+.board-category {
+  text-align: center;
+}
+.board-category li {
+  margin: 10px auto;
+  font-size: 20px;
+  letter-spacing: 0.1rem;
+}
+
+.board-category span {
+  margin-left: 10px;
+}
+
+/* 너비가 510이하이라면 */
+@media (max-width: 768px) {
+  .board-category li {
+    font-size: 15px;
+  }
+}
+
+.list-group {
+  margin: 20px auto;
+}
+.list-group a {
+  border-radius: 10px;
+}
+
+.board-category li:hover {
+  font-size: 23px;
+  color: #b85c38;
+}
+.store-info-container li h4 {
+  font-weight: 800;
+  color: #362222;
+}
+
+.store-info-container li div small {
+  font-weight: 800;
+  color: #b85c38;
+}
+
+.store-info-container li span {
+  font-weight: 600;
+  color: #362222;
+  letter-spacing: 0.1rem;
+}
+
+.input-group {
+  margin: 20px auto;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.input-group .form-container {
+  display: inline-block;
+  width: 100%;
+}
+
+.input-group .form-container button {
+  position: relative;
+  top: -36px;
+  right: -485px;
+}

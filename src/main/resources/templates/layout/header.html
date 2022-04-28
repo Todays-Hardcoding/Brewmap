@@ -72,8 +72,8 @@
   </head>
   <div th:fragment="header">
   <link rel="stylesheet" th:href="@{/assets/css/default.css}" />
-	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script type="text/javascript">
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
 	function toList(){
 		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 		if (navigator.geolocation) {
@@ -84,8 +84,8 @@
 	            
 	         // 위도, 경도를 Map<String, String> 형식으로 저장
 	    	var params = {
-    			"lat" : lat,
-    			"lon" : lon 
+	   			"lat" : lat,
+	   			"lon" : lon 
 	   		}
 	         
 	    	console.log(params.lat);
@@ -97,12 +97,11 @@
 			alert("geolocation error");
 		}	
 	};
-	</script>
+</script>
 
 <!-- 네비게이션  고정 -->
 	<script>
-      
-
+  
     </script>
 
     <div class="whole-section">

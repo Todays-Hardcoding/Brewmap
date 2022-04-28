@@ -52,45 +52,45 @@
 						<button class="btn btn-light" type="submit">Search</button>
 					</form>
 				</div>
-				<ul id="placesList" class="list-group">
+				<ul id="placesList" class="list-group list-group-flush">
 				</ul>
 				<nav class="d-flex justify-content-center">
-						<ul class="pagination" th:if="${storeList.size} != 0"
-							th:with="currentStart=${currentStart}, currentLast=${currentLast}">
+					<ul class="pagination" th:if="${storeList.size} != 0"
+						th:with="currentStart=${currentStart}, currentLast=${currentLast}">
 
 
-							<li th:style="${nowPage} == ${startPage} ? 'display:none'"
-								class="page-item"><a class="page-link"
-								th:href="@{/map(page=0, keyword=${keyword})}"
-								aria-label="First"> <span aria-hidden="true">처음으로</span>
-							</a></li>
+						<li th:style="${nowPage} == ${startPage} ? 'display:none'"
+							class="page-item"><a class="page-link"
+							th:href="@{/map(page=0, keyword=${keyword})}"
+							aria-label="First"> <span aria-hidden="true">처음으로</span>
+						</a></li>
 
-							<li th:style="${nowPage} == ${startPage} ? 'display:none'"
-								class="page-item"><a class="page-link"
-								th:href="${nowPage} == ${startPage} ? '#' :@{/map(page=${nowPage-2}, keyword=${keyword})}"
-								aria-label="Previous"> <span aria-hidden="true">&lt;</span>
-							</a></li>
+						<li th:style="${nowPage} == ${startPage} ? 'display:none'"
+							class="page-item"><a class="page-link"
+							th:href="${nowPage} == ${startPage} ? '#' :@{/map(page=${nowPage-2}, keyword=${keyword})}"
+							aria-label="Previous"> <span aria-hidden="true">&lt;</span>
+						</a></li>
 
-							<li
-								th:each="page: ${#numbers.sequence(currentStart, currentLast)}"
-								th:class="${page == nowPage} ? 'active'" class="page-item">
-								<a class="page-link" th:text="${page}"
-								th:href="@{/map(page=${page-1}, keyword=${keyword})}"></a>
-							</li>
+						<li
+							th:each="page: ${#numbers.sequence(currentStart, currentLast)}"
+							th:class="${page == nowPage} ? 'active'" class="page-item">
+							<a class="page-link" th:text="${page}"
+							th:href="@{/map(page=${page-1}, keyword=${keyword})}"></a>
+						</li>
 
-							<li th:style="${nowPage} == ${endPage} ? 'display:none'"
-								class="page-item"><a class="page-link"
-								th:href="${nowPage} == ${endPage} ? '#' : @{/map(page=${nowPage}, keyword=${keyword})}"
-								aria-label="Next"> <span aria-hidden="true">&gt;</span> <!-- @{/${boardCategoryCode}(page=${nowPage}, keyword=${keyword})}  |${boardCategoryCode}?page=${nowPage}| -->
-							</a></li>
+						<li th:style="${nowPage} == ${endPage} ? 'display:none'"
+							class="page-item"><a class="page-link"
+							th:href="${nowPage} == ${endPage} ? '#' : @{/map(page=${nowPage}, keyword=${keyword})}"
+							aria-label="Next"> <span aria-hidden="true">&gt;</span> <!-- @{/${boardCategoryCode}(page=${nowPage}, keyword=${keyword})}  |${boardCategoryCode}?page=${nowPage}| -->
+						</a></li>
 
-							<li th:style="${nowPage} == ${endPage} ? 'display:none'"
-								class="page-item"><a class="page-link"
-								th:href="@{/map(page=${endPage-1}, keyword=${keyword})}"
-								aria-label="Last"> <span aria-hidden="true">마지막으로</span>
-							</a></li>
-						</ul>
-					</nav>
+						<li th:style="${nowPage} == ${endPage} ? 'display:none'"
+							class="page-item"><a class="page-link"
+							th:href="@{/map(page=${endPage-1}, keyword=${keyword})}"
+							aria-label="Last"> <span aria-hidden="true">마지막으로</span>
+						</a></li>
+					</ul>
+				</nav>
 			</div>
 		</div>
 	</form>
@@ -100,7 +100,6 @@
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb3950b2c101dc6b62f59a629977b969&libraries=services"></script>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/js/Map-locations-2.js"></script>
 	<script th:inline="javascript">
 		
 		var storeList = [[${storeList}]];
@@ -188,22 +187,25 @@
 		function getListItem(index, store) {
 
 			var el = document.createElement('li'),
-				itemStr = '<span class="markerbg marker_'
-						+ (index + 1)
-						+ '"></span>'
-						+ '<div class="info">'
-						+ '   <h5>' + store.storeName + '</h5>';
+				itemStr = '<span class="markerbg marker_' + (index + 1) + '"></span>'
+						+ '<h5 style="margin-bottom: 2px">' + store.storeName + '</h5>'
+						+ '<div class="row">'
+						+ 	'<div class="col">'
+						+		'<small>' + store.storeCategory + '</small><br>'
 
 			if (store.storeRoadAddr) {
-				itemStr += '<span>' + store.storeRoadAddr + '</span>'
-						+ '<span class="jibun gray">' + store.storeAddr
-						+ '</span>';
+				itemStr += 		'<small>' + store.storeRoadAddr + '</small><br>'
+						+ 		'<small>' + store.storeAddr + '</small><br>';
 			} else {
-				itemStr += '<span>' + store.storeAddr + '</span>';
+				itemStr += 		'<small>' + store.storeAddr + '</small><br>';
 			}
-
-			itemStr += '<span class="tel">' + store.storeTel + '</span>'
-					+ '</div>' + '<span>';
+			
+			if (store.storeTel) {
+				itemStr += 		'<small class="tel">' + store.storeTel + '</small><br>';
+			}
+				itemStr +=  '</div>'
+						+ '</div>';
+					
 					
 			var storeTagList = new Array();
 		    storeTagList = store.storeTag.split(",");
@@ -212,7 +214,7 @@
 		    itemStr += '</span></div>';		
 
 			el.innerHTML = itemStr;
-			el.className = 'item';
+			el.className = 'list-group-item';
 
 			return el;
 		}
@@ -282,18 +284,23 @@
 		// 인포윈도우에 장소명을 표시합니다
 		function displayInfowindow(marker, store) {
 
-			var content = '<div class="info">'
-						+ '<h5>' + store.storeName + '</h5><br>';
+			var content = '<h5 style="margin-bottom: 2px">' + store.storeName + '</h5>'
+						+ '<div class="row">'
+						+ 	'<div class="col">'
+						+		'<small>' + store.storeCategory + '</small><br>'
 
 			if (store.storeRoadAddr) {
-				content += '<span>' + store.storeRoadAddr + '</span><br>'
-						+ '<span class="jibun gray">' + store.storeAddr
-						+ '</span><br>';
+				content += 		'<small>' + store.storeRoadAddr + '</small><br>'
+						+ 		'<small>' + store.storeAddr + '</small><br>';
 			} else {
-				content += '<span>' + store.storeAddr + '</span><br>';
+				content += 		'<small>' + store.storeAddr + '</small><br>';
 			}
 
-			content += '<span class="tel">' + store.storeTel + '</span><br>';
+			if (store.storeTel) {
+				content += 		'<small class="tel">' + store.storeTel + '</small><br>';
+			}
+				content +=  '</div>'
+						+ '</div>';
 			
 			var storeTagList = new Array();
             storeTagList = store.storeTag.split(",");

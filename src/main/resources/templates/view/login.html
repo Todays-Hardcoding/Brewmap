@@ -14,11 +14,12 @@
 	<div th:replace="/layout/header.html :: header"></div>
 
 	<!-- 로그인 페이지 ======================================================== -->
-	<div >
+	<div class="login-box">
 		<div >
 			<h1>BREW MAP 로그인</h1>
 		</div>
 		<!-- 로그인 폼 ======================================================== -->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 		<form action="/login2" method="POST" >
@@ -27,6 +28,9 @@
 >>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 =======
 		<form action="/loginPage" method="POST" >
+>>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
+=======
+		<form class="login-form" action="/loginPage" method="POST" >
 >>>>>>> branch 'main' of https://github.com/Todays-Hardcoding/Brewmap.git
 			<!-- 아이디 입력 ======================================================== -->
 			<div class="input-box">
@@ -37,11 +41,11 @@
 			<!-- 비밀번호 입력 ======================================================== -->
 			<div class="input-box">
 				<label for="userPw">비밀번호</label> 
-				<input type="text" name="userPw">
+				<input type="password" name="userPw">
 			</div>
 
 			<!-- 로그인 버튼 ======================================================== -->
-			<button class="btn btn-primary form-btn" type="submit" >로그인</button>
+			<button id="login-button"class="btn btn-danger form-btn" type="submit" >로그인</button>
 		</form>
 	</div>
 
