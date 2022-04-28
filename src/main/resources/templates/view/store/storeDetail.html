@@ -68,8 +68,6 @@
 							<i class="fa fa-star fa-star-o"></i>
 						</button>
 					</div>
-				</th:block>
-				<th:block th:if="${session.user != null}">
 					<form id="createReview" role="form" method="POST"
 						action="/reviewInsert">
 						<!-- hidden 영역 -->
@@ -245,24 +243,19 @@
 	<script type="text/javascript">
     	function star(e){
     		var cnt = event.target.parentElement.value;
-    		console.log(cnt)
     		
     		var reviewStar = document.querySelector('input[name="reviewStar"]');
     		reviewStar.value = cnt;
-    		console.log(reviewStar)
     		
     		var stars = document.querySelector('#star').children; 
     		
     		for(var i = 0; i < stars.length; i++) {
-    			stars[i].firstChild.className = 'fa fa-star fa-star-o';
+    			stars[i].firstElementChild.className = 'fa fa-star fa-star-o';
     		}
-    		
     		for(i = 0; i < cnt; i++) {
-    			stars[i].firstChild.className = 'fa fa-star';
+    			stars[i].firstElementChild.className = 'fa fa-star';
     		}
-    			
-    	}
-    	
+    	} 	
     </script>
 	<div th:replace="layout/script :: scriptFragment">
 		<!-- 이 안에 개별적인 js 넣으면 됨. -->
