@@ -21,13 +21,11 @@ import org.hibernate.annotations.DynamicUpdate;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import groovy.transform.ToString;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@ToString
 @Setter
 @Getter
 @NoArgsConstructor
@@ -73,6 +71,7 @@ public class Board {
 	private Integer boardLikeCount;
 	
 	@PrePersist
+	@PreUpdate
 	public void createdAt() {
 		this.boardDate = LocalDateTime.now();
 		this.boardLikeCount = 0;

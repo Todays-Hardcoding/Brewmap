@@ -13,31 +13,33 @@
 	<section>
 		<div class="container">
 			<div class="row py-1 py-md-5">
-				<div class="col-12 col-sm-3">
-					<div
-						class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 text-white">
-						<ul id="menu-1"
-							class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 my-3 mb-sm-auto justify-content-center align-items-center align-items-sm-start w-100">
-							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
-								th:href="@{/board/hotPage}"><i
-									class="fas fa-fire bi-speedometer2 fs-5 ms-2"></i><span
-									class="ms-1 d-none d-sm-inline">술집랭킹</span></a></li>
-							<li class="w-100"><a class="px-1 nav-link px-sm-0 ps-2"
-								th:href="@{/board/recommendStore}"><i
-									class="fas fa-utensils bi-bootstrap fs-5 ms-2"></i><span
-									class="ms-1 d-none d-sm-inline">술집추천</span></a></li>
-							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
-								th:href="@{/board/serviceCenter}"><i
-									class="fa fa-group bi-people fs-5 ms-2"></i><span
-									class="ms-1 d-none d-sm-inline">고객센터</span></a></li>
+				<div class="col-12 col-sm-2">
+					<div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 text-white">
+						<ul id="menu-1" class="board-category nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 my-3 mb-sm-auto justify-content-center align-items-center align-items-sm-start w-100">
+							<li class="w-100">
+								<a class="" th:href="@{/board/hotPage}">
+									<i class="fas fa-fire bi-speedometer2 fs-5 ms-2"></i>
+								</a>
+							</li>
+							<li class="w-100">
+								<a class="" th:href="@{/board/reviewPage}">
+									<i class="fas fa-utensils bi-bootstrap fs-5 ms-2"></i>
+								</a>
+							</li>
+							<li class="w-100">
+								<a class="" th:href="@{/board/serviceCenter}">
+									<i class="fa fa-group bi-people fs-5 ms-2"></i>
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>
-				<div class="col">
+
+				<div class="col-12 col-sm-10">
 					<!-- 게시판 내용 들어갈 자리-->
-					<div class="container">
+					<div class="board-container">
 						<form method="get" action="/board/create" id="boardCreate">
-							<div class="text-center container"
+							<div class="text-center"
 								style="margin: 40px; text-align: left;">
 								<p style="text-align: center; transform: translate(-26px);">
 									<strong>글쓰기</strong>
@@ -64,8 +66,8 @@
 									style="text-align: center; transform: translate(-26px);">
 									<button class="btn btn-primary text-center" type="submit"
 										style="margin-right: 10px;" th:text="저장"></button>
-									<button class="btn btn-primary" type="submit"
-										th:href="|${boardCategoryCode}|" style="margin-left: 10px;"
+										<button class="btn btn-primary" type="reset"
+										onclick="location.href='serviceCenter';" style="margin-left: 10px;"
 										th:text="뒤로"></button>
 								</div>
 

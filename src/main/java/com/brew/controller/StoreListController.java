@@ -29,6 +29,8 @@ public class StoreListController {
 		params.put("lat", lat);
 		params.put("lon", lon);
 		
+		System.out.println(radius);
+		
 		if(radius == null)
 			radius = "1";
 		
@@ -49,7 +51,7 @@ public class StoreListController {
 				
 				storeList.add(entry.getValue());
 				storeDistance.add(entry.getKey());
-				i %= 5;
+				i %= 9;
 			} else {
 				storeList.add(entry.getValue());
 				storeDistance.add(entry.getKey());
@@ -62,16 +64,19 @@ public class StoreListController {
 		if(page == null)
 			page = 0;
 		
+		System.out.println(storePage.size());
+		System.out.println(storeDistancePage.size());
+		
 		model.addAttribute("storePage", storePage.get(page));
 		model.addAttribute("storeDistancePage", storeDistancePage.get(page));
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", storePage.size());
 		model.addAttribute("totalElements", storeMap.size());
 		model.addAttribute("latlon", params);
+		model.addAttribute("radius", radius);
 
 		return "view/store/storeList";
     }
-	
 	
 	@GetMapping("/storeListByRate") // 내 주변 리스트 검색 후 페이지 이동
     public String returnStoreListByRate(String lat, String lon, Integer page, String radius, Model model) {
@@ -94,7 +99,7 @@ public class StoreListController {
 				temp = new ArrayList<>();
 				
 				temp.add(store);
-				i %= 5;
+				i %= 9;
 			} else {
 				temp.add(store);
 			}
@@ -109,6 +114,7 @@ public class StoreListController {
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", storePage.size());
 		model.addAttribute("latlon", params);
+		model.addAttribute("radius", radius);
 
 		return "view/store/storeListByRate";
     }
@@ -134,7 +140,7 @@ public class StoreListController {
 				temp = new ArrayList<>();
 				
 				temp.add(store);
-				i %= 5;
+				i %= 9;
 			} else {
 				temp.add(store);
 			}
@@ -149,8 +155,8 @@ public class StoreListController {
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", storePage.size());
 		model.addAttribute("latlon", params);
+		model.addAttribute("radius", radius);
 
 		return "view/store/storeListByReview";
     }
-	
 }

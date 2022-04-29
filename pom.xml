@@ -12,6 +12,7 @@
 	<artifactId>Brewmap</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Brewmap</name>
+	<packaging>jar</packaging>
 	<description>Brewmap Project</description>
 	<properties>
 		<java.version>11</java.version>

@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
@@ -22,11 +20,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Entity
 @Table
@@ -38,7 +34,12 @@ public class User {
 	private List<Board> board;
 
 	@OneToMany(mappedBy = "user")
-	private List<Review> Review;
+	@JsonManagedReference
+	private List<Review> review;
+	
+	@OneToMany(mappedBy = "user")
+	@JsonManagedReference
+	private List<Reply> reply;
 	
 	@NotNull
 	@Column

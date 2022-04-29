@@ -87,6 +87,8 @@ public class StoreInfoController {
 		params.put("lat", lat);
 		params.put("lon", lon);
 		
+		System.out.println(radius);
+		
 		if(radius == null)
 			radius = "1";
 		
@@ -115,6 +117,7 @@ public class StoreInfoController {
 		model.addAttribute("totalPages", storePage.size());
 		model.addAttribute("totalElements", storeMap.size());
 		model.addAttribute("latlon", params);
+		model.addAttribute("radius", radius);
 		
 		return "view/map/mapClick";
 	}

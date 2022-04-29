@@ -1,45 +1,93 @@
 ul {
   display: block;
-  
-  list-style:none;
+
+  list-style: none;
 }
 li {
   display: list-item;
   text-align: -webkit-match-parent;
 }
-.store-picture{
+.main-content {
+  min-width: 390px;
+  max-width: 3333px;
+  min-height: 800px;
+  letter-spacing: 0.5rem;
+  color: #362222;
+  margin: 0 auto;
+}
+.store-picture {
   width: 100%;
+  height: 90%;
   margin: 5px auto;
 }
-
-.container{
+.store-category {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+.container {
   width: 80%;
   margin: 0px auto;
 }
-.store-info{
+.store-info {
   margin: 10px 0 20px 0;
 }
-.store-info h7{
-  margin: 50px 0 10px 0;
+.store-info h5 {
+  margin: 10px 0 10px 0;
 }
-.store-info .marker-img{
+.store-info .marker-img {
   width: 1rem;
 }
-.store-addr{
+.store-addr {
   font-size: 20px;
 }
-.store-tag{
+.store-tag {
   margin: 20px 0;
   color: gray;
 }
 
-.test{
-	color: blue;
-}
-
-
-@media (max-width:980px) {
+@media (max-width: 980px) {
   .container {
     width: 99%;
   }
+}
+
+#map {
+  margin: 30px 5px;
+}
+
+.form-group {
+  font-size: 16px;
+}
+
+.one-review {
+  border: 1px solid;
+}
+
+.review-delete-button {
+  background-color: #362222;
+  color: #e0c097;
+  margin-bottom: 10px;
+}
+
+.review-submit-button {
+  background-color: #362222;
+  color: #e0c097;
+}
+#createReview {
+  margin-bottom: 50px;
+}
+
+.review-list {
+  margin-bottom: 50px;
+}
+
+.page-nav {
+  color: #362222;
+}
+
+.page-link-number {
+  color: #362222;
+}
+.pagenation li {
+  border: 1px solid #362222;
 }
