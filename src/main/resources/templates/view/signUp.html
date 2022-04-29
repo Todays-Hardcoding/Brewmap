@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="layout/head :: headFragment">
+<title>회원가입</title>
+</head>
+<th:block layout:fragment="customCss">
+   <!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
+   <link rel="stylesheet" th:href="@{/assets/css/signUp.css}" type="text/css">
+</th:block>
+<body>
+   <!-- 헤더 페이지 불러오기 -->
+   <div th:replace="/layout/header.html :: header"></div>
+   
+	<div class="app-container">
+		<div class="signup-header">
+			<h1 class="signup-title">BREW MAP 회원가입</h1>
+			<div class="signip-description-one">
+				<p>회원가입으로 더 많은 서비스를 즐길 수 있습니다.</p>
+			</div>
+			<div class="signip-description-two">
+				<p>
+					ID를 가지고 계십니까?&nbsp;&nbsp;&nbsp;&nbsp;<a th:href="@{/login}">로그인
+						하러가기</a>
+				</p>
+			</div>
+		</div>
+
+      <form class="signup-form" id="signup-form" action="/signUpPage"
+         method="POST">
+         <!--회원분류-->
+         <div>
+            <select class="form-select form-select-lg form-textbox" required
+               aria-label=".form-select-lg example" name="userCategory"
+               id="userCategory">
+               <option value="">회원분류 설정</option>
+               <option value="user">유저</option>
+            </select>
+            <div class="valid-check">
+               <span title="userCategory-value" class="valid-check"></span>
+            </div>
+         </div>
+         <!-- 아이디 -->
+
+         <div class="input-section">
+            <div class="id-input-container">
+               <div class="form-floating">
+                  <input type="text" class="form-control form-textbox" name="userId"
+                     id="userId" placeholder="아이디" required> <label
+                     for="userId">아이디</label>
+                  <div class="valid-check">
+                     <span title="userId-value" class="valid-check"></span>
+                  </div>
+               </div>
+               <button onclick="idChecker()" type="submit" class="dupCheck-button btn btn-danger button">중복확인</button>
+            </div>
+                  	
+         </div>
+         <!--암호-->
+         <div class="form-floating">
+            <input type="password" class="form-control form-textbox"
+               name="userPw" id="userPw" placeholder="Password" required>
+            <label for="floatingPassword">암호</label>
+            <div class="valid-check">
+               <span title="pw-value" class="valid-check"></span>
+            </div>
+         </div>
+      <!--비밀번호 힌트질문-->
+      <div>
+            <select class="form-select form-select-lg form-textbox" required
+               aria-label=".form-select-lg example" name="userQuestion"
+               id="userQuestion">
+               <option value="">비밀번호 힌트 설정</option>
+               <option value="1">아버지 성함은?</option>
+               <option value="2">어머니 성함은?</option>
+               <option value="3">좋아하는 색깔은?</option>
+            </select>
+            <div class="valid-check">
+               <span title="userQuestion-value" class="valid-check"></span>
+            </div>
+         </div>
+      <!--비밀번호 힌트답변-->
+      <div class="input-section">
+            <div class="input-container">
+               <div class="form-floating">
+                  <input type="text" class="form-control form-textbox"
+                     name="userAnswer" id="userAnswer" placeholder="이름" required>
+                  <label for="userAnswer">비밀번호 힌트답변</label>
+                  <div class="valid-check">
+                     <span title="userAnswer-value" class="valid-check"></span>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- 이름 -->
+         <div class="input-section">
+            <div class="input-container">
+               <div class="form-floating">
+                  <input type="text" class="form-control form-textbox"
+                     name="userName" id="userName" placeholder="이름" required>
+                  <label for="userName">이름</label>
+                  <div class="valid-check">
+                     <span title="username-value" class="valid-check"></span>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!--닉네임-->
+         <div class="input-section">
+            <div class="input-container">
+               <div class="form-floating">
+                  <input type="text" class="form-control form-textbox"
+                     name="userNickName" id="userNickName" placeholder="이름" required>
+                  <label for="lastname-input">닉네임</label>
+                  <div class="valid-check">
+                     <span title="nickname-value" class="valid-check"></span>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!--성별-->
+         <div>
+            <select class="form-select form-select-lg form-textbox" required
+               aria-label=".form-select-lg example" name="userGender"
+               id="userGender">
+               <option value="">성별</option>
+               <option value="0">여</option>
+               <option value="1">남</option>
+            </select>
+            <div class="valid-check">
+               <span title="userGender-value" class="valid-check"></span>
+            </div>
+         </div>
+         <!--생년월일-->
+         <div class="input-section">
+            <div class="input-container">
+               <div class="form-floating">
+                  <input type="date" class="form-control form-textbox"
+                     name="userBirthDate" id="userBirthDate" placeholder="19980407"
+                     required> <label for="userBirthDate">생년월일</label>
+                  <div class="valid-check">
+                     <span title="userBirthDate-value" class="valid-check"></span>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!--등급-->
+         <div>
+            <select class="form-select form-select-lg form-textbox" required
+               aria-label=".form-select-lg example" name="userGrade"
+               id="userGrade">
+               <option value="">회원등급 설정</option>
+               <option value="1">브론즈</option>
+               <option value="2">실버</option>
+               <option value="3">골드</option>
+            </select>
+            <div class="valid-check">
+               <span title="userGrade-value" class="valid-check"></span>
+            </div>
+         </div>
+         <div class="input-section">
+            <div class="input-container">
+               <!-- 이메일-->
+               <div class="input-email">
+                  <div class="form-floating">
+                     <input type="email"
+                        class="form-control form-textbox  input-id-field"
+                        name="userEmail" id="userEmail" placeholder="name@example.com"
+                        required> <label for="floatingInput">name@example.com</label>
+                     <div class="valid-check">
+                        <span title="email-value" class="valid-check"></span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!--전화번호-->
+         <div class="input-section">
+            <div class="input-container">
+          <div class="form-floating">
+            <input type="text" class="form-control form-textbox" name="userTel" id="userTel" placeholder="전화번호 (-) 제외하고 입력"  required>
+            <label for="floatingPassword">전화번호 (-) 제외하고 입력</label>
+            <div class="valid-check">
+              <span title="phone-value" class="valid-check"></span>
+            </div>
+          </div>
+             </div>
+          </div>
+
+         <!-- 버튼 -->
+         <div class="btn-box">
+            <button type="submit" class="btn btn-danger button"
+               name="signup-button" id="signup-button"  disabled="disabled">완료</button>
+
+         </div>
+      </form>
+   </div>
+
+
+   <!-- 푸터 페이지 불러오기 -->
+   <footer th:replace="/layout/footer.html :: footer"></footer>
+   
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+   	<script type="text/javascript">
+		$(document).ready(function () {
+		
+		
+		$('#signup-form button[name="signup-button"]').click(function(evt) {
+		  // 회원분류 설정
+		  var userCategory = $('#userCategory > option:checked')
+		 
+		  if(userCategory.val() != '') {
+		    $('span[title="userCategory-value"]').show().html('GOOD!').css('color', 'green')
+		  } else {
+		    $('span[title="userCategory-value"]').show().html('카테고리를 설정해주세요').css('color', 'red')
+		  }
+		      // 회원등급 설정
+		      var userGrade = $('#userGrade > option:checked')
+		    // console.log(countryselect);
+		    if(userGrade.val() != '') {
+		      $('span[title="userGrade-value"]').show().html('GOOD!').css('color', 'green')
+		
+		    } else {
+		      $('span[title="userGrade-value"]').show().html('등급을 설정해주세요').css('color', 'red')
+		
+		    }
+		  // 비밀번호 힌트설정
+		  var userQuestion = $('#userQuestion > option:checked')
+		 
+		  if(userQuestion.val() != '') {
+		    $('span[title="userQuestion-value"]').show().html('GOOD!').css('color', 'green')
+		
+		  } else {
+		    $('span[title="userQuestion-value"]').show().html('비밀번호 힌트를 설정해주세요').css('color', 'red')
+		
+		  }
+		  var userAnswer = $('#signup-form input[name="userAnswer"]')
+		  // console.log(userAnswer.val());
+		  if(userAnswer.val()) {
+		    $('span[title="userAnswer-value"]').show().html('GOOD!').css('color', 'green')
+		    userAnswer.removeClass('is-invalid')
+		    userAnswer.addClass('is-valid')
+		  } else {
+		    $('span[title="userAnswer-value"]').show().html('힌트 답변을 입력해주세요').css('color', 'red')
+		    userAnswer.removeClass('is-valid')
+		    userAnswer.addClass('is-invalid')
+		    evt.preventDefault();
+		    userAnswer.focus();
+		    
+		  }
+		//닉네임설정
+		  var nickname = $('#signup-form input[name="userNickName"]')
+		  // console.log(nickname.val());
+		  if(nickname.val()) {
+		    $('span[title="nickname-value"]').show().html('GOOD!').css('color', 'green')
+		    nickname.removeClass('is-invalid')
+		    nickname.addClass('is-valid')
+		  } else {
+		    $('span[title="nickname-value"]').show().html('닉네임을 입력해주세요').css('color', 'red')
+		    nickname.removeClass('is-valid')
+		    nickname.addClass('is-invalid')
+		    evt.preventDefault();
+		    nickname.focus();
+		    // last.value = '';
+		  }
+		  //생년월일설정
+		  var userBirthDate = $('#signup-form input[name="userBirthDate"]')
+		  // console.log(userBirthDate.val());
+		  if(userBirthDate.val()) {
+		    $('span[title="userBirthDate-value"]').show().html('GOOD!').css('color', 'green')
+		    userBirthDate.removeClass('is-invalid')
+		    userBirthDate.addClass('is-valid')
+		  } else {
+		    $('span[title="userBirthDate-value"]').show().html('생년월일을 입력해주세요').css('color', 'red')
+		    userBirthDate.removeClass('is-valid')
+		    userBirthDate.addClass('is-invalid')
+		    evt.preventDefault();
+		    userBirthDate.focus();
+		    // last.value = '';
+		  }
+		  //이름설정
+		  var username = $('#signup-form input[name="userName"]')
+		  // console.log(nickname.val());
+		  if(username.val()) {
+		    $('span[title="username-value"]').show().html('GOOD!').css('color', 'green')
+		    username.removeClass('is-invalid')
+		    username.addClass('is-valid')
+		  } else {
+		    $('span[title="username-value"]').show().html('이름을 입력해주세요').css('color', 'red')
+		    username.removeClass('is-valid')
+		    username.addClass('is-invalid')
+		    evt.preventDefault();
+		    username.focus();
+		    // last.value = '';
+		  }
+		  // 이메일 정규성 검사
+		  var email = $('#signup-form input[name="userEmail"]')
+		  var emailcheck =  /\S+@\S+\.\S+/.test(email.val())
+		  if ( !emailcheck ){
+		    $('span[title="email-value"]').show().html('올바른 이메일 형식으로 입력해주세요.').css('color', 'red');
+		    email.removeClass('is-valid')
+		    email.addClass('is-invalid')
+		    evt.preventDefault();
+		    email.focus();
+		  } else {
+		    $('span[title="email-value"]').show().html('GOOD!').css('color', 'green');
+		    email.removeClass('is-invalid')
+		    email.addClass('is-valid')
+		  }
+		    // 전화번호
+		    var userTel = $('#signup-form input[name="userTel"]')
+		    // console.log(userTel);
+		    if(userTel.val()) {
+		      $('span[title="phone-value"]').show().html('GOOD!').css('color', 'green')
+		      userTel.removeClass('is-invalid')
+		      userTel.addClass('is-valid')
+		    } else {
+		      $('span[title="phone-value"]').show().html('전화번호를 입력하시오.').css('color', 'red')
+		      userTel.removeClass('is-valid')
+		      userTel.addClass('is-invalid')
+		      evt.preventDefault();
+		      userTel.focus();
+		
+		    }
+		  // 성별 
+		    var userGender = $('#userGender > option:checked')
+		    // console.log(countryselect);
+		    if(userGender.val() != '') {
+		      $('span[title="userGender-value"]').show().html('GOOD!').css('color', 'green')
+		      // countryselect.removeClass('is-invalid')
+		      // countryselect.addClass('is-valid')
+		    } else {
+		      $('span[title="userGender-value"]').show().html('성별을 선택하세요').css('color', 'red')
+		      // countryselect.removeClass('is-valid')
+		      // countryselect.addClass('is-invalid')
+		    }
+		
+		  
+		  // 암호
+		  var userPw = $('#signup-form input[name="userPw"]')
+		  var num = userPw.val().search(/[0-9]/g);
+		  var eng = userPw.val().search(/[a-z]/ig);
+		  // console.log(password.val());
+		  // 길이가 8 ~ 20
+		  if(userPw.val().length < 4 || userPw.length > 12) {
+		    $('span[title="pw-value"]').show().html('비밀번호는 길이가 4~12자인 영문,숫자 혼합하여 입력 하시오.').css('color', 'red');
+		    userPw.removeClass('is-valid')
+		    userPw.addClass('is-invalid')
+		    evt.preventDefault();
+		    userPw.focus();
+		    // return false
+		    //공백체크
+		    } else if (userPw.val().search(/\s/) != -1 ) {
+		      $('span[title="pw-value"]').show().html('공백 없이 입력하시오.').css('color', 'red');
+		      userPw.removeClass('is-valid')
+		      userPw.addClass('is-invalid')
+		      evt.preventDefault();
+		      userPw.focus();
+		      // return false
+		      // 영문, 숫자, 특수문자 확인
+		    } else if (num < 0 || eng < 0 ) {
+		      $('span[title="pw-value"]').show().html('영문, 숫자만을 입력하시오..').css('color', 'red');
+		      userPw.removeClass('is-valid')
+		      userPw.addClass('is-invalid')
+		      evt.preventDefault();
+		      userPw.focus();
+		      // return false
+		    } else {
+		      $('span[title="pw-value"]').show().html('GOOD!').css('color', 'green');
+		      userPw.removeClass('is-invalid')
+		      userPw.addClass('is-valid')
+		      // return true
+		    }
+		
+		  //아이디설정
+	  var userId = $('#signup-form input[name="userId"]')
+	  var idReg = /^[A-Za-z0-9]{4,12}$/.test(userId.val())
+		// console.log(userId.val());
+		if( !idReg ){
+		  $('span[title="userId-value"]').show().html('아이디는 영문자로 시작하는 4~12자 영문자 또는 숫자이어야 합니다.').css('color', 'red');
+		  userId.removeClass('is-valid')
+		  userId.addClass('is-invalid')
+		  evt.preventDefault();
+		  userId.focus();
+		} else {
+		  $('span[title="userId-value"]').show().html('GOOD!').css('color', 'green');
+		  userId.removeClass('is-invalid')
+		  userId.addClass('is-valid')
+		}
+		
+		});
+		
+		});
+		
+		function idChecker(){
+			idCheck = document.querySelector('input[name="userId"]');
+			console.log(idCheck.value);
+			$.ajax({
+				url: "/dupUser",
+				data:{
+					'id' : idCheck.value,
+				},
+				success: function(data){
+					console.log(idCheck.value);
+					if(data.result == 0 || idCheck.value ==""){
+						alert("사용이 불가능한 아이디 입니다.");
+						$("#signup-button").attr("disabled", "disabled");
+					}else if(data.result == 1){
+						alert("사용가능한 아이디 입니다.");
+						$("#signup-button").removeAttr("disabled");
+					}
+				}
+			});
+		}
+				
+  </script>
+
+</body>
+</html>

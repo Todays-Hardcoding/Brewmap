@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="layout/head :: headFragment"> </head>
+<th:block layout:fragment="indexCss">
+  <!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
+  <link rel="stylesheet" href="/assets/css/storeListDetail/storeListDetail.css">
+
+  <title>storeListDetail</title>
+</th:block>
+
+
+<body>
+	<!-- 헤더 페이지 불러오기 -->
+	<div th:replace="layout/header :: header"></div>
+
+	
+  <div>
+    <div class="test">
+      <p class="test">css 확인 테스트</p>
+    </div>
+  </div>
+
+  <!-- 맨위 사진===================== -->
+  <div class="restaurant-picture-container">
+      <img src="/assets/img/loft.jpg" class="restaurant-picture" alt="">
+      <img src="/assets/img/desk.jpg" class="restaurant-picture" alt="">
+  </div>
+
+  
+
+
+
+
+
+	
+	<!-- 푸터 페이지 불러오기 -->
+	<footer th:replace="layout/footer :: footer"></footer>
+		
+	<!-- 스크립트 -->
+	<div th:replace="layout/script :: scriptFragment">
+		<!-- 이 안에 개별적인 js 넣으면 됨. -->
+	</div>
+
+</body>
+
+</html>
