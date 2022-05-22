@@ -1,3 +1,4 @@
+
 <div align="right">
 <img src="https://img.shields.io/badge/version-v1.0.0-red" alt="version1.0.0" />
 </div>
@@ -48,9 +49,15 @@
 [![eclipse badge](https://img.shields.io/badge/eclipse-2C2255?logo=eclipse&logoColor=white&style=for-the-badge)]()
 [![bootstrap badge](https://img.shields.io/badge/bootstrap-7952B3?logo=bootstrap&logoColor=white&style=for-the-badge)]()
 
- 
+   
+   
+ ## 1. BrewMap 프로젝트
 
-## 1. 주요 기능
+<img src="https://user-images.githubusercontent.com/88614978/169691601-b4820473-8f6a-41c6-97a6-27cebd7dcd6b.jpg" />
+
+<br>
+
+## 2. 주요 기능
 |기능|내용|
 |--|--|
 |회원|회원가입과 로그인 로그아웃을 할 수 있습니다|
@@ -63,19 +70,21 @@
 
 <br>
 
-## 2. 프로젝트 아키텍처
+## 3. 프로젝트 아키텍처
 ![enter image description here](https://user-images.githubusercontent.com/88614978/169690690-7ff209d4-6dcb-4a9d-8782-ce76feaf862f.png)
 
 <br>
 
-## 3. 분석 패키지 구조도 
+## 4. 분석 패키지 구조도 
 ![enter image description here](https://cdn.discordapp.com/attachments/961916885773991946/977879580629155880/unknown.png)
 
 <br>
 
-## 4. 개체-관계 모델(ERD)
+## 5. 개체-관계 모델(ERD)
 ![enter image description here](https://user-images.githubusercontent.com/88614978/169691165-2fe61249-3dcc-486e-b51f-8339aebc4419.jpg)
 
 <br>
+   
+
 
 
