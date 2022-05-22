@@ -73,7 +73,7 @@
 
 <br>
 
-## 6. 개체-관계 모델(ERD)
+## 4. 개체-관계 모델(ERD)
 ![enter image description here](https://user-images.githubusercontent.com/88614978/169691165-2fe61249-3dcc-486e-b51f-8339aebc4419.jpg)
 
 <br>
