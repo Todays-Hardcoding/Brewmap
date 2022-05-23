@@ -29,7 +29,7 @@
 |**Inhyuk**|**Geonyoung**|**Min-a**|**Yoonjung**|**Kyunghee**|**Jinhwan**|**Jinho**|  
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|  
 | <img src="https://avatars.githubusercontent.com/u/96756113?v=4" width="80"> | <img src="https://avatars.githubusercontent.com/u/88614978?v=4" width="80"> | <img src="https://avatars.githubusercontent.com/u/93837213?v=4" width="80"> | <img src="https://avatars.githubusercontent.com/u/92416563?v=4" width="80"> | <img src="https://avatars.githubusercontent.com/u/96763714?v=4" width="80"> | <img src="https://avatars.githubusercontent.com/u/63578131?v=4" width="80"> | <img src="https://avatars.githubusercontent.com/u/88222461?v=4" width="80"> |
-|[우인혁](https://github.com/Y-mannn)|[신건영](https://github.com/Almondshin)|[옥민아](https://github.com/okaymina)|[최윤정](https://github.com/Layton0-0)|[피경희](https://github.com/malzia)|[하진환](https://github.com/HazZlng)|[김진호](https://github.com/jinokiim)|
+|[우인혁](https://github.com/Y-mannn)|[신건영](https://github.com/Almondshin)|[옥민아](https://github.com/okaymina)|[최윤정](https://github.com/Layton0-0)|[피경희](https://github.com/kyunghee47)|[하진환](https://github.com/HazZlng)|[김진호](https://github.com/jinokiim)|
 
 
 
