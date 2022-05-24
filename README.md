@@ -25,7 +25,7 @@
 ![enter image description here](https://user-images.githubusercontent.com/13645032/131059878-c37f2ad6-862b-4ec6-ba6f-ac12820e5984.jpeg)
 
    
-   <img src=https://user-images.githubusercontent.com/88614978/170047565-0bca8bb8-35db-4740-a85c-32c0b2107583.png width="600">
+   
 
 ## 🧑🏻‍💻 팀원
 |**Inhyuk**|**Geonyoung**|**Min-a**|**Yoonjung**|**Kyunghee**|**Jinhwan**|**Jinho**|  
@@ -34,7 +34,7 @@
 |[우인혁](https://github.com/Y-mannn)|[신건영](https://github.com/Almondshin)|[옥민아](https://github.com/okaymina)|[최윤정](https://github.com/Layton0-0)|[피경희](https://github.com/kyunghee47)|[하진환](https://github.com/HazZlng)|[김진호](https://github.com/jinokiim)|
    
    
-   
+   <img src=https://user-images.githubusercontent.com/88614978/170047565-0bca8bb8-35db-4740-a85c-32c0b2107583.png width="600">
 
 
 
