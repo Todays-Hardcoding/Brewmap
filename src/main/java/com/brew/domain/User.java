@@ -48,6 +48,7 @@ public class User {
 	@Id
 	@NotNull
 	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String userId;
 	
 	@NotNull

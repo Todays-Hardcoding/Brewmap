@@ -70,6 +70,10 @@ public class BoardController {
 	public String updateBoard(Model model, @ModelAttribute Board board, String userId) {
 		User user = userservice.findByUserId(userId);
 		board.setUser(user);
+		Board board2 = boardService.findByBoardId(board.getBoardId());
+		System.out.println(board2.getBoardLikeCount());
+		board.setBoardLikeCount(board2.getBoardLikeCount());
+		System.out.println(board);
 		
 		boardService.saveBoard(board);
 		

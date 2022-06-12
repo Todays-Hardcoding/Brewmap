@@ -71,11 +71,16 @@ public class Board {
 	private Integer boardLikeCount;
 	
 	@PrePersist
-	@PreUpdate
 	public void createdAt() {
 		this.boardDate = LocalDateTime.now();
 		this.boardLikeCount = 0;
 	}
+	
+	@PreUpdate
+	public void createdAt2() {
+		this.boardDate = LocalDateTime.now();
+	}
+	
 
 	@Builder
 	public Board(List<Reply> reply, User user, @NotNull long boardId, @NotNull String boardTitle,
