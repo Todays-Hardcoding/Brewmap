@@ -70,6 +70,7 @@ public class Review {
 		this.reviewDate = LocalDateTime.now();
 	 }
 	
+	//빌더
 	@Builder
 	public Review(StoreInfo storeInfo, User user, @NotNull long reviewId, @NotNull String reviewUser,
 			@NotNull int reviewStar, @NotNull String reviewComment, LocalDateTime reviewDate) {
