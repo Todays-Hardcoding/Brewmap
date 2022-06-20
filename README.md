@@ -21,75 +21,77 @@
 
 <div align="center">
 
-
-![enter image description here](https://user-images.githubusercontent.com/13645032/131059878-c37f2ad6-862b-4ec6-ba6f-ac12820e5984.jpeg)
-
+<img src="https://user-images.githubusercontent.com/13645032/131059878-c37f2ad6-862b-4ec6-ba6f-ac12820e5984.jpeg" width="250" />
    
-   
-
-## 🧑🏻‍💻 팀원
-|**Inhyuk**|**Geonyoung**|**Min-a**|**Yoonjung**|**Kyunghee**|**Jinhwan**|**Jinho**|  
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|  
-| <img src="https://avatars.githubusercontent.com/u/96756113?v=4" width="80"> | <img src="https://avatars.githubusercontent.com/u/88614978?v=4" width="80"> | <img src="https://avatars.githubusercontent.com/u/93837213?v=4" width="80"> | <img src="https://avatars.githubusercontent.com/u/92416563?v=4" width="80"> | <img src="https://avatars.githubusercontent.com/u/96763714?v=4" width="80"> | <img src="https://avatars.githubusercontent.com/u/63578131?v=4" width="80"> | <img src="https://avatars.githubusercontent.com/u/88222461?v=4" width="80"> |
-|[우인혁](https://github.com/Y-mannn)|[신건영](https://github.com/Almondshin)|[옥민아](https://github.com/okaymina)|[최윤정](https://github.com/Layton0-0)|[피경희](https://github.com/kyunghee47)|[하진환](https://github.com/HazZlng)|[김진호](https://github.com/jinokiim)|
-   
-   
-   <img src=https://user-images.githubusercontent.com/88614978/170047565-0bca8bb8-35db-4740-a85c-32c0b2107583.png width="600">
-
 
 
 ## 🛠 기술스택
-
-### Tech Stack
-[![html badge](https://img.shields.io/badge/html-E34F26?logo=html5&logoColor=white&style=for-the-badge)]()
-[![css badge](https://img.shields.io/badge/css-1572B6?logo=css3&logoColor=white&style=for-the-badge)]()
-[![javascript badge](https://img.shields.io/badge/javascript-F7DF1E?logo=JavaScript&logoColor=black&style=for-the-badge)]()
-[![Boot badge](https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=Spring%20Boot&logoColor=white&style=for-the-badge)]()
-[![Spring badge](https://img.shields.io/badge/Spring%20Framework-6DB33F?logo=Spring&logoColor=white&style=for-the-badge)]()
-[![java badge](https://img.shields.io/badge/java-007396?logo=java&logoColor=white&style=for-the-badge)]()
-[![mysql badge](https://img.shields.io/badge/mysql-4479A1?logo=mysql&logoColor=white&style=for-the-badge)]()
-[![thymeleaf badge](https://img.shields.io/badge/thymeleaf-005F0F?logo=thymeleaf&logoColor=white&style=for-the-badge)]()
-[![jQuery badge](https://img.shields.io/badge/jquery-0769AD?logo=jquery&logoColor=white&style=for-the-badge)]()
-[![vsc badge](https://img.shields.io/badge/visual%20studio%20code-007ACC?logo=visual%20studio%20code&logoColor=white&style=for-the-badge)]()
-[![eclipse badge](https://img.shields.io/badge/eclipse-2C2255?logo=eclipse&logoColor=white&style=for-the-badge)]()
-[![bootstrap badge](https://img.shields.io/badge/bootstrap-7952B3?logo=bootstrap&logoColor=white&style=for-the-badge)]()
-
+<img src="https://user-images.githubusercontent.com/88614978/169690690-7ff209d4-6dcb-4a9d-8782-ce76feaf862f.png" width="900" />
+   
+   
+| 프론트엔드  | 기타 | 백엔드 |
+| -------------------                     | -------------------------------------- | ----------------------                               |
+| HTML5, CSS3, JavaScript, jQuery 3.5.1   | HTML5, CSS3, JavaScript, jQuery 3.5.1  | java 11, Spring Boot 2.6.6, Spring Data JPA 2.6.6    |
+| Bootstrap 5, Thymeleaf 2.6.6            | Bootstrap 5, Thymeleaf 2.6.6           | Websockets 2.6.6, Python 3.9.6                       |
+|                                         |                                        | Pandas 1.3.4, Hibernate 1.4.200                      |
    
    
  ## 1. BrewMap 프로젝트
 
-<img src="https://user-images.githubusercontent.com/88614978/169691601-b4820473-8f6a-41c6-97a6-27cebd7dcd6b.jpg" />
+<img src="https://user-images.githubusercontent.com/88614978/169691601-b4820473-8f6a-41c6-97a6-27cebd7dcd6b.jpg" width="350" />
 
 <br>
+   <div align="left">
+
 
 ## 2. 주요 기능
 |기능|내용|
 |--|--|
 |회원|회원가입과 로그인 로그아웃을 할 수 있습니다|
-|마이페이지|회 원정보 수정 및 회원 탈퇴를 할 수 있습니다|
+|마이페이지|회원정보 수정 및 회원 탈퇴를 할 수 있습니다|
 |지도|현재 위치 조회, 거리별 추천 술집 리스트업 및 마킹, 술집 검색을 할 수 있습니다|
 |술집리스트|조건에 따른 술집 리스트검색 기능 (거리,평점,리뷰), 평점 및 리뷰 작성을 할 수 있습니다|
 |게시판|랭킹페이지 에서는 1주일 누적 리뷰를 기준으로 정렬해서 보여 줍니다 |
 |채팅|실시간 채팅이 가능합니다.|
+      
+      
+## 프론트엔드
 
+| Technology          | Description                                                  | Official website                                               |
+| ------------------- | ------------------------------------------------------------ | -------------------------------------------------              |
+| Thymeleaf           | server-side Java template engine                             | https://www.thymeleaf.org/                                     |
+| Ajax                | Asynchronous JavaScript and XML                              | https://api.jquery.com/jquery.ajax/#jQuery-ajax-url-settings   |
+      
+## 백엔드
+      
+| Technology      | Dscription                       | Official Website                           |
+| --------------- | -------------------------------- | ------------------------------------------ |
+| Spring Boot     | Container + MVC framework        | https://spring.io/projects/spring-boot     |
+| MySQL           | RDBMS                            | https://www.mysql.com/                     |
+| JPA             | ORM framework                    | https://spring.io/projects/spring-data-jpa |
+| Lombok          | Simplified object packaging tool | https://projectlombok.org/                 |
+   
+* JPA(Java Persistence API) + Spring Data JPA 를 사용하여 객체들과 테이블, 레코드를 자동으로 관리하며 기본적인 쿼리를 자동으로 생성합니다.
+* 사용자의 리뷰와 별점을 기반으로 리스트업 되는 술집 추천 서비스를 제공합니다.
+</div>
 
 <br>
 
-## 3. 프로젝트 아키텍처
-![enter image description here](https://user-images.githubusercontent.com/88614978/169690690-7ff209d4-6dcb-4a9d-8782-ce76feaf862f.png)
-
-<br>
-
-## 4. 분석 패키지 구조도 
-![enter image description here](https://cdn.discordapp.com/attachments/961916885773991946/977879580629155880/unknown.png)
-
-<br>
-
-## 5. 개체-관계 모델(ERD)
-![enter image description here](https://user-images.githubusercontent.com/88614978/169691165-2fe61249-3dcc-486e-b51f-8339aebc4419.jpg)
-
+## 3. 개체-관계 모델(ERD)
+<img src="https://user-images.githubusercontent.com/88614978/169691165-2fe61249-3dcc-486e-b51f-8339aebc4419.jpg" width="600" />
 <br>
    
+   
+   
+   
+## 🧑🏻‍💻 팀원
+|**Inhyuk**|**Geonyoung**|**Min-a**|**Yoonjung**|**Kyunghee**|**Jinhwan**|**Jinho**|  
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|  
+| <img src="https://avatars.githubusercontent.com/u/96756113?v=4" width="60"> | <img src="https://avatars.githubusercontent.com/u/88614978?v=4" width="60"> | <img src="https://avatars.githubusercontent.com/u/93837213?v=4" width="60"> | <img src="https://avatars.githubusercontent.com/u/92416563?v=4" width="60"> | <img src="https://avatars.githubusercontent.com/u/96763714?v=4" width="60"> | <img src="https://avatars.githubusercontent.com/u/63578131?v=4" width="60"> | <img src="https://avatars.githubusercontent.com/u/88222461?v=4" width="60"> |
+|[우인혁](https://github.com/Y-mannn)|[신건영](https://github.com/Almondshin)|[옥민아](https://github.com/okaymina)|[최윤정](https://github.com/Layton0-0)|[피경희](https://github.com/kyunghee47)|[하진환](https://github.com/HazZlng)|[김진호](https://github.com/jinokiim)|
+   
+   
+   <img src=https://user-images.githubusercontent.com/88614978/170047565-0bca8bb8-35db-4740-a85c-32c0b2107583.png width="600">
 
 
 
