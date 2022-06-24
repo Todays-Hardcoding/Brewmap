@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head th:replace="layout/head :: headFragment">
-</head>
-<th:block layout:fragment="customCss">
-	<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
-	<link rel="stylesheet" th:href="@{/assets/css/board.css}" type="text/css">
-	<title>고객센터</title>
+<html
+	lang="ko"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+	<head th:replace="layout/head :: headFragment"> </head>
+
+	<th:block layout:fragment="customCss">
+		<!-- 이 안에 개별적인 CSS 넣으면 됨. 타이틀도. -->
+	<title>boardPage</title>
 </th:block>
 
 <body>
@@ -15,31 +17,31 @@
 	<div th:replace="layout/header :: header"></div>
 
 	<!-- [content] 영역 시작, 아래 태그 지우고 이 자리 채우면 됨. -->
-	<section>
-		<div class="container">
-			<div class="row py-1 py-md-5">
-				<div class="col-12 col-sm-3">
-					<div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 text-white">
-						<ul id="menu-1" class="board-category nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 my-3 mb-sm-auto justify-content-center align-items-center align-items-sm-start w-100">
-							<li class="w-100">
-								<a class="" th:href="@{/board/hotPage}">
-									<i class="fas fa-fire bi-speedometer2 fs-5 ms-2"></i>
-								</a>
-							</li>
-							<li class="w-100">
-								<a class="" th:href="@{/board/reviewPage}">
-									<i class="fas fa-utensils bi-bootstrap fs-5 ms-2"></i>
-								</a>
-							</li>
-							<li class="w-100">
-								<a class="" th:href="@{/board/serviceCenter}">
-									<i class="fa fa-group bi-people fs-5 ms-2"></i>
-								</a>
-							</li>
+	<section style="border-color: rgb(255, 255, 255);">
+		<div class="container-fluid" style="border-color: rgb(255, 255, 255);">
+			<div class="row py-1 py-md-5"
+				style="border-color: rgb(255, 255, 255);">
+				<div class="col-12 col-sm-3"
+					style="border-color: rgb(255, 255, 255);">
+					<div
+						class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 text-white">
+						<ul id="menu-1"
+							class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 my-3 mb-sm-auto justify-content-center align-items-center align-items-sm-start w-100">
+							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
+								th:href="@{/board/hotPage}"><i
+									class="fas fa-fire bi-speedometer2 fs-5 ms-2"></i><span
+									class="ms-1 d-none d-sm-inline">금주의 술집 랭킹</span></a></li>
+							<li class="w-100"><a class="px-1 nav-link px-sm-0 ps-2"
+								th:href="@{/board/reviewPage}"><i
+									class="fas fa-utensils bi-bootstrap fs-5 ms-2"></i><span
+									class="ms-1 d-none d-sm-inline">금주의 술집 리뷰</span></a></li>
+							<li class="w-100"><a class="px-2 nav-link px-sm-0 ps-2"
+								th:href="@{/board/serviceCenter}"><i
+									class="fa fa-group bi-people fs-5 ms-2"></i><span
+									class="ms-1 d-none d-sm-inline">고객센터</span></a></li>
 						</ul>
 					</div>
 				</div>
-
 				<div class="col-12 col-sm-9 col-sm-9"
 					style="border-color: rgb(255, 255, 255);">
 					<!-- 게시판 카테고리 -->

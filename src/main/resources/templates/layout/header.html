@@ -1,129 +1,111 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/head :: headFragment">
-</head>
-<div th:fragment="header">
-	<link rel="stylesheet" th:href="@{/assets/css/default.css}" />
-	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script type="text/javascript">
-		function toList() {
-			// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
-			if (navigator.geolocation) {
-				// GeoLocation을 이용해서 접속 위치를 얻어옵니다
-				navigator.geolocation.getCurrentPosition(function(position) {
-					var lat = position.coords.latitude, // 위도
-					lon = position.coords.longitude; // 경도  
+  <head th:replace="layout/head :: headFragment">
+  </head>
+  <div th:fragment="header">
+  <link rel="stylesheet" th:href="@{/assets/css/default.css}" />
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	function toList(){
+		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+		if (navigator.geolocation) {
+		    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+		    navigator.geolocation.getCurrentPosition(function(position) { 
+	        var lat = position.coords.latitude, // 위도
+	            lon = position.coords.longitude; // 경도  
+	            
+	         // 위도, 경도를 Map<String, String> 형식으로 저장
+	    	var params = {
+	   			"lat" : lat,
+	   			"lon" : lon 
+	   		}
+	         
+	    	console.log(params.lat);
+	        console.log(params.lon);
+	      
+	        document.location.href = "/storeList?lat="+lat+"&lon="+lon;
+		});
+		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+			alert("geolocation error");
+		}	
+	};
+</script>
 
-					// 위도, 경도를 Map<String, String> 형식으로 저장
-					var params = {
-						"lat" : lat,
-						"lon" : lon
-					}
-
-					console.log(params.lat);
-					console.log(params.lon);
-
-					document.location.href = "/storeList?lat=" + lat + "&lon="
-							+ lon;
-				});
-			} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-				alert("geolocation error");
-			}
-		};
-		function toChat() {
-			var user = $('#user').val();
-			console.log(user);
-			if(user){
-				document.location.href = "/room"
-			} else {
-				alert("채팅 서비스는 로그인 후 이용 가능합니다.");
-				document.location.href = "/";
-			}
-		}
-	</script>
-
-	<!-- 네비게이션  고정 -->
+<!-- 네비게이션  고정 -->
 	<script>
-		
-	</script>
-	<input type="hidden" id="user" th:value="${session.user}">
-	<div class="whole-section">
-		<!-- navigation -->
-		<div class="nav-container">
-			<div class="nav-wrap">
-				<!-- 1번 nav 로고있는곳 -->
-				<div class="logo-container background-color-gray">
-					<nav class="navbar navbar-expand-lg navbar-light">
-						<div class="container-fluid">
-							<!-- 로고, 홈으로 이동 -->
-							<a class="navbar-brand" th:href="@{/index}"><img
-								class="logo-image"
-								th:src="@{/assets/img/logo/brewmapLogoStretch02.png}"
-								alt="brewmapLogo mad version"></a>
-						</div>
-					</nav>
-				</div>
-				<!-- 2번 nav 메뉴버튼 있는곳-->
-				<div
-					class="menu-container background-color-gray justify-content-start">
-					<nav
-						class="navbar navbar-expand-lg navbar-light justify-content-start z-9999 second-nav">
-						<div class="container-fluid justify-content-start  second-nav">
-							<button class="navbar-toggler" type="button"
-								data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-								aria-controls="navbarNavDropdown" aria-expanded="false"
-								aria-label="Toggle navigation">
-								<span class="navbar-toggler-icon"></span>
-							</button>
-							<div class="collapse navbar-collapse" id="navbarNavDropdown">
-								<ul class="navbar-nav nav-list">
-									<li class="nav-item"><a class="nav-link active"
-										aria-current="page" th:href="@{/index}"><span>Home</span></a></li>
-									<li class="nav-item" th:if="${session.user} != null"><a
-										class="nav-link" th:href="@{/userpage}"><span>마이페이지</span></a></li>
-									<li class="nav-item"><a class="nav-link" th:href="@{/map}"><span>지도페이지</span></a></li>
-									<li class="nav-item"><a class="nav-link"
-										onClick="toList()"><span>술집리스트</span></a></li>
-									<li class="nav-item"><a class="nav-link"
-										th:href="@{/board/hotPage}"><span>게시판</span></a></li>
-									<li class="nav-item" th:if="${session.user} != null"><a
-										class="nav-link" th:href="@{/logout}"><span>로그아웃</span></a></li>
-									<li class="nav-item" th:if="${session.user} == null"><a
-										class="nav-link" th:href="@{/login}"><span>로그인</span></a></li>
-									<li class="nav-item" th:if="${session.user} == null"><a
-										class="nav-link" th:href="@{/signUp}"><span>회원가입</span></a></li>
-								</ul>
-							</div>
-						</div>
-					</nav>
-				</div>
-				<!-- 3번 nav -->
-				<div class="search-container background-color-gray">
-					<nav class="navbar navbar-expand-lg navbar-light">
-						<div class="container-fluid">
-							<div class="search-icon-position-box">
-								<i id="nav-search-button"
-									class="fa-solid fa-magnifying-glass nav-search-icon"
-									onclick="openCloseSearch()"></i>
-							</div>
-							<form class="search-section" method="get" action="/map">
-								<div class="search-input-position-box">
-									<!-- <button class="w-btn w-btn-indigo" type="button" >검색열기</button> -->
-									<div id="nav-search-input" class="search-input-container">
-										<input class="form-control me-2 nav-search-input" type="text"
-											id="keyword" name="keyword" size="15" placeholder="키워드검색"
-											aria-label="Search" />
-										<button class="nav-search-button" type="submit">검색</button>
-									</div>
+  
+    </script>
 
+    <div class="whole-section">
+      <!-- navigation -->
+      <div class="nav-container">
+        <div class="nav-wrap">
+          <!-- 1번 nav 로고있는곳 -->
+          <div class="logo-container background-color-gray">
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <div class="container-fluid">
+                <!-- 로고, 홈으로 이동 -->
+                <a class="navbar-brand" th:href="@{/index}"><img class="logo-image" th:src="@{/assets/img/logo/brewmapLogoStretch02.png}" alt="brewmapLogo mad version"></a>
+              </div>
+            </nav>
+          </div>
+
+          <!-- 2번 nav 메뉴버튼 있는곳-->
+          <div class="menu-container background-color-gray justify-content-start">
+            <nav class="navbar navbar-expand-lg navbar-light justify-content-start z-9999 second-nav">
+              <div class="container-fluid justify-content-start  second-nav">
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarNavDropdown"
+                  aria-controls="navbarNavDropdown"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <ul class="navbar-nav nav-list">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/index}"><span>Home</span></a></li>
+                    <li class="nav-item" th:if="${session.user} != null"><a class="nav-link" th:href="@{/userpage}"><span>마이페이지</span></a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/map}"><span>지도페이지</span></a></li>
+                    <li class="nav-item"><a class="nav-link" onClick="toList()"><span>술집리스트</span></a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/board/hotPage}"><span>게시판</span></a></li>
+                   	<li class="nav-item" th:if="${session.user} != null" ><a class="nav-link" th:href="@{/logout}"><span>로그아웃</span></a></li>
+					          <li class="nav-item" th:if="${session.user} == null" ><a class="nav-link" th:href="@{/login}"><span>로그인</span></a></li>
+					          <li class="nav-item" th:if="${session.user} == null" ><a class="nav-link" th:href="@{/signUp}"><span>회원가입</span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+
+          <!-- 3번 nav -->
+          <div class="search-container background-color-gray">
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <div class="container-fluid">
+                <div class="search-icon-position-box">
+									<i id="nav-search-button" class="fa-solid fa-magnifying-glass nav-search-icon" onclick="openCloseSearch()"></i>
 								</div>
-							</form>
-						</div>
-					</nav>
-				</div>
-			</div>
-		</div>
-	</div>
+								<form class="search-section" method="get" action="/map">
+									<div class="search-input-position-box">
+										<!-- <button class="w-btn w-btn-indigo" type="button" >검색열기</button> -->
+										<div id="nav-search-input" class="search-input-container">
+												<input class="form-control me-2 nav-search-input" type="text" id="keyword" name="keyword" size="15" placeholder="키워드검색" aria-label="Search"/>
+												<button class="nav-search-button" type="submit">검색</button>
+										</div>
+										
+									</div>
+								</form>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  
 
-	<!-- navigation 끝 -->
+  <!-- navigation 끝 -->
 </html>

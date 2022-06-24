@@ -44,7 +44,7 @@ public interface StoreInfoRepository extends JpaRepository<StoreInfo, String> {
 	
 	// 술집 랭킹
 	@Query(value = "select * "
-			 	 + "from store_info A, (select store_code, count(*) cnt "
+			 	 + "from Store_info A, (select store_code, count(*) cnt "
 			 	 					+ "from review "
 			 	 					+ "where review_date between date_add(now(), interval -1 day) and now() "
 			 	 					+ "group by store_code) B "

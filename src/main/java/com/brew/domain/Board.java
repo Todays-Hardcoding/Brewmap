@@ -21,13 +21,16 @@ import org.hibernate.annotations.DynamicUpdate;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import groovy.transform.ToString;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@ToString
 @Setter
 @Getter
+@Builder
 @NoArgsConstructor
 @Entity
 @Table
@@ -68,19 +71,15 @@ public class Board {
 	private String boardCategory;
 	
 	@Column
-	private Integer boardLikeCount;
+	@NotNull
+	@Builder.Default
+	private Integer boardLikeCount = 0;
 	
 	@PrePersist
 	public void createdAt() {
 		this.boardDate = LocalDateTime.now();
 		this.boardLikeCount = 0;
 	}
-	
-	@PreUpdate
-	public void createdAt2() {
-		this.boardDate = LocalDateTime.now();
-	}
-	
 
 	@Builder
 	public Board(List<Reply> reply, User user, @NotNull long boardId, @NotNull String boardTitle,

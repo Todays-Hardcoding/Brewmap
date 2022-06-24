@@ -1,9 +1,5 @@
 div.container.profile {
   padding: 10px 20px;
-  min-height: 800px;
-  min-width: 390px;
-  max-width: 3333px;
-  margin-bottom: 50px;
 }
 
 .center {
@@ -62,3 +58,4 @@ div.avatar-bg {
   border-radius: 50%;
   margin-left: calc(50% - 100px);
 }
+

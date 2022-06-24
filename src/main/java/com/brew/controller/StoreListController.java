@@ -30,9 +30,12 @@ public class StoreListController {
 		params.put("lon", lon);
 		
 		System.out.println(radius);
+		System.out.println("====================================================================");
 		
 		if(radius == null)
 			radius = "1";
+		
+		System.out.println("==================================================");
 		
 		Map<String, StoreInfo> storeMap = storeListService.getCloseStores(params, radius);	
 		List<List<StoreInfo>> storePage = new ArrayList<>();
@@ -40,6 +43,7 @@ public class StoreListController {
 		List<StoreInfo> storeList = new ArrayList<>();
 		List<String> storeDistance = new ArrayList<>();
 		
+		System.out.println("==================================================");
 		int i = 0;
 		for(Map.Entry<String, StoreInfo> entry : storeMap.entrySet()) {
 			if(i == 9) {
@@ -64,6 +68,7 @@ public class StoreListController {
 		if(page == null)
 			page = 0;
 		
+		System.out.println("==================================================");
 		System.out.println(storePage.size());
 		System.out.println(storeDistancePage.size());
 		

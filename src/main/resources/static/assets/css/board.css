@@ -1,20 +1,9 @@
-section {
-  max-width: 3333px;
-  margin: 0 auto;
-  min-width: 390px;
-  min-height: 800px;
-  white-space: nowrap;
-}
 .board-section {
   min-height: 800px;
   min-width: 390px;
   white-space: nowrap;
   color: #362222;
   letter-spacing: 0.3rem;
-  margin-bottom: 50px;
-}
-.board-container {
-  margin: 10px auto;
 }
 
 .board-category {
@@ -63,25 +52,21 @@ section {
   color: #362222;
   letter-spacing: 0.1rem;
 }
-.keyword-input {
-  margin-top: 10px;
+
+.input-group {
+  margin: 20px auto;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
 }
-.form-container {
-  display: grid;
-  width: 100%;
-  height: 20px;
-  grid-template-columns: 1fr 0.2fr;
-}
-.search-button {
-  margin-top: 10px;
-  margin-left: 38px;
-  width: 80px;
-  height: 38px;
-}
-.write-form {
+
+.input-group .form-container {
+  display: inline-block;
   width: 100%;
 }
-.write-button {
-  margin-top: 40px;
-  float: right;
+
+.input-group .form-container button {
+  position: relative;
+  top: -36px;
+  right: -485px;
 }

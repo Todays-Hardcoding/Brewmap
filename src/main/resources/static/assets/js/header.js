@@ -22,4 +22,3 @@ let openCloseSearch = () => {
     document.getElementById("nav-search-input").style.display = "block";
   }
 };
-

@@ -4,13 +4,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.brew.domain.User;
-import com.brew.service.BoardService;
 import com.brew.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -20,69 +20,41 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
 	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	private BoardService boardService;
+	private UserService userservice;
 
 	@GetMapping("/userpage")
-	public String userPage(HttpSession session) {
+	public String userpage(HttpSession session) {
+//		session.setAttribute("user", userservice.findByUserId("abc"));
 		return "view/user/userpage";
 	}
 
 	@RequestMapping("/modify")
-	public String userModifyPage() {
+	public String usermodifypage() {
 		return "view/user/usermodifypage";
 	}
 
 	@RequestMapping(value = "/modifyUserInfo", method = RequestMethod.POST)
-	public String userUpdate(HttpSession session, @ModelAttribute User user) {
-		userService.userUpdate(user);
+	public String update(HttpSession session, @ModelAttribute User user) {
+		
+		userservice.userUpdate(user);
 
-		User newuser = userService.findByUserId(user.getUserId());
+		User newuser = userservice.findByUserId(user.getUserId());
+		System.out.println(newuser);
+
 
 		session.setAttribute("user", newuser);
 		return "view/user/userpage";
 	}
 
+
 	@RequestMapping(value = "/delete", method=RequestMethod.GET)
-	public String userDelete(String userId, HttpSession session) {
-		User user = userService.findByUserId(userId);
-		userService.deleteAllBoardInUser(user.getBoard());
-	 	userService.deleteAllReviewInUser(user.getReview());
-	 	boardService.deleteAllReplyInBoard(user.getReply());
-		userService.deleteUser(userId);
+	public String delete(String userId, HttpSession session) {
+		System.out.println(userId);
+		
+		userservice.deleteUser(userId);
 		
 		session.removeAttribute("user");
+		System.out.println("유저가 여기에서 삭제 됐습니다");
 		return "view/index";
 	}
-
-// 예외처리 예시
-//	@PostMapping("/sign-up.act")
-//	public ResponseEntity<DataResponse> signUp(@RequestBody Map<String, String> params) {		
-//		DataResponse dataResponse = new DataResponse();
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
-//
-//		User user = User.builder().userEmail(params.get("userEmail")).userPassword(params.get("userPassword"))
-//				.userName(params.get("userName")).userNickname(params.get("userNickname")).build();
-//		
-//		if(userService.findByUserEmail(params.get("userEmail")) != null) {
-//			ErrorResponse.CustomFieldError customFieldError = new ErrorResponse.CustomFieldError("User", params.get("userEmail"), "아이디 중복");
-//			throw new DuplicateIdException(customFieldError);
-//		}
-//		
-//		if (userService.insertUser(user) != null) {
-//			dataResponse.setStatus(StatusCode.OK.getStatus());
-//			dataResponse.setCode(StatusCode.OK.getCode());
-//			dataResponse.setData(user);
-//			
-//			return new ResponseEntity<DataResponse>(dataResponse, headers, HttpStatus.OK);
-//		} else {
-//			dataResponse.setStatus(StatusCode.NOT_FOUND.getStatus());
-//			dataResponse.setCode(StatusCode.NOT_FOUND.getCode());
-//			
-//			return new ResponseEntity<DataResponse>(dataResponse, headers, HttpStatus.NOT_FOUND);
-//		}
-//	}
 }

@@ -22,9 +22,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @Entity
 @Table
@@ -36,12 +38,7 @@ public class User {
 	private List<Board> board;
 
 	@OneToMany(mappedBy = "user")
-	@JsonManagedReference
-	private List<Review> review;
-	
-	@OneToMany(mappedBy = "user")
-	@JsonManagedReference
-	private List<Reply> reply;
+	private List<Review> Review;
 	
 	@NotNull
 	@Column
@@ -50,7 +47,6 @@ public class User {
 	@Id
 	@NotNull
 	@Column
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String userId;
 	
 	@NotNull
