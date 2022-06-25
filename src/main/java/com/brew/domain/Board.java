@@ -27,55 +27,52 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@ToString
 @Setter
 @Getter
-@Builder
 @NoArgsConstructor
 @Entity
 @Table
 @DynamicUpdate
 public class Board {
-	
+
 	@OneToMany(mappedBy = "board")
 	@JsonManagedReference
 	private List<Reply> reply;
-	
+
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	@JsonBackReference
 	private User user;
-	
+
 	@Id
 	@NotNull
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long boardId;
-	
+
 	@NotNull
 	@Column
 	private String boardTitle;
-	
+
 	@NotNull
 	@Column
 	private String boardContent;
-	
+
 	@Column
 	private LocalDateTime boardDate;
-	
+
 	@Column
 	private Integer boardViews;
-	
+
 	@NotNull
 	@Column
 	private String boardCategory;
-	
+
 	@Column
-	@NotNull
-	@Builder.Default
-	private Integer boardLikeCount = 0;
-	
+	private Integer boardLikeCount;
+
 	@PrePersist
+	@PreUpdate
 	public void createdAt() {
 		this.boardDate = LocalDateTime.now();
 		this.boardLikeCount = 0;
@@ -83,8 +80,8 @@ public class Board {
 
 	@Builder
 	public Board(List<Reply> reply, User user, @NotNull long boardId, @NotNull String boardTitle,
-			@NotNull String boardContent, LocalDateTime boardDate, Integer boardViews, @NotNull String boardCategory,
-			Integer boardLikeCount) {
+				 @NotNull String boardContent, LocalDateTime boardDate, Integer boardViews, @NotNull String boardCategory,
+				 Integer boardLikeCount) {
 		super();
 		this.reply = reply;
 		this.user = user;
@@ -95,5 +92,5 @@ public class Board {
 		this.boardViews = boardViews;
 		this.boardCategory = boardCategory;
 		this.boardLikeCount = boardLikeCount;
-	}		
+	}
 }
