@@ -1,5 +1,7 @@
 package com.brew.controller;
 
+import com.brew.exception.ErrorResponse;
+import com.brew.exception.board.DeleteByUnauthUserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -68,12 +70,22 @@ public class BoardController {
 	// 글수정
 	@RequestMapping(value="/update", method = RequestMethod.GET)
 	public String updateBoard(Model model, @ModelAttribute Board board, String userId) {
-		User user = userservice.findByUserId(userId);
-		board.setUser(user);
+//		User user = userservice.findByUserId(userId);
+		Board userBoard = boardService.findByBoardId(board.getBoardId());
+		User user = userBoard.getUser();
+		if(!userId.equals(user.getUserId())){
+			ErrorResponse.CustomFieldError customFieldError= new ErrorResponse.CustomFieldError("Board", userId, "작성자가 다릅니다");
+			throw new DeleteByUnauthUserException(customFieldError);
+		} else {
+			userBoard.setBoardCategory(board.getBoardCategory());
+			userBoard.setBoardContent(board.getBoardContent());
+			userBoard.setBoardTitle(board.getBoardTitle());
+			boardService.saveBoard(userBoard);
+			return "redirect:?boardId="+ board.getBoardId();
+		}
+//		board.setUser(user);
 		
-		boardService.saveBoard(board);
-		
-		return "redirect:?boardId="+ board.getBoardId();
+
 	}
 	
 	// 삭제
